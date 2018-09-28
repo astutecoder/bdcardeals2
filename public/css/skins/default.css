@@ -276,7 +276,7 @@ body .btn-dark[disabled] {
 }
 /* Text Primary */
 .text-primary {
-	color: /*#0088cc*/ #fa0b0b !important;
+	color: #0088cc /*#fa0b0b !important*/;
 }
 /* BG Primary */
 .bg-primary {

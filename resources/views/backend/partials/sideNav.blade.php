@@ -13,7 +13,7 @@
         <div class="nano-content">
             <nav id="menu" class="nav-main" role="navigation">
                 <ul class="nav nav-main">
-                    <li>
+                    <li class="{{ Request::is('/') ? 'nav-active' : '' }}">
                         <a href="/">
                             <i class="fa fa-home" aria-hidden="true"></i>
                             <span>Dashboard</span>
@@ -55,7 +55,7 @@
                                 </a>
                                 <ul class="nav nav-children">
                                     <li>
-                                        <a href="ui-elements-icons-elusive.html">
+                    ¨                    <a href="ui-elements-icons-elusive.html">
                                             Elusive
                                         </a>
                                     </li>

@@ -14,13 +14,13 @@ use App\BodyType;
 use App\FuelType;
 use Illuminate\Support\Facades\DB;
 
-class CarsController extends Controller {
+class CarsController extends Controller
+{
 
     public function all_brands()
     {
         $brands = Brand::all()->each->cars;
-        if ($brands->isEmpty())
-        {
+        if ($brands->isEmpty()) {
             return response()->json($brands, 204);
         }
 
@@ -48,8 +48,7 @@ class CarsController extends Controller {
     public function all_body_types()
     {
         $body_types = BodyType::all();
-        if ($body_types->isEmpty())
-        {
+        if ($body_types->isEmpty()) {
             return response()->json(['message' => 'No data found'], 204);
         }
 
@@ -78,8 +77,7 @@ class CarsController extends Controller {
     public function all_fuel_types()
     {
         $fuel_types = FuelType::all();
-        if ($fuel_types->isEmpty())
-        {
+        if ($fuel_types->isEmpty()) {
             return response()->json(['message' => 'No data found'], 204);
         }
 
@@ -107,8 +105,8 @@ class CarsController extends Controller {
     public function all_colors()
     {
         $colors = Color::all();
-        if($colors->isEmpty()){
-            return response()->json(['message'=> 'No data found'], 204);
+        if ($colors->isEmpty()) {
+            return response()->json(['message' => 'No data found'], 204);
         }
         return response()->json($colors);
     }
@@ -134,19 +132,29 @@ class CarsController extends Controller {
     public function all_cars()
     {
         $cars = Car::all();
+        $cars->each->brands;
+        $cars->each->body_types;
         $cars->each->fuel_types;
         $cars->each->colors;
 
-        if ($cars->isEmpty())
-        {
-            return response()->json(['message' => 'No data found']);
+        if ($cars->isEmpty()) {
+            return view('backend.cars.all_cars')->withErrors(['message' => 'No data found']);
         }
 
         return view('backend.cars.all_cars')->with('cars', $cars);
     }
 
-    public function add_car_form(){
-        return view('backend.cars.add_car');
+    public function add_car_form()
+    {
+        $brands = Brand::all();
+        $colors = Color::all();
+        $body_types = BodyType::all();
+        $fuel_types = fuelType::all();
+        return view('backend.cars.add_car')
+            ->with('brands', $brands)
+            ->with('colors', $colors)
+            ->with('body_types', $body_types)
+            ->with('fuel_types', $fuel_types);
     }
 
     public function add_car(Request $request)
@@ -174,20 +182,18 @@ class CarsController extends Controller {
 
         // Validating Inputs
         $request->validate([
-            'model_no'      => 'required',
-            'year'          => 'required|integer|min:4',
-            'price'         => 'required|integer',
-            'brands_id'     => 'required',
+            'model_no' => 'required',
+            'year' => 'required|integer|min:4',
+            'price' => 'required|integer',
+            'brands_id' => 'required',
             'body_types_id' => 'required',
             'fuel_types_id' => 'required',
-            'colors_id'     => 'required',
-        ],[
+            'colors_id' => 'required',
+        ], [
             'brands_id.required' => 'You must select a Brand',
             'body_types_id.required' => 'You must select a Body Type',
             'fuel_types_id.required' => 'You must select a Fuel Type',
         ]);
-
-        return $colors_id;
 
         DB::beginTransaction();
         // Storing Cars
@@ -220,9 +226,9 @@ class CarsController extends Controller {
 
         // Storing Cars and Colors id in cars_colors
         $isCarColorSaved = false;
-        if(count($colors_id) > 0){
+        if (count($colors_id) > 0) {
             $isCarColorSaved = true;
-            foreach ($colors_id as $color_id){
+            foreach ($colors_id as $color_id) {
                 $cars_colors = new CarsColor();
                 $cars_colors->cars_id = $car->id;
                 $cars_colors->colors_id = $color_id;
@@ -231,13 +237,23 @@ class CarsController extends Controller {
             }
         }
 
-        if($isCarSaved && $isCarFuelTypeSaved && $isCarColorSaved){
+        if ($isCarSaved && $isCarFuelTypeSaved && $isCarColorSaved) {
             DB::commit();
-            return response()->json([$car->id], 201);
-        }else{
+            return redirect()->route('all-cars');
+        } else {
             DB::rollBack();
-            return response()->json(['message' => 'Sorry something went wrong.'], 422);
+            return back()->withInput();
         }
+    }
 
+    public function edit_car_form($id)
+    {
+        $car = Car::findOrFail($id);
+        $car->brands;
+        $car->colors;
+        $car->body_types;
+        $car->fuel_types;
+
+        return $car;
     }
 }

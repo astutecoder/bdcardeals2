@@ -1,1 +1,4 @@
 /* Add here all your CSS customizations */
+.page-header .breadcrumbs{
+    margin-right: 20px;
+}

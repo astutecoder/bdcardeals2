@@ -2,6 +2,10 @@
 
 @section('title', 'Add New Car')
 @section('content-body-head', 'Cars')
+@section('breadcrumb-list')
+    <li><span>Cars</span></li>
+    <li><span>Add Car</span></li>
+@stop
 
 @section('content-body')
     <div class="row">
@@ -22,7 +26,7 @@
                                 Title
                             </label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="title">
+                                <input name="title" value="{{ old('title') }}" type="text" class="form-control" id="title">
 
                                 @if ($errors->has('title'))
                                     <span class="help-block">{{$errors->first('title')}}</span>
@@ -36,7 +40,7 @@
                                 Subtitle
                             </label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="subtitle">
+                                <input name="subtitle" value="{{ old('subtitle') }}" type="text" class="form-control" id="subtitle">
 
                                 @if ($errors->has('subtitle'))
                                     <span class="help-block">{{$errors->first('subtitle')}}</span>
@@ -51,10 +55,15 @@
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-6">
-                                <select class="form-control input-sm mb-md" required>
-                                    <option>Option 1</option>
-                                    <option>Option 2</option>
-                                    <option>Option 3</option>
+                                <select name="brands_id" class="form-control input-sm mb-md" required>
+                                    <option value="">--- SELECT AN OPTION ---</option>
+                                    @foreach($brands as $brand)
+                                        <option
+                                                value="{{$brand->id}}"
+                                                {{ ($brand->id == old('brands_id')) ? 'selected' : '' }}>
+                                            {{ strtoupper($brand->brand_name) }}
+                                        </option>
+                                    @endforeach
                                 </select>
                                 @if ($errors->has('brands_id'))
                                     <span class="help-block">{{$errors->first('brands_id')}}</span>
@@ -69,10 +78,15 @@
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-6">
-                                <select class="form-control input-sm mb-md" required>
-                                    <option>Option 1</option>
-                                    <option>Option 2</option>
-                                    <option>Option 3</option>
+                                <select name="body_types_id" class="form-control input-sm mb-md">
+                                    <option value="">--- SELECT AN OPTION ---</option>
+                                    @foreach($body_types as $body_type)
+                                        <option
+                                                value="{{$body_type->id}}"
+                                                {{ ($body_type->id == old('body_types_id')) ? 'selected' : '' }}>
+                                            {{ strtoupper($body_type->body_type) }}
+                                        </option>
+                                    @endforeach
                                 </select>
                                 @if ($errors->has('body_types_id'))
                                     <span class="help-block">{{$errors->first('body_types_id')}}</span>
@@ -87,10 +101,15 @@
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-6">
-                                <select class="form-control input-sm mb-md" required>
-                                    <option>Option 1</option>
-                                    <option>Option 2</option>
-                                    <option>Option 3</option>
+                                <select name="fuel_types_id" class="form-control input-sm mb-md" required>
+                                    <option value="">--- SELECT AN OPTION ---</option>
+                                    @foreach($fuel_types as $fuel_type)
+                                        <option
+                                                value="{{$fuel_type->id}}"
+                                                {{ ($fuel_type->id == old('fuel_types_id')) ? 'selected' : '' }}>
+                                            {{ strtoupper($fuel_type->fuel_type) }}
+                                        </option>
+                                    @endforeach
                                 </select>
                                 @if ($errors->has('fuel_types_id'))
                                     <span class="help-block">{{$errors->first('fuel_types_id')}}</span>
@@ -102,15 +121,21 @@
                         <div class="form-group {{$errors->has('colors_id')? 'has-error' : ''}}">
                             <label class="col-md-3 control-label" for="colors_id">Colors</label>
                             <div class="col-md-6">
-                                <label class="checkbox-inline">
-                                    <input name="colors_id[]" type="checkbox" id="colors_id" value="1" {{ old('colors_id') && in_array(1, old('colors_id')) ? 'checked' : ''}}> 1
-                                </label>
-                                <label class="checkbox-inline">
-                                    <input name="colors_id[]" type="checkbox" id="colors_id" value="2" {{ old('colors_id') && in_array(2, old('colors_id'))? 'checked' : ''}}> 2
-                                </label>
-                                <label class="checkbox-inline">
-                                    <input name="colors_id[]" type="checkbox" id="colors_id" value="3" {{ old('colors_id') && in_array(3, old('colors_id'))? 'checked' : '' }}> 3
-                                </label>
+                                @foreach($colors as $color)
+                                    <label class="checkbox-inline">
+                                        <input
+                                                name="colors_id[]"
+                                                type="checkbox"
+                                                id="colors_id"
+                                                value="{{ $color->id }}"
+                                                {{ old('colors_id') && in_array($color->id, old('colors_id')) ? 'checked' : ''}}
+                                        />
+                                        {{ ucwords($color->color_name) }}
+                                    </label>
+                                @endforeach
+                                @if($errors->has('colors_id'))
+                                        <span class="help-block">{{ $errors->first('colors_id') }}</span>
+                                @endif
                             </div>
                         </div>
 
@@ -120,7 +145,7 @@
                                 Model No.
                             </label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="model_no">
+                                <input name="model_no" value="{{ old('model_no') }}" type="text" class="form-control" id="model_no">
 
                                 @if ($errors->has('model_no'))
                                     <span class="help-block">{{$errors->first('model_no')}}</span>
@@ -135,7 +160,7 @@
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-6">
-                                <input type="number" class="form-control" id="year">
+                                <input name="year" value="{{ old('year') }}" type="number" class="form-control" id="year">
 
                                 @if ($errors->has('year'))
                                     <span class="help-block">{{$errors->first('year')}}</span>
@@ -149,7 +174,7 @@
                                 Engine
                             </label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="engine">
+                                <input name="engine" value="{{ old('engine') }}" type="text" class="form-control" id="engine">
 
                                 @if ($errors->has('engine'))
                                     <span class="help-block">{{$errors->first('engine')}}</span>
@@ -163,7 +188,7 @@
                                 Transmission
                             </label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="transmission">
+                                <input name="transmission" value="{{ old('transmission') }}" type="text" class="form-control" id="transmission">
 
                                 @if ($errors->has('transmission'))
                                     <span class="help-block">{{$errors->first('transmission')}}</span>
@@ -177,7 +202,7 @@
                                 Mileage
                             </label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="mileage">
+                                <input name="mileage" value="{{ old('mileage') }}" type="text" class="form-control" id="mileage">
 
                                 @if ($errors->has('mileage'))
                                     <span class="help-block">{{$errors->first('mileage')}}</span>
@@ -191,7 +216,7 @@
                                 Doors
                             </label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="doors">
+                                <input name="doors" value="{{ old('doors') }}" type="text" class="form-control" id="doors">
 
                                 @if ($errors->has('doors'))
                                     <span class="help-block">{{$errors->first('doors')}}</span>
@@ -205,7 +230,7 @@
                                 Price
                             </label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="price">
+                                <input name="price" value="{{ old('price') }}" type="text" class="form-control" id="price">
 
                                 @if ($errors->has('price'))
                                     <span class="help-block">{{$errors->first('price')}}</span>
@@ -219,7 +244,7 @@
                                 Offer Price
                             </label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="offer_price">
+                                <input name="offer_price" value="{{ old('offer_price') }}" type="text" class="form-control" id="offer_price">
 
                                 @if ($errors->has('offer_price'))
                                     <span class="help-block">{{$errors->first('offer_price')}}</span>
@@ -227,22 +252,28 @@
                             </div>
                         </div>
 
-                        {{--is_negotiable_price--}}
+                        {{--is_negotiable_price && is_featured--}}
                         <div class="form-group {{$errors->has('is_negotiable_price')? 'has-error' : ''}}">
-                            <label class="col-md-3 control-label" for="is_negotiable_price"></label>
+                            <label class="col-md-3 control-label"></label>
                             <div class="col-md-6">
                                 <label class="checkbox-inline">
-                                    <input name="is_negotiable_price" type="checkbox" id="is_negotiable_price" value="1"> 1
+                                    <input
+                                            name="is_negotiable_price"
+                                            type="checkbox"
+                                            id="is_negotiable_price"
+                                            value="1"
+                                            {{ old('is_negotiable_price') && in_array(1, old('is_negotiable_price')) ? 'checked' : '' }}
+                                    />
+                                    Negotiable Price?
                                 </label>
-                            </div>
-                        </div>
-
-                        {{--is_featured--}}
-                        <div class="form-group {{$errors->has('is_featured')? 'has-error' : ''}}">
-                            <label class="col-md-3 control-label" for="is_featured">Inline checkboxes</label>
-                            <div class="col-md-6">
                                 <label class="checkbox-inline">
-                                    <input name="is_featured" type="checkbox" id="is_featured" value="1"> 1
+                                    <input
+                                            name="is_featured"
+                                            type="checkbox"
+                                            id="is_featured"
+                                            value="1" {{ old('is_featured') && in_array(1, old('is_featured')) ? 'checked' : '' }}
+                                    />
+                                    Featured?
                                 </label>
                             </div>
                         </div>
@@ -253,7 +284,7 @@
                                 Features
                             </labfel>
                             <div class="col-md-6">
-                                <textarea name="features" class="form-control" rows="3" id="features"></textarea>
+                                <textarea name="features" class="form-control" rows="3" id="features">{{ old('features') }}</textarea>
                             </div>
                         </div>
 
@@ -263,7 +294,7 @@
                                 Safety
                             </labfel>
                             <div class="col-md-6">
-                                <textarea name="safety" class="form-control" rows="3" id="safety"></textarea>
+                                <textarea name="safety" class="form-control" rows="3" id="safety">{{ old('safety') }}</textarea>
                             </div>
                         </div>
 
@@ -273,7 +304,7 @@
                                 Comfort
                             </labfel>
                             <div class="col-md-6">
-                                <textarea name="comfort" class="form-control" rows="3" id="comfort"></textarea>
+                                <textarea name="comfort" class="form-control" rows="3" id="comfort">{{ old('comfort') }}</textarea>
                             </div>
                         </div>
 
