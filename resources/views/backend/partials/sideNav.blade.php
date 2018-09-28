@@ -19,38 +19,39 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    <li class="nav-parent">
+                    <li class="nav-parent {{ Request::is('cars/*')? 'nav-expanded nav-active' : '' }}">
                         <a>
                             <i class="fa fa-car" aria-hidden="true"></i>
                             <span>Cars</span>
                         </a>
                         <ul class="nav nav-children">
-                            <li>
+                            <li class="{{ Request::path() === 'cars/all-cars'? 'nav-active' : '' }}">
                                 <a href="{{ url('/cars/all-cars') }}">
                                     All cars
                                 </a>
                             </li>
-                            <li>
-                                <a href="pages-signin.html">
+                            <li class="{{ Request::path() === 'cars/add-car' ? 'nav-active' : '' }}">
+                                <a href="{{ route('add-car') }}">
                                     Add car
                                 </a>
                             </li>
                         </ul>
                     </li>
+
                     <li class="nav-parent">
                         <a>
                             <i class="fa fa-tasks" aria-hidden="true"></i>
-                            <span>UI Elements</span>
+                            <span>Brands</span>
                         </a>
                         <ul class="nav nav-children">
                             <li>
-                                <a href="ui-elements-typography.html">
-                                    Typography
+                                <a href="{{ route('all-brands') }}">
+                                    All Brands
                                 </a>
                             </li>
                             <li class="nav-parent">
-                                <a>
-                                    Icons
+                                <a href="{{ route('add-brand') }}">
+                                    Add Brand
                                 </a>
                                 <ul class="nav nav-children">
                                     <li>
@@ -310,7 +311,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-parent nav-expanded nav-active">
+                    <li class="nav-parent">
                         <a>
                             <i class="fa fa-columns" aria-hidden="true"></i>
                             <span>Layouts</span>
@@ -326,7 +327,7 @@
                                     Boxed
                                 </a>
                             </li>
-                            <li class="nav-active">
+                            <li>
                                 <a href="layouts-menu-collapsed.html">
                                     Menu Collapsed
                                 </a>

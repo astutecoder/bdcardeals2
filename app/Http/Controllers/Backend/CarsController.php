@@ -152,37 +152,42 @@ class CarsController extends Controller {
     public function add_car(Request $request)
     {
         $title = $request->input('title');
-//        $subtitle = $request->input('subtitle');
-//        $model_no = $request->input('model_no');
-//        $year = $request->input('year');
-//        $engine = $request->input('engine');
-//        $transmission = $request->input('transmission');
-//        $mileage = $request->input('mileage');
-//        $doors = $request->input('doors');
-//        $features = $request->input('features');
-//        $safety = $request->input('safety');
-//        $comfort = $request->input('comfort');
-//        $price = $request->input('price');
-//        $offer_price = $request->input('offer_price');
-//        $is_negotiable_price = $request->input('is_negotiable_price') ?? 0;
-//        $is_featured = $request->input('is_featured') ?? 0;
-//        $brands_id = $request->input('brands_id');
-//        $body_types_id = $request->input('body_types_id');
-//        $fuel_types_id = $request->input('fuel_types_id');
-//        $colors_id = $request->input('colors_id');
-//        $save_complete = $request->input('save_complete') ?? 0;
+        $subtitle = $request->input('subtitle');
+        $model_no = $request->input('model_no');
+        $year = $request->input('year');
+        $engine = $request->input('engine');
+        $transmission = $request->input('transmission');
+        $mileage = $request->input('mileage');
+        $doors = $request->input('doors');
+        $features = $request->input('features');
+        $safety = $request->input('safety');
+        $comfort = $request->input('comfort');
+        $price = $request->input('price');
+        $offer_price = $request->input('offer_price');
+        $is_negotiable_price = $request->input('is_negotiable_price') ?? 0;
+        $is_featured = $request->input('is_featured') ?? 0;
+        $brands_id = $request->input('brands_id');
+        $body_types_id = $request->input('body_types_id');
+        $fuel_types_id = $request->input('fuel_types_id');
+        $colors_id = $request->input('colors_id');
+        $save_complete = $request->input('save_complete') ?? 0;
 
         // Validating Inputs
         $request->validate([
-//            'model_no'      => 'required',
-//            'year'          => 'required|integer|min:4',
-//            'price'         => 'required|integer',
-//            'brands_id'     => 'required',
-//            'body_types_id' => 'required',
-//            'fuel_types_id' => 'required',
-//            'colors_id'     => 'required',
-            'title'     => 'required',
+            'model_no'      => 'required',
+            'year'          => 'required|integer|min:4',
+            'price'         => 'required|integer',
+            'brands_id'     => 'required',
+            'body_types_id' => 'required',
+            'fuel_types_id' => 'required',
+            'colors_id'     => 'required',
+        ],[
+            'brands_id.required' => 'You must select a Brand',
+            'body_types_id.required' => 'You must select a Body Type',
+            'fuel_types_id.required' => 'You must select a Fuel Type',
         ]);
+
+        return $colors_id;
 
         DB::beginTransaction();
         // Storing Cars
