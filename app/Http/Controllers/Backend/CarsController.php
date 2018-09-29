@@ -33,7 +33,7 @@ class CarsController extends Controller
 
         // Validation
         $request->validate([
-            'brand_name' => 'unique:brands'
+            'brand_name' => 'bail|required|unique:brands'
         ]);
 
         // Inserting data
@@ -42,7 +42,11 @@ class CarsController extends Controller
         $brand->save();
 
         // Returning response as json
-        return response()->json([$brand->id], 201);
+        if($request->ajax()){
+            return response()->json($brand->id, 201);
+        }else{
+            return "what's happening";
+        }
     }
 
     public function all_body_types()
@@ -117,21 +121,24 @@ class CarsController extends Controller
 
         // Validation
         $request->validate([
-            'color_name' => 'required'
+            'color_name' => 'bail|required|unique:colors'
         ]);
 
         // Inserting data
         $color = new Color();
-        $color->color_name = $color_name;
+        $color->color_name = strtolower($color_name);
         $color->save();
 
         // Returning response as json
-        return response()->json([$color->id], 201);
+        if($request->ajax()){
+            return response()->json([$color->id], 201);
+        }
+        return redirect()->route('admin');
     }
 
     public function all_cars()
     {
-        $cars = Car::all();
+        $cars = Car::orderBy('id', 'desc')->get();
         $cars->each->brands;
         $cars->each->body_types;
         $cars->each->fuel_types;
@@ -246,8 +253,10 @@ class CarsController extends Controller
         }
     }
 
-    public function edit_car_form($id)
+    public function edit_car_form($id = null)
     {
+        if(!isset($id)) return redirect(404);
+
         $car = Car::findOrFail($id);
         $car->brands;
         $car->colors;
@@ -274,6 +283,7 @@ class CarsController extends Controller
     }
 
     public function update_car(Request $request) {
+        $id = $request->input('id');
         $title = $request->input('title');
         $subtitle = $request->input('subtitle');
         $model_no = $request->input('model_no');
@@ -294,6 +304,9 @@ class CarsController extends Controller
         $fuel_types_id = $request->input('fuel_types_id');
         $colors_id = $request->input('colors_id');
         $save_complete = $request->input('save_complete') ?? 0;
+        $updated_at = $request->input('updated_at') ?? 0;
+
+//        print_r($subtitle); return;
 
         // Validating Inputs
         $request->validate([
@@ -310,9 +323,9 @@ class CarsController extends Controller
             'fuel_types_id.required' => 'You must select a Fuel Type',
         ]);
 
-        DB::beginTransaction();
-        // Storing Cars
-        $car = new Car();
+//        DB::beginTransaction();
+        // Updating Car
+        $car = Car::findOrFail($id);
         $car->title = $title;
         $car->subtitle = $subtitle;
         $car->model_no = $model_no;
@@ -331,33 +344,44 @@ class CarsController extends Controller
         $car->brands_id = $brands_id;
         $car->body_types_id = $body_types_id;
         $car->save_complete = $save_complete;
-        $isCarSaved = $car->save();
+        $isCarUpdated = $car->save();
 
-        // Storing Cars and Fuels id in cars_fuel_types
-        $cft = new CarsFuelType();
-        $cft->cars_id = $car->id;
+//        return $isCarUpdated? 'isCarUpdated true':'isCarUpdated false';
+
+        // Updating Cars and Fuels id in cars_fuel_types
+        $cft = CarsFuelType::where('cars_id', $id)->first();
+        $cft->cars_id = $id;
         $cft->fuel_types_id = $fuel_types_id;
-        $isCarFuelTypeSaved = $cft->save();
+        $isCarFuelTypeUpdated = $cft->save();
 
-        // Storing Cars and Colors id in cars_colors
-        $isCarColorSaved = false;
+//        return $isCarFuelTypeUpdated? 'isCarFuelTypeUpdated true':'isCarFuelTypeUpdated false';
+
+        // Updating Cars and Colors id in cars_colors
+        $isCarColorUpdated = false;
         if (count($colors_id) > 0) {
-            $isCarColorSaved = true;
+            $isCarColorUpdated = true;
+            $cc = CarsColor::where('cars_id', $id)->delete();
             foreach ($colors_id as $color_id) {
                 $cars_colors = new CarsColor();
-                $cars_colors->cars_id = $car->id;
+                $cars_colors->cars_id = $id;
                 $cars_colors->colors_id = $color_id;
-                $isCCSaved = $cars_colors->save();
-                $isCarColorSaved = $isCCSaved && $isCarColorSaved;
+                $isCCUpdated = $cars_colors->save();
+                $isCarColorUpdated = $isCCUpdated && $isCarColorUpdated;
             }
         }
+//        return $isCarColorUpdated? 'isCarColorUpdated true':'isCarColorUpdated false';
 
-        if ($isCarSaved && $isCarFuelTypeSaved && $isCarColorSaved) {
+        if ($isCarUpdated && $isCarFuelTypeUpdated && $isCarColorUpdated) {
             DB::commit();
             return redirect()->route('all-cars');
         } else {
             DB::rollBack();
             return back()->withInput();
         }
+    }
+
+    public function delete_car($id){
+        $car = Car::find($id);
+        $car->delete();
     }
 }

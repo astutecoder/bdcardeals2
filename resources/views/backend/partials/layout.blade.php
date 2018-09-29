@@ -9,6 +9,7 @@
 
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="csrf" content="{{ csrf_token() }}">
 
     <!-- Web Fonts  -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
@@ -20,8 +21,8 @@
     <link rel="stylesheet" href="{{ asset('vendor_assets/magnific-popup/magnific-popup.css') }}" />
     <link rel="stylesheet" href="{{ asset('vendor_assets/bootstrap-datepicker/css/datepicker3.css') }}" />
 
-    <link rel="stylesheet" href="{{ asset('vendor_assets/select2/select2.css') }}" />
-    <link rel="stylesheet" href="{{ asset('vendor_assets/jquery-datatables-bs3/assets/css/datatables.css') }}" />
+    <!-- Page Specific -->
+        @stack('styles')
 
     <!-- Theme CSS -->
     <link rel="stylesheet" href="{{ asset('css/theme.css') }}" />

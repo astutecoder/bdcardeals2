@@ -3,9 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Car extends Model
 {
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
+
     public function brands()
     {
         return $this->belongsTo('App\Brand', 'brands_id');

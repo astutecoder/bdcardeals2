@@ -38,8 +38,9 @@ class CreateCarsTable extends Migration
             $table->foreign('body_types_id')->references('id')->on('body_types')->onDelete('cascade');
 
             $table->integer('save_complete')->default('0')->comment('1=yes, 0=no');
-            
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

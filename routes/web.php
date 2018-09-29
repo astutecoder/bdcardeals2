@@ -21,17 +21,17 @@ Route::prefix('cars')->group(function () {
     Route::post('add-brand', 'Backend\CarsController@add_brand')->name('post-add-brand');
 
     Route::get('all-body-types', 'Backend\CarsController@all_body_types');
-    Route::post('add-body-type', 'Backend\CarsController@add_body_type');
+    Route::post('add-body-type', 'Backend\CarsController@add_body_type')->name('post-body-type');
 
     Route::get('all-fuel-types', 'Backend\CarsController@all_fuel_types');
     Route::post('add-fuel-type', 'Backend\CarsController@add_fuel_type');
 
-    Route::get('all-colors', 'Backend\CarsController@all_colors')->name('all-cars');
+    Route::get('all-colors', 'Backend\CarsController@all_colors');
     Route::post('add-color', 'Backend\CarsController@add_color');
 
-    Route::get('all-cars', 'Backend\CarsController@all_cars');
+    Route::get('all-cars', 'Backend\CarsController@all_cars')->name('all-cars');
     Route::get('add-car', 'Backend\CarsController@add_car_form')->name('add-car');
     Route::post('add-car', 'Backend\CarsController@add_car')->name('post-add-car');
-    Route::get('edit/{id}', 'Backend\CarsController@edit_car_form')->name('edit-car');
-    Route::post('update-car', 'Backend\CarsController@update_car')->name('update-car');
+    Route::get('edit/{id?}', 'Backend\CarsController@edit_car_form')->name('edit-car');
+    Route::post('edit', 'Backend\CarsController@update_car')->name('update-car');
 });

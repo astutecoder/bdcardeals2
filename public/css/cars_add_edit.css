@@ -1,0 +1,17 @@
+span.has-error {
+    color: #d2322d;
+}
+
+.add-new-text {
+    margin-bottom: 0;
+}
+
+.add-new-text:hover {
+    color: #d2322d;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.add-new-input-container {
+    display: none;
+}

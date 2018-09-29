@@ -7,6 +7,12 @@
     <li><span>Edit Car</span></li>
 @stop
 
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/cars_add_edit.css') }}">
+@endpush
+
+{{-- this template has pushed scripts at the bottom of this file --}}
+
 @section('content-body')
     <div class="row">
         <div class="col-lg-12">
@@ -16,9 +22,12 @@
                 </header>
                 <div class="panel-body">
 
-                    <form class="form-horizontal form-bordered" method="post" action="{{ url('/cars/update-car') }}">
+                    <form class="form-horizontal form-bordered" method="post" action="{{ route('update-car') }}">
 
+                        {{--hidden fields--}}
                         @csrf
+                        <input name="id" value="{{  $car->id }}" type="hidden">
+                        <input name="save_complete" value="{{ old('save_complete') ?? $car->save_complete }}" type="hidden">
 
                         {{--title--}}
                         <div class="form-group {{$errors->has('title')? 'has-error' : ''}}">
@@ -55,7 +64,7 @@
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-6">
-                                <select name="brands_id" class="form-control input-sm mb-md" required>
+                                <select name="brands_id" class="form-control input-sm" required>
                                     <option value="">--- SELECT AN OPTION ---</option>
                                     @foreach($brands as $brand)
                                         <option
@@ -68,6 +77,22 @@
                                 @if ($errors->has('brands_id'))
                                     <span class="help-block">{{$errors->first('brands_id')}}</span>
                                 @endif
+
+                                {{-- Add New Item If not Exists --}}
+                                <span class="help-block add-new-text">Not in the list? Add new</span>
+                                <span class="add-new-input-container">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" data-col="brand_name"
+                                               data-route="add-brand">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-success add-new-btn" type="button"><span
+                                                        class="fa fa-check"></span></button>
+                                            <button class="btn btn-danger add-new-close" type="button"><span
+                                                        class="fa fa-close"></span></button>
+                                        </span>
+                                    </div>
+                                    <span class="has-error"></span>
+                                </span>
                             </div>
                         </div>
 
@@ -78,7 +103,7 @@
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-6">
-                                <select name="body_types_id" class="form-control input-sm mb-md">
+                                <select name="body_types_id" class="form-control input-sm" required>
                                     <option value="">--- SELECT AN OPTION ---</option>
                                     @foreach($body_types as $body_type)
                                         <option
@@ -91,6 +116,22 @@
                                 @if ($errors->has('body_types_id'))
                                     <span class="help-block">{{$errors->first('body_types_id')}}</span>
                                 @endif
+
+                                {{-- Add New Item If not Exists --}}
+                                <span class="help-block add-new-text">Not in the list? Add new</span>
+                                <span class="add-new-input-container">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" data-col="body_type"
+                                               data-route="add-body-type">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-success add-new-btn" type="button"><span
+                                                        class="fa fa-check"></span></button>
+                                            <button class="btn btn-danger add-new-close" type="button"><span
+                                                        class="fa fa-close"></span></button>
+                                        </span>
+                                    </div>
+                                    <span class="has-error"></span>
+                                </span>
                             </div>
                         </div>
 
@@ -101,7 +142,7 @@
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-6">
-                                <select name="fuel_types_id" class="form-control input-sm mb-md" required>
+                                <select name="fuel_types_id" class="form-control input-sm" required>
                                     <option value="">--- SELECT AN OPTION ---</option>
                                     @foreach($fuel_types as $fuel_type)
                                         <option
@@ -114,12 +155,31 @@
                                 @if ($errors->has('fuel_types_id'))
                                     <span class="help-block">{{$errors->first('fuel_types_id')}}</span>
                                 @endif
+
+                                {{-- Add New Item If not Exists --}}
+                                <span class="help-block add-new-text">Not in the list? Add new</span>
+                                <span class="add-new-input-container">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" data-col="fuel_type"
+                                               data-route="add-fuel-type">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-success add-new-btn" type="button"><span
+                                                        class="fa fa-check"></span></button>
+                                            <button class="btn btn-danger add-new-close" type="button"><span
+                                                        class="fa fa-close"></span></button>
+                                        </span>
+                                    </div>
+                                    <span class="has-error"></span>
+                                </span>
                             </div>
                         </div>
 
                         {{--colors_id--}}
                         <div class="form-group {{$errors->has('colors_id')? 'has-error' : ''}}">
-                            <label class="col-md-3 control-label" for="colors_id">Colors</label>
+                            <label class="col-md-3 control-label" for="colors_id">
+                                Colors
+                                <span class="required">*</span>
+                            </label>
                             <div class="col-md-6">
                                 @foreach($colors as $color)
                                     <label class="checkbox-inline">
@@ -136,6 +196,22 @@
                                 @if($errors->has('colors_id'))
                                     <span class="help-block">{{ $errors->first('colors_id') }}</span>
                                 @endif
+
+                                    {{-- Add New Item If not Exists --}}
+                                    <span class="help-block add-new-text">Not in the list? Add new</span>
+                                    <span class="add-new-input-container">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" data-col="color_name"
+                                               data-route="add-color">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-success add-new-btn" type="button"><span
+                                                        class="fa fa-check"></span></button>
+                                            <button class="btn btn-danger add-new-close" type="button"><span
+                                                        class="fa fa-close"></span></button>
+                                        </span>
+                                    </div>
+                                    <span class="has-error"></span>
+                                </span>
                             </div>
                         </div>
 
@@ -143,6 +219,7 @@
                         <div class="form-group {{$errors->has('model_no')? 'has-error' : ''}}">
                             <label class="col-md-3 control-label" for="model_no">
                                 Model No.
+                                <span class="required">*</span>
                             </label>
                             <div class="col-md-6">
                                 <input name="model_no" value="{{ old('model_no') ?? $car->model_no }}" type="text" class="form-control" id="model_no">
@@ -160,7 +237,7 @@
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-6">
-                                <input name="year" value="{{ old('year') ?? $car->year }}" type="text" class="form-control" id="year" pattern="^(19|20)[0-9]{2}" placeholder="range between 1900-2099">
+                                <input name="year" value="{{ old('year') ?? $car->year }}" type="text" class="form-control" id="year" pattern="^(19|20)[0-9]{2}" placeholder="range between 1900-2099" required>
 
                                 @if ($errors->has('year'))
                                     <span class="help-block">{{$errors->first('year')}}</span>
@@ -320,3 +397,7 @@
         </div>
     </div>
 @stop
+
+@push('scripts')
+    <script src="{{ asset('js/cars_add_edit.js') }}"></script>
+@endpush

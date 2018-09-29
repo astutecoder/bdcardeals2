@@ -5,6 +5,12 @@
     <li><span>Cars</span></li>
     <li><span>All Cars</span></li>
 @stop
+
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('vendor_assets/select2/select2.css') }}" />
+    <link rel="stylesheet" href="{{ asset('vendor_assets/jquery-datatables-bs3/assets/css/datatables.css') }}" />
+@endpush
+
 @push('scripts')
     <script src="{{ asset('js/tables/examples.datatables.default.js') }}"></script>
 @endpush
