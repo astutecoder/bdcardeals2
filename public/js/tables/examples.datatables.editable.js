@@ -46,6 +46,7 @@ Theme Version: 	1.4.1
 					null,
 					null,
 					null,
+					null,
 					{ "bSortable": false }
 				]
 			});

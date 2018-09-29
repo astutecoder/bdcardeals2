@@ -1,10 +1,10 @@
 @extends ('backend.partials.layout')
 
-@section('title', 'Add New Car')
+@section('title', "Update Car $car->id" )
 @section('content-body-head', 'Cars')
 @section('breadcrumb-list')
     <li><span>Cars</span></li>
-    <li><span>Add Car</span></li>
+    <li><span>Edit Car</span></li>
 @stop
 
 @section('content-body')
@@ -12,11 +12,11 @@
         <div class="col-lg-12">
             <section class="panel">
                 <header class="panel-heading">
-                    <h2 class="panel-title">Add Car</h2>
+                    <h2 class="panel-title">Edit Car</h2>
                 </header>
                 <div class="panel-body">
 
-                    <form class="form-horizontal form-bordered" method="post" action="{{ url('/cars/add-car') }}">
+                    <form class="form-horizontal form-bordered" method="post" action="{{ url('/cars/update-car') }}">
 
                         @csrf
 
@@ -26,7 +26,7 @@
                                 Title
                             </label>
                             <div class="col-md-6">
-                                <input name="title" value="{{ old('title') }}" type="text" class="form-control" id="title">
+                                <input name="title" value="{{ old('title') ?? $car->title }}" type="text" class="form-control" id="title">
 
                                 @if ($errors->has('title'))
                                     <span class="help-block">{{$errors->first('title')}}</span>
@@ -40,7 +40,7 @@
                                 Subtitle
                             </label>
                             <div class="col-md-6">
-                                <input name="subtitle" value="{{ old('subtitle') }}" type="text" class="form-control" id="subtitle">
+                                <input name="subtitle" value="{{ old('subtitle') ??  $car->subtitle }}" type="text" class="form-control" id="subtitle">
 
                                 @if ($errors->has('subtitle'))
                                     <span class="help-block">{{$errors->first('subtitle')}}</span>
@@ -60,7 +60,7 @@
                                     @foreach($brands as $brand)
                                         <option
                                                 value="{{$brand->id}}"
-                                                {{ ($brand->id == old('brands_id')) ? 'selected' : '' }}>
+                                                {{ ($brand->id == (old('brands_id') ?? $car->brands_id)) ? 'selected' : '' }}>
                                             {{ strtoupper($brand->brand_name) }}
                                         </option>
                                     @endforeach
@@ -83,7 +83,7 @@
                                     @foreach($body_types as $body_type)
                                         <option
                                                 value="{{$body_type->id}}"
-                                                {{ ($body_type->id == old('body_types_id')) ? 'selected' : '' }}>
+                                                {{ ($body_type->id == (old('body_types_id') ?? $car->body_types_id)) ? 'selected' : '' }}>
                                             {{ strtoupper($body_type->body_type) }}
                                         </option>
                                     @endforeach
@@ -106,7 +106,7 @@
                                     @foreach($fuel_types as $fuel_type)
                                         <option
                                                 value="{{$fuel_type->id}}"
-                                                {{ ($fuel_type->id == old('fuel_types_id')) ? 'selected' : '' }}>
+                                                {{ ($fuel_type->id == (old('fuel_types_id') ?? $car->fuel_types[0]->pivot->fuel_types_id)) ? 'selected' : '' }}>
                                             {{ strtoupper($fuel_type->fuel_type) }}
                                         </option>
                                     @endforeach
@@ -128,13 +128,13 @@
                                                 type="checkbox"
                                                 id="colors_id"
                                                 value="{{ $color->id }}"
-                                                {{ old('colors_id') && in_array($color->id, old('colors_id')) ? 'checked' : ''}}
+                                                {{ old('colors_id') && in_array($color->id, old('colors_id')) ? 'checked' : (in_array($color->id, $car_colors)? 'checked' : '')}}
                                         />
                                         {{ ucwords($color->color_name) }}
                                     </label>
                                 @endforeach
                                 @if($errors->has('colors_id'))
-                                        <span class="help-block">{{ $errors->first('colors_id') }}</span>
+                                    <span class="help-block">{{ $errors->first('colors_id') }}</span>
                                 @endif
                             </div>
                         </div>
@@ -145,7 +145,7 @@
                                 Model No.
                             </label>
                             <div class="col-md-6">
-                                <input name="model_no" value="{{ old('model_no') }}" type="text" class="form-control" id="model_no">
+                                <input name="model_no" value="{{ old('model_no') ?? $car->model_no }}" type="text" class="form-control" id="model_no">
 
                                 @if ($errors->has('model_no'))
                                     <span class="help-block">{{$errors->first('model_no')}}</span>
@@ -160,7 +160,7 @@
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-6">
-                                <input name="year" value="{{ old('year') }}" type="text" class="form-control" id="year" pattern="^(19|20)[0-9]{2}" placeholder="range between 1900-2099">
+                                <input name="year" value="{{ old('year') ?? $car->year }}" type="text" class="form-control" id="year" pattern="^(19|20)[0-9]{2}" placeholder="range between 1900-2099">
 
                                 @if ($errors->has('year'))
                                     <span class="help-block">{{$errors->first('year')}}</span>
@@ -174,7 +174,7 @@
                                 Engine
                             </label>
                             <div class="col-md-6">
-                                <input name="engine" value="{{ old('engine') }}" type="text" class="form-control" id="engine">
+                                <input name="engine" value="{{ old('engine') ?? $car->engine }}" type="text" class="form-control" id="engine">
 
                                 @if ($errors->has('engine'))
                                     <span class="help-block">{{$errors->first('engine')}}</span>
@@ -188,7 +188,7 @@
                                 Transmission
                             </label>
                             <div class="col-md-6">
-                                <input name="transmission" value="{{ old('transmission') }}" type="text" class="form-control" id="transmission">
+                                <input name="transmission" value="{{ old('transmission') ?? $car->transmission }}" type="text" class="form-control" id="transmission">
 
                                 @if ($errors->has('transmission'))
                                     <span class="help-block">{{$errors->first('transmission')}}</span>
@@ -202,7 +202,7 @@
                                 Mileage
                             </label>
                             <div class="col-md-6">
-                                <input name="mileage" value="{{ old('mileage') }}" type="text" class="form-control" id="mileage">
+                                <input name="mileage" value="{{ old('mileage') ?? $car->mileage }}" type="text" class="form-control" id="mileage">
 
                                 @if ($errors->has('mileage'))
                                     <span class="help-block">{{$errors->first('mileage')}}</span>
@@ -216,7 +216,7 @@
                                 Doors
                             </label>
                             <div class="col-md-6">
-                                <input name="doors" value="{{ old('doors') }}" type="text" class="form-control" id="doors">
+                                <input name="doors" value="{{ old('doors') ?? $car->doors }}" type="text" class="form-control" id="doors">
 
                                 @if ($errors->has('doors'))
                                     <span class="help-block">{{$errors->first('doors')}}</span>
@@ -230,7 +230,7 @@
                                 Price
                             </label>
                             <div class="col-md-6">
-                                <input name="price" value="{{ old('price') }}" type="text" class="form-control" id="price">
+                                <input name="price" value="{{ old('price') ?? $car->price }}" type="text" class="form-control" id="price">
 
                                 @if ($errors->has('price'))
                                     <span class="help-block">{{$errors->first('price')}}</span>
@@ -244,7 +244,7 @@
                                 Offer Price
                             </label>
                             <div class="col-md-6">
-                                <input name="offer_price" value="{{ old('offer_price') }}" type="text" class="form-control" id="offer_price">
+                                <input name="offer_price" value="{{ old('offer_price') ?? $car->offer_price }}" type="text" class="form-control" id="offer_price">
 
                                 @if ($errors->has('offer_price'))
                                     <span class="help-block">{{$errors->first('offer_price')}}</span>
@@ -262,7 +262,7 @@
                                             type="checkbox"
                                             id="is_negotiable_price"
                                             value="1"
-                                            {{ (old('is_negotiable_price') && old('is_negotiable_price') == 1) ? 'checked' : '' }}
+                                            {{ (old('is_negotiable_price') && old('is_negotiable_price') == 1) ? 'checked' : ($car->is_negotiable_price == 1 ? 'checked' : '') }}
                                     />
                                     Negotiable Price?
                                 </label>
@@ -271,7 +271,7 @@
                                             name="is_featured"
                                             type="checkbox"
                                             id="is_featured"
-                                            value="1" {{ (old('is_featured') && old('is_featured') == 1) ? 'checked' : '' }}
+                                            value="1" {{ (old('is_featured') && old('is_featured') == 1) ? 'checked' : ($car->is_featured == 1 ? 'checked' : '') }}
                                     />
                                     Featured?
                                 </label>
@@ -284,7 +284,7 @@
                                 Features
                             </labfel>
                             <div class="col-md-6">
-                                <textarea name="features" class="form-control" rows="3" id="features">{{ old('features') }}</textarea>
+                                <textarea name="features" class="form-control" rows="3" id="features">{{ old('features') ?? $car->features }}</textarea>
                             </div>
                         </div>
 
@@ -294,7 +294,7 @@
                                 Safety
                             </labfel>
                             <div class="col-md-6">
-                                <textarea name="safety" class="form-control" rows="3" id="safety">{{ old('safety') }}</textarea>
+                                <textarea name="safety" class="form-control" rows="3" id="safety">{{ old('safety') ?? $car->safety }}</textarea>
                             </div>
                         </div>
 
@@ -304,7 +304,7 @@
                                 Comfort
                             </labfel>
                             <div class="col-md-6">
-                                <textarea name="comfort" class="form-control" rows="3" id="comfort">{{ old('comfort') }}</textarea>
+                                <textarea name="comfort" class="form-control" rows="3" id="comfort">{{ old('comfort') ?? $car->comfort }}</textarea>
                             </div>
                         </div>
 

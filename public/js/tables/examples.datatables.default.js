@@ -10,7 +10,16 @@ Theme Version: 	1.4.1
 
 	var datatableInit = function() {
 
-		$('#datatable-default').dataTable();
+		$('#datatable-default').dataTable({
+            aaSorting: [],
+            aoColumns: [
+                null,
+                null,
+                null,
+                null,
+                { "bSortable": false }
+            ]
+		});
 
 	};
 

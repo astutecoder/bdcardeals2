@@ -33,4 +33,5 @@ Route::prefix('cars')->group(function () {
     Route::get('add-car', 'Backend\CarsController@add_car_form')->name('add-car');
     Route::post('add-car', 'Backend\CarsController@add_car')->name('post-add-car');
     Route::get('edit/{id}', 'Backend\CarsController@edit_car_form')->name('edit-car');
+    Route::post('update-car', 'Backend\CarsController@update_car')->name('update-car');
 });

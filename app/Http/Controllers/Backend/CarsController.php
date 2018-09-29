@@ -254,6 +254,110 @@ class CarsController extends Controller
         $car->body_types;
         $car->fuel_types;
 
-        return $car;
+        $car_colors = [];
+        foreach($car->colors as $color){
+            $car_colors[] = $color->pivot->colors_id;
+        }
+
+        $brands = Brand::all();
+        $colors = Color::all();
+        $body_types = BodyType::all();
+        $fuel_types = FuelType::all();
+
+        return view('backend.cars.edit_car')
+                    ->with('car', $car)
+                    ->with('car_colors', $car_colors)
+                    ->with('brands', $brands)
+                    ->with('colors', $colors)
+                    ->with('body_types', $body_types)
+                    ->with('fuel_types', $fuel_types);
+    }
+
+    public function update_car(Request $request) {
+        $title = $request->input('title');
+        $subtitle = $request->input('subtitle');
+        $model_no = $request->input('model_no');
+        $year = $request->input('year');
+        $engine = $request->input('engine');
+        $transmission = $request->input('transmission');
+        $mileage = $request->input('mileage');
+        $doors = $request->input('doors');
+        $features = $request->input('features');
+        $safety = $request->input('safety');
+        $comfort = $request->input('comfort');
+        $price = $request->input('price');
+        $offer_price = $request->input('offer_price');
+        $is_negotiable_price = $request->input('is_negotiable_price') ?? 0;
+        $is_featured = $request->input('is_featured') ?? 0;
+        $brands_id = $request->input('brands_id');
+        $body_types_id = $request->input('body_types_id');
+        $fuel_types_id = $request->input('fuel_types_id');
+        $colors_id = $request->input('colors_id');
+        $save_complete = $request->input('save_complete') ?? 0;
+
+        // Validating Inputs
+        $request->validate([
+            'model_no' => 'required',
+            'year' => 'required|integer|min:4',
+            'price' => 'required|integer',
+            'brands_id' => 'required',
+            'body_types_id' => 'required',
+            'fuel_types_id' => 'required',
+            'colors_id' => 'required',
+        ], [
+            'brands_id.required' => 'You must select a Brand',
+            'body_types_id.required' => 'You must select a Body Type',
+            'fuel_types_id.required' => 'You must select a Fuel Type',
+        ]);
+
+        DB::beginTransaction();
+        // Storing Cars
+        $car = new Car();
+        $car->title = $title;
+        $car->subtitle = $subtitle;
+        $car->model_no = $model_no;
+        $car->year = $year;
+        $car->engine = $engine;
+        $car->transmission = $transmission;
+        $car->mileage = $mileage;
+        $car->doors = $doors;
+        $car->features = $features;
+        $car->safety = $safety;
+        $car->comfort = $comfort;
+        $car->price = $price;
+        $car->offer_price = $offer_price;
+        $car->is_negotiable_price = $is_negotiable_price;
+        $car->is_featured = $is_featured;
+        $car->brands_id = $brands_id;
+        $car->body_types_id = $body_types_id;
+        $car->save_complete = $save_complete;
+        $isCarSaved = $car->save();
+
+        // Storing Cars and Fuels id in cars_fuel_types
+        $cft = new CarsFuelType();
+        $cft->cars_id = $car->id;
+        $cft->fuel_types_id = $fuel_types_id;
+        $isCarFuelTypeSaved = $cft->save();
+
+        // Storing Cars and Colors id in cars_colors
+        $isCarColorSaved = false;
+        if (count($colors_id) > 0) {
+            $isCarColorSaved = true;
+            foreach ($colors_id as $color_id) {
+                $cars_colors = new CarsColor();
+                $cars_colors->cars_id = $car->id;
+                $cars_colors->colors_id = $color_id;
+                $isCCSaved = $cars_colors->save();
+                $isCarColorSaved = $isCCSaved && $isCarColorSaved;
+            }
+        }
+
+        if ($isCarSaved && $isCarFuelTypeSaved && $isCarColorSaved) {
+            DB::commit();
+            return redirect()->route('all-cars');
+        } else {
+            DB::rollBack();
+            return back()->withInput();
+        }
     }
 }
