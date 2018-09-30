@@ -22,7 +22,7 @@
                 </header>
                 <div class="panel-body">
 
-                    <form class="form-horizontal form-bordered" method="post" action="{{ url('/cars/add-car') }}">
+                    <form class="form-horizontal form-bordered" method="post" action="{{ route('store-car') }}">
 
                         @csrf
 
@@ -82,7 +82,7 @@
                                 <span class="add-new-input-container">
                                     <div class="input-group">
                                         <input type="text" class="form-control" data-col="brand_name"
-                                               data-route="add-brand">
+                                               data-route="/brands/add-brand">
                                         <span class="input-group-btn">
                                             <button class="btn btn-success add-new-btn" type="button"><span
                                                         class="fa fa-check"></span></button>
@@ -121,7 +121,7 @@
                                 <span class="add-new-input-container">
                                     <div class="input-group">
                                         <input type="text" class="form-control" data-col="body_type"
-                                               data-route="add-body-type">
+                                               data-route="/body-types/add-body-type">
                                         <span class="input-group-btn">
                                             <button class="btn btn-success add-new-btn" type="button"><span
                                                         class="fa fa-check"></span></button>
@@ -160,7 +160,7 @@
                                 <span class="add-new-input-container">
                                     <div class="input-group">
                                         <input type="text" class="form-control" data-col="fuel_type"
-                                               data-route="add-fuel-type">
+                                               data-route="/fuel-types/add-fuel-type">
                                         <span class="input-group-btn">
                                             <button class="btn btn-success add-new-btn" type="button"><span
                                                         class="fa fa-check"></span></button>
@@ -201,7 +201,7 @@
                                 <span class="add-new-input-container">
                                     <div class="input-group">
                                         <input type="text" class="form-control" data-col="color_name"
-                                               data-route="add-color">
+                                               data-route="/colors/add-color">
                                         <span class="input-group-btn">
                                             <button class="btn btn-success add-new-btn" type="button"><span
                                                         class="fa fa-check"></span></button>

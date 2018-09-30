@@ -21,6 +21,7 @@
             <h2 class="panel-title">All Cars</h2>
         </header>
         <div class="panel-body">
+            {{-- if no Car is avaiable to show--}}
             @if($errors->any())
                 <h4 class="text-danger">{{ $errors->first() }}</h4>
             @else

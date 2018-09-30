@@ -17,37 +17,7 @@ use Illuminate\Support\Facades\DB;
 class CarsController extends Controller
 {
 
-    public function all_brands()
-    {
-        $brands = Brand::all()->each->cars;
-        if ($brands->isEmpty()) {
-            return response()->json($brands, 204);
-        }
 
-        return response()->json($brands);
-    }
-
-    public function add_brand(Request $request)
-    {
-        $brand_name = $request->input('brand_name');
-
-        // Validation
-        $request->validate([
-            'brand_name' => 'bail|required|unique:brands'
-        ]);
-
-        // Inserting data
-        $brand = new Brand();
-        $brand->brand_name = strtolower($brand_name);
-        $brand->save();
-
-        // Returning response as json
-        if($request->ajax()){
-            return response()->json($brand->id, 201);
-        }else{
-            return "what's happening";
-        }
-    }
 
     public function all_body_types()
     {
@@ -151,7 +121,7 @@ class CarsController extends Controller
         return view('backend.cars.all_cars')->with('cars', $cars);
     }
 
-    public function add_car_form()
+    public function create()
     {
         $brands = Brand::all();
         $colors = Color::all();
@@ -164,7 +134,7 @@ class CarsController extends Controller
             ->with('fuel_types', $fuel_types);
     }
 
-    public function add_car(Request $request)
+    public function store(Request $request)
     {
         $title = $request->input('title');
         $subtitle = $request->input('subtitle');
@@ -253,7 +223,7 @@ class CarsController extends Controller
         }
     }
 
-    public function edit_car_form($id = null)
+    public function edit($id = null)
     {
         if(!isset($id)) return redirect(404);
 

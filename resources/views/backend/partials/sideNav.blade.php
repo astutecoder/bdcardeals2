@@ -26,7 +26,7 @@
                         </a>
                         <ul class="nav nav-children">
                             <li class="{{ Request::path() === 'cars/all-cars'? 'nav-active' : '' }}">
-                                <a href="{{ url('/cars/all-cars') }}">
+                                <a href="{{ route('all-cars') }}">
                                     All cars
                                 </a>
                             </li>
@@ -38,214 +38,92 @@
                         </ul>
                     </li>
 
-                    <li class="nav-parent">
+                    <li class="nav-parent {{ Request::is('brands/*') ? 'nav-expanded nav-active' : '' }}">
                         <a>
                             <i class="fa fa-tasks" aria-hidden="true"></i>
                             <span>Brands</span>
                         </a>
                         <ul class="nav nav-children">
-                            <li>
+                            <li class="{{ Request::path() === 'brands/all-brands' ? 'nav-active' : '' }}">
                                 <a href="{{ route('all-brands') }}">
                                     All Brands
                                 </a>
                             </li>
-                            <li class="nav-parent">
+                            <li class="{{ Request::path() === 'brands/add-brand' ? 'nav-active' : '' }}">
                                 <a href="{{ route('add-brand') }}">
                                     Add Brand
-                                </a>
-                                <ul class="nav nav-children">
-                                    <li>
-                    ¨                    <a href="ui-elements-icons-elusive.html">
-                                            Elusive
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="ui-elements-icons-font-awesome.html">
-                                            Font Awesome
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="ui-elements-icons-glyphicons.html">
-                                            Glyphicons
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="ui-elements-icons-line-icons.html">
-                                            Line Icons
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="ui-elements-icons-meteocons.html">
-                                            Meteocons
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="ui-elements-tabs.html">
-                                    Tabs
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-panels.html">
-                                    Panels
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-widgets.html">
-                                    Widgets
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-portlets.html">
-                                    Portlets
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-buttons.html">
-                                    Buttons
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-alerts.html">
-                                    Alerts
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-notifications.html">
-                                    Notifications
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-modals.html">
-                                    Modals
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-lightbox.html">
-                                    Lightbox
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-progressbars.html">
-                                    Progress Bars
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-sliders.html">
-                                    Sliders
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-carousels.html">
-                                    Carousels
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-accordions.html">
-                                    Accordions
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-nestable.html">
-                                    Nestable
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-tree-view.html">
-                                    Tree View
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-scrollable.html">
-                                    Scrollable
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-grid-system.html">
-                                    Grid System
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-charts.html">
-                                    Charts
-                                </a>
-                            </li>
-                            <li class="nav-parent">
-                                <a>
-                                    Animations
-                                </a>
-                                <ul class="nav nav-children">
-                                    <li>
-                                        <a href="ui-elements-animations-appear.html">
-                                            Appear
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="ui-elements-animations-hover.html">
-                                            Hover
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-parent">
-                                <a>
-                                    Loading
-                                </a>
-                                <ul class="nav nav-children">
-                                    <li>
-                                        <a href="ui-elements-loading-overlay.html">
-                                            Overlay
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="ui-elements-loading-progress.html">
-                                            Progress
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="ui-elements-extra.html">
-                                    Extra
                                 </a>
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-parent">
+                    <li class="nav-parent {{ Request::is('body-types/*') ? 'nav-expanded nav-active' : '' }}">
                         <a>
-                            <i class="fa fa-list-alt" aria-hidden="true"></i>
-                            <span>Forms</span>
+                            <i class="glyphicon glyphicon-leaf"></i>
+                            <span>Body Types</span>
                         </a>
                         <ul class="nav nav-children">
-                            <li>
-                                <a href="forms-basic.html">
-                                    Basic
+                            <li class="{{ Request::path() === 'body-types/all-body-types' ? 'nav-active' : '' }}">
+                                <a href="{{ route('all-body-types') }}">
+                                    All Body Types
                                 </a>
                             </li>
-                            <li>
-                                <a href="forms-advanced.html">
-                                    Advanced
+                            <li class="{{ Request::path() === 'body-types/add-body-type' ? 'nav-active' : '' }}">
+                                <a href="{{ route('add-body-type') }}">
+                                    Add Body Type
                                 </a>
                             </li>
-                            <li>
-                                <a href="forms-validation.html">
-                                    Validation
+                        </ul>
+                    </li>
+                    <li class="nav-parent {{ Request::is('fuel-types/*') ? 'nav-expanded nav-active' : '' }}">
+                        <a>
+                            <i class="glyphicon glyphicon-fire"></i>
+                            <span>Fuel Types</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li class="{{ Request::path() === 'fuel-types/all-fuel-types' ? 'nav-active' : '' }}">
+                                <a href="{{ route('all-fuel-types') }}">
+                                    All Fuel Types
                                 </a>
                             </li>
-                            <li>
-                                <a href="forms-layouts.html">
-                                    Layouts
+                            <li class="{{ Request::path() === 'fuel-types/add-fuel-type' ? 'nav-active' : '' }}">
+                                <a href="{{ route('add-fuel-type') }}">
+                                    Add Fuel Type
                                 </a>
                             </li>
-                            <li>
-                                <a href="forms-wizard.html">
-                                    Wizard
+                        </ul>
+                    </li>
+                    <li class="nav-parent {{ Request::is('colors/*') ? 'nav-expanded nav-active' : '' }}">
+                        <a>
+                            <i class="glyphicon glyphicon-text-color"></i>
+                            <span>Colors</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li class="{{ Request::path() === 'colors/all-colors' ? 'nav-active' : '' }}">
+                                <a href="{{ route('all-colors') }}">
+                                    All Colors
                                 </a>
                             </li>
-                            <li>
-                                <a href="forms-code-editor.html">
-                                    Code Editor
+                            <li class="{{ Request::path() === 'colors/add-color' ? 'nav-active' : '' }}">
+                                <a href="{{ route('add-color') }}">
+                                    Add Color
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-parent {{ Request::is('sources/*')? 'nav-expanded nav-active' : '' }}">
+                        <a>
+                            {{--<i class="glyphicon glyphicon-grain" aria-hidden="true"></i>--}}
+                            <span>Source</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li class="{{ Request::path() === 'sources/all-sources' ? 'nav-active' : '' }}">
+                                <a href="{{ route('all-sources') }}">
+                                    All Sources
+                                </a>
+                            </li>
+                            <li class="{{ Request::path() === 'sources/add-source' ? 'nav-active' : '' }}">
+                                <a href="{{ route('add-source') }}">
+                                    Add Source
                                 </a>
                             </li>
                         </ul>

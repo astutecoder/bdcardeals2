@@ -10,6 +10,11 @@ class Car extends Model
     use SoftDeletes;
     protected $dates = ['deleted_at'];
 
+    public function sources()
+    {
+        return $this->belongsTo('App\Source', 'source_id');
+    }
+
     public function brands()
     {
         return $this->belongsTo('App\Brand', 'brands_id');
