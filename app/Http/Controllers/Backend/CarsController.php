@@ -80,7 +80,7 @@ class CarsController extends Controller {
         // Validating Inputs
         $request->validate([
             'model_no'      => 'required',
-            'year'          => ['requird', 'min:4', 'regex:/^\d+$/'],
+            'year'          => ['required', 'min:4', 'regex:/^\d+$/'],
             'price'         => ['required', 'regex:/^\d+$/'],
             'offer_price'         => ['nullable', 'regex:/^\d+$/'],
             'brands_id'     => 'required',

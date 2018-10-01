@@ -15,11 +15,7 @@ class CreateAlbumsTable extends Migration
     {
         Schema::create('albums', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('file_name');
-            $table->integer('is_featured')->default('0')->comment('0=no, 1=yes');
-
-            $table->integer('cars_id')->unsigned();
-            $table->foreign('cars_id')->references('id')->on('cars');
+            $table->string('album_name');
             $table->timestamps();
         });
     }
