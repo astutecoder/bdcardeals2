@@ -31,7 +31,7 @@ class BodyTypesController extends Controller
 
     public function store(Request $request)
     {
-        $body_type = $request->input('body_type');
+        $body_type_name = $request->input('body_type');
 
         // Validation
         $request->validate([
@@ -43,7 +43,7 @@ class BodyTypesController extends Controller
 
         // Inserting data
         $body_type = new BodyType();
-        $body_type->body_type = strtolower($body_type);
+        $body_type->body_type = strtolower($body_type_name);
         $body_type->save();
 
         // Returning response as json
@@ -65,7 +65,7 @@ class BodyTypesController extends Controller
     public function update(Request $request)
     {
         $id = $request->input('id');
-        $body_type = $request->input('body_type');
+        $body_type_name = $request->input('body_type');
 
         $request->validate([
             'body_type' => 'bail|required|unique:body_types'
@@ -74,9 +74,9 @@ class BodyTypesController extends Controller
             'body_type.unique' => 'The name you entered is already taken'
         ]);
 
-        $bodytype = BodyType::findOrFail($id);
-        $bodytype->body_type = $body_type;
-        $bodytype->save();
+        $body_type = BodyType::findOrFail($id);
+        $body_type->body_type = $body_type_name;
+        $body_type->save();
 
         return redirect()->route('all-body-types');
     }

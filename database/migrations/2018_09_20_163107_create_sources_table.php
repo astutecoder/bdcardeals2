@@ -15,11 +15,11 @@ class CreateSourcesTable extends Migration
     {
         Schema::create('sources', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('source_name');
+            $table->string('source_name')->nullable();
             $table->string('source_code');
             $table->string('contact');
-            $table->string('email');
-            $table->string('address');
+            $table->string('email')->nullable();
+            $table->text('address')->nullable();
             $table->timestamps();
         });
     }

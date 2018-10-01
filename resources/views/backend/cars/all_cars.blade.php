@@ -32,6 +32,7 @@
                             <th>Model</th>
                             <th>Body Type</th>
                             <th>Year</th>
+                            <th>Source Code</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -42,6 +43,7 @@
                                 <td>{{ ucwords($car->model_no) }}</td>
                                 <td>{{ strtoupper($car->body_types->body_type) }}</td>
                                 <td>{{ $car->year }}</td>
+                                <td>{{ $car->sources->source_code }}</td>
                                 <td class="actions">
                                     <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                                     <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>

@@ -112,7 +112,7 @@
                     </li>
                     <li class="nav-parent {{ Request::is('sources/*')? 'nav-expanded nav-active' : '' }}">
                         <a>
-                            {{--<i class="glyphicon glyphicon-grain" aria-hidden="true"></i>--}}
+                            <i class="glyphicon glyphicon-grain" aria-hidden="true"></i>
                             <span>Source</span>
                         </a>
                         <ul class="nav nav-children">

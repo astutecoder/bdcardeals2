@@ -10,7 +10,7 @@ Theme Version: 	1.4.1
 
 	var datatableInit = function() {
 
-		$('#datatable-default').dataTable({
+		$('#datatable-all-sources').dataTable({
             aaSorting: [],
             aoColumns: [
                 null,

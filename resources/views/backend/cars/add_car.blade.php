@@ -173,6 +173,29 @@
                             </div>
                         </div>
 
+                        {{--source_id--}}
+                        <div class="form-group {{$errors->has('source_id')? 'has-error' : ''}}">
+                            <label class="col-md-3 control-label" for="source_id">
+                                Source
+                                <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6">
+                                <select name="source_id" class="form-control input-sm" required>
+                                    <option value="">--- SELECT AN OPTION ---</option>
+                                    @foreach($sources as $source)
+                                        <option
+                                                value="{{$source->id}}"
+                                                {{ ($source->id == old('source_id')) ? 'selected' : '' }}>
+                                            {{ $source->source_code }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('source_id'))
+                                    <span class="help-block">{{$errors->first('source_id')}}</span>
+                                @endif
+                            </div>
+                        </div>
+
                         {{--colors_id--}}
                         <div class="form-group {{$errors->has('colors_id')? 'has-error' : ''}}">
                             <label class="col-md-3 control-label" for="colors_id">

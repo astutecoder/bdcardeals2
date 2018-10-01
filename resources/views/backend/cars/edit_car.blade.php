@@ -27,7 +27,8 @@
                         {{--hidden fields--}}
                         @csrf
                         <input name="id" value="{{  $car->id }}" type="hidden">
-                        <input name="save_complete" value="{{ old('save_complete') ?? $car->save_complete }}" type="hidden">
+                        <input name="save_complete" value="{{ old('save_complete') ?? $car->save_complete }}"
+                               type="hidden">
 
                         {{--title--}}
                         <div class="form-group {{$errors->has('title')? 'has-error' : ''}}">
@@ -35,7 +36,8 @@
                                 Title
                             </label>
                             <div class="col-md-6">
-                                <input name="title" value="{{ old('title') ?? $car->title }}" type="text" class="form-control" id="title">
+                                <input name="title" value="{{ old('title') ?? $car->title }}" type="text"
+                                       class="form-control" id="title">
 
                                 @if ($errors->has('title'))
                                     <span class="help-block">{{$errors->first('title')}}</span>
@@ -49,7 +51,8 @@
                                 Subtitle
                             </label>
                             <div class="col-md-6">
-                                <input name="subtitle" value="{{ old('subtitle') ??  $car->subtitle }}" type="text" class="form-control" id="subtitle">
+                                <input name="subtitle" value="{{ old('subtitle') ??  $car->subtitle }}" type="text"
+                                       class="form-control" id="subtitle">
 
                                 @if ($errors->has('subtitle'))
                                     <span class="help-block">{{$errors->first('subtitle')}}</span>
@@ -174,6 +177,29 @@
                             </div>
                         </div>
 
+                        {{--source_id--}}
+                        <div class="form-group {{$errors->has('source_id')? 'has-error' : ''}}">
+                            <label class="col-md-3 control-label" for="source_id">
+                                Source
+                                <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6">
+                                <select name="source_id" class="form-control input-sm" required>
+                                    <option value="">--- SELECT AN OPTION ---</option>
+                                    @foreach($sources as $source)
+                                        <option
+                                                value="{{$source->id}}"
+                                                {{ ($source->id == (old('sources_id') ?? $car->source_id)) ? 'selected' : '' }}>
+                                            {{ $source->source_code }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('source_id'))
+                                    <span class="help-block">{{$errors->first('source_id')}}</span>
+                                @endif
+                            </div>
+                        </div>
+
                         {{--colors_id--}}
                         <div class="form-group {{$errors->has('colors_id')? 'has-error' : ''}}">
                             <label class="col-md-3 control-label" for="colors_id">
@@ -197,9 +223,9 @@
                                     <span class="help-block">{{ $errors->first('colors_id') }}</span>
                                 @endif
 
-                                    {{-- Add New Item If not Exists --}}
-                                    <span class="help-block add-new-text">Not in the list? Add new</span>
-                                    <span class="add-new-input-container">
+                                {{-- Add New Item If not Exists --}}
+                                <span class="help-block add-new-text">Not in the list? Add new</span>
+                                <span class="add-new-input-container">
                                     <div class="input-group">
                                         <input type="text" class="form-control" data-col="color_name"
                                                data-route="/colors/add-color">
@@ -222,7 +248,8 @@
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-6">
-                                <input name="model_no" value="{{ old('model_no') ?? $car->model_no }}" type="text" class="form-control" id="model_no">
+                                <input name="model_no" value="{{ old('model_no') ?? $car->model_no }}" type="text"
+                                       class="form-control" id="model_no">
 
                                 @if ($errors->has('model_no'))
                                     <span class="help-block">{{$errors->first('model_no')}}</span>
@@ -237,7 +264,9 @@
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-6">
-                                <input name="year" value="{{ old('year') ?? $car->year }}" type="text" class="form-control" id="year" pattern="^(19|20)[0-9]{2}" placeholder="range between 1900-2099" required>
+                                <input name="year" value="{{ old('year') ?? $car->year }}" type="text"
+                                       class="form-control" id="year" pattern="^(19|20)[0-9]{2}"
+                                       placeholder="range between 1900-2099" required>
 
                                 @if ($errors->has('year'))
                                     <span class="help-block">{{$errors->first('year')}}</span>
@@ -251,7 +280,8 @@
                                 Engine
                             </label>
                             <div class="col-md-6">
-                                <input name="engine" value="{{ old('engine') ?? $car->engine }}" type="text" class="form-control" id="engine">
+                                <input name="engine" value="{{ old('engine') ?? $car->engine }}" type="text"
+                                       class="form-control" id="engine">
 
                                 @if ($errors->has('engine'))
                                     <span class="help-block">{{$errors->first('engine')}}</span>
@@ -265,7 +295,8 @@
                                 Transmission
                             </label>
                             <div class="col-md-6">
-                                <input name="transmission" value="{{ old('transmission') ?? $car->transmission }}" type="text" class="form-control" id="transmission">
+                                <input name="transmission" value="{{ old('transmission') ?? $car->transmission }}"
+                                       type="text" class="form-control" id="transmission">
 
                                 @if ($errors->has('transmission'))
                                     <span class="help-block">{{$errors->first('transmission')}}</span>
@@ -279,7 +310,8 @@
                                 Mileage
                             </label>
                             <div class="col-md-6">
-                                <input name="mileage" value="{{ old('mileage') ?? $car->mileage }}" type="text" class="form-control" id="mileage">
+                                <input name="mileage" value="{{ old('mileage') ?? $car->mileage }}" type="text"
+                                       class="form-control" id="mileage">
 
                                 @if ($errors->has('mileage'))
                                     <span class="help-block">{{$errors->first('mileage')}}</span>
@@ -293,7 +325,8 @@
                                 Doors
                             </label>
                             <div class="col-md-6">
-                                <input name="doors" value="{{ old('doors') ?? $car->doors }}" type="text" class="form-control" id="doors">
+                                <input name="doors" value="{{ old('doors') ?? $car->doors }}" type="text"
+                                       class="form-control" id="doors">
 
                                 @if ($errors->has('doors'))
                                     <span class="help-block">{{$errors->first('doors')}}</span>
@@ -305,9 +338,11 @@
                         <div class="form-group {{$errors->has('price')? 'has-error' : ''}}">
                             <label class="col-md-3 control-label" for="price">
                                 Price
+                                <span class="required">*</span>
                             </label>
                             <div class="col-md-6">
-                                <input name="price" value="{{ old('price') ?? $car->price }}" type="text" class="form-control" id="price">
+                                <input name="price" value="{{ old('price') ?? $car->price }}" type="text"
+                                       class="form-control" id="price">
 
                                 @if ($errors->has('price'))
                                     <span class="help-block">{{$errors->first('price')}}</span>
@@ -321,7 +356,8 @@
                                 Offer Price
                             </label>
                             <div class="col-md-6">
-                                <input name="offer_price" value="{{ old('offer_price') ?? $car->offer_price }}" type="text" class="form-control" id="offer_price">
+                                <input name="offer_price" value="{{ old('offer_price') ?? $car->offer_price }}"
+                                       type="text" class="form-control" id="offer_price">
 
                                 @if ($errors->has('offer_price'))
                                     <span class="help-block">{{$errors->first('offer_price')}}</span>
@@ -361,7 +397,8 @@
                                 Features
                             </labfel>
                             <div class="col-md-6">
-                                <textarea name="features" class="form-control" rows="3" id="features">{{ old('features') ?? $car->features }}</textarea>
+                                <textarea name="features" class="form-control" rows="3"
+                                          id="features">{{ old('features') ?? $car->features }}</textarea>
                             </div>
                         </div>
 
@@ -371,7 +408,8 @@
                                 Safety
                             </labfel>
                             <div class="col-md-6">
-                                <textarea name="safety" class="form-control" rows="3" id="safety">{{ old('safety') ?? $car->safety }}</textarea>
+                                <textarea name="safety" class="form-control" rows="3"
+                                          id="safety">{{ old('safety') ?? $car->safety }}</textarea>
                             </div>
                         </div>
 
@@ -381,13 +419,15 @@
                                 Comfort
                             </labfel>
                             <div class="col-md-6">
-                                <textarea name="comfort" class="form-control" rows="3" id="comfort">{{ old('comfort') ?? $car->comfort }}</textarea>
+                                <textarea name="comfort" class="form-control" rows="3"
+                                          id="comfort">{{ old('comfort') ?? $car->comfort }}</textarea>
                             </div>
                         </div>
 
                         <div class="form-group"><label for="" class="col-md-3 control-label"></label>
                             <div class="col-md-6">
                                 <button class="btn btn-success" type="submit">Submit</button>
+                                <button class="btn btn-danger cancel" type="button">Cancel</button>
                             </div>
                         </div>
                     </form>
@@ -400,4 +440,12 @@
 
 @push('scripts')
     <script src="{{ asset('js/cars_add_edit.js') }}"></script>
+    <script>
+        function goBack(e) {
+            e.preventDefault();
+            window.location.replace('/cars/all-cars')
+        }
+
+        $('.cancel').on('click', goBack)
+    </script>
 @endpush
