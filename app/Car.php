@@ -34,4 +34,8 @@ class Car extends Model
     {
         return $this->belongsToMany('App\Color', 'cars_colors', 'cars_id', 'colors_id');
     }
+
+    public function albums(){
+        return $this->hasMany('App\Albums', 'cars_id');
+    }
 }

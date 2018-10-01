@@ -35,6 +35,11 @@
                                     Add car
                                 </a>
                             </li>
+                            <li class="{{ Request::path() === 'cars/albums' ? 'nav-active' : ''}}">
+                                <a href="{{ route('albums') }}">
+                                    <span>Albums</span>
+                                </a>
+                            </li>
                         </ul>
                     </li>
 
