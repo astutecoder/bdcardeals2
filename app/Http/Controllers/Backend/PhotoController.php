@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Car;
 use App\Album;
 use App\Photo;
+use Doctrine\Common\Lexer\AbstractLexer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -18,6 +19,10 @@ class PhotoController extends Controller
 
     public function create($car_id)
     {
+        $album = Album::where('cars_id', $car_id)->get();
+        if(!($album->isEmpty())){
+            return view('backend.albums.add_album')->withErrors(['message'=> 'An album is already exists for this car']);
+        }
         return view('backend.albums.add_album')->with('car_id', $car_id);
     }
 
@@ -35,13 +40,15 @@ class PhotoController extends Controller
         $file_names = [];
 
         DB::beginTransaction();
-
         $album = new Album();
         $album->album_name = $albumName;
+        $album->folder_name = $folderName;
+        $album->cars_id = $car_id;
         $isAlbumSaved = $album->save();
 
         if($isAlbumSaved){
             for ($i=0; $i< $total_img; $i++){
+                $is_featured = $request->input('feat-'.$i);
                 $img = $request->file('img-'.$i);
                 $img_name = $img->getClientOriginalName();
                 $base_name = pathinfo($img_name, PATHINFO_FILENAME);
@@ -53,6 +60,7 @@ class PhotoController extends Controller
 
                 $photos = new Photo();
                 $photos->file_name = $file_name_to_save;
+                $photos->is_featured = $is_featured;
                 $photos->cars_id = $car_id;
                 $photos->album_id = $album->id;
                 $isSaved = $photos->save();

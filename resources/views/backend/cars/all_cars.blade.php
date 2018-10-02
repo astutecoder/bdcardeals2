@@ -21,6 +21,12 @@
             <h2 class="panel-title">All Cars</h2>
         </header>
         <div class="panel-body">
+            {{--<pre>--}}
+                {{--@php--}}
+                    {{--print_r($cars);--}}
+                    {{--return;--}}
+                {{--@endphp--}}
+            {{--</pre>--}}
             {{-- if no Car is avaiable to show--}}
             @if($errors->any())
                 <h4 class="text-danger">{{ $errors->first() }}</h4>
@@ -33,6 +39,7 @@
                             <th>Body Type</th>
                             <th>Year</th>
                             <th>Source Code</th>
+                            <th>Album</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -44,6 +51,14 @@
                                 <td>{{ strtoupper($car->body_types->body_type) }}</td>
                                 <td>{{ $car->year }}</td>
                                 <td>{{ $car->sources->source_code }}</td>
+                                <td>
+                                    @if(!empty($car->albums[0]))
+                                        {{ $car->albums[0]->album_name }}
+                                        <a href="{{ route('view-album', ['album_id'=> $car->albums[0]->id]) }}"></a>
+                                    @else
+                                        <a href="{{ route("create-album",['car_id'=>$car->id]) }}">Add image</a>
+                                    @endif
+                                </td>
                                 <td class="actions">
                                     <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                                     <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>

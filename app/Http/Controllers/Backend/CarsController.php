@@ -28,12 +28,14 @@ class CarsController extends Controller {
         $cars->each->fuel_types;
         $cars->each->colors;
         $cars->each->sources;
+        $cars->each->albums;
 
         if ($cars->isEmpty())
         {
             return view('backend.cars.all_cars')->withErrors(['message' => 'No data found']);
         }
 
+//        return response()->json($cars);
         return view('backend.cars.all_cars')->with('cars', $cars);
     }
 

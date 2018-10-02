@@ -10,16 +10,17 @@ Theme Version: 	1.4.1
 
 	var datatableInit = function() {
 
-		$('#datatable-default').dataTable({
+		$('#datatable-all-albums').dataTable({
+			'autoWidth': false,
             aaSorting: [],
             aoColumns: [
-                null,
-                null,
-                null,
-                null,
-                null,
                 { "bSortable": false },
-                { "bSortable": false },
+                null,
+                { "bSortable": false }
+            ],
+			"columnDefs": [
+                { "width": "30%", className: "text-center", "targets": 0 },
+                { "width": "60%", "targets": 1 },
             ]
 		});
 

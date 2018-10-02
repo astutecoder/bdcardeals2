@@ -2,3 +2,7 @@
 .page-header .breadcrumbs{
     margin-right: 20px;
 }
+
+.cover{
+    object-fit: cover;
+}

@@ -25,7 +25,8 @@ Route::prefix('cars')->group(function () {
 
     Route::prefix('albums')->group(function () {
         Route::get('/', 'Backend\AlbumController@index')->name('albums');
-        Route::get('create/{car_id}', 'Backend\PhotoController@create')->name('create-albums');
+        Route::get('/{album_id}', 'Backend\AlbumController@show')->name('view-album');
+        Route::get('create/{car_id}', 'Backend\PhotoController@create')->name('create-album');
         Route::get('edit/{car_id}', 'Backend\PhotoController@edit')->name('edit-album');
 
         Route::post('add-album', 'Backend\PhotoController@store')->name('store-album');

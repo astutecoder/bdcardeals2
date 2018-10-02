@@ -333,6 +333,7 @@
                         <div class="form-group {{$errors->has('price')? 'has-error' : ''}}">
                             <label class="col-md-3 control-label" for="price">
                                 Price
+                                <span class="required">*</span>
                             </label>
                             <div class="col-md-6">
                                 <input name="price" value="{{ old('price') }}" type="text" class="form-control"
