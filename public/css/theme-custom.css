@@ -1,8 +1,53 @@
 /* Add here all your CSS customizations */
+
+.mb-0{
+    margin-bottom: 0;
+}
 .page-header .breadcrumbs{
     margin-right: 20px;
 }
 
 .cover{
     object-fit: cover;
+}
+.panel-actions{
+    float: right;
+}
+.custom-inline{
+    display: flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+    justify-content: space-between !important;
+}
+.custom-inline li{
+    min-width: 33.33%;
+    padding: 10px;
+    flex: 1;
+}
+.custom-inline:after{
+    content: '';
+    flex: auto;
+}
+
+.custom-inline figure{
+    border: 1px solid rgba(0,0,0,0.15);
+    background: whitesmoke;
+    padding: 5px;
+    width:100% !important;
+}
+.custom-inline figure img{
+    display: block !important;
+}
+
+ul.simple-bullet-list li.purple:before {
+    border-color: #734ba9;
+}
+ul.simple-bullet-list li.info:before {
+    border-color: #2baab1;
+}
+
+@media (max-width: 520px) {
+    .custom-inline {
+        flex-direction: column;
+    }
 }

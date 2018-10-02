@@ -38,6 +38,7 @@
             {{-- if no Car is avaiable to show--}}
             @if($errors->any())
                 <h4 class="text-danger">{{ $errors->first() }}</h4>
+                <p>Please check <a href="{{ route('all-cars') }}">cars list</a> to add new albums</p>
             @else
                 <table class="table table-bordered table-striped mb-none" id="datatable-all-albums">
                     <thead>

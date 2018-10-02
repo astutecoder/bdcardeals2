@@ -10,15 +10,16 @@ class BodyTypesController extends Controller
 {
     public function all_body_types(Request $request)
     {
-        $body_types = BodyType::orderBy('id', 'desc')->get();
-        if($body_types->isEmpty()){
-            if($request->ajax()){
+        $body_types = BodyType::orderBy('id', 'desc')->withCount('cars')->get();
+
+        if ($body_types->isEmpty()) {
+            if ($request->ajax()) {
                 return response()->json($body_types, 204);
             }
-            return view('backend.bodyTypes.all_body_types')->withErrors(['message'=>'No body types are available to show']);
+            return view('backend.bodyTypes.all_body_types')->withErrors(['message' => 'No body types are available to show']);
         }
 
-        if($request->ajax()){
+        if ($request->ajax()) {
             return response()->json($body_types);
         }
         return view('backend.bodyTypes.all_body_types')->with('body_types', $body_types);
@@ -79,5 +80,12 @@ class BodyTypesController extends Controller
         $body_type->save();
 
         return redirect()->route('all-body-types');
+    }
+
+    public function destroy($id)
+    {
+        $body_type = BodyType::findOrFail($id);
+        $body_type->delete();
+        return back();
     }
 }

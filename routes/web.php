@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::prefix('cars')->group(function () {
     Route::get('all-cars', 'Backend\CarsController@all_cars')->name('all-cars');
     Route::get('add-car', 'Backend\CarsController@create')->name('add-car');
+    Route::get('car/{id}', 'Backend\CarsController@show')->name('show-car');
     Route::get('edit/{id?}', 'Backend\CarsController@edit')->name('edit-car');
 
     Route::post('add-car', 'Backend\CarsController@store')->name('store-car');
@@ -47,6 +48,7 @@ Route::prefix('body-types')->group(function () {
     Route::get('all-body-types', 'Backend\BodyTypesController@all_body_types')->name('all-body-types');
     Route::get('add-body-type', 'Backend\BodyTypesController@create')->name('add-body-type');
     Route::get('edit/{id?}', 'Backend\BodyTypesController@edit')->name('edit-body-types');
+    Route::get('delete/{id}', 'Backend\BodyTypesController@destroy')->name('delete-body-type');
 
     Route::post('add-body-type', 'Backend\BodyTypesController@store')->name('store-body-type');
     Route::post('edit', 'Backend\BodyTypesController@update')->name('update-body-type');

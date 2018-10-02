@@ -38,4 +38,7 @@ class Car extends Model
     public function albums(){
         return $this->hasMany('App\Album', 'cars_id');
     }
+    public function photos(){
+        return $this->hasMany('App\Photo', 'cars_id');
+    }
 }

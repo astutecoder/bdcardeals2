@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Backend;
 use App\Car;
 use App\Album;
 use App\Photo;
-use Doctrine\Common\Lexer\AbstractLexer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -20,8 +19,12 @@ class PhotoController extends Controller
     public function create($car_id)
     {
         $album = Album::where('cars_id', $car_id)->get();
+        $cars = Car::find($car_id);
         if(!($album->isEmpty())){
             return view('backend.albums.add_album')->withErrors(['message'=> 'An album is already exists for this car']);
+        }
+        if(!$cars){
+            return view('backend.albums.add_album')->withErrors(['message'=> 'Requested car is not in the list']);
         }
         return view('backend.albums.add_album')->with('car_id', $car_id);
     }
@@ -78,5 +81,13 @@ class PhotoController extends Controller
             Storage::delete($file_names[$x]);
         }
         return 0;
+    }
+
+    public function edit($car_id){
+        $photos = Photo::where('cars_id', $car_id)->get();
+        if($photos->isEmpty()){
+            return redirect(404);
+        }
+        return $photos;
     }
 }

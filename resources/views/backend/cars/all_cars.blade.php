@@ -21,13 +21,13 @@
             <h2 class="panel-title">All Cars</h2>
         </header>
         <div class="panel-body">
-            {{--<pre>--}}
-                {{--@php--}}
-                    {{--print_r($cars);--}}
-                    {{--return;--}}
-                {{--@endphp--}}
-            {{--</pre>--}}
-            {{-- if no Car is avaiable to show--}}
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="mb-md">
+                        <a id="addToTable" class="btn btn-success" href="{{ route('add-car') }}">Add <i class="fa fa-plus"></i></a>
+                    </div>
+                </div>
+            </div>
             @if($errors->any())
                 <h4 class="text-danger">{{ $errors->first() }}</h4>
             @else
@@ -62,6 +62,7 @@
                                 <td class="actions">
                                     <a href="#" class="hidden on-editing save-row"><i class="fa fa-save"></i></a>
                                     <a href="#" class="hidden on-editing cancel-row"><i class="fa fa-times"></i></a>
+                                    <a href="{{ url('/cars/car/'. $car->id) }}" class="on-default"><i class="fa fa-eye"></i></a>
                                     <a href="{{ url('/cars/edit/'. $car->id) }}" class="on-default edit-row"><i class="fa fa-pencil"></i></a>
                                     <a href="{{ url('/cars/delete/'. $car->id) }}" class="on-default remove-row"><i class="fa fa-trash-o"></i></a>
                                 </td>

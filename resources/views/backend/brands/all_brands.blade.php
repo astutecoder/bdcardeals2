@@ -22,6 +22,13 @@
             <h2 class="panel-title">All Brands</h2>
         </header>
         <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="mb-md">
+                        <a id="addToTable" class="btn btn-success" href="{{ route('add-brand') }}">Add <i class="fa fa-plus"></i></a>
+                    </div>
+                </div>
+            </div>
             {{-- if no brand is avaiable to show--}}
             @if($errors->any())
                 <h4 class="text-danger">{{ $errors->first() }}</h4>
@@ -40,8 +47,10 @@
                             <td class="actions">
                                 <a href="{{ url('/brands/edit/'. $brand->id) }}" class="on-default edit-row"><i
                                             class="fa fa-pencil"></i></a>
-                                <a href="{{ url('/brands/delete/'. $brand->id) }}" class="on-default remove-row"><i
-                                            class="fa fa-trash-o"></i></a>
+                                @if($brand->cars_count < 1)
+                                    <a href="{{ url('/brands/delete/'. $brand->id) }}" class="on-default remove-row"><i
+                                                class="fa fa-trash-o"></i></a>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

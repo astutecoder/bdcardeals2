@@ -22,6 +22,13 @@
             <h2 class="panel-title">All Fuel Types</h2>
         </header>
         <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="mb-md">
+                        <a id="addToTable" class="btn btn-success" href="{{ route('add-fuel-type') }}">Add <i class="fa fa-plus"></i></a>
+                    </div>
+                </div>
+            </div>
             {{-- if no brand is avaiable to show--}}
             @if($errors->any())
                 <h4 class="text-danger">{{ $errors->first() }}</h4>

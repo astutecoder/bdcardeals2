@@ -15,7 +15,8 @@ use App\BodyType;
 use App\FuelType;
 use Illuminate\Support\Facades\DB;
 
-class CarsController extends Controller {
+class CarsController extends Controller
+{
 
     public function all_cars()
     {
@@ -30,13 +31,36 @@ class CarsController extends Controller {
         $cars->each->sources;
         $cars->each->albums;
 
-        if ($cars->isEmpty())
-        {
+        if ($cars->isEmpty()) {
             return view('backend.cars.all_cars')->withErrors(['message' => 'No data found']);
         }
 
 //        return response()->json($cars);
         return view('backend.cars.all_cars')->with('cars', $cars);
+    }
+
+    public function show($id)
+    {
+        $car = Car::withCount('photos', 'albums', 'colors')->findOrFail($id);
+        $brands = Brand::all();
+        $colors = Color::all();
+        $body_types = BodyType::all();
+        $fuel_types = FuelType::all();
+        $sources = Source::all();
+
+        $car_colors = [];
+        foreach ($car->colors as $color) {
+            $car_colors[] = $color->pivot->colors_id;
+        }
+//        return $car;
+        return view('backend.cars.single_car')
+                    ->with('car', $car)
+                    ->with('brands', $brands)
+                    ->with('colors', $colors)
+                    ->with('car_colors', $car_colors)
+                    ->with('body_types', $body_types)
+                    ->with('fuel_types', $fuel_types)
+                    ->with('sources', $sources);
     }
 
     public function create()
@@ -81,17 +105,17 @@ class CarsController extends Controller {
 
         // Validating Inputs
         $request->validate([
-            'model_no'      => 'required',
-            'year'          => ['required', 'min:4', 'regex:/^\d+$/'],
-            'price'         => ['required', 'regex:/^\d+$/'],
-            'offer_price'         => ['nullable', 'regex:/^\d+$/'],
-            'brands_id'     => 'required',
+            'model_no' => 'required',
+            'year' => ['required', 'min:4', 'regex:/^\d+$/'],
+            'price' => ['required', 'regex:/^\d+$/'],
+            'offer_price' => ['nullable', 'regex:/^\d+$/'],
+            'brands_id' => 'required',
             'body_types_id' => 'required',
             'fuel_types_id' => 'required',
             'source_id' => 'required',
-            'colors_id'     => 'required',
+            'colors_id' => 'required',
         ], [
-            'brands_id.required'     => 'You must select a Brand',
+            'brands_id.required' => 'You must select a Brand',
             'body_types_id.required' => 'You must select a Body Type',
             'fuel_types_id.required' => 'You must select a Fuel Type',
             'source_id.required' => 'You must select a Source',
@@ -129,11 +153,9 @@ class CarsController extends Controller {
 
         // Storing Cars and Colors id in cars_colors
         $isCarColorSaved = FALSE;
-        if (count($colors_id) > 0)
-        {
+        if (count($colors_id) > 0) {
             $isCarColorSaved = TRUE;
-            foreach ($colors_id as $color_id)
-            {
+            foreach ($colors_id as $color_id) {
                 $cars_colors = new CarsColor();
                 $cars_colors->cars_id = $car->id;
                 $cars_colors->colors_id = $color_id;
@@ -142,14 +164,11 @@ class CarsController extends Controller {
             }
         }
 
-        if ($isCarSaved && $isCarFuelTypeSaved && $isCarColorSaved)
-        {
+        if ($isCarSaved && $isCarFuelTypeSaved && $isCarColorSaved) {
             DB::commit();
 
             return redirect()->route('all-cars');
-        }
-        else
-        {
+        } else {
             DB::rollBack();
 
             return back()->withInput();
@@ -158,7 +177,7 @@ class CarsController extends Controller {
 
     public function edit($id = NULL)
     {
-        if ( ! isset($id)) return redirect(404);
+        if (!isset($id)) return redirect(404);
 
         $car = Car::findOrFail($id);
         $car->brands;
@@ -168,8 +187,7 @@ class CarsController extends Controller {
         $car->sources;
 
         $car_colors = [];
-        foreach ($car->colors as $color)
-        {
+        foreach ($car->colors as $color) {
             $car_colors[] = $color->pivot->colors_id;
         }
 
@@ -219,17 +237,17 @@ class CarsController extends Controller {
 
         // Validating Inputs
         $request->validate([
-            'model_no'      => 'required',
-            'year'          => ['required', 'min:4', 'regex:/^\d+$/'],
-            'price'         => ['required', 'regex:/^\d+$/'],
-            'offer_price'         => ['nullable', 'regex:/^\d+$/'],
-            'brands_id'     => 'required',
+            'model_no' => 'required',
+            'year' => ['required', 'min:4', 'regex:/^\d+$/'],
+            'price' => ['required', 'regex:/^\d+$/'],
+            'offer_price' => ['nullable', 'regex:/^\d+$/'],
+            'brands_id' => 'required',
             'body_types_id' => 'required',
             'fuel_types_id' => 'required',
             'source_id' => 'required',
-            'colors_id'     => 'required',
+            'colors_id' => 'required',
         ], [
-            'brands_id.required'     => 'You must select a Brand',
+            'brands_id.required' => 'You must select a Brand',
             'body_types_id.required' => 'You must select a Body Type',
             'fuel_types_id.required' => 'You must select a Fuel Type',
             'source_id.required' => 'You must select a Source',
@@ -271,12 +289,10 @@ class CarsController extends Controller {
 
         // Updating Cars and Colors id in cars_colors
         $isCarColorUpdated = FALSE;
-        if (count($colors_id) > 0)
-        {
+        if (count($colors_id) > 0) {
             $isCarColorUpdated = TRUE;
             $cc = CarsColor::where('cars_id', $id)->delete();
-            foreach ($colors_id as $color_id)
-            {
+            foreach ($colors_id as $color_id) {
                 $cars_colors = new CarsColor();
                 $cars_colors->cars_id = $id;
                 $cars_colors->colors_id = $color_id;
@@ -286,14 +302,11 @@ class CarsController extends Controller {
         }
 //        return $isCarColorUpdated? 'isCarColorUpdated true':'isCarColorUpdated false';
 
-        if ($isCarUpdated && $isCarFuelTypeUpdated && $isCarColorUpdated)
-        {
+        if ($isCarUpdated && $isCarFuelTypeUpdated && $isCarColorUpdated) {
             DB::commit();
 
             return redirect()->route('all-cars');
-        }
-        else
-        {
+        } else {
             DB::rollBack();
 
             return back()->withInput();

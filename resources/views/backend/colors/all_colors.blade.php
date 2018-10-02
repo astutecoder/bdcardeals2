@@ -22,6 +22,13 @@
             <h2 class="panel-title">All Colors</h2>
         </header>
         <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="mb-md">
+                        <a id="addToTable" class="btn btn-success" href="{{ route('add-color') }}">Add <i class="fa fa-plus"></i></a>
+                    </div>
+                </div>
+            </div>
             {{-- if no brand is avaiable to show--}}
             @if($errors->any())
                 <h4 class="text-danger">{{ $errors->first() }}</h4>

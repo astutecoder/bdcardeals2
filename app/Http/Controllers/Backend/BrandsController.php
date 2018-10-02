@@ -10,7 +10,8 @@ class BrandsController extends Controller
 {
     public function all_brands(Request $request)
     {
-        $brands = Brand::orderBy('id', 'desc')->get();
+        $brands = Brand::orderBy('id', 'desc')->withCount('cars')->get();
+
         if ($brands->isEmpty()) {
             if ($request->ajax()) {
                 return response()->json($brands, 204);

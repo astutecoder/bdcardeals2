@@ -718,6 +718,7 @@ ul.simple-bullet-list li:before {
 /* Simple Card List */
 .simple-card-list li.primary {
 	background: /*#0088cc*/ #fa0b0b;
+	background: #0088cc;
 }
 /* Search Results */
 .search-content .search-toolbar .nav-pills li.active a {
