@@ -213,11 +213,11 @@
                             <div class="content">
                                 <ul class="simple-user-list custom-inline">
                                     @foreach($car->photos as $photo)
-                                        <li class="mb-sm">
+                                        <li class="cover">
                                             <figure class="rounded">
                                                 <img src="{{ asset('storage/car_albums/'.$car->albums[0]->folder_name).'/'.$photo->file_name }}"
                                                      alt="Joseph Doe Junior"
-                                                     class="" width="100%">
+                                                     class="cover rounded">
                                             </figure>
                                         </li>
                                     @endforeach
