@@ -12,8 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('backend.partials.layout');
+    return view('welcome');
 })->name('admin');
+//Route::get('/', function () {
+//    return view('backend.partials.layout');
+//})->name('admin');
 
 Route::prefix('cars')->group(function () {
     Route::get('all-cars', 'Backend\CarsController@all_cars')->name('all-cars');

@@ -88,6 +88,6 @@ class PhotoController extends Controller
         if($photos->isEmpty()){
             return redirect(404);
         }
-        return $photos;
+        return view('backend.albums.edit_album')->with('photos', $photos);
     }
 }

@@ -52,9 +52,10 @@
                                 <td>{{ $car->year }}</td>
                                 <td>{{ $car->sources->source_code }}</td>
                                 <td>
-                                    @if(!empty($car->albums[0]))
-                                        {{ $car->albums[0]->album_name }}
-                                        <a href="{{ route('view-album', ['album_id'=> $car->albums[0]->id]) }}"></a>
+                                    @if(!empty($car->albums))
+                                        <a href="{{ route('view-album', ['album_id'=> $car->albums->id]) }}" class="text-info">
+                                            {{ $car->albums->album_name }}
+                                        </a>
                                     @else
                                         <a href="{{ route("create-album",['car_id'=>$car->id]) }}">Add image</a>
                                     @endif
