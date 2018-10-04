@@ -1,0 +1,75 @@
+//@import "~bootstrap/scss/Bootstrap.scss";
+.file{
+  display: none !important;
+}
+.Cover-image {
+  display: flex;
+  height: 150px;
+  width: 100%;
+  @media(min-width: 400px) {
+    height: 180px;
+  }
+  @media(min-width: 500px) {
+    height: 220px;
+  }
+  @media(min-width: 650px) {
+    height: 280px;
+  }
+  @media(min-width: 992px) {
+    height: 350px;
+  }
+  @media(min-width: 1240px) {
+    height: 400px;
+  }
+  @media(min-width: 1366px) {
+    height: 520px;
+  }
+}
+
+.Cover-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.Card-columns {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content:center;
+  align-items: center;
+  .Card-container {
+    min-height: 250px;
+    object-fit: cover;
+    padding: 5px;
+    min-width: 250px;
+    .Card {
+      display: flex;
+      flex-direction: column;
+      background: #ececec;
+      border: 1px solid #dbdbdb;
+      border-radius: 5px;
+      height: 100%;
+      width: 100%;
+      .Card-img-top {
+        border-radius: 12px 12px 0 0;
+        height: 90%;
+        width: 100%;
+        padding: 7px 7px 2px;
+        img {
+          display: block;
+          height: 100%;
+          margin: auto;
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+      .Card-action {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 10px 2px;
+      }
+    }
+  }
+}

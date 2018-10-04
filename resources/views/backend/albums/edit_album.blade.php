@@ -10,6 +10,10 @@
     <li><span>{{ $photos[0]->albums->album_name }}</span></li>
 @stop
 
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('vendor_assets/pnotify/pnotify.custom.css') }}">
+@endpush
+
 {{-- this template has pushed scripts at the bottom of this file --}}
 
 @section('content-body')
@@ -28,5 +32,6 @@
 @stop
 
 @push('scripts')
-    <script src="{{ asset('js/album_edit.js') }}"></script>
+    <script src="{{ asset('js/backend.js') }}"></script>
+    <script src="{{ asset('vendor_assets/pnotify/pnotify.custom.js') }}"></script>
 @endpush

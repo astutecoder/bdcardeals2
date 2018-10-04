@@ -1,0 +1,1 @@
+require('./react/backend/Album/album_edit');

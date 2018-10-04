@@ -13,6 +13,16 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
+
+Route::middleware('api')->prefix('v1/album')->group(function(){
+   Route::get('all-photos/{car_id}', 'Backend\PhotoController@get_all_photos');
+});
+Route::middleware('auth:api')->prefix('v1/album')->group(function () {
+    Route::post('change-cover', 'Backend\PhotoController@change_cover');
+    Route::post('append-image', 'Backend\PhotoController@append_image');
+    Route::post('delete-image', 'Backend\PhotoController@delete_image');
 });

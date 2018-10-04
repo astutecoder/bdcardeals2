@@ -43,7 +43,7 @@
                         @else
                             @foreach($car->photos as $photo)
                                 @if(!!$photo->is_featured)
-                                    <img src="{{ asset('storage/car_albums/'.$car->albums[0]->folder_name .'/'.$photo->file_name) }}"
+                                    <img src="{{ asset('storage/car_albums/'.$car->albums->folder_name .'/'.$photo->file_name) }}"
                                          class="rounded img-responsive cover" width="100%" alt="John Doe">
                                 @endif
                             @endforeach
@@ -215,7 +215,7 @@
                                     @foreach($car->photos as $photo)
                                         <li class="cover">
                                             <figure class="rounded">
-                                                <img src="{{ asset('storage/car_albums/'.$car->albums[0]->folder_name).'/'.$photo->file_name }}"
+                                                <img src="{{ asset('storage/car_albums/'.$car->albums->folder_name).'/'.$photo->file_name }}"
                                                      alt="Joseph Doe Junior"
                                                      class="cover rounded">
                                             </figure>

@@ -57,3 +57,7 @@ ul.simple-bullet-list li.info:before {
         flex-direction: column;
     }
 }
+
+.mfp-wrap{
+    background: rgba(0,0,0,.75);
+}

@@ -11,12 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('admin');
 //Route::get('/', function () {
-//    return view('backend.partials.layout');
+//    return view('welcome');
 //})->name('admin');
+Route::get('/', function () {
+    return view('backend.partials.layout');
+})->name('admin');
 
 Route::prefix('cars')->group(function () {
     Route::get('all-cars', 'Backend\CarsController@all_cars')->name('all-cars');
@@ -29,9 +29,9 @@ Route::prefix('cars')->group(function () {
 
     Route::prefix('albums')->group(function () {
         Route::get('/', 'Backend\AlbumController@index')->name('albums');
-        Route::get('/{album_id}', 'Backend\AlbumController@show')->name('view-album');
+//        Route::get('/{album_id}', 'Backend\AlbumController@show')->name('view-album');
         Route::get('create/{car_id}', 'Backend\PhotoController@create')->name('create-album');
-        Route::get('edit/{car_id}', 'Backend\PhotoController@edit')->name('edit-album');
+        Route::get('edit/{car_id?}', 'Backend\PhotoController@edit')->name('edit-album');
 
         Route::post('add-album', 'Backend\PhotoController@store')->name('store-album');
         Route::post('edit', 'Backend\PhotoController@update')->name('update-album');
@@ -83,3 +83,6 @@ Route::prefix('sources')->group(function () {
     Route::post('add-source', 'Backend\SourcesController@store')->name('store-source');
     Route::post('edit', 'Backend\SourcesController@update')->name('update-source');
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

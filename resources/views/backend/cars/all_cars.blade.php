@@ -53,7 +53,7 @@
                                 <td>{{ $car->sources->source_code }}</td>
                                 <td>
                                     @if(!empty($car->albums))
-                                        <a href="{{ route('view-album', ['album_id'=> $car->albums->id]) }}" class="text-info">
+                                        <a href="{{ route('edit-album', ['album_id'=> $car->albums->id]) }}" class="text-info">
                                             {{ $car->albums->album_name }}
                                         </a>
                                     @else
