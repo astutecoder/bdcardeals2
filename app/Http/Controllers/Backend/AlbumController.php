@@ -13,7 +13,7 @@ class AlbumController extends Controller {
 
     public function index()
     {
-        $albums = Album::withCount('photos')->with(['photos'=> function($query){
+        $albums = Album::withCount(['photos','cars'])->with(['photos'=> function($query){
             $query->where('is_featured','=','1');
         }])->get();
 

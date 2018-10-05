@@ -175,4 +175,24 @@ class PhotoController extends Controller
 
         return response()->json($result);
     }
+
+    public function destroy(Request $request)
+    {
+        $id = $request->input('id');
+        $album = Album::findOrFail($id);
+        DB::beginTransaction();
+        $photoDeleted = Photo::where('album_id', $album->id)->delete();
+        if($photoDeleted){
+            $albumDeleted = $album->delete();
+        }
+        if(isset($albumDeleted) && $albumDeleted){
+            $imageRemoved = Storage::deleteDirectory('public/car_albums/'.$album->folder_name);
+        }
+        if($imageRemoved){
+            DB::commit();
+            return response()->json(1);
+        }
+        DB::rollBack();
+        return response()->json(0);
+    }
 }

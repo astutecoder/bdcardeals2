@@ -8,7 +8,7 @@ class Album extends Model {
 
     public function cars()
     {
-        return $this->belongsTo('App\Car', 'album_id');
+        return $this->belongsTo('App\Car', 'cars_id');
     }
 
     public function photos()

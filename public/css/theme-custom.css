@@ -1,25 +1,29 @@
 /* Add here all your CSS customizations */
 
-.mb-0{
+.mb-0 {
     margin-bottom: 0;
 }
-.page-header .breadcrumbs{
+
+.page-header .breadcrumbs {
     margin-right: 20px;
 }
 
-.cover{
+.cover {
     object-fit: cover !important;
 }
-.panel-actions{
+
+.panel-actions {
     float: right;
 }
-.custom-inline{
+
+.custom-inline {
     display: flex;
-    flex-direction:row;
+    flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between !important;
 }
-.custom-inline li{
+
+.custom-inline li {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -27,27 +31,30 @@
     padding: 0 10px;
     flex: 1;
 }
-.custom-inline:after{
+
+.custom-inline:after {
     content: '';
     flex: auto;
 }
 
-.custom-inline figure{
+.custom-inline figure {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    border: 1px solid rgba(0,0,0,0.15);
+    border: 1px solid rgba(0, 0, 0, 0.15);
     background: whitesmoke;
     padding: 10px;
 }
-.custom-inline figure img{
-    width:100%;
-    max-height:200px;
+
+.custom-inline figure img {
+    width: 100%;
+    max-height: 200px;
 }
 
 ul.simple-bullet-list li.purple:before {
     border-color: #734ba9;
 }
+
 ul.simple-bullet-list li.info:before {
     border-color: #2baab1;
 }
@@ -58,6 +65,16 @@ ul.simple-bullet-list li.info:before {
     }
 }
 
-.mfp-wrap{
-    background: rgba(0,0,0,.75);
+.mfp-wrap {
+    background: rgba(0, 0, 0, .75);
+}
+
+.summary-icon {
+    position: relative;
+}
+.summary-icon i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
 }

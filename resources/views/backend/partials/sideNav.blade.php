@@ -13,8 +13,8 @@
         <div class="nano-content">
             <nav id="menu" class="nav-main" role="navigation">
                 <ul class="nav nav-main">
-                    <li class="{{ Request::is('/') ? 'nav-active' : '' }}">
-                        <a href="/">
+                    <li class="{{ Request::is('/dashboard') ? 'nav-active' : '' }}">
+                        <a href="/dashboard">
                             <i class="fa fa-home" aria-hidden="true"></i>
                             <span>Dashboard</span>
                         </a>

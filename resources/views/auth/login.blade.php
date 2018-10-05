@@ -2,8 +2,9 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-8 d-flex flex-column justify-content-center">
+            <img src="{{ asset('/images/bd_car_deals_logo.png') }}" alt="" width="50%" class="d-block mb-3 mx-auto">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
 

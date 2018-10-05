@@ -90,7 +90,6 @@
     <script>
         var id = '',
             _csrf = $('meta[name=csrf]').attr('content');
-        console.log(_csrf);
         $('.modal-basic').magnificPopup({
             type: 'inline',
             preloader: false,
@@ -113,16 +112,24 @@
                     id: id
                 },
                 success: function(data){
-                    if(data){
+                    try {
+                        if(data){
+                            $.magnificPopup.close();
+                            alert('Successfully Deleted');
+                            window.location.reload()
+                        }else{
+                            throw new Error('Failed to Delete')
+                        }
+                    } catch (e){
+                        alert(e.message)
+                    } finally {
                         $.magnificPopup.close();
-                        alert('Successfully Deleted');
-                        window.location.reload()
-                    }else{
-                        throw new Error('Failed to Delete')
+                        window.location.reload();
                     }
                 },
                 error: function(err){
                     alert(err.message);
+                    $.magnificPopup.close();
                 }
             });
         });
