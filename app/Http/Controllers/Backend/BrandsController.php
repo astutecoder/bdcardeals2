@@ -81,4 +81,11 @@ class BrandsController extends Controller
 
         return redirect()->route('all-brands');
     }
+
+    public function destroy(Request $request)
+    {
+        $id = $request->input('id');
+        $brand = Brand::findOrFail($id)->delete();
+        return response()->json(1);
+    }
 }

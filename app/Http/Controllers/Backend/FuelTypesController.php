@@ -10,7 +10,7 @@ class FuelTypesController extends Controller
 {
     public function all_fuel_types(Request $request)
     {
-        $fuel_types = FuelType::orderBy('id', 'desc')->get();
+        $fuel_types = FuelType::orderBy('id', 'desc')->withCount('cars')->get();
         if ($fuel_types->isEmpty()) {
             if ($request->ajax()) {
                 return response()->json($fuel_types, 204);
@@ -79,5 +79,13 @@ class FuelTypesController extends Controller
         $fuel_type->save();
 
         return redirect()->route('all-fuel-types');
+    }
+
+    public function destroy(Request $request)
+    {
+        $id = $request->input('id');
+        $fuel_type = FuelType::findOrFail($id);
+        $fuel_type->delete();
+        return response()->json(1);
     }
 }

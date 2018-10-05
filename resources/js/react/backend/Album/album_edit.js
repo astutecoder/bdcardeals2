@@ -105,9 +105,11 @@ export default class AlbumEdit extends Component {
             .then(response => {
                 if (response.data){
                     this.getAllPhotos(this.state.car_id)
+                    return;
                 }
+                throw new Error('Something went wrong!')
             })
-            .catch(error => console.dir(error));
+            .catch(error => alert(error.message));
 
     }
     handleSelectImages = () => {
@@ -124,9 +126,14 @@ export default class AlbumEdit extends Component {
                 if (response.data) {
                     this.openModal();
                     this.getAllPhotos();
+                    return;
                 }
+                throw new Error('Cannot be deleted.')
             })
-            .catch(error => console.dir(error))
+            .catch(error => {
+                this.openModal();
+                alert(error.message)
+            })
     }
     handleMakeCoverImage = (image_id, car_id) => {
         axios.post('/api/v1/album/change-cover', {image_id, car_id}, {
@@ -137,9 +144,11 @@ export default class AlbumEdit extends Component {
             .then(response => {
                 if (response.data) {
                     this.getAllPhotos(car_id);
+                    return;
                 }
+                throw new Error('Change cannot be made due to invalid request.')
             })
-            .catch(error => console.dir(error))
+            .catch(error => alert(error.message))
     }
 
     render() {
@@ -221,7 +230,7 @@ export default class AlbumEdit extends Component {
                                                 <i className="fa fa-question-circle"></i>
                                             </div>
                                             <div className="modal-text">
-                                                <h4>Primary</h4>
+                                                <h4>Hey!</h4>
                                                 <p>Are you sure that you want to delete this image?</p>
                                             </div>
                                         </div>

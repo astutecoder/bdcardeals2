@@ -168,8 +168,9 @@ class PhotoController extends Controller
 
         if($is_deleted && $is_removed){
             DB::commit();
+        }else{
+            DB::rollBack();
         }
-        DB::rollBack();
         $result = $is_deleted && $is_removed ? 1 : 0;
 
         return response()->json($result);

@@ -82,10 +82,11 @@ class BodyTypesController extends Controller
         return redirect()->route('all-body-types');
     }
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+        $id = $request->input('id');
         $body_type = BodyType::findOrFail($id);
         $body_type->delete();
-        return back();
+        return '1';
     }
 }

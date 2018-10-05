@@ -10,7 +10,7 @@ class ColorsController extends Controller
 {
     public function all_colors(Request $request)
     {
-        $colors = Color::orderBy('id', 'desc')->get();
+        $colors = Color::orderBy('id', 'desc')->withCount('cars')->get();
         if ($colors->isEmpty()) {
             if ($request->ajax()) {
                 return response()->json($colors, 204);
@@ -79,5 +79,13 @@ class ColorsController extends Controller
         $color->save();
 
         return redirect()->route('all-colors');
+    }
+
+    public function destroy(Request $request)
+    {
+        $id = $request->input('id');
+        $color = Color::findOrFail($id);
+        $color->delete();
+        return response()->json(1);
     }
 }

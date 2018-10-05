@@ -10,7 +10,7 @@ class SourcesController extends Controller
 {
     public function all_sources(Request $request)
     {
-        $sources = Source::orderBy('id', 'desc')->get();
+        $sources = Source::orderBy('id', 'desc')->withCount('cars')->get();
         if ($sources->isEmpty()) {
             if ($request->ajax()) {
                 return response()->json($sources, 204);
@@ -107,5 +107,13 @@ class SourcesController extends Controller
             return response()->json($source->id, 201);
         }
         return redirect()->route('all-sources');
+    }
+
+    public function destroy(Request $request)
+    {
+        $id = $request->input('id');
+        $source = Source::findOrFail($id);
+        $source->delete();
+        return response()->json(1);
     }
 }

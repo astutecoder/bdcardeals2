@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 49);
+/******/ 	return __webpack_require__(__webpack_require__.s = 52);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -70,8 +70,8 @@
 "use strict";
 
 
-var bind = __webpack_require__(5);
-var isBuffer = __webpack_require__(21);
+var bind = __webpack_require__(2);
+var isBuffer = __webpack_require__(12);
 
 /*global toString:true*/
 
@@ -381,7 +381,7 @@ module.exports = {
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(0);
-var normalizeHeaderName = __webpack_require__(24);
+var normalizeHeaderName = __webpack_require__(15);
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -397,10 +397,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(6);
+    adapter = __webpack_require__(3);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(6);
+    adapter = __webpack_require__(3);
   }
   return adapter;
 }
@@ -475,13 +475,10 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(23)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14)))
 
 /***/ }),
-/* 2 */,
-/* 3 */,
-/* 4 */,
-/* 5 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -499,19 +496,19 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 6 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(0);
-var settle = __webpack_require__(25);
-var buildURL = __webpack_require__(27);
-var parseHeaders = __webpack_require__(28);
-var isURLSameOrigin = __webpack_require__(29);
-var createError = __webpack_require__(7);
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(30);
+var settle = __webpack_require__(16);
+var buildURL = __webpack_require__(18);
+var parseHeaders = __webpack_require__(19);
+var isURLSameOrigin = __webpack_require__(20);
+var createError = __webpack_require__(4);
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(21);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -608,7 +605,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(31);
+      var cookies = __webpack_require__(22);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -686,13 +683,13 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 7 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var enhanceError = __webpack_require__(26);
+var enhanceError = __webpack_require__(17);
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -711,7 +708,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 8 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -723,7 +720,7 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 9 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -749,7 +746,7 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 10 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -758,12 +755,12 @@ module.exports = Cancel;
 if (false) {
   module.exports = require('./cjs/react.production.min.js');
 } else {
-  module.exports = __webpack_require__(40);
+  module.exports = __webpack_require__(30);
 }
 
 
 /***/ }),
-/* 11 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -860,7 +857,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 
 /***/ }),
-/* 12 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -876,7 +873,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 var printWarning = function() {};
 
 if (true) {
-  var ReactPropTypesSecret = __webpack_require__(41);
+  var ReactPropTypesSecret = __webpack_require__(31);
   var loggedTypeFailures = {};
 
   printWarning = function(text) {
@@ -958,27 +955,21 @@ module.exports = checkPropTypes;
 
 
 /***/ }),
-/* 13 */,
-/* 14 */,
-/* 15 */,
-/* 16 */,
-/* 17 */,
-/* 18 */,
-/* 19 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(20);
+module.exports = __webpack_require__(11);
 
 /***/ }),
-/* 20 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(0);
-var bind = __webpack_require__(5);
-var Axios = __webpack_require__(22);
+var bind = __webpack_require__(2);
+var Axios = __webpack_require__(13);
 var defaults = __webpack_require__(1);
 
 /**
@@ -1012,15 +1003,15 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(9);
-axios.CancelToken = __webpack_require__(37);
-axios.isCancel = __webpack_require__(8);
+axios.Cancel = __webpack_require__(6);
+axios.CancelToken = __webpack_require__(28);
+axios.isCancel = __webpack_require__(5);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(38);
+axios.spread = __webpack_require__(29);
 
 module.exports = axios;
 
@@ -1029,7 +1020,7 @@ module.exports.default = axios;
 
 
 /***/ }),
-/* 21 */
+/* 12 */
 /***/ (function(module, exports) {
 
 /*!
@@ -1056,7 +1047,7 @@ function isSlowBuffer (obj) {
 
 
 /***/ }),
-/* 22 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1064,8 +1055,8 @@ function isSlowBuffer (obj) {
 
 var defaults = __webpack_require__(1);
 var utils = __webpack_require__(0);
-var InterceptorManager = __webpack_require__(32);
-var dispatchRequest = __webpack_require__(33);
+var InterceptorManager = __webpack_require__(23);
+var dispatchRequest = __webpack_require__(24);
 
 /**
  * Create a new instance of Axios
@@ -1142,7 +1133,7 @@ module.exports = Axios;
 
 
 /***/ }),
-/* 23 */
+/* 14 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -1332,7 +1323,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 24 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1351,13 +1342,13 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 
 /***/ }),
-/* 25 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var createError = __webpack_require__(7);
+var createError = __webpack_require__(4);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -1384,7 +1375,7 @@ module.exports = function settle(resolve, reject, response) {
 
 
 /***/ }),
-/* 26 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1412,7 +1403,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 
 /***/ }),
-/* 27 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1485,7 +1476,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 
 /***/ }),
-/* 28 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1545,7 +1536,7 @@ module.exports = function parseHeaders(headers) {
 
 
 /***/ }),
-/* 29 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1620,7 +1611,7 @@ module.exports = (
 
 
 /***/ }),
-/* 30 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1663,7 +1654,7 @@ module.exports = btoa;
 
 
 /***/ }),
-/* 31 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1723,7 +1714,7 @@ module.exports = (
 
 
 /***/ }),
-/* 32 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1782,18 +1773,18 @@ module.exports = InterceptorManager;
 
 
 /***/ }),
-/* 33 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(0);
-var transformData = __webpack_require__(34);
-var isCancel = __webpack_require__(8);
+var transformData = __webpack_require__(25);
+var isCancel = __webpack_require__(5);
 var defaults = __webpack_require__(1);
-var isAbsoluteURL = __webpack_require__(35);
-var combineURLs = __webpack_require__(36);
+var isAbsoluteURL = __webpack_require__(26);
+var combineURLs = __webpack_require__(27);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -1875,7 +1866,7 @@ module.exports = function dispatchRequest(config) {
 
 
 /***/ }),
-/* 34 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1902,7 +1893,7 @@ module.exports = function transformData(data, headers, fns) {
 
 
 /***/ }),
-/* 35 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1923,7 +1914,7 @@ module.exports = function isAbsoluteURL(url) {
 
 
 /***/ }),
-/* 36 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1944,13 +1935,13 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 
 /***/ }),
-/* 37 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var Cancel = __webpack_require__(9);
+var Cancel = __webpack_require__(6);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -2008,7 +1999,7 @@ module.exports = CancelToken;
 
 
 /***/ }),
-/* 38 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2042,8 +2033,7 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 39 */,
-/* 40 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2064,8 +2054,8 @@ if (true) {
   (function() {
 'use strict';
 
-var _assign = __webpack_require__(11);
-var checkPropTypes = __webpack_require__(12);
+var _assign = __webpack_require__(8);
+var checkPropTypes = __webpack_require__(9);
 
 // TODO: this is special because it gets imported during build.
 
@@ -3776,7 +3766,7 @@ module.exports = react;
 
 
 /***/ }),
-/* 41 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3795,7 +3785,7 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 42 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3835,12 +3825,12 @@ if (false) {
   checkDCE();
   module.exports = require('./cjs/react-dom.production.min.js');
 } else {
-  module.exports = __webpack_require__(43);
+  module.exports = __webpack_require__(33);
 }
 
 
 /***/ }),
-/* 43 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3861,11 +3851,11 @@ if (true) {
   (function() {
 'use strict';
 
-var React = __webpack_require__(10);
-var _assign = __webpack_require__(11);
-var checkPropTypes = __webpack_require__(12);
-var schedule = __webpack_require__(44);
-var tracing = __webpack_require__(46);
+var React = __webpack_require__(7);
+var _assign = __webpack_require__(8);
+var checkPropTypes = __webpack_require__(9);
+var schedule = __webpack_require__(34);
+var tracing = __webpack_require__(36);
 
 /**
  * Use invariant() to assert state which your program assumes to be true.
@@ -22106,7 +22096,7 @@ module.exports = reactDom;
 
 
 /***/ }),
-/* 44 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22115,12 +22105,12 @@ module.exports = reactDom;
 if (false) {
   module.exports = require('./cjs/schedule.production.min.js');
 } else {
-  module.exports = __webpack_require__(45);
+  module.exports = __webpack_require__(35);
 }
 
 
 /***/ }),
-/* 45 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22549,7 +22539,7 @@ exports.unstable_cancelScheduledWork = unstable_cancelScheduledWork;
 
 
 /***/ }),
-/* 46 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22558,12 +22548,12 @@ exports.unstable_cancelScheduledWork = unstable_cancelScheduledWork;
 if (false) {
   module.exports = require('./cjs/schedule-tracing.production.min.js');
 } else {
-  module.exports = __webpack_require__(47);
+  module.exports = __webpack_require__(37);
 }
 
 
 /***/ }),
-/* 47 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22997,412 +22987,18 @@ exports.unstable_unsubscribe = unstable_unsubscribe;
 
 
 /***/ }),
+/* 38 */,
+/* 39 */,
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
 /* 48 */,
 /* 49 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(50);
-
-
-/***/ }),
-/* 50 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-__webpack_require__(51);
-
-/***/ }),
-/* 51 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(10);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(42);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _axios = __webpack_require__(19);
-
-var _axios2 = _interopRequireDefault(_axios);
-
-var _Edit = __webpack_require__(56);
-
-var _Edit2 = _interopRequireDefault(_Edit);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var AlbumEdit = function (_Component) {
-    _inherits(AlbumEdit, _Component);
-
-    function AlbumEdit(props) {
-        _classCallCheck(this, AlbumEdit);
-
-        var _this = _possibleConstructorReturn(this, (AlbumEdit.__proto__ || Object.getPrototypeOf(AlbumEdit)).call(this, props));
-
-        _this.getCarId = function () {
-            var path = window.location.pathname;
-            return path.slice().split('/').pop();
-        };
-
-        _this.getAllPhotos = function (car_id) {
-            _axios2.default.get('/api/v1/album/all-photos/' + car_id).then(function (response) {
-                _this.setState({
-                    images: [].concat(_toConsumableArray(response.data))
-                }); // setState() for album and images;
-
-                for (var key = 0; key < response.data.length; key++) {
-                    if (response.data[key]["is_featured"] !== 1) {
-                        continue;
-                    }
-                    _this.setState({
-                        cover_image: _extends({}, _this.state.cover_image, {
-                            id: response.data[key].id,
-                            album_id: response.data[key].albums.id,
-                            folder_name: response.data[key].albums.folder_name,
-                            file_name: response.data[key].file_name
-                        })
-                    });
-                    break;
-                }
-            }).catch(function (error) {
-                return console.dir(error);
-            });
-        };
-
-        _this.openModal = function () {
-            var image_id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-
-            _this.setState({
-                modal: _extends({}, _this.state.modal, {
-                    show: !_this.state.modal.show,
-                    item: image_id
-                })
-            });
-        };
-
-        _this.handleAddImage = function () {
-            var files = $('#file')[0].files,
-                formData = new FormData();
-            console.log('files', files);
-            for (var i = 0; i < files.length; i++) {
-                formData.append('image-' + i, files[i]);
-            }
-            formData.append('car_id', _this.state.car_id);
-            formData.append('album_id', _this.state.cover_image.album_id);
-            formData.append('folder_name', _this.state.cover_image.folder_name);
-            formData.append('total_image', files.length);
-
-            _axios2.default.post('/api/v1/album/append-image', formData, {
-                headers: {
-                    Authorization: 'Bearer 03ArWRckJh22ltDgRl6tPdjSpRDMeQHC9pozMWJOay2VwG6Wa3qeQyPPcqCN'
-                }
-            }).then(function (response) {
-                if (response.data) {
-                    _this.getAllPhotos(_this.state.car_id);
-                }
-            }).catch(function (error) {
-                return console.dir(error);
-            });
-        };
-
-        _this.handleSelectImages = function () {
-            $('#file').click();
-        };
-
-        _this.handleDeleteImage = function (image_id) {
-            _axios2.default.post('/api/v1/album/delete-image', { image_id: image_id, folder_name: _this.state.cover_image.folder_name }, {
-                headers: {
-                    Authorization: 'Bearer 03ArWRckJh22ltDgRl6tPdjSpRDMeQHC9pozMWJOay2VwG6Wa3qeQyPPcqCN'
-                }
-            }).then(function (response) {
-                if (response.data) {
-                    _this.openModal();
-                    _this.getAllPhotos();
-                }
-            }).catch(function (error) {
-                return console.dir(error);
-            });
-        };
-
-        _this.handleMakeCoverImage = function (image_id, car_id) {
-            _axios2.default.post('/api/v1/album/change-cover', { image_id: image_id, car_id: car_id }, {
-                headers: {
-                    'Authorization': 'Bearer 03ArWRckJh22ltDgRl6tPdjSpRDMeQHC9pozMWJOay2VwG6Wa3qeQyPPcqCN'
-                }
-            }).then(function (response) {
-                if (response.data) {
-                    _this.getAllPhotos(car_id);
-                }
-            }).catch(function (error) {
-                return console.dir(error);
-            });
-        };
-
-        _this.state = {
-            modal: {
-                show: false,
-                item: ''
-            },
-            car_id: '',
-            cover_image: {
-                id: '',
-                album_id: '',
-                folder_name: '',
-                file_name: ''
-            },
-            images: [] //except featured
-        };
-        return _this;
-    }
-
-    _createClass(AlbumEdit, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            this.setState({
-                car_id: this.getCarId()
-            });
-            // console.log('did mount',this.state)
-        }
-    }, {
-        key: 'componentDidUpdate',
-        value: function componentDidUpdate(prevProps, prevState) {
-            if (prevState.images.length !== this.state.images.length || prevState.car_id !== this.state.car_id || prevState.cover_image.id !== this.state.cover_image.id) {
-                this.getAllPhotos(this.state.car_id);
-            }
-            if (prevState !== this.state) {
-                console.log(this.state);
-            }
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            var _this2 = this;
-
-            return _react2.default.createElement(
-                'div',
-                null,
-                _react2.default.createElement(
-                    'div',
-                    { className: 'row' },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'col-md-12' },
-                        _react2.default.createElement(
-                            'h4',
-                            { className: 'title' },
-                            'Cover Image'
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: _Edit2.default["Cover-image"] },
-                            !!this.state.cover_image.id ? _react2.default.createElement('img', {
-                                src: '/storage/car_albums/' + this.state.cover_image.folder_name + '/' + this.state.cover_image.file_name,
-                                alt: this.state.cover_image.file_name }) : ''
-                        )
-                    )
-                ),
-                _react2.default.createElement('hr', { className: 'seperator' }),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'row' },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'col-xs-6' },
-                        _react2.default.createElement(
-                            'h4',
-                            { className: 'title mt-md mb-md' },
-                            'All Images'
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'col-xs-6' },
-                        _react2.default.createElement(
-                            'a',
-                            { id: 'addToTable', className: 'btn btn-success pull-right', onClick: this.handleSelectImages },
-                            'Add ',
-                            _react2.default.createElement('i', { className: 'fa fa-plus' })
-                        ),
-                        _react2.default.createElement(
-                            'form',
-                            { action: '', encType: 'multipart/form-data' },
-                            _react2.default.createElement('input', { type: 'file', id: 'file', className: _Edit2.default.file, multiple: true, onChange: this.handleAddImage })
-                        )
-                    )
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'row' },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'col-md-12' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: _Edit2.default["Card-columns"] },
-                            this.state.images.map(function (image, index) {
-                                if (image.is_featured == 1) {
-                                    return;
-                                }
-                                return _react2.default.createElement(
-                                    'div',
-                                    { className: _Edit2.default["Card-container"], key: index },
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: _Edit2.default.Card },
-                                        _react2.default.createElement(
-                                            'div',
-                                            { className: _Edit2.default["Card-img-top"] },
-                                            _react2.default.createElement('img', {
-                                                src: '/storage/car_albums/' + image.albums.folder_name + '/' + image.file_name,
-                                                alt: '' })
-                                        ),
-                                        _react2.default.createElement(
-                                            'div',
-                                            { className: _Edit2.default["Card-action"] },
-                                            _react2.default.createElement(
-                                                'a',
-                                                { className: 'text-info',
-                                                    onClick: function onClick() {
-                                                        return _this2.handleMakeCoverImage(image.id, image.cars_id);
-                                                    } },
-                                                'Make Cover'
-                                            ),
-                                            _react2.default.createElement(
-                                                'a',
-                                                { className: 'text-danger',
-                                                    onClick: function onClick() {
-                                                        return _this2.openModal(image.id);
-                                                    } },
-                                                'Delete'
-                                            )
-                                        )
-                                    )
-                                );
-                            })
-                        )
-                    )
-                ),
-                this.state.modal.show && _react2.default.createElement(
-                    'div',
-                    { className: 'mfp-wrap mfp-auto-cursor mfp-ready', tabIndex: '-1', style: { "overflow": "hidden auto" } },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'mfp-container mfp-inline-holder' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'mfp-content' },
-                            _react2.default.createElement(
-                                'div',
-                                { id: 'modalPrimary', className: 'modal-block modal-block-primary' },
-                                _react2.default.createElement(
-                                    'section',
-                                    { className: 'panel' },
-                                    _react2.default.createElement(
-                                        'header',
-                                        { className: 'panel-heading' },
-                                        _react2.default.createElement(
-                                            'h2',
-                                            { className: 'panel-title' },
-                                            'Are you sure?'
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'panel-body' },
-                                        _react2.default.createElement(
-                                            'div',
-                                            { className: 'modal-wrapper' },
-                                            _react2.default.createElement(
-                                                'div',
-                                                { className: 'modal-icon' },
-                                                _react2.default.createElement('i', { className: 'fa fa-question-circle' })
-                                            ),
-                                            _react2.default.createElement(
-                                                'div',
-                                                { className: 'modal-text' },
-                                                _react2.default.createElement(
-                                                    'h4',
-                                                    null,
-                                                    'Primary'
-                                                ),
-                                                _react2.default.createElement(
-                                                    'p',
-                                                    null,
-                                                    'Are you sure that you want to delete this image?'
-                                                )
-                                            )
-                                        )
-                                    ),
-                                    _react2.default.createElement(
-                                        'footer',
-                                        { className: 'panel-footer' },
-                                        _react2.default.createElement(
-                                            'div',
-                                            { className: 'row' },
-                                            _react2.default.createElement(
-                                                'div',
-                                                { className: 'col-md-12 text-right' },
-                                                _react2.default.createElement(
-                                                    'button',
-                                                    { className: 'btn btn-primary modal-confirm',
-                                                        onClick: function onClick() {
-                                                            return _this2.handleDeleteImage(_this2.state.modal.item);
-                                                        } },
-                                                    'Confirm'
-                                                ),
-                                                _react2.default.createElement(
-                                                    'button',
-                                                    { className: 'btn btn-default modal-dismiss',
-                                                        onClick: function onClick() {
-                                                            return _this2.openModal();
-                                                        } },
-                                                    'Cancel'
-                                                )
-                                            )
-                                        )
-                                    )
-                                )
-                            )
-                        )
-                    )
-                )
-            );
-        }
-    }]);
-
-    return AlbumEdit;
-}(_react.Component);
-
-exports.default = AlbumEdit;
-
-_reactDom2.default.render(_react2.default.createElement(AlbumEdit, null), document.getElementById("album_edit"));
-
-/***/ }),
-/* 52 */,
-/* 53 */
 /***/ (function(module, exports) {
 
 /*
@@ -23484,7 +23080,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 54 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -23553,7 +23149,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(55);
+var	fixUrls = __webpack_require__(51);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -23888,7 +23484,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 55 */
+/* 51 */
 /***/ (function(module, exports) {
 
 
@@ -23983,11 +23579,421 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 56 */
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(53);
+
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(54);
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(7);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(32);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _axios = __webpack_require__(10);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _Edit = __webpack_require__(55);
+
+var _Edit2 = _interopRequireDefault(_Edit);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var AlbumEdit = function (_Component) {
+    _inherits(AlbumEdit, _Component);
+
+    function AlbumEdit(props) {
+        _classCallCheck(this, AlbumEdit);
+
+        var _this = _possibleConstructorReturn(this, (AlbumEdit.__proto__ || Object.getPrototypeOf(AlbumEdit)).call(this, props));
+
+        _this.getCarId = function () {
+            var path = window.location.pathname;
+            return path.slice().split('/').pop();
+        };
+
+        _this.getAllPhotos = function (car_id) {
+            _axios2.default.get('/api/v1/album/all-photos/' + car_id).then(function (response) {
+                _this.setState({
+                    images: [].concat(_toConsumableArray(response.data))
+                }); // setState() for album and images;
+
+                for (var key = 0; key < response.data.length; key++) {
+                    if (response.data[key]["is_featured"] !== 1) {
+                        continue;
+                    }
+                    _this.setState({
+                        cover_image: _extends({}, _this.state.cover_image, {
+                            id: response.data[key].id,
+                            album_id: response.data[key].albums.id,
+                            folder_name: response.data[key].albums.folder_name,
+                            file_name: response.data[key].file_name
+                        })
+                    });
+                    break;
+                }
+            }).catch(function (error) {
+                return console.dir(error);
+            });
+        };
+
+        _this.openModal = function () {
+            var image_id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+            _this.setState({
+                modal: _extends({}, _this.state.modal, {
+                    show: !_this.state.modal.show,
+                    item: image_id
+                })
+            });
+        };
+
+        _this.handleAddImage = function () {
+            var files = $('#file')[0].files,
+                formData = new FormData();
+            console.log('files', files);
+            for (var i = 0; i < files.length; i++) {
+                formData.append('image-' + i, files[i]);
+            }
+            formData.append('car_id', _this.state.car_id);
+            formData.append('album_id', _this.state.cover_image.album_id);
+            formData.append('folder_name', _this.state.cover_image.folder_name);
+            formData.append('total_image', files.length);
+
+            _axios2.default.post('/api/v1/album/append-image', formData, {
+                headers: {
+                    Authorization: 'Bearer 03ArWRckJh22ltDgRl6tPdjSpRDMeQHC9pozMWJOay2VwG6Wa3qeQyPPcqCN'
+                }
+            }).then(function (response) {
+                if (response.data) {
+                    _this.getAllPhotos(_this.state.car_id);
+                    return;
+                }
+                throw new Error('Something went wrong!');
+            }).catch(function (error) {
+                return alert(error.message);
+            });
+        };
+
+        _this.handleSelectImages = function () {
+            $('#file').click();
+        };
+
+        _this.handleDeleteImage = function (image_id) {
+            _axios2.default.post('/api/v1/album/delete-image', { image_id: image_id, folder_name: _this.state.cover_image.folder_name }, {
+                headers: {
+                    Authorization: 'Bearer 03ArWRckJh22ltDgRl6tPdjSpRDMeQHC9pozMWJOay2VwG6Wa3qeQyPPcqCN'
+                }
+            }).then(function (response) {
+                if (response.data) {
+                    _this.openModal();
+                    _this.getAllPhotos();
+                    return;
+                }
+                throw new Error('Cannot be deleted.');
+            }).catch(function (error) {
+                _this.openModal();
+                alert(error.message);
+            });
+        };
+
+        _this.handleMakeCoverImage = function (image_id, car_id) {
+            _axios2.default.post('/api/v1/album/change-cover', { image_id: image_id, car_id: car_id }, {
+                headers: {
+                    'Authorization': 'Bearer 03ArWRckJh22ltDgRl6tPdjSpRDMeQHC9pozMWJOay2VwG6Wa3qeQyPPcqCN'
+                }
+            }).then(function (response) {
+                if (response.data) {
+                    _this.getAllPhotos(car_id);
+                    return;
+                }
+                throw new Error('Change cannot be made due to invalid request.');
+            }).catch(function (error) {
+                return alert(error.message);
+            });
+        };
+
+        _this.state = {
+            modal: {
+                show: false,
+                item: ''
+            },
+            car_id: '',
+            cover_image: {
+                id: '',
+                album_id: '',
+                folder_name: '',
+                file_name: ''
+            },
+            images: [] //except featured
+        };
+        return _this;
+    }
+
+    _createClass(AlbumEdit, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.setState({
+                car_id: this.getCarId()
+            });
+            // console.log('did mount',this.state)
+        }
+    }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate(prevProps, prevState) {
+            if (prevState.images.length !== this.state.images.length || prevState.car_id !== this.state.car_id || prevState.cover_image.id !== this.state.cover_image.id) {
+                this.getAllPhotos(this.state.car_id);
+            }
+            if (prevState !== this.state) {
+                console.log(this.state);
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-md-12' },
+                        _react2.default.createElement(
+                            'h4',
+                            { className: 'title' },
+                            'Cover Image'
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: _Edit2.default["Cover-image"] },
+                            !!this.state.cover_image.id ? _react2.default.createElement('img', {
+                                src: '/storage/car_albums/' + this.state.cover_image.folder_name + '/' + this.state.cover_image.file_name,
+                                alt: this.state.cover_image.file_name }) : ''
+                        )
+                    )
+                ),
+                _react2.default.createElement('hr', { className: 'seperator' }),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-xs-6' },
+                        _react2.default.createElement(
+                            'h4',
+                            { className: 'title mt-md mb-md' },
+                            'All Images'
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-xs-6' },
+                        _react2.default.createElement(
+                            'a',
+                            { id: 'addToTable', className: 'btn btn-success pull-right', onClick: this.handleSelectImages },
+                            'Add ',
+                            _react2.default.createElement('i', { className: 'fa fa-plus' })
+                        ),
+                        _react2.default.createElement(
+                            'form',
+                            { action: '', encType: 'multipart/form-data' },
+                            _react2.default.createElement('input', { type: 'file', id: 'file', className: _Edit2.default.file, multiple: true, onChange: this.handleAddImage })
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-md-12' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: _Edit2.default["Card-columns"] },
+                            this.state.images.map(function (image, index) {
+                                if (image.is_featured == 1) {
+                                    return;
+                                }
+                                return _react2.default.createElement(
+                                    'div',
+                                    { className: _Edit2.default["Card-container"], key: index },
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: _Edit2.default.Card },
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: _Edit2.default["Card-img-top"] },
+                                            _react2.default.createElement('img', {
+                                                src: '/storage/car_albums/' + image.albums.folder_name + '/' + image.file_name,
+                                                alt: '' })
+                                        ),
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: _Edit2.default["Card-action"] },
+                                            _react2.default.createElement(
+                                                'a',
+                                                { className: 'text-info',
+                                                    onClick: function onClick() {
+                                                        return _this2.handleMakeCoverImage(image.id, image.cars_id);
+                                                    } },
+                                                'Make Cover'
+                                            ),
+                                            _react2.default.createElement(
+                                                'a',
+                                                { className: 'text-danger',
+                                                    onClick: function onClick() {
+                                                        return _this2.openModal(image.id);
+                                                    } },
+                                                'Delete'
+                                            )
+                                        )
+                                    )
+                                );
+                            })
+                        )
+                    )
+                ),
+                this.state.modal.show && _react2.default.createElement(
+                    'div',
+                    { className: 'mfp-wrap mfp-auto-cursor mfp-ready', tabIndex: '-1', style: { "overflow": "hidden auto" } },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'mfp-container mfp-inline-holder' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'mfp-content' },
+                            _react2.default.createElement(
+                                'div',
+                                { id: 'modalPrimary', className: 'modal-block modal-block-primary' },
+                                _react2.default.createElement(
+                                    'section',
+                                    { className: 'panel' },
+                                    _react2.default.createElement(
+                                        'header',
+                                        { className: 'panel-heading' },
+                                        _react2.default.createElement(
+                                            'h2',
+                                            { className: 'panel-title' },
+                                            'Are you sure?'
+                                        )
+                                    ),
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'panel-body' },
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'modal-wrapper' },
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'modal-icon' },
+                                                _react2.default.createElement('i', { className: 'fa fa-question-circle' })
+                                            ),
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'modal-text' },
+                                                _react2.default.createElement(
+                                                    'h4',
+                                                    null,
+                                                    'Hey!'
+                                                ),
+                                                _react2.default.createElement(
+                                                    'p',
+                                                    null,
+                                                    'Are you sure that you want to delete this image?'
+                                                )
+                                            )
+                                        )
+                                    ),
+                                    _react2.default.createElement(
+                                        'footer',
+                                        { className: 'panel-footer' },
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'row' },
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'col-md-12 text-right' },
+                                                _react2.default.createElement(
+                                                    'button',
+                                                    { className: 'btn btn-primary modal-confirm',
+                                                        onClick: function onClick() {
+                                                            return _this2.handleDeleteImage(_this2.state.modal.item);
+                                                        } },
+                                                    'Confirm'
+                                                ),
+                                                _react2.default.createElement(
+                                                    'button',
+                                                    { className: 'btn btn-default modal-dismiss',
+                                                        onClick: function onClick() {
+                                                            return _this2.openModal();
+                                                        } },
+                                                    'Cancel'
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return AlbumEdit;
+}(_react.Component);
+
+exports.default = AlbumEdit;
+
+_reactDom2.default.render(_react2.default.createElement(AlbumEdit, null), document.getElementById("album_edit"));
+
+/***/ }),
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(57);
+var content = __webpack_require__(56);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -24001,7 +24007,7 @@ var options = {"hmr":true}
 options.transform = transform
 options.insertInto = undefined;
 
-var update = __webpack_require__(54)(content, options);
+var update = __webpack_require__(50)(content, options);
 
 if(content.locals) module.exports = content.locals;
 
@@ -24033,10 +24039,10 @@ if(false) {
 }
 
 /***/ }),
-/* 57 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(53)(false);
+exports = module.exports = __webpack_require__(49)(false);
 // imports
 
 

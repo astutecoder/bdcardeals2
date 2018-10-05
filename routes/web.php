@@ -26,6 +26,7 @@ Route::prefix('cars')->group(function () {
 
     Route::post('add-car', 'Backend\CarsController@store')->name('store-car');
     Route::post('edit', 'Backend\CarsController@update')->name('update-car');
+    Route::post('delete', 'Backend\CarsController@destroy')->name('delete-car');
 
     Route::prefix('albums')->group(function () {
         Route::get('/', 'Backend\AlbumController@index')->name('albums');
@@ -45,16 +46,17 @@ Route::prefix('brands')->group(function () {
 
     Route::post('add-brand', 'Backend\BrandsController@store')->name('store-brand');
     Route::post('edit', 'Backend\BrandsController@update')->name('update-brand');
+    Route::post('delete', 'Backend\BrandsController@destroy')->name('delete-brand');
 });
 
 Route::prefix('body-types')->group(function () {
     Route::get('all-body-types', 'Backend\BodyTypesController@all_body_types')->name('all-body-types');
     Route::get('add-body-type', 'Backend\BodyTypesController@create')->name('add-body-type');
     Route::get('edit/{id?}', 'Backend\BodyTypesController@edit')->name('edit-body-types');
-    Route::get('delete/{id}', 'Backend\BodyTypesController@destroy')->name('delete-body-type');
 
     Route::post('add-body-type', 'Backend\BodyTypesController@store')->name('store-body-type');
     Route::post('edit', 'Backend\BodyTypesController@update')->name('update-body-type');
+    Route::post('delete', 'Backend\BodyTypesController@destroy')->name('delete-body-type');
 });
 
 Route::prefix('fuel-types')->group(function () {
@@ -64,6 +66,7 @@ Route::prefix('fuel-types')->group(function () {
 
     Route::post('add-fuel-type', 'Backend\FuelTypesController@store')->name('store-fuel-type');
     Route::post('edit', 'Backend\FuelTypesController@update')->name('update-fuel-type');
+    Route::post('delete', 'Backend\FuelTypesController@destroy')->name('delete-fuel-type');
 });
 
 Route::prefix('colors')->group(function () {
@@ -73,6 +76,7 @@ Route::prefix('colors')->group(function () {
 
     Route::post('add-color', 'Backend\ColorsController@store')->name('store-color');
     Route::post('edit', 'Backend\ColorsController@update')->name('update-color');
+    Route::post('delete', 'Backend\ColorsController@destroy')->name('delete-color');
 });
 
 Route::prefix('sources')->group(function () {
@@ -82,6 +86,7 @@ Route::prefix('sources')->group(function () {
 
     Route::post('add-source', 'Backend\SourcesController@store')->name('store-source');
     Route::post('edit', 'Backend\SourcesController@update')->name('update-source');
+    Route::post('delete', 'Backend\SourcesController@destroy')->name('delete-source');
 });
 Auth::routes();
 

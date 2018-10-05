@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Album;
 use App\CarsColor;
 use App\CarsFuelType;
 use App\Color;
+use App\Photo;
 use App\Source;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -14,6 +16,7 @@ use App\Brand;
 use App\BodyType;
 use App\FuelType;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class CarsController extends Controller
 {
@@ -54,13 +57,13 @@ class CarsController extends Controller
         }
 //        return $car;
         return view('backend.cars.single_car')
-                    ->with('car', $car)
-                    ->with('brands', $brands)
-                    ->with('colors', $colors)
-                    ->with('car_colors', $car_colors)
-                    ->with('body_types', $body_types)
-                    ->with('fuel_types', $fuel_types)
-                    ->with('sources', $sources);
+            ->with('car', $car)
+            ->with('brands', $brands)
+            ->with('colors', $colors)
+            ->with('car_colors', $car_colors)
+            ->with('body_types', $body_types)
+            ->with('fuel_types', $fuel_types)
+            ->with('sources', $sources);
     }
 
     public function create()
@@ -313,9 +316,42 @@ class CarsController extends Controller
         }
     }
 
-    public function delete_car($id)
+    public function destroy(Request $request)
     {
+        $id = $request->input('id');
+        $success = true;
+
+        DB::beginTransaction();
+        // deleting photos
+        $photosDeleted = Photo::where('cars_id', $id)->delete();
+        $success = $success && $photosDeleted;
+
+        // deleting albums and removing folder
+        $album = Album::where('cars_id', $id)->get();
+        $folder_name = $album->first()->folder_name;
+        Storage::deleteDirectory('public/car_albums/' . $folder_name);
+        $albumDeleted = Album::where('cars_id', $id)->delete();
+        $success = $success && $albumDeleted;
+
+        // deleting car-colors
+        $colorDeleted = CarsColor::where('cars_id', $id)->delete();
+        $success = $success && $colorDeleted;
+
+        // deleting car-fuel-types
+        $fuelDeleted = CarsFuelType::where('cars_id', $id)->delete();
+        $success = $success && $fuelDeleted;
+
+        // deleting cars
         $car = Car::find($id);
-        $car->delete();
+        $carDeleted = $car->delete();
+        $success = $success && $carDeleted;
+
+        if ($success) {
+            DB::commit();
+            return response()->json(1);
+        }
+        DB::rollBack();
+        return response()->json(0);
+
     }
 }

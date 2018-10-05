@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Car extends Model
 {
-    use SoftDeletes;
-    protected $dates = ['deleted_at'];
+//    use SoftDeletes;
+//    protected $dates = ['deleted_at'];
 
     public function sources()
     {

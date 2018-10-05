@@ -10,7 +10,7 @@
 
 @section('content-body-head', 'Car Details')
 @section('breadcrumb-list')
-    <li><span>Cars</span></li>
+    <li><a href="{{ route('all-cars') }}"><span>Cars</span></a></li>
     <li><span>Car Details</span></li>
 @stop
 
