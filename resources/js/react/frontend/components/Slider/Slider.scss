@@ -1,0 +1,81 @@
+@import '../../../../../sass/variables';
+.slider {
+    height: 100vh;
+    .slider__imgItem {
+        height: 100vh;
+        position: relative;
+        img {
+            height: 100%;
+            object-fit: cover;
+        }
+        &:after{
+            content: '';
+            display: block;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: rgba(0,0,0,.25);
+        }
+        .slider__infoContainer{
+            position: absolute;            
+            top: 50%;
+            right: 10%;
+            width:310px;
+            z-index: 2;
+            transform: translateY(-50%);
+
+            .slider__title {
+                position: relative;
+                h3{
+                    color: white;
+                    font-family: 'Poppins', sans-serif;
+                    font-size: 2.8rem;
+                    font-weight: 700;
+                    line-height: 1;
+                    text-transform: uppercase;
+                }
+                .slider__title_preText{
+                    background: $red;
+                    color: white;
+                    font-family: 'Poppins', sans-serif;
+                    font-size: .8rem;
+                    font-weight: 600;
+                    letter-spacing: 1.3px;
+                    padding: 5px;
+                    position: absolute;
+                    top: 4px;
+                    left: 0;
+                    text-transform: uppercase;
+                    transform: translateX(-105%)
+                }
+            }
+            .slider__btn_container{
+                display: flex;
+                .slider__btn {
+                    background: transparent;
+                    border: none;
+                    color: white;
+                    cursor: pointer;
+                    padding: 5px 25px;
+                    overflow: hidden;
+                    &.slider__btn__amount{
+                        background: rgba(0,0,0,.25);
+                        border: 3px solid white;
+                        font-family: 'Poppins', sans-serif;
+                        font-weight: 600;
+                        font-size: 1.4em;
+                        margin-right: 10px;
+                        .slider__btn__currencySymbol{
+                            margin-right: 2px;
+                        }
+                    }
+                    &.slider__btn__details{
+                        background: $red
+                    }
+                }
+            }
+        }
+    }
+}

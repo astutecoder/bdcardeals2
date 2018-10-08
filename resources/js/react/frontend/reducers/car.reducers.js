@@ -4,14 +4,14 @@ const initialState = {
     cars: []
 }
 
-export const carReducers = (initialState, actions) => {
+export const carReducers = (state = initialState, actions) => {
     switch (actions.type) {
         case GET_ALL_CARS:
             return ({
-                ...initialState,
+                ...state,
                 cars: [...actions.payload]
             });
         default:
-            return initialState;
+            return state;
     }
 }

@@ -1,16 +1,28 @@
 @import '../../../../../sass/variables';
 
+.headerContainer {
+    background: rgba(255,255,255,.75);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    @media (max-width:768px) {
+        background: transparent;
+    }
+}
 .header {
     align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     margin: auto;
-    padding: 15px 0;
+    // padding: 15px 0;
+    position: relative;
     width: 100%;
     @media (min-width: 769px) {
         flex-direction: row;
-        padding: 15px;
+        // padding: 15px;
         width: 750px;
     }
     @media (min-width: 992px) {
@@ -23,7 +35,7 @@
 .header__navContainer {
     @media (max-width: 768px) {
         background: $lightblack;
-        margin: 15px 0;
+        // margin: 15px 0;
         width: 100%;
     }
     .header__nav {
@@ -33,21 +45,34 @@
         justify-content: flex-end;
         list-style: none;
         margin: 0;
-        @media (max-width: 768px){
+        @media (max-width: 768px) {
             justify-content: center;
         }
         .header__nav__listItem a {
             display: inline-block;
             color: $lightblack;
             padding: 10px;
+            position: relative;
             text-transform: uppercase;
             text-decoration: none;
-            &:hover, &.active {
+            &.active,
+            &:hover {
                 color: $red;
+                &:after{
+                    content:'';
+                    position: absolute;
+                    bottom: -20px;
+                    left: 0;
+                    right: 0;
+                    height: 4px;
+                    max-width: 100%;
+                    background: red;
+                }
             }
+            
             @media (max-width: 768px) {
                 color: white;
-                &.active{
+                &.active {
                     background: $red;
                     color: white;
                 }
@@ -55,9 +80,18 @@
         }
     }
 }
-.header__logo img {
-    width: 175px;
-    @media (max-width: 768px) {
-        width: 150px;
+.header__logo {
+    padding: 15px;
+    @media (max-width: 768px){
+        background: white;
+        width: 100%;
+    }
+    img {
+        margin: auto;
+        width: 175px;
+        @media (max-width: 768px) {
+            display: block;
+            width: 150px;
+        }
     }
 }
