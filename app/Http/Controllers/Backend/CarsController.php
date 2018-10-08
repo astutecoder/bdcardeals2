@@ -20,8 +20,13 @@ use Illuminate\Support\Facades\Storage;
 
 class CarsController extends Controller
 {
-
-    public function all_cars()
+    /**
+     * finds all the cars and it's related data
+     * process it for api response
+     * or send back a view
+     * @return $this
+     */
+    public function all_cars(Request $request)
     {
 //        $cars = Car::with(['brands', 'fuel_types', 'body_types', 'colors', 'sources'])->orderBy('id', 'desc')->get();
 //        return response()->json($cars);
@@ -33,6 +38,14 @@ class CarsController extends Controller
         $cars->each->colors;
         $cars->each->sources;
         $cars->each->albums;
+        $cars->each->photos;
+
+        if($request->wantsJson()){
+            if($cars->isEmpty()){
+                return response()->json([], 204);
+            }
+            return response()->json($cars);
+        }
 
         if ($cars->isEmpty()) {
             return view('backend.cars.all_cars')->withErrors(['message' => 'No data found']);

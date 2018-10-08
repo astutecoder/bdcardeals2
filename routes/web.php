@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.home');
 });
 Auth::routes();
 
@@ -93,3 +93,6 @@ Route::middleware('auth')->group(function(){
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/{path?}', function($path =null){
+    return view('frontend.home');
+})->where('path', '.*');

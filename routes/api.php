@@ -17,6 +17,9 @@ use Illuminate\Http\Request;
 //    return $request->user();
 //});
 
+Route::middleware('api')->prefix('v1')->group(function(){
+    Route::get('all-cars', 'Backend\CarsController@all_cars');
+});
 
 Route::middleware('api')->prefix('v1/album')->group(function(){
    Route::get('all-photos/{car_id}', 'Backend\PhotoController@get_all_photos');

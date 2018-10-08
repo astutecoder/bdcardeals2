@@ -14,5 +14,6 @@ require('laravel-mix-react-css-modules');
 
 mix.react('resources/js/app.js', 'public/js/app.js')
     .react('resources/js/backend.js', 'public/js/backend.js')
+    .react('resources/js/frontend.js', 'public/js/frontend.js')
     .reactCSSModules('[name]__[local]___[hash:base64]')
    .sass('resources/sass/app.scss', 'public/css/app.css');
