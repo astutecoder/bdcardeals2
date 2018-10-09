@@ -1,4 +1,4 @@
-import {GET_ALL_CARS, GET_FEATURED_CARS, SET_SLIDERS} from './types'
+import {GET_ALL_CARS, GET_FEATURED_CARS, SET_SLIDERS, GET_ALL_BRANDS} from './types'
 import Axios from 'axios';
 
 const BaseURL = '/';
@@ -52,4 +52,20 @@ export const setSlider = () => (dispatch, getState) => {
         type: SET_SLIDERS,
         payload: slider
     });
+}
+
+// BRANDS
+export const getAllBrands = () => (dispatch) => {
+    Axios.get(`${BaseURL}api/v1/all-brands`, {
+        headers: {
+            Accept: 'application/json'
+        }
+    })
+    .then(response => (
+        dispatch({
+            type: GET_ALL_BRANDS,
+            payload: response.data
+        })
+    ))
+    .catch(err => console.dir(err));
 }

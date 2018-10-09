@@ -67,6 +67,9 @@
                     height: 4px;
                     max-width: 100%;
                     background: red;
+                    @media (max-width: 768px){
+                        display: none;
+                    }
                 }
             }
             

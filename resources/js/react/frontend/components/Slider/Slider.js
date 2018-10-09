@@ -1,31 +1,11 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
-import {connect} from 'react-redux'
 
 import styles from './Slider.scss'
-import {getAllCars, setSlider} from '../../actions/actions'
 
-class Slider extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            slider: []
-        }
-    }
-
-    componentWillMount() {
-        this
-            .props
-            .getAllCars();
-    }
-    componentDidUpdate(prevProps, prevState) {
-        if (prevProps.cars.length !== this.props.cars.length) {
-            console.log(this.props.cars);
-            this
-                .props
-                .setSlider(this.props.cars);
+export default class Slider extends Component {
+    componentDidUpdate() {
             this.afterSlide();
-        }
     }
 
     afterSlide = () => {
@@ -114,5 +94,5 @@ class Slider extends Component {
     }
 }
 
-const mapPropsToState = (state) => ({cars: state.cars.cars, sliders: state.sliders.sliders})
-export default connect(mapPropsToState, {getAllCars, setSlider})(Slider);
+// const mapPropsToState = (state) => ({cars: state.cars.cars, sliders: state.sliders.sliders})
+// export default connect(mapPropsToState, {getAllCars, setSlider})(Slider);
