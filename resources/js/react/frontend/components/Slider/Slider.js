@@ -24,22 +24,34 @@ class Slider extends Component {
             this
                 .props
                 .setSlider(this.props.cars);
+            this.afterSlide();
         }
-        // if (prevState.slider.length !== this.state.slider.length) {
-        // console.log(this.state.slider); }
     }
 
-    // slider = () => {     let slider = [];     this         .props         .cars
-    //     .map((item) => {             // console.log('item', !!item.albums);
-    //   if (/*item.is_featured &&*/ !!item.albums) { slider.push(item)
-    // }         });     this.setState({slider: slider}); }
+    afterSlide = () => {
+        // targeting the slide just finished sliding
+        $('#carSlide')
+            .on('slide.bs.carousel', function () {
+                $(this)
+                    .find('.active')
+                    .removeClass(styles.active);
+            })
+
+        // targeting the slide just started sliding
+        $('#carSlide').on('slid.bs.carousel', function () {
+            $(this)
+                .find('.active')
+                .addClass(styles.active);
+        })
+    }
 
     render() {
         return (
             <div
-                id="carouselExampleControls"
+                id="carSlide"
                 className="carousel slide"
-                data-ride="carousel">
+                data-ride="carousel"
+                data-interval="7000">
                 <div className={["carousel-inner", styles.slider].join(' ')}>
                     {this
                         .props
@@ -49,30 +61,32 @@ class Slider extends Component {
                                 <div
                                     key={index}
                                     className={(index == 0)
-                                    ? ["carousel-item active", styles.slider__imgItem].join(' ')
-                                    : ["carousel-item", styles.slider__imgItem].join(' ')}>
-                                    <img
-                                        className="d-block w-100"
-                                        src={'/storage/car_albums/' + item.albums.folder_name + '/' + item.photos.file_name}
-                                        alt="First slide"/>
+                                    ? ["carousel-item active", styles.active].join(' ')
+                                    : "carousel-item"}>
+                                    <div className={styles.slider__imgItem}>
+                                        <img
+                                            className="d-block w-100"
+                                            src={'/storage/car_albums/' + item.albums.folder_name + '/' + item.photos.file_name}
+                                            alt="First slide"/>
 
-                                    <div className={styles.slider__infoContainer}>
-                                        <div className={styles.slider__title}>
-                                            <h3>{item.title
-                                                    ? item.title
-                                                    : (item.brands.brand_name + ' ' + item.model_no + ' ' + item.year)}</h3>
-                                                    <span className={styles.slider__title_preText}>{item.model_no +' '+ item.year}</span>
-                                        </div>
-                                        <div className={styles.slider__subtitle}>
-                                            {item.subtitle}
-                                        </div>
-                                        <div className={styles.slider__btn_container}>
-                                            <button className={[styles.slider__btn, styles.slider__btn__amount].join(' ')}>
-                                                <span className={styles.slider__btn__currencySymbol}>৳
-                                                </span>{item.price}</button>
-                                            <button className={[styles.slider__btn, styles.slider__btn__details].join(' ')}>
-                                                Details
-                                            </button>
+                                        <div className={styles.slider__infoContainer}>
+                                            <div className={styles.slider__title}>
+                                                <h3>{item.title
+                                                        ? item.title
+                                                        : (item.brands.brand_name + ' ' + item.model_no + ' ' + item.year)}</h3>
+                                                <span className={styles.slider__title_preText}>{item.model_no + ' ' + item.year}</span>
+                                            </div>
+                                            <div className={styles.slider__subtitle}>
+                                                {item.subtitle}
+                                            </div>
+                                            <div className={styles.slider__btn_container}>
+                                                <button className={[styles.slider__btn, styles.slider__btn__amount].join(' ')}>
+                                                    <span className={styles.slider__btn__currencySymbol}>৳
+                                                    </span>{item.price}</button>
+                                                <button className={[styles.slider__btn, styles.slider__btn__details].join(' ')}>
+                                                    Details
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -81,7 +95,7 @@ class Slider extends Component {
                 </div>
                 <a
                     className="carousel-control-prev"
-                    href="#carouselExampleControls"
+                    href="#carSlide"
                     role="button"
                     data-slide="prev">
                     <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -89,7 +103,7 @@ class Slider extends Component {
                 </a>
                 <a
                     className="carousel-control-next"
-                    href="#carouselExampleControls"
+                    href="#carSlide"
                     role="button"
                     data-slide="next">
                     <span className="carousel-control-next-icon" aria-hidden="true"></span>
