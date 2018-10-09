@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getAllCars, setSlider, getAllBrands} from '../../actions/actions'
+import {getAllCars, setSlider, getAllBrands, getAllBodyTypes} from '../../actions/actions'
 
 import Slider from '../Slider/Slider'
 import Search from '../Search/Search'
@@ -14,10 +14,12 @@ class BCDHome extends Component {
         this
             .props
             .getAllBrands();
+        this
+            .props
+            .getAllBodyTypes();
     }
     componentDidUpdate(prevProps) {
         if (prevProps.cars.length !== this.props.cars.length) {
-            console.log(this.props.cars);
             this
                 .props
                 .setSlider(this.props.cars);
@@ -34,5 +36,10 @@ class BCDHome extends Component {
         )
     }
 }
-const mapPropsToState = (state) => ({cars: state.cars.cars, brands: state.cars.brands, sliders: state.sliders.sliders})
-export default connect(mapPropsToState, {getAllCars, setSlider, getAllBrands})(BCDHome);
+const mapPropsToState = (state) => ({
+    cars: state.cars.cars, 
+    brands: state.cars.brands, 
+    bodyTypes: state.cars.bodyTypes, 
+    sliders: state.sliders.sliders,
+})
+export default connect(mapPropsToState, {getAllCars, setSlider, getAllBrands, getAllBodyTypes})(BCDHome);

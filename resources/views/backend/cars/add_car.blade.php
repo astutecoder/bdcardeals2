@@ -196,6 +196,37 @@
                             </div>
                         </div>
 
+                        {{--car_condition--}}
+                        <div class="form-group {{$errors->has('car_condition')? 'has-error' : ''}}">
+                            <label class="col-md-3 control-label" for="car_condition">
+                                Car Condition
+                                <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6">
+                                <select name="car_condition" class="form-control input-sm" required>
+                                    <option value="">--- SELECT AN OPTION ---</option>
+                                        <option
+                                                value="used"
+                                                {{ (old('car_condition') === 'used') ? 'selected' : '' }}>
+                                            Used
+                                        </option>
+                                        <option
+                                                value="recondition"
+                                                {{ (old('car_condition') === 'recondition') ? 'selected' : '' }}>
+                                            Recondition
+                                        </option>
+                                        <option
+                                                value="new"
+                                                {{ (old('car_condition') === 'new') ? 'selected' : '' }}>
+                                            New
+                                        </option>
+                                </select>
+                                @if ($errors->has('car_condition'))
+                                    <span class="help-block">{{$errors->first('car_condition')}}</span>
+                                @endif
+                            </div>
+                        </div>
+
                         {{--colors_id--}}
                         <div class="form-group {{$errors->has('colors_id')? 'has-error' : ''}}">
                             <label class="col-md-3 control-label" for="colors_id">

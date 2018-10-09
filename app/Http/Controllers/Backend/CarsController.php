@@ -116,6 +116,7 @@ class CarsController extends Controller
         $body_types_id = $request->input('body_types_id');
         $fuel_types_id = $request->input('fuel_types_id');
         $source_id = $request->input('source_id');
+        $car_condition = $request->input('car_condition');
         $colors_id = $request->input('colors_id');
         $save_complete = $request->input('save_complete') ?? 0;
 
@@ -129,12 +130,14 @@ class CarsController extends Controller
             'body_types_id' => 'required',
             'fuel_types_id' => 'required',
             'source_id' => 'required',
+            'car_condition' => 'required',
             'colors_id' => 'required',
         ], [
             'brands_id.required' => 'You must select a Brand',
             'body_types_id.required' => 'You must select a Body Type',
             'fuel_types_id.required' => 'You must select a Fuel Type',
             'source_id.required' => 'You must select a Source',
+            'car_condition.required' => 'You must select a Condition',
         ]);
 
         DB::beginTransaction();
@@ -158,6 +161,7 @@ class CarsController extends Controller
         $car->brands_id = $brands_id;
         $car->body_types_id = $body_types_id;
         $car->source_id = $source_id;
+        $car->car_condition = $car_condition;
         $car->save_complete = $save_complete;
         $isCarSaved = $car->save();
 
@@ -245,6 +249,7 @@ class CarsController extends Controller
         $body_types_id = $request->input('body_types_id');
         $fuel_types_id = $request->input('fuel_types_id');
         $source_id = $request->input('source_id');
+        $car_condition = $request->input('car_condition');
         $colors_id = $request->input('colors_id');
         $save_complete = $request->input('save_complete') ?? 0;
         $updated_at = $request->input('updated_at') ?? 0;
@@ -262,11 +267,13 @@ class CarsController extends Controller
             'fuel_types_id' => 'required',
             'source_id' => 'required',
             'colors_id' => 'required',
+            'car_condition' => 'required',
         ], [
             'brands_id.required' => 'You must select a Brand',
             'body_types_id.required' => 'You must select a Body Type',
             'fuel_types_id.required' => 'You must select a Fuel Type',
             'source_id.required' => 'You must select a Source',
+            'car_condition.required' => 'You must select a Condition',
         ]);
 
 //        DB::beginTransaction();
@@ -290,6 +297,7 @@ class CarsController extends Controller
         $car->brands_id = $brands_id;
         $car->body_types_id = $body_types_id;
         $car->source_id = $source_id;
+        $car->car_condition = $car_condition;
         $car->save_complete = $save_complete;
         $isCarUpdated = $car->save();
 

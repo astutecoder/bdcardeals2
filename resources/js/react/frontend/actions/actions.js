@@ -1,4 +1,4 @@
-import {GET_ALL_CARS, GET_FEATURED_CARS, SET_SLIDERS, GET_ALL_BRANDS} from './types'
+import {GET_ALL_CARS, GET_FEATURED_CARS, SET_SLIDERS, GET_ALL_BRANDS, GET_ALL_BODYTYPES} from './types'
 import Axios from 'axios';
 
 const BaseURL = '/';
@@ -64,6 +64,22 @@ export const getAllBrands = () => (dispatch) => {
     .then(response => (
         dispatch({
             type: GET_ALL_BRANDS,
+            payload: response.data
+        })
+    ))
+    .catch(err => console.dir(err));
+}
+
+// BODY TYPES
+export const getAllBodyTypes = () => (dispatch) => {
+    Axios.get(`${BaseURL}api/v1/all-body-types`, {
+        headers: {
+            Accept: 'application/json'
+        }
+    })
+    .then(response => (
+        dispatch({
+            type: GET_ALL_BODYTYPES,
             payload: response.data
         })
     ))

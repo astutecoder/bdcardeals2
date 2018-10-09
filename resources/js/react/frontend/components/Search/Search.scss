@@ -17,14 +17,37 @@
         flex: 1;
         justify-content: space-between;
         width: 100%;
-        div {
+        > div {
             width: 100%;
+            .range{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                flex: 1;
+                width: 100%;
+                margin-right: 15px;
+                @media (max-width: 767px) {
+                    margin-bottom: 15px;
+                    margin-right: 0;
+                }
+                .price_range__info{
+                    margin-top: 5px;
+                    font-size: 12px;  
+                    text-align: center                  
+                }
+                .price_range__min, .price_range__max{
+                    margin-top: 5px;
+                    font-size: 12px;
+                    font-family: 'Poppins', sans-serif;
+                    font-weight: 600
+                }
+            }
             .selectbox {
                 flex: 1;
                 margin-right: 15px;
                 width: 100%;
-                @media (max-width: 768px) {
-                    margin-bottom: 15px;
+                margin-bottom: 15px;
+                @media (max-width: 767px) {
                     margin-right: 0;
                 }
                 .select {
@@ -33,6 +56,7 @@
                     appearance: listbox;
                     border-radius: 0;
                     border: 1px solid rgba(0,0,0,.2);
+                    font-size: .9em;
                     padding: 5px 10px;
                     text-transform: uppercase;
                     width: 100%;
