@@ -60593,7 +60593,7 @@ var _BCDHome = __webpack_require__(140);
 
 var _BCDHome2 = _interopRequireDefault(_BCDHome);
 
-var _Cars = __webpack_require__(147);
+var _Cars = __webpack_require__(148);
 
 var _Cars2 = _interopRequireDefault(_Cars);
 
@@ -64285,7 +64285,7 @@ exports = module.exports = __webpack_require__(45)(false);
 
 
 // module
-exports.push([module.i, ".Header__headerContainer___yBuTuQyijZwOEzJbXdwLq {\n  background: rgba(255, 255, 255, 0.75);\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  z-index: 1; }\n  @media (max-width: 768px) {\n    .Header__headerContainer___yBuTuQyijZwOEzJbXdwLq {\n      background: transparent; } }\n\n.Header__header___UKdgkQbq_Yc3IIWwSNYjR {\n  align-items: center;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  margin: auto;\n  position: relative;\n  width: 100%; }\n  @media (min-width: 769px) {\n    .Header__header___UKdgkQbq_Yc3IIWwSNYjR {\n      flex-direction: row;\n      width: 750px; } }\n  @media (min-width: 992px) {\n    .Header__header___UKdgkQbq_Yc3IIWwSNYjR {\n      width: 970px; } }\n  @media (min-width: 1200px) {\n    .Header__header___UKdgkQbq_Yc3IIWwSNYjR {\n      width: 1170px; } }\n\n@media (max-width: 768px) {\n  .Header__header__navContainer___2SrUxUj0Xo1cK732BKB2S1 {\n    background: #2b343b;\n    width: 100%; } }\n\n.Header__header__navContainer___2SrUxUj0Xo1cK732BKB2S1 .Header__header__nav___3xo26gSHyAucZ-7GGEfwgM {\n  align-items: center;\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-end;\n  list-style: none;\n  margin: 0; }\n  @media (max-width: 768px) {\n    .Header__header__navContainer___2SrUxUj0Xo1cK732BKB2S1 .Header__header__nav___3xo26gSHyAucZ-7GGEfwgM {\n      justify-content: center; } }\n  .Header__header__navContainer___2SrUxUj0Xo1cK732BKB2S1 .Header__header__nav___3xo26gSHyAucZ-7GGEfwgM .Header__header__nav__listItem___3S6C6_Cg12AKI0zeJM32I5 a {\n    display: inline-block;\n    color: #2b343b;\n    padding: 10px;\n    position: relative;\n    text-transform: uppercase;\n    text-decoration: none; }\n    .Header__header__navContainer___2SrUxUj0Xo1cK732BKB2S1 .Header__header__nav___3xo26gSHyAucZ-7GGEfwgM .Header__header__nav__listItem___3S6C6_Cg12AKI0zeJM32I5 a.Header__active___1i2kKMbneUNMRuZ6LL6m0G, .Header__header__navContainer___2SrUxUj0Xo1cK732BKB2S1 .Header__header__nav___3xo26gSHyAucZ-7GGEfwgM .Header__header__nav__listItem___3S6C6_Cg12AKI0zeJM32I5 a:hover {\n      color: #e3342f; }\n      .Header__header__navContainer___2SrUxUj0Xo1cK732BKB2S1 .Header__header__nav___3xo26gSHyAucZ-7GGEfwgM .Header__header__nav__listItem___3S6C6_Cg12AKI0zeJM32I5 a.Header__active___1i2kKMbneUNMRuZ6LL6m0G:after, .Header__header__navContainer___2SrUxUj0Xo1cK732BKB2S1 .Header__header__nav___3xo26gSHyAucZ-7GGEfwgM .Header__header__nav__listItem___3S6C6_Cg12AKI0zeJM32I5 a:hover:after {\n        content: '';\n        position: absolute;\n        bottom: -20px;\n        left: 0;\n        right: 0;\n        height: 4px;\n        max-width: 100%;\n        background: red; }\n        @media (max-width: 768px) {\n          .Header__header__navContainer___2SrUxUj0Xo1cK732BKB2S1 .Header__header__nav___3xo26gSHyAucZ-7GGEfwgM .Header__header__nav__listItem___3S6C6_Cg12AKI0zeJM32I5 a.Header__active___1i2kKMbneUNMRuZ6LL6m0G:after, .Header__header__navContainer___2SrUxUj0Xo1cK732BKB2S1 .Header__header__nav___3xo26gSHyAucZ-7GGEfwgM .Header__header__nav__listItem___3S6C6_Cg12AKI0zeJM32I5 a:hover:after {\n            display: none; } }\n    @media (max-width: 768px) {\n      .Header__header__navContainer___2SrUxUj0Xo1cK732BKB2S1 .Header__header__nav___3xo26gSHyAucZ-7GGEfwgM .Header__header__nav__listItem___3S6C6_Cg12AKI0zeJM32I5 a {\n        color: white; }\n        .Header__header__navContainer___2SrUxUj0Xo1cK732BKB2S1 .Header__header__nav___3xo26gSHyAucZ-7GGEfwgM .Header__header__nav__listItem___3S6C6_Cg12AKI0zeJM32I5 a.Header__active___1i2kKMbneUNMRuZ6LL6m0G {\n          background: #e3342f;\n          color: white; } }\n\n.Header__header__logo___12YWOai9fPJdLALvoAvc6F {\n  padding: 15px; }\n  @media (max-width: 768px) {\n    .Header__header__logo___12YWOai9fPJdLALvoAvc6F {\n      background: white;\n      width: 100%; } }\n  .Header__header__logo___12YWOai9fPJdLALvoAvc6F img {\n    margin: auto;\n    width: 175px; }\n    @media (max-width: 768px) {\n      .Header__header__logo___12YWOai9fPJdLALvoAvc6F img {\n        display: block;\n        width: 150px; } }\n", ""]);
+exports.push([module.i, ".Header__headerContainer___yBuTuQyijZwOEzJbXdwLq {\n  background: rgba(255, 255, 255, 0.75);\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  z-index: 1; }\n  @media (max-width: 768px) {\n    .Header__headerContainer___yBuTuQyijZwOEzJbXdwLq {\n      background: transparent; } }\n\n.Header__header___UKdgkQbq_Yc3IIWwSNYjR {\n  align-items: center;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  margin: auto;\n  position: relative;\n  width: 100%; }\n  @media (min-width: 769px) {\n    .Header__header___UKdgkQbq_Yc3IIWwSNYjR {\n      flex-direction: row;\n      width: 750px; } }\n  @media (min-width: 992px) {\n    .Header__header___UKdgkQbq_Yc3IIWwSNYjR {\n      width: 970px; } }\n  @media (min-width: 1200px) {\n    .Header__header___UKdgkQbq_Yc3IIWwSNYjR {\n      width: 1170px; } }\n\n@media (max-width: 768px) {\n  .Header__header__navContainer___2SrUxUj0Xo1cK732BKB2S1 {\n    background: #2b343b;\n    width: 100%; } }\n\n.Header__header__navContainer___2SrUxUj0Xo1cK732BKB2S1 .Header__header__nav___3xo26gSHyAucZ-7GGEfwgM {\n  align-items: center;\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-end;\n  list-style: none;\n  margin: 0;\n  padding: 0; }\n  @media (max-width: 768px) {\n    .Header__header__navContainer___2SrUxUj0Xo1cK732BKB2S1 .Header__header__nav___3xo26gSHyAucZ-7GGEfwgM {\n      justify-content: center; } }\n  .Header__header__navContainer___2SrUxUj0Xo1cK732BKB2S1 .Header__header__nav___3xo26gSHyAucZ-7GGEfwgM .Header__header__nav__listItem___3S6C6_Cg12AKI0zeJM32I5 a {\n    display: inline-block;\n    color: #2b343b;\n    padding: 10px;\n    position: relative;\n    text-transform: uppercase;\n    text-decoration: none; }\n    .Header__header__navContainer___2SrUxUj0Xo1cK732BKB2S1 .Header__header__nav___3xo26gSHyAucZ-7GGEfwgM .Header__header__nav__listItem___3S6C6_Cg12AKI0zeJM32I5 a.Header__active___1i2kKMbneUNMRuZ6LL6m0G, .Header__header__navContainer___2SrUxUj0Xo1cK732BKB2S1 .Header__header__nav___3xo26gSHyAucZ-7GGEfwgM .Header__header__nav__listItem___3S6C6_Cg12AKI0zeJM32I5 a:hover {\n      color: #e3342f; }\n      .Header__header__navContainer___2SrUxUj0Xo1cK732BKB2S1 .Header__header__nav___3xo26gSHyAucZ-7GGEfwgM .Header__header__nav__listItem___3S6C6_Cg12AKI0zeJM32I5 a.Header__active___1i2kKMbneUNMRuZ6LL6m0G:after, .Header__header__navContainer___2SrUxUj0Xo1cK732BKB2S1 .Header__header__nav___3xo26gSHyAucZ-7GGEfwgM .Header__header__nav__listItem___3S6C6_Cg12AKI0zeJM32I5 a:hover:after {\n        content: '';\n        position: absolute;\n        bottom: -20px;\n        left: 0;\n        right: 0;\n        height: 4px;\n        max-width: 100%;\n        background: red; }\n        @media (max-width: 768px) {\n          .Header__header__navContainer___2SrUxUj0Xo1cK732BKB2S1 .Header__header__nav___3xo26gSHyAucZ-7GGEfwgM .Header__header__nav__listItem___3S6C6_Cg12AKI0zeJM32I5 a.Header__active___1i2kKMbneUNMRuZ6LL6m0G:after, .Header__header__navContainer___2SrUxUj0Xo1cK732BKB2S1 .Header__header__nav___3xo26gSHyAucZ-7GGEfwgM .Header__header__nav__listItem___3S6C6_Cg12AKI0zeJM32I5 a:hover:after {\n            display: none; } }\n    @media (max-width: 768px) {\n      .Header__header__navContainer___2SrUxUj0Xo1cK732BKB2S1 .Header__header__nav___3xo26gSHyAucZ-7GGEfwgM .Header__header__nav__listItem___3S6C6_Cg12AKI0zeJM32I5 a {\n        color: white; }\n        .Header__header__navContainer___2SrUxUj0Xo1cK732BKB2S1 .Header__header__nav___3xo26gSHyAucZ-7GGEfwgM .Header__header__nav__listItem___3S6C6_Cg12AKI0zeJM32I5 a.Header__active___1i2kKMbneUNMRuZ6LL6m0G {\n          background: #e3342f;\n          color: white; } }\n\n.Header__header__logo___12YWOai9fPJdLALvoAvc6F {\n  padding: 15px; }\n  @media (max-width: 768px) {\n    .Header__header__logo___12YWOai9fPJdLALvoAvc6F {\n      background: white;\n      padding: 15px 0;\n      width: 100%; } }\n  .Header__header__logo___12YWOai9fPJdLALvoAvc6F img {\n    margin: auto;\n    width: 175px; }\n    @media (max-width: 768px) {\n      .Header__header__logo___12YWOai9fPJdLALvoAvc6F img {\n        display: block;\n        width: 150px; } }\n", ""]);
 
 // exports
 exports.locals = {
@@ -64621,7 +64621,7 @@ exports = module.exports = __webpack_require__(45)(false);
 
 
 // module
-exports.push([module.i, ".Slider__slider___2-6rdk4XhsxVWbSkiIVKoQ {\n  height: 100vh; }\n  .Slider__slider___2-6rdk4XhsxVWbSkiIVKoQ .Slider__slider__imgItem___pyvCUA5Z9-BAnd_bKk9r5 {\n    height: 100vh;\n    position: relative; }\n    .Slider__slider___2-6rdk4XhsxVWbSkiIVKoQ .Slider__slider__imgItem___pyvCUA5Z9-BAnd_bKk9r5 img {\n      height: 100%;\n      object-fit: cover; }\n    .Slider__slider___2-6rdk4XhsxVWbSkiIVKoQ .Slider__slider__imgItem___pyvCUA5Z9-BAnd_bKk9r5:after {\n      content: '';\n      display: block;\n      height: 100%;\n      width: 100%;\n      position: absolute;\n      top: 0;\n      left: 0;\n      background: rgba(0, 0, 0, 0.25); }\n    .Slider__slider___2-6rdk4XhsxVWbSkiIVKoQ .Slider__slider__imgItem___pyvCUA5Z9-BAnd_bKk9r5 .Slider__slider__infoContainer___3AwSvrgGO2uJXm-KzoE3fF {\n      position: absolute;\n      top: 50%;\n      right: 10%;\n      width: 310px;\n      z-index: 2;\n      transform: translateY(-50%); }\n      .Slider__slider___2-6rdk4XhsxVWbSkiIVKoQ .Slider__slider__imgItem___pyvCUA5Z9-BAnd_bKk9r5 .Slider__slider__infoContainer___3AwSvrgGO2uJXm-KzoE3fF .Slider__slider__title___r92EnStjTRl5b1tt6mw11 {\n        position: relative;\n        opacity: 0; }\n        .Slider__slider___2-6rdk4XhsxVWbSkiIVKoQ .Slider__slider__imgItem___pyvCUA5Z9-BAnd_bKk9r5 .Slider__slider__infoContainer___3AwSvrgGO2uJXm-KzoE3fF .Slider__slider__title___r92EnStjTRl5b1tt6mw11 h3 {\n          color: white;\n          font-family: 'Poppins', sans-serif;\n          font-size: 2.8rem;\n          font-weight: 700;\n          line-height: 1;\n          text-transform: uppercase; }\n        .Slider__slider___2-6rdk4XhsxVWbSkiIVKoQ .Slider__slider__imgItem___pyvCUA5Z9-BAnd_bKk9r5 .Slider__slider__infoContainer___3AwSvrgGO2uJXm-KzoE3fF .Slider__slider__title___r92EnStjTRl5b1tt6mw11 .Slider__slider__title_preText___34L66KmiSekHU0I700nc9c {\n          background: #e3342f;\n          color: white;\n          font-family: 'Poppins', sans-serif;\n          font-size: .8rem;\n          font-weight: 600;\n          letter-spacing: 1.3px;\n          padding: 5px;\n          position: absolute;\n          top: 4px;\n          left: 0;\n          text-transform: uppercase;\n          transform: translateX(-105%); }\n      .Slider__slider___2-6rdk4XhsxVWbSkiIVKoQ .Slider__slider__imgItem___pyvCUA5Z9-BAnd_bKk9r5 .Slider__slider__infoContainer___3AwSvrgGO2uJXm-KzoE3fF .Slider__slider__btn_container____5hX_aj6-Xv3srFsDCPtG {\n        display: flex;\n        opacity: 0; }\n        .Slider__slider___2-6rdk4XhsxVWbSkiIVKoQ .Slider__slider__imgItem___pyvCUA5Z9-BAnd_bKk9r5 .Slider__slider__infoContainer___3AwSvrgGO2uJXm-KzoE3fF .Slider__slider__btn_container____5hX_aj6-Xv3srFsDCPtG .Slider__slider__btn___3IKfXF-1kbDOiqVWPspGjW {\n          background: transparent;\n          border: none;\n          color: white;\n          cursor: pointer;\n          padding: 5px 25px;\n          overflow: hidden;\n          position: relative; }\n          .Slider__slider___2-6rdk4XhsxVWbSkiIVKoQ .Slider__slider__imgItem___pyvCUA5Z9-BAnd_bKk9r5 .Slider__slider__infoContainer___3AwSvrgGO2uJXm-KzoE3fF .Slider__slider__btn_container____5hX_aj6-Xv3srFsDCPtG .Slider__slider__btn___3IKfXF-1kbDOiqVWPspGjW:hover:after {\n            background: rgba(255, 255, 255, 0.5);\n            content: '';\n            display: block;\n            height: 250px;\n            width: 7px;\n            position: absolute;\n            top: -125px;\n            left: -10px;\n            transform-origin: center;\n            transform: rotate(45deg);\n            animation: Slider__highlightMove___1qnybluVYACdmDNxuqclrH 1.2s ease-in; }\n          .Slider__slider___2-6rdk4XhsxVWbSkiIVKoQ .Slider__slider__imgItem___pyvCUA5Z9-BAnd_bKk9r5 .Slider__slider__infoContainer___3AwSvrgGO2uJXm-KzoE3fF .Slider__slider__btn_container____5hX_aj6-Xv3srFsDCPtG .Slider__slider__btn___3IKfXF-1kbDOiqVWPspGjW.Slider__slider__btn__amount___3CxuPjP4vjvpJtUYEsKckc {\n            background: rgba(0, 0, 0, 0.25);\n            border: 3px solid white;\n            font-family: 'Poppins', sans-serif;\n            font-weight: 600;\n            font-size: 1.4em;\n            margin-right: 10px; }\n            .Slider__slider___2-6rdk4XhsxVWbSkiIVKoQ .Slider__slider__imgItem___pyvCUA5Z9-BAnd_bKk9r5 .Slider__slider__infoContainer___3AwSvrgGO2uJXm-KzoE3fF .Slider__slider__btn_container____5hX_aj6-Xv3srFsDCPtG .Slider__slider__btn___3IKfXF-1kbDOiqVWPspGjW.Slider__slider__btn__amount___3CxuPjP4vjvpJtUYEsKckc .Slider__slider__btn__currencySymbol___1km1OQFgJclUC_0LQgKi1Y {\n              margin-right: 2px; }\n          .Slider__slider___2-6rdk4XhsxVWbSkiIVKoQ .Slider__slider__imgItem___pyvCUA5Z9-BAnd_bKk9r5 .Slider__slider__infoContainer___3AwSvrgGO2uJXm-KzoE3fF .Slider__slider__btn_container____5hX_aj6-Xv3srFsDCPtG .Slider__slider__btn___3IKfXF-1kbDOiqVWPspGjW.Slider__slider__btn__details___2iKO2UWt9AnGdSuJBZaGoE {\n            background: #e3342f; }\n\n.Slider__active___2bksFHEzE0A-HbQuGDt6_G .Slider__slider__title___r92EnStjTRl5b1tt6mw11 {\n  animation: Slider__title___Uo-C0lTh_9ipq-olulRIv 1s ease-out forwards; }\n\n.Slider__active___2bksFHEzE0A-HbQuGDt6_G .Slider__slider__btn_container____5hX_aj6-Xv3srFsDCPtG {\n  animation: Slider__btn___1Dq0NP8JSloQLAz4R7TUu9 1s ease-out .1s forwards; }\n\n@keyframes Slider__title___Uo-C0lTh_9ipq-olulRIv {\n  from {\n    opacity: 0;\n    transform: translateX(150px); }\n  to {\n    opacity: 1;\n    transform: translateX(0px); } }\n\n@keyframes Slider__btn___1Dq0NP8JSloQLAz4R7TUu9 {\n  from {\n    opacity: 0;\n    transform: translateY(80px); }\n  to {\n    opacity: 1;\n    transform: translateY(0px); } }\n\n@keyframes Slider__highlightMove___1qnybluVYACdmDNxuqclrH {\n  from {\n    transform: rotate(45deg) translateX(0px); }\n  to {\n    transform: rotate(45deg) translateX(200px); } }\n", ""]);
+exports.push([module.i, ".Slider__slider___2-6rdk4XhsxVWbSkiIVKoQ {\n  height: 100vh; }\n  .Slider__slider___2-6rdk4XhsxVWbSkiIVKoQ .Slider__slider__imgItem___pyvCUA5Z9-BAnd_bKk9r5 {\n    height: 100vh;\n    position: relative; }\n    .Slider__slider___2-6rdk4XhsxVWbSkiIVKoQ .Slider__slider__imgItem___pyvCUA5Z9-BAnd_bKk9r5 img {\n      height: 100%;\n      object-fit: cover; }\n    .Slider__slider___2-6rdk4XhsxVWbSkiIVKoQ .Slider__slider__imgItem___pyvCUA5Z9-BAnd_bKk9r5:after {\n      content: '';\n      display: block;\n      height: 100%;\n      width: 100%;\n      position: absolute;\n      top: 0;\n      left: 0;\n      background: rgba(0, 0, 0, 0.25); }\n    .Slider__slider___2-6rdk4XhsxVWbSkiIVKoQ .Slider__slider__imgItem___pyvCUA5Z9-BAnd_bKk9r5 .Slider__slider__infoContainer___3AwSvrgGO2uJXm-KzoE3fF {\n      position: absolute;\n      top: 50%;\n      right: 10%;\n      width: 310px;\n      z-index: 2;\n      transform: translateY(-50%); }\n      @media (max-width: 550px) {\n        .Slider__slider___2-6rdk4XhsxVWbSkiIVKoQ .Slider__slider__imgItem___pyvCUA5Z9-BAnd_bKk9r5 .Slider__slider__infoContainer___3AwSvrgGO2uJXm-KzoE3fF {\n          left: 0;\n          margin: auto;\n          right: 0;\n          transform: translateY(0); } }\n      .Slider__slider___2-6rdk4XhsxVWbSkiIVKoQ .Slider__slider__imgItem___pyvCUA5Z9-BAnd_bKk9r5 .Slider__slider__infoContainer___3AwSvrgGO2uJXm-KzoE3fF .Slider__slider__title___r92EnStjTRl5b1tt6mw11 {\n        position: relative;\n        opacity: 0; }\n        .Slider__slider___2-6rdk4XhsxVWbSkiIVKoQ .Slider__slider__imgItem___pyvCUA5Z9-BAnd_bKk9r5 .Slider__slider__infoContainer___3AwSvrgGO2uJXm-KzoE3fF .Slider__slider__title___r92EnStjTRl5b1tt6mw11 h3 {\n          color: white;\n          font-family: 'Poppins', sans-serif;\n          font-size: 2.8rem;\n          font-weight: 700;\n          line-height: 1;\n          text-transform: uppercase; }\n          @media (max-width: 550px) {\n            .Slider__slider___2-6rdk4XhsxVWbSkiIVKoQ .Slider__slider__imgItem___pyvCUA5Z9-BAnd_bKk9r5 .Slider__slider__infoContainer___3AwSvrgGO2uJXm-KzoE3fF .Slider__slider__title___r92EnStjTRl5b1tt6mw11 h3 {\n              font-size: 2em; } }\n        .Slider__slider___2-6rdk4XhsxVWbSkiIVKoQ .Slider__slider__imgItem___pyvCUA5Z9-BAnd_bKk9r5 .Slider__slider__infoContainer___3AwSvrgGO2uJXm-KzoE3fF .Slider__slider__title___r92EnStjTRl5b1tt6mw11 .Slider__slider__title_preText___34L66KmiSekHU0I700nc9c {\n          background: #e3342f;\n          color: white;\n          font-family: 'Poppins', sans-serif;\n          font-size: .8rem;\n          font-weight: 600;\n          letter-spacing: 1.3px;\n          padding: 5px;\n          position: absolute;\n          top: 4px;\n          left: 0;\n          text-transform: uppercase;\n          transform: translateX(-105%); }\n          @media (max-width: 550px) {\n            .Slider__slider___2-6rdk4XhsxVWbSkiIVKoQ .Slider__slider__imgItem___pyvCUA5Z9-BAnd_bKk9r5 .Slider__slider__infoContainer___3AwSvrgGO2uJXm-KzoE3fF .Slider__slider__title___r92EnStjTRl5b1tt6mw11 .Slider__slider__title_preText___34L66KmiSekHU0I700nc9c {\n              transform: translate(0, -130%); } }\n      .Slider__slider___2-6rdk4XhsxVWbSkiIVKoQ .Slider__slider__imgItem___pyvCUA5Z9-BAnd_bKk9r5 .Slider__slider__infoContainer___3AwSvrgGO2uJXm-KzoE3fF .Slider__slider__btn_container____5hX_aj6-Xv3srFsDCPtG {\n        display: flex;\n        opacity: 0; }\n        .Slider__slider___2-6rdk4XhsxVWbSkiIVKoQ .Slider__slider__imgItem___pyvCUA5Z9-BAnd_bKk9r5 .Slider__slider__infoContainer___3AwSvrgGO2uJXm-KzoE3fF .Slider__slider__btn_container____5hX_aj6-Xv3srFsDCPtG .Slider__slider__btn___3IKfXF-1kbDOiqVWPspGjW {\n          background: transparent;\n          border: none;\n          color: white;\n          cursor: pointer;\n          padding: 5px 25px;\n          overflow: hidden;\n          position: relative; }\n          .Slider__slider___2-6rdk4XhsxVWbSkiIVKoQ .Slider__slider__imgItem___pyvCUA5Z9-BAnd_bKk9r5 .Slider__slider__infoContainer___3AwSvrgGO2uJXm-KzoE3fF .Slider__slider__btn_container____5hX_aj6-Xv3srFsDCPtG .Slider__slider__btn___3IKfXF-1kbDOiqVWPspGjW:hover:after {\n            background: rgba(255, 255, 255, 0.5);\n            content: '';\n            display: block;\n            height: 250px;\n            width: 7px;\n            position: absolute;\n            top: -125px;\n            left: -10px;\n            transform-origin: center;\n            transform: rotate(45deg);\n            animation: Slider__highlightMove___1qnybluVYACdmDNxuqclrH 1.2s ease-in; }\n          .Slider__slider___2-6rdk4XhsxVWbSkiIVKoQ .Slider__slider__imgItem___pyvCUA5Z9-BAnd_bKk9r5 .Slider__slider__infoContainer___3AwSvrgGO2uJXm-KzoE3fF .Slider__slider__btn_container____5hX_aj6-Xv3srFsDCPtG .Slider__slider__btn___3IKfXF-1kbDOiqVWPspGjW.Slider__slider__btn__amount___3CxuPjP4vjvpJtUYEsKckc {\n            background: rgba(0, 0, 0, 0.25);\n            border: 3px solid white;\n            font-family: 'Poppins', sans-serif;\n            font-weight: 600;\n            font-size: 1.4em;\n            margin-right: 10px; }\n            .Slider__slider___2-6rdk4XhsxVWbSkiIVKoQ .Slider__slider__imgItem___pyvCUA5Z9-BAnd_bKk9r5 .Slider__slider__infoContainer___3AwSvrgGO2uJXm-KzoE3fF .Slider__slider__btn_container____5hX_aj6-Xv3srFsDCPtG .Slider__slider__btn___3IKfXF-1kbDOiqVWPspGjW.Slider__slider__btn__amount___3CxuPjP4vjvpJtUYEsKckc .Slider__slider__btn__currencySymbol___1km1OQFgJclUC_0LQgKi1Y {\n              margin-right: 2px; }\n          .Slider__slider___2-6rdk4XhsxVWbSkiIVKoQ .Slider__slider__imgItem___pyvCUA5Z9-BAnd_bKk9r5 .Slider__slider__infoContainer___3AwSvrgGO2uJXm-KzoE3fF .Slider__slider__btn_container____5hX_aj6-Xv3srFsDCPtG .Slider__slider__btn___3IKfXF-1kbDOiqVWPspGjW.Slider__slider__btn__details___2iKO2UWt9AnGdSuJBZaGoE {\n            background: #e3342f; }\n\n.Slider__active___2bksFHEzE0A-HbQuGDt6_G .Slider__slider__title___r92EnStjTRl5b1tt6mw11 {\n  animation: Slider__title___Uo-C0lTh_9ipq-olulRIv 1s ease-out forwards; }\n\n.Slider__active___2bksFHEzE0A-HbQuGDt6_G .Slider__slider__btn_container____5hX_aj6-Xv3srFsDCPtG {\n  animation: Slider__btn___1Dq0NP8JSloQLAz4R7TUu9 1s ease-out .1s forwards; }\n\n@keyframes Slider__title___Uo-C0lTh_9ipq-olulRIv {\n  from {\n    opacity: 0;\n    transform: translateX(150px); }\n  to {\n    opacity: 1;\n    transform: translateX(0px); } }\n\n@keyframes Slider__btn___1Dq0NP8JSloQLAz4R7TUu9 {\n  from {\n    opacity: 0;\n    transform: translateY(80px); }\n  to {\n    opacity: 1;\n    transform: translateY(0px); } }\n\n@keyframes Slider__highlightMove___1qnybluVYACdmDNxuqclrH {\n  from {\n    transform: rotate(45deg) translateX(0px); }\n  to {\n    transform: rotate(45deg) translateX(200px); } }\n", ""]);
 
 // exports
 exports.locals = {
@@ -64652,6 +64652,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(1);
@@ -64660,15 +64662,17 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(55);
 
-var _nouislider = __webpack_require__(149);
+var _nouislider = __webpack_require__(145);
 
 var _nouislider2 = _interopRequireDefault(_nouislider);
 
 var _actions = __webpack_require__(63);
 
-var _Search = __webpack_require__(145);
+var _Search = __webpack_require__(146);
 
 var _Search2 = _interopRequireDefault(_Search);
+
+var _reactRouterDom = __webpack_require__(57);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -64681,18 +64685,12 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Search = function (_Component) {
     _inherits(Search, _Component);
 
-    function Search() {
-        var _ref;
-
-        var _temp, _this, _ret;
-
+    function Search(props) {
         _classCallCheck(this, Search);
 
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-        }
+        var _this = _possibleConstructorReturn(this, (Search.__proto__ || Object.getPrototypeOf(Search)).call(this, props));
 
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Search.__proto__ || Object.getPrototypeOf(Search)).call.apply(_ref, [this].concat(args))), _this), _this.year = function () {
+        _this.year = function () {
             var yearArr = [],
                 currentYear = new Date().getFullYear();
 
@@ -64700,7 +64698,9 @@ var Search = function (_Component) {
                 yearArr.push(i);
             }
             return yearArr;
-        }, _this.slideRange = function () {
+        };
+
+        _this.slideRange = function () {
             var slider = $('#price_range')[0];
             var minSpan = document.querySelectorAll('#min'),
                 maxSpan = document.querySelectorAll('#max');
@@ -64717,11 +64717,64 @@ var Search = function (_Component) {
             slider.noUiSlider.on('update', function (values, handle) {
                 if (handle) {
                     maxSpan[0].textContent = ' - \u09F3 ' + Math.floor(values[handle]);
+                    _this.setState({
+                        filters: _extends({}, _this.state.filters, {
+                            price: _extends({}, _this.state.filters.price, {
+                                max: Math.floor(values[handle])
+                            })
+                        })
+                    });
                 } else {
                     minSpan[0].textContent = ' \u09F3 ' + Math.floor(values[handle]);
+                    _this.setState({
+                        filters: _extends({}, _this.state.filters, {
+                            price: _extends({}, _this.state.filters.price, {
+                                min: Math.floor(values[handle])
+                            })
+                        })
+                    });
                 }
             });
-        }, _temp), _possibleConstructorReturn(_this, _ret);
+        };
+
+        _this.showSearch = function (e) {
+            var parent = e.currentTarget.parentNode,
+                element = e.currentTarget,
+                activeEl = parent.querySelector('.' + _Search2.default.active);
+
+            if (element.classList !== activeEl.classList) {
+                activeEl.classList.remove(_Search2.default.active);
+                element.classList.add(_Search2.default.active);
+                _this.setState({
+                    show_make: !_this.state.show_make,
+                    filters: {}
+                });
+            }
+        };
+
+        _this.handleSelectType = function (e) {
+            var name = e.currentTarget.name,
+                value = e.currentTarget.value,
+                newObj = {};
+
+            newObj[name] = value;
+
+            _this.setState({
+                filters: _extends({}, _this.state.filters, newObj)
+            });
+        };
+
+        _this.handleSearch = function () {
+            _this.setState({
+                redirect: true
+            });
+        };
+
+        _this.state = {
+            show_make: true,
+            filters: {}
+        };
+        return _this;
     }
 
     _createClass(Search, [{
@@ -64732,145 +64785,221 @@ var Search = function (_Component) {
         }
     }, {
         key: 'componentDidUpdate',
-        value: function componentDidUpdate() {}
+        value: function componentDidUpdate(prevProps, prevState) {
+            if (this.state.show_make && prevState.show_make !== this.state.show_make) {
+                this.slideRange();
+            }
+        }
     }, {
         key: 'render',
         value: function render() {
-            return _react2.default.createElement(
-                'div',
-                { className: _Search2.default.Search },
-                _react2.default.createElement(
+            var _this2 = this;
+
+            var redirect = this.state.redirect;
+
+            if (redirect) {
+                return _react2.default.createElement(_reactRouterDom.Redirect, { to: {
+                        pathname: '/cars',
+                        state: { filters: this.state.filters }
+                    } });
+            }
+            var searchByMake = function searchByMake() {
+                return _react2.default.createElement(
                     'div',
-                    { className: this.props.flexClass },
+                    { className: _Search2.default.searchFieldContainer },
                     _react2.default.createElement(
                         'div',
-                        { className: _Search2.default.searchFieldContainer },
+                        { className: _this2.props.flexClass },
                         _react2.default.createElement(
                             'div',
-                            { className: this.props.flexClass },
+                            { className: _Search2.default.selectbox },
                             _react2.default.createElement(
-                                'div',
-                                { className: _Search2.default.selectbox },
+                                'select',
+                                {
+                                    className: _Search2.default.select,
+                                    name: 'body_types_id',
+                                    onChange: _this2.handleSelectType,
+                                    value: _this2.state.filters.body_types_id },
                                 _react2.default.createElement(
-                                    'select',
-                                    { className: _Search2.default.select },
-                                    _react2.default.createElement(
+                                    'option',
+                                    { value: '' },
+                                    'Select Type'
+                                ),
+                                _this2.props.bodyTypes.map(function (bodyType) {
+                                    return _react2.default.createElement(
                                         'option',
-                                        { value: '' },
-                                        'Select Type'
-                                    ),
-                                    this.props.bodyTypes.map(function (bodyType) {
-                                        return _react2.default.createElement(
-                                            'option',
-                                            { key: bodyType.id, value: bodyType.id },
-                                            bodyType.body_type
-                                        );
-                                    })
-                                )
-                            ),
-                            _react2.default.createElement(
-                                'div',
-                                { className: _Search2.default.selectbox },
-                                _react2.default.createElement(
-                                    'select',
-                                    { className: _Search2.default.select },
-                                    _react2.default.createElement(
-                                        'option',
-                                        { value: '' },
-                                        'Select Brand'
-                                    ),
-                                    this.props.brands.map(function (brand) {
-                                        return _react2.default.createElement(
-                                            'option',
-                                            { key: brand.id, value: brand.id },
-                                            brand.brand_name
-                                        );
-                                    })
-                                )
-                            ),
-                            _react2.default.createElement(
-                                'div',
-                                { className: _Search2.default.selectbox },
-                                _react2.default.createElement(
-                                    'select',
-                                    { className: _Search2.default.select },
-                                    _react2.default.createElement(
-                                        'option',
-                                        { value: '' },
-                                        'Select Model'
-                                    ),
-                                    this.props.cars.map(function (car) {
-                                        return _react2.default.createElement(
-                                            'option',
-                                            { key: car.id, value: car.id },
-                                            car.brands.brand_name + ' ' + car.model_no
-                                        );
-                                    })
-                                )
+                                        { key: bodyType.id, value: bodyType.id },
+                                        bodyType.body_type
+                                    );
+                                })
                             )
                         ),
                         _react2.default.createElement(
                             'div',
-                            { className: this.props.flexClass },
+                            { className: _Search2.default.selectbox },
                             _react2.default.createElement(
-                                'div',
-                                { className: _Search2.default.selectbox },
+                                'select',
+                                {
+                                    className: _Search2.default.select,
+                                    name: 'brands_id',
+                                    onChange: _this2.handleSelectType,
+                                    value: _this2.state.filters.brands_id },
                                 _react2.default.createElement(
-                                    'select',
-                                    { className: _Search2.default.select },
-                                    _react2.default.createElement(
+                                    'option',
+                                    { value: '' },
+                                    'Select Brand'
+                                ),
+                                _this2.props.brands.map(function (brand) {
+                                    return _react2.default.createElement(
                                         'option',
-                                        { value: '' },
-                                        'Select Condition'
-                                    ),
-                                    this.props.cars.map(function (car) {
-                                        return _react2.default.createElement(
-                                            'option',
-                                            { key: car.id, value: car.id },
-                                            car.brands.brand_name + ' ' + car.model_no
-                                        );
-                                    })
-                                )
-                            ),
+                                        { key: brand.id, value: brand.id },
+                                        brand.brand_name
+                                    );
+                                })
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: _Search2.default.selectbox },
                             _react2.default.createElement(
-                                'div',
-                                { className: _Search2.default.selectbox },
+                                'select',
+                                {
+                                    className: _Search2.default.select,
+                                    name: 'id',
+                                    onChange: _this2.handleSelectType,
+                                    value: _this2.state.filters.id },
                                 _react2.default.createElement(
-                                    'select',
-                                    { className: _Search2.default.select },
-                                    _react2.default.createElement(
+                                    'option',
+                                    { value: '' },
+                                    'Select Model'
+                                ),
+                                _this2.props.cars.map(function (car) {
+                                    return _react2.default.createElement(
                                         'option',
-                                        { value: '' },
-                                        'Select Year'
-                                    ),
-                                    this.year().map(function (y) {
-                                        return _react2.default.createElement(
-                                            'option',
-                                            { key: y, value: y },
-                                            y
-                                        );
-                                    })
-                                )
-                            ),
-                            _react2.default.createElement(
-                                'div',
-                                { className: _Search2.default.range },
-                                _react2.default.createElement('div', { id: 'price_range', 'data-toggle': 'tooltip', 'data-placement': 'top', title: 'Price Range', tabIndex: '0' }),
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: _Search2.default.price_range__info },
-                                    _react2.default.createElement('span', { id: 'min', className: _Search2.default.price_range__min }),
-                                    _react2.default.createElement('span', { id: 'max', className: _Search2.default.price_range__max })
-                                )
+                                        { key: car.id, value: car.id },
+                                        car.brands.brand_name + ' ' + car.model_no
+                                    );
+                                })
                             )
                         )
                     ),
                     _react2.default.createElement(
                         'div',
+                        { className: _this2.props.flexClass },
+                        _react2.default.createElement(
+                            'div',
+                            { className: _Search2.default.selectbox },
+                            _react2.default.createElement(
+                                'select',
+                                {
+                                    className: _Search2.default.select,
+                                    name: 'car_condition',
+                                    onChange: _this2.handleSelectType,
+                                    value: _this2.state.filters.car_condition },
+                                _react2.default.createElement(
+                                    'option',
+                                    { value: '' },
+                                    'Select Condition'
+                                ),
+                                _react2.default.createElement(
+                                    'option',
+                                    { value: 'used' },
+                                    'used'
+                                ),
+                                _react2.default.createElement(
+                                    'option',
+                                    { value: 'recondition' },
+                                    'recondition'
+                                ),
+                                _react2.default.createElement(
+                                    'option',
+                                    { value: 'new' },
+                                    'new'
+                                )
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: _Search2.default.selectbox },
+                            _react2.default.createElement(
+                                'select',
+                                {
+                                    className: _Search2.default.select,
+                                    name: 'year',
+                                    onChange: _this2.handleSelectType,
+                                    value: _this2.state.filters.year },
+                                _react2.default.createElement(
+                                    'option',
+                                    { value: '' },
+                                    'Select Year'
+                                ),
+                                _this2.year().map(function (y) {
+                                    return _react2.default.createElement(
+                                        'option',
+                                        { key: y, value: y },
+                                        y
+                                    );
+                                })
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: _Search2.default.range },
+                            _react2.default.createElement('div', {
+                                id: 'price_range',
+                                'data-toggle': 'tooltip',
+                                'data-placement': 'top',
+                                title: 'Price Range' }),
+                            _react2.default.createElement(
+                                'div',
+                                { className: _Search2.default.price_range__info },
+                                _react2.default.createElement('span', { id: 'min', className: _Search2.default.price_range__min }),
+                                _react2.default.createElement('span', { id: 'max', className: _Search2.default.price_range__max })
+                            )
+                        )
+                    )
+                );
+            };
+            var searchByName = function searchByName() {
+                return _react2.default.createElement(
+                    'div',
+                    { className: _Search2.default.searchFieldContainer },
+                    _react2.default.createElement('input', { className: _Search2.default.search__name, type: 'text', placeholder: 'type a name' })
+                );
+            };
+            return _react2.default.createElement(
+                'div',
+                { className: _Search2.default.Search },
+                _react2.default.createElement(
+                    'div',
+                    { className: _Search2.default.searchTab__container },
+                    _react2.default.createElement(
+                        'ul',
+                        { className: _Search2.default.searchTab },
+                        _react2.default.createElement(
+                            'li',
+                            {
+                                className: [_Search2.default.searchTab__item, _Search2.default.active].join(' '),
+                                onClick: this.showSearch },
+                            'Search By Make'
+                        ),
+                        _react2.default.createElement(
+                            'li',
+                            { className: _Search2.default.searchTab__item, onClick: this.showSearch },
+                            'Search By Name'
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: [this.props.flexClass, _Search2.default.searchContainer].join(' ') },
+                    this.state.show_make ? searchByMake() : searchByName(),
+                    _react2.default.createElement(
+                        'div',
                         null,
                         _react2.default.createElement(
                             'button',
-                            { className: 'btn btn-lg btn-danger rounded-0' },
+                            { className: 'btn btn-lg btn-danger rounded-0', onClick: this.handleSearch },
                             'Search'
                         )
                     )
@@ -64890,134 +65019,6 @@ exports.default = (0, _reactRedux.connect)(mapPropstoState, { getAllCars: _actio
 
 /***/ }),
 /* 145 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(146);
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(46)(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {
-	module.hot.accept("!!../../../../../../node_modules/css-loader/index.js??ref--7-1!../../../../../../node_modules/sass-loader/lib/loader.js!./Search.scss", function() {
-		var newContent = require("!!../../../../../../node_modules/css-loader/index.js??ref--7-1!../../../../../../node_modules/sass-loader/lib/loader.js!./Search.scss");
-
-		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-
-		var locals = (function(a, b) {
-			var key, idx = 0;
-
-			for(key in a) {
-				if(!b || a[key] !== b[key]) return false;
-				idx++;
-			}
-
-			for(key in b) idx--;
-
-			return idx === 0;
-		}(content.locals, newContent.locals));
-
-		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
-
-		update(newContent);
-	});
-
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 146 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(45)(false);
-// imports
-
-
-// module
-exports.push([module.i, ".Search__Search___fa4-y1C-nDQ1ksoQN9kkv {\n  background: #F4F4F4;\n  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);\n  position: relative;\n  padding: 20px; }\n  @media (min-width: 768px) {\n    .Search__Search___fa4-y1C-nDQ1ksoQN9kkv {\n      width: 80%;\n      margin-top: -50px;\n      margin-left: auto;\n      margin-right: auto; } }\n  .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl {\n    align-items: center;\n    display: flex;\n    flex-direction: column;\n    flex: 1;\n    justify-content: space-between;\n    width: 100%; }\n    .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div {\n      width: 100%; }\n      .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__range___2sv0voRmANqZ4ltNKtQsGz {\n        display: flex;\n        flex-direction: column;\n        justify-content: space-between;\n        flex: 1;\n        width: 100%;\n        margin-right: 15px; }\n        @media (max-width: 767px) {\n          .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__range___2sv0voRmANqZ4ltNKtQsGz {\n            margin-bottom: 15px;\n            margin-right: 0; } }\n        .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__range___2sv0voRmANqZ4ltNKtQsGz .Search__price_range__info___3pEvpv61kz6ODkspZQ8gFy {\n          margin-top: 5px;\n          font-size: 12px;\n          text-align: center; }\n        .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__range___2sv0voRmANqZ4ltNKtQsGz .Search__price_range__min___2qVuZpaNa_AJDM6UaQZcw0, .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__range___2sv0voRmANqZ4ltNKtQsGz .Search__price_range__max___3Axeob7c-0X1VuefZiJMwU {\n          margin-top: 5px;\n          font-size: 12px;\n          font-family: 'Poppins', sans-serif;\n          font-weight: 600; }\n      .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__selectbox___1bKm3Nq5hMXBvk_H2jWwxr {\n        flex: 1;\n        margin-right: 15px;\n        width: 100%;\n        margin-bottom: 15px; }\n        @media (max-width: 767px) {\n          .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__selectbox___1bKm3Nq5hMXBvk_H2jWwxr {\n            margin-right: 0; } }\n        .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__selectbox___1bKm3Nq5hMXBvk_H2jWwxr .Search__select___2_TxzMVuUwS7FCYEn2ZBWP {\n          -moz-appearance: listbox;\n          -webkit-appearance: listbox;\n          appearance: listbox;\n          border-radius: 0;\n          border: 1px solid rgba(0, 0, 0, 0.2);\n          font-size: .9em;\n          padding: 5px 10px;\n          text-transform: uppercase;\n          width: 100%; }\n          .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__selectbox___1bKm3Nq5hMXBvk_H2jWwxr .Search__select___2_TxzMVuUwS7FCYEn2ZBWP:active, .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__selectbox___1bKm3Nq5hMXBvk_H2jWwxr .Search__select___2_TxzMVuUwS7FCYEn2ZBWP:focus {\n            outline: 0; }\n", ""]);
-
-// exports
-exports.locals = {
-	"Search": "Search__Search___fa4-y1C-nDQ1ksoQN9kkv",
-	"searchFieldContainer": "Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl",
-	"range": "Search__range___2sv0voRmANqZ4ltNKtQsGz",
-	"price_range__info": "Search__price_range__info___3pEvpv61kz6ODkspZQ8gFy",
-	"price_range__min": "Search__price_range__min___2qVuZpaNa_AJDM6UaQZcw0",
-	"price_range__max": "Search__price_range__max___3Axeob7c-0X1VuefZiJMwU",
-	"selectbox": "Search__selectbox___1bKm3Nq5hMXBvk_H2jWwxr",
-	"select": "Search__select___2_TxzMVuUwS7FCYEn2ZBWP"
-};
-
-/***/ }),
-/* 147 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Cars = function (_Component) {
-  _inherits(Cars, _Component);
-
-  function Cars() {
-    _classCallCheck(this, Cars);
-
-    return _possibleConstructorReturn(this, (Cars.__proto__ || Object.getPrototypeOf(Cars)).apply(this, arguments));
-  }
-
-  _createClass(Cars, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'h1',
-          null,
-          'Cars'
-        )
-      );
-    }
-  }]);
-
-  return Cars;
-}(_react.Component);
-
-exports.default = Cars;
-
-/***/ }),
-/* 148 */,
-/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! nouislider - 12.0.0 - 9/14/2018 */
@@ -67303,6 +67304,395 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     };
 });
 
+
+/***/ }),
+/* 146 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(147);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(46)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {
+	module.hot.accept("!!../../../../../../node_modules/css-loader/index.js??ref--7-1!../../../../../../node_modules/sass-loader/lib/loader.js!./Search.scss", function() {
+		var newContent = require("!!../../../../../../node_modules/css-loader/index.js??ref--7-1!../../../../../../node_modules/sass-loader/lib/loader.js!./Search.scss");
+
+		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 147 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(45)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".Search__Search___fa4-y1C-nDQ1ksoQN9kkv {\n  background: #F4F4F4;\n  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);\n  position: relative;\n  padding: 20px; }\n  @media (min-width: 768px) {\n    .Search__Search___fa4-y1C-nDQ1ksoQN9kkv {\n      width: 80%;\n      margin-top: -50px;\n      margin-left: auto;\n      margin-right: auto; } }\n  .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchContainer___13klKdW8Egg3Yoo7yxUtTV {\n    background: #eaeaea;\n    padding: 20px;\n    position: relative;\n    z-index: 1; }\n  .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl {\n    align-items: center;\n    display: flex;\n    flex-direction: column;\n    flex: 1;\n    justify-content: space-between;\n    width: 100%; }\n    @media (min-width: 768px) {\n      .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl {\n        margin-right: 10px; } }\n    .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div {\n      width: 100%; }\n      .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__range___2sv0voRmANqZ4ltNKtQsGz {\n        display: flex;\n        flex-direction: column;\n        justify-content: space-between;\n        flex: 1;\n        width: 100%;\n        margin-right: 10px; }\n        @media (max-width: 767px) {\n          .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__range___2sv0voRmANqZ4ltNKtQsGz {\n            margin-bottom: 10px;\n            margin-right: 0; } }\n        .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__range___2sv0voRmANqZ4ltNKtQsGz .Search__price_range__info___3pEvpv61kz6ODkspZQ8gFy {\n          margin-top: 5px;\n          font-size: 12px;\n          text-align: center; }\n        .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__range___2sv0voRmANqZ4ltNKtQsGz .Search__price_range__max___3Axeob7c-0X1VuefZiJMwU,\n        .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__range___2sv0voRmANqZ4ltNKtQsGz .Search__price_range__min___2qVuZpaNa_AJDM6UaQZcw0 {\n          margin-top: 5px;\n          font-size: 12px;\n          font-family: 'Poppins', sans-serif;\n          font-weight: 600; }\n      .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__selectbox___1bKm3Nq5hMXBvk_H2jWwxr {\n        flex: 1;\n        margin-right: 10px;\n        width: 100%;\n        margin-bottom: 10px; }\n        @media (max-width: 767px) {\n          .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__selectbox___1bKm3Nq5hMXBvk_H2jWwxr {\n            margin-right: 0; } }\n        .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__selectbox___1bKm3Nq5hMXBvk_H2jWwxr .Search__select___2_TxzMVuUwS7FCYEn2ZBWP {\n          -moz-appearance: listbox;\n          -webkit-appearance: listbox;\n          appearance: listbox;\n          border-radius: 0;\n          border: 1px solid rgba(0, 0, 0, 0.2);\n          color: #2b343b;\n          font-size: 0.9em;\n          padding: 5px 10px;\n          text-transform: uppercase;\n          width: 100%; }\n          .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__selectbox___1bKm3Nq5hMXBvk_H2jWwxr .Search__select___2_TxzMVuUwS7FCYEn2ZBWP:active, .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__selectbox___1bKm3Nq5hMXBvk_H2jWwxr .Search__select___2_TxzMVuUwS7FCYEn2ZBWP:focus {\n            outline: 0; }\n    .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl .Search__search__name___1gt21j2OntjeK50w-0LuDG {\n      color: #2b343b;\n      flex: 1;\n      margin-bottom: 10px;\n      padding: 2px 5px;\n      width: 100%; }\n      @media (min-width: 768px) {\n        .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl .Search__search__name___1gt21j2OntjeK50w-0LuDG {\n          margin-bottom: 0; } }\n  .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchTab__container___38Mj0YBx71j-614Vf8hkDN .Search__searchTab___23Ziwm2VhHHleukI-Nl3sd {\n    list-style: none;\n    margin: 0;\n    padding: 0; }\n    .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchTab__container___38Mj0YBx71j-614Vf8hkDN .Search__searchTab___23Ziwm2VhHHleukI-Nl3sd .Search__searchTab__item___F14avbAxdb4oy4JHEkZdV {\n      cursor: pointer;\n      display: inline-block;\n      padding: 10px;\n      position: relative; }\n      .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchTab__container___38Mj0YBx71j-614Vf8hkDN .Search__searchTab___23Ziwm2VhHHleukI-Nl3sd .Search__searchTab__item___F14avbAxdb4oy4JHEkZdV.Search__active___2ZXEQk6rRmBvAS--FzVdxQ {\n        background: #e3342f;\n        color: white; }\n        .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchTab__container___38Mj0YBx71j-614Vf8hkDN .Search__searchTab___23Ziwm2VhHHleukI-Nl3sd .Search__searchTab__item___F14avbAxdb4oy4JHEkZdV.Search__active___2ZXEQk6rRmBvAS--FzVdxQ::after {\n          border-top: 10px solid #e3342f;\n          border-left: 10px solid transparent;\n          border-right: 10px solid transparent;\n          content: '';\n          display: block;\n          margin: auto;\n          position: absolute;\n          bottom: -9px;\n          left: 0;\n          right: 0;\n          width: 20px;\n          z-index: 10; }\n", ""]);
+
+// exports
+exports.locals = {
+	"Search": "Search__Search___fa4-y1C-nDQ1ksoQN9kkv",
+	"searchContainer": "Search__searchContainer___13klKdW8Egg3Yoo7yxUtTV",
+	"searchFieldContainer": "Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl",
+	"range": "Search__range___2sv0voRmANqZ4ltNKtQsGz",
+	"price_range__info": "Search__price_range__info___3pEvpv61kz6ODkspZQ8gFy",
+	"price_range__max": "Search__price_range__max___3Axeob7c-0X1VuefZiJMwU",
+	"price_range__min": "Search__price_range__min___2qVuZpaNa_AJDM6UaQZcw0",
+	"selectbox": "Search__selectbox___1bKm3Nq5hMXBvk_H2jWwxr",
+	"select": "Search__select___2_TxzMVuUwS7FCYEn2ZBWP",
+	"search__name": "Search__search__name___1gt21j2OntjeK50w-0LuDG",
+	"searchTab__container": "Search__searchTab__container___38Mj0YBx71j-614Vf8hkDN",
+	"searchTab": "Search__searchTab___23Ziwm2VhHHleukI-Nl3sd",
+	"searchTab__item": "Search__searchTab__item___F14avbAxdb4oy4JHEkZdV",
+	"active": "Search__active___2ZXEQk6rRmBvAS--FzVdxQ"
+};
+
+/***/ }),
+/* 148 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _SectionHead = __webpack_require__(151);
+
+var _SectionHead2 = _interopRequireDefault(_SectionHead);
+
+var _Cars = __webpack_require__(156);
+
+var _Cars2 = _interopRequireDefault(_Cars);
+
+var _reactRouterDom = __webpack_require__(57);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Cars = function (_Component) {
+  _inherits(Cars, _Component);
+
+  function Cars() {
+    _classCallCheck(this, Cars);
+
+    return _possibleConstructorReturn(this, (Cars.__proto__ || Object.getPrototypeOf(Cars)).apply(this, arguments));
+  }
+
+  _createClass(Cars, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      console.log(this.props.location.state);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'section',
+        null,
+        _react2.default.createElement(_SectionHead2.default, { title: 'Cars list' }),
+        _react2.default.createElement(
+          'div',
+          { className: _Cars2.default.breadcrumb__container },
+          _react2.default.createElement(
+            'ul',
+            { className: _Cars2.default.breadcrumb__lsit },
+            _react2.default.createElement(
+              'li',
+              { className: _Cars2.default.breadcrumb__item },
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { to: '/' },
+                _react2.default.createElement('i', { className: 'fa fa-home' })
+              )
+            ),
+            _react2.default.createElement(
+              'li',
+              { className: _Cars2.default.breadcrumb__item },
+              'Car List'
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          'Car List'
+        )
+      );
+    }
+  }]);
+
+  return Cars;
+}(_react.Component);
+
+exports.default = Cars;
+
+/***/ }),
+/* 149 */,
+/* 150 */,
+/* 151 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _SectionHead = __webpack_require__(152);
+
+var _SectionHead2 = _interopRequireDefault(_SectionHead);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SectionHead = function (_Component) {
+    _inherits(SectionHead, _Component);
+
+    function SectionHead() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
+        _classCallCheck(this, SectionHead);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SectionHead.__proto__ || Object.getPrototypeOf(SectionHead)).call.apply(_ref, [this].concat(args))), _this), _this.findTopMargin = function () {
+            setTimeout(function () {
+                var header = document.querySelector('header');
+                var sectionHead = document.querySelector('.' + _SectionHead2.default.sectionhead__container);
+                var headerHeight = header.offsetHeight;
+                console.log(headerHeight);
+                sectionHead.style.marginTop = headerHeight + 'px';
+            }, 0);
+        }, _temp), _possibleConstructorReturn(_this, _ret);
+    }
+
+    _createClass(SectionHead, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.findTopMargin();
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                { className: _SectionHead2.default.sectionhead__container },
+                _react2.default.createElement(
+                    'h3',
+                    { className: _SectionHead2.default.sectionhead__title },
+                    this.props.title
+                )
+            );
+        }
+    }]);
+
+    return SectionHead;
+}(_react.Component);
+
+exports.default = SectionHead;
+
+/***/ }),
+/* 152 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(153);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(46)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {
+	module.hot.accept("!!../../../../../../node_modules/css-loader/index.js??ref--7-1!../../../../../../node_modules/sass-loader/lib/loader.js!./SectionHead.scss", function() {
+		var newContent = require("!!../../../../../../node_modules/css-loader/index.js??ref--7-1!../../../../../../node_modules/sass-loader/lib/loader.js!./SectionHead.scss");
+
+		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 153 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(45)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".SectionHead__sectionhead__container___2lr6rLq0rlKKMo_DJtFUcQ {\n  background: url(\"/images/bg-1.jpg\") center left/cover no-repeat;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  height: 150px;\n  position: relative;\n  width: 100%; }\n  .SectionHead__sectionhead__container___2lr6rLq0rlKKMo_DJtFUcQ:before {\n    background: rgba(0, 0, 0, 0.5);\n    content: '';\n    display: block;\n    height: 100%;\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%; }\n  .SectionHead__sectionhead__container___2lr6rLq0rlKKMo_DJtFUcQ .SectionHead__sectionhead__title___2oFN2dFmbkEHjqhlBSPyDD {\n    color: white;\n    font-family: 'Poppins', sans-serif;\n    font-size: 3rem;\n    font-weight: 900;\n    text-transform: uppercase;\n    z-index: 1; }\n    .SectionHead__sectionhead__container___2lr6rLq0rlKKMo_DJtFUcQ .SectionHead__sectionhead__title___2oFN2dFmbkEHjqhlBSPyDD:after {\n      background: #e3342f;\n      content: '';\n      display: block;\n      height: 5px;\n      margin: auto;\n      width: 50px; }\n", ""]);
+
+// exports
+exports.locals = {
+	"sectionhead__container": "SectionHead__sectionhead__container___2lr6rLq0rlKKMo_DJtFUcQ",
+	"sectionhead__title": "SectionHead__sectionhead__title___2oFN2dFmbkEHjqhlBSPyDD"
+};
+
+/***/ }),
+/* 154 */,
+/* 155 */,
+/* 156 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(157);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(46)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {
+	module.hot.accept("!!../../../../../../node_modules/css-loader/index.js??ref--7-1!../../../../../../node_modules/sass-loader/lib/loader.js!./Cars.scss", function() {
+		var newContent = require("!!../../../../../../node_modules/css-loader/index.js??ref--7-1!../../../../../../node_modules/sass-loader/lib/loader.js!./Cars.scss");
+
+		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 157 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(45)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".Cars__breadcrumb__container___H9bWQubHqgo1_m7bE-GkJ {\n  background: #eaeaea;\n  width: 100%; }\n  .Cars__breadcrumb__container___H9bWQubHqgo1_m7bE-GkJ .Cars__breadcrumb__lsit___3gigWU_csimt3wxXnU7hub {\n    color: #2b343b;\n    list-style: none;\n    margin: 0;\n    padding: 0;\n    text-align: center; }\n    .Cars__breadcrumb__container___H9bWQubHqgo1_m7bE-GkJ .Cars__breadcrumb__lsit___3gigWU_csimt3wxXnU7hub .Cars__breadcrumb__item___1ilJVLm_lveXfzrj2IYNiw {\n      display: inline-block; }\n      .Cars__breadcrumb__container___H9bWQubHqgo1_m7bE-GkJ .Cars__breadcrumb__lsit___3gigWU_csimt3wxXnU7hub .Cars__breadcrumb__item___1ilJVLm_lveXfzrj2IYNiw::after {\n        content: '/';\n        color: #2b343b;\n        display: inline-block;\n        padding: 5px; }\n      .Cars__breadcrumb__container___H9bWQubHqgo1_m7bE-GkJ .Cars__breadcrumb__lsit___3gigWU_csimt3wxXnU7hub .Cars__breadcrumb__item___1ilJVLm_lveXfzrj2IYNiw:first-child, .Cars__breadcrumb__container___H9bWQubHqgo1_m7bE-GkJ .Cars__breadcrumb__lsit___3gigWU_csimt3wxXnU7hub .Cars__breadcrumb__item___1ilJVLm_lveXfzrj2IYNiw:first-child a {\n        color: #e3342f;\n        font-size: 1.1em; }\n      .Cars__breadcrumb__container___H9bWQubHqgo1_m7bE-GkJ .Cars__breadcrumb__lsit___3gigWU_csimt3wxXnU7hub .Cars__breadcrumb__item___1ilJVLm_lveXfzrj2IYNiw:last-child::after {\n        content: '';\n        display: none; }\n", ""]);
+
+// exports
+exports.locals = {
+	"breadcrumb__container": "Cars__breadcrumb__container___H9bWQubHqgo1_m7bE-GkJ",
+	"breadcrumb__lsit": "Cars__breadcrumb__lsit___3gigWU_csimt3wxXnU7hub",
+	"breadcrumb__item": "Cars__breadcrumb__item___1ilJVLm_lveXfzrj2IYNiw"
+};
 
 /***/ })
 /******/ ]);

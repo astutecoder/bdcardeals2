@@ -24,7 +24,13 @@
             right: 10%;
             width:310px;
             z-index: 2;
-            transform: translateY(-50%);            
+            transform: translateY(-50%);      
+            @media (max-width:550px){
+                left:0;
+                margin: auto;
+                right: 0;
+                transform: translateY(0);
+            }      
             .slider__title {
                 position: relative;
                 opacity: 0;
@@ -35,6 +41,9 @@
                     font-weight: 700;
                     line-height: 1;
                     text-transform: uppercase;
+                    @media (max-width: 550px) {
+                        font-size: 2em;
+                    }
                 }
                 .slider__title_preText{
                     background: $red;
@@ -48,7 +57,10 @@
                     top: 4px;
                     left: 0;
                     text-transform: uppercase;
-                    transform: translateX(-105%)
+                    transform: translateX(-105%);
+                    @media (max-width: 550px){
+                        transform: translate(0,-130%);
+                    }
                 }
             }
             .slider__btn_container{
