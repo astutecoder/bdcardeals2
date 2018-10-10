@@ -11,7 +11,7 @@ export default class SectionHead extends Component {
             const header = document.querySelector('header');
             const sectionHead = document.querySelector(`.${styles.sectionhead__container}`);
             const headerHeight = header.offsetHeight;
-            console.log(headerHeight);
+            
             sectionHead.style.marginTop = headerHeight + 'px';
         }, 0);
 

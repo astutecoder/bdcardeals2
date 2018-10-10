@@ -11,6 +11,21 @@ import Cars from './react/frontend/components/Cars/Cars';
 import bootstrap from './bootstrap'
 
 export default class FrontEnd extends Component {
+    componentDidMount() {
+        const headerContainer = document.querySelector('header');
+        setTimeout(() => {
+            const headerHeight = headerContainer.offsetHeight;
+
+            window.addEventListener('scroll', () => {
+                let scrollY = window.scrollY;
+                if (scrollY > headerHeight) {
+                    headerContainer.style.position = 'sticky';
+                } else {
+                    headerContainer.style.position = 'absolute';
+                }
+            })
+        }, 0);
+    }
     render() {
         return (
             <Provider store={store}>

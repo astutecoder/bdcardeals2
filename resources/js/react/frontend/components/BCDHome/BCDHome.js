@@ -17,6 +17,9 @@ class BCDHome extends Component {
         this
             .props
             .getAllBodyTypes();
+        this
+            .props
+            .setSlider(this.props.cars);
     }
     componentDidUpdate(prevProps) {
         if (prevProps.cars.length !== this.props.cars.length) {
@@ -36,10 +39,5 @@ class BCDHome extends Component {
         )
     }
 }
-const mapPropsToState = (state) => ({
-    cars: state.cars.cars, 
-    brands: state.cars.brands, 
-    bodyTypes: state.cars.bodyTypes, 
-    sliders: state.sliders.sliders,
-})
+const mapPropsToState = (state) => ({cars: state.cars.cars, brands: state.cars.brands, bodyTypes: state.cars.bodyTypes, sliders: state.sliders.sliders})
 export default connect(mapPropsToState, {getAllCars, setSlider, getAllBrands, getAllBodyTypes})(BCDHome);

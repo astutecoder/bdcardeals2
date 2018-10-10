@@ -136,6 +136,7 @@ class Search extends Component {
             <div className={styles.searchFieldContainer}>
                 <div className={this.props.flexClass}>
                     <div className={styles.selectbox}>
+                        <label><strong>{this.props.bodyType}</strong></label>
                         <select
                             className={styles.select}
                             name="body_types_id"
@@ -151,6 +152,7 @@ class Search extends Component {
                         </select>
                     </div>
                     <div className={styles.selectbox}>
+                        <label><strong>{this.props.brand}</strong></label>
                         <select
                             className={styles.select}
                             name="brands_id"
@@ -166,6 +168,7 @@ class Search extends Component {
                         </select>
                     </div>
                     <div className={styles.selectbox}>
+                        <label><strong>{this.props.model}</strong></label>
                         <select
                             className={styles.select}
                             name="id"
@@ -183,6 +186,7 @@ class Search extends Component {
                 </div>
                 <div className={this.props.flexClass}>
                     <div className={styles.selectbox}>
+                        <label><strong>{this.props.carCondition}</strong></label>
                         <select
                             className={styles.select}
                             name="car_condition"
@@ -195,6 +199,7 @@ class Search extends Component {
                         </select>
                     </div>
                     <div className={styles.selectbox}>
+                        <label><strong>{this.props.year}</strong></label>
                         <select
                             className={styles.select}
                             name="year"
@@ -209,6 +214,7 @@ class Search extends Component {
                         </select>
                     </div>
                     <div className={styles.range}>
+                        <label><strong>{this.props.priceRange}</strong></label>
                         <div
                             id="price_range"
                             data-toggle="tooltip"
@@ -226,11 +232,12 @@ class Search extends Component {
         );
         const searchByName = () => (
             <div className={styles.searchFieldContainer}>
+                <label><strong>{this.props.name}</strong></label>
                 <input className={styles.search__name} type='text' placeholder='type a name'/>
             </div>
         );
         return (
-            <div className={styles.Search}>
+            <div className={[styles.Search, this.props.searchClass].join(' ')}>
                 <div className={styles.searchTab__container}>
                     <ul className={styles.searchTab}>
                         <li
@@ -243,7 +250,7 @@ class Search extends Component {
                     {this.state.show_make
                         ? searchByMake()
                         : searchByName()}
-                    <div>
+                    <div className={this.props.btnContainerClass}>
                         <button className="btn btn-lg btn-danger rounded-0" onClick={this.handleSearch}>Search</button>
                     </div>
                 </div>

@@ -1,6 +1,9 @@
 @import '../../../../../sass/variables';
 .slider {
     height: 100vh;
+    @media (min-width:768px) {
+        margin-bottom: -50px;
+    }
     .slider__imgItem {
         height: 100vh;
         position: relative;
@@ -8,7 +11,7 @@
             height: 100%;
             object-fit: cover;
         }
-        &:after{
+        &:after {
             content: '';
             display: block;
             height: 100%;
@@ -18,23 +21,23 @@
             left: 0;
             background: rgba(0,0,0,.25);
         }
-        .slider__infoContainer{
-            position: absolute;            
+        .slider__infoContainer {
+            position: absolute;
             top: 50%;
             right: 10%;
-            width:310px;
+            width: 310px;
             z-index: 2;
-            transform: translateY(-50%);      
-            @media (max-width:550px){
-                left:0;
+            transform: translateY(-50%);
+            @media (max-width:550px) {
+                left: 0;
                 margin: auto;
                 right: 0;
                 transform: translateY(0);
-            }      
+            }
             .slider__title {
                 position: relative;
                 opacity: 0;
-                h3{
+                h3 {
                     color: white;
                     font-family: 'Poppins', sans-serif;
                     font-size: 2.8rem;
@@ -45,11 +48,11 @@
                         font-size: 2em;
                     }
                 }
-                .slider__title_preText{
+                .slider__title_preText {
                     background: $red;
                     color: white;
                     font-family: 'Poppins', sans-serif;
-                    font-size: .8rem;
+                    font-size: 0.8rem;
                     font-weight: 600;
                     letter-spacing: 1.3px;
                     padding: 5px;
@@ -58,12 +61,12 @@
                     left: 0;
                     text-transform: uppercase;
                     transform: translateX(-105%);
-                    @media (max-width: 550px){
+                    @media (max-width: 550px) {
                         transform: translate(0,-130%);
                     }
                 }
             }
-            .slider__btn_container{
+            .slider__btn_container {
                 display: flex;
                 opacity: 0;
                 .slider__btn {
@@ -74,9 +77,8 @@
                     padding: 5px 25px;
                     overflow: hidden;
                     position: relative;
-                    
-                    &:hover{
-                        &:after{
+                    &:hover {
+                        &:after {
                             background: rgba(255,255,255,.5);
                             content: '';
                             display: block;
@@ -90,19 +92,19 @@
                             animation: highlightMove 1.2s ease-in;
                         }
                     }
-                    &.slider__btn__amount{
+                    &.slider__btn__amount {
                         background: rgba(0,0,0,.25);
                         border: 3px solid white;
                         font-family: 'Poppins', sans-serif;
                         font-weight: 600;
                         font-size: 1.4em;
                         margin-right: 10px;
-                        .slider__btn__currencySymbol{
+                        .slider__btn__currencySymbol {
                             margin-right: 2px;
                         }
                     }
-                    &.slider__btn__details{
-                        background: $red
+                    &.slider__btn__details {
+                        background: $red;
                     }
                 }
             }
@@ -111,41 +113,38 @@
 }
 
 .active {
-    .slider__title{
+    .slider__title {
         animation: title 1s ease-out forwards;
     }
-    .slider__btn_container{
-        animation: btn 1s ease-out .1s forwards;
+    .slider__btn_container {
+        animation: btn 1s ease-out 0.1s forwards;
     }
 }
-
-@keyframes title{
-    from{ 
+@keyframes title {
+    from {
         opacity: 0;
         transform: translateX(150px);
     }
-    to{ 
+    to {
         opacity: 1;
         transform: translateX(0px);
     }
 }
-
-@keyframes btn{
-    from{ 
+@keyframes btn {
+    from {
         opacity: 0;
         transform: translateY(80px);
     }
-    to{ 
+    to {
         opacity: 1;
         transform: translateY(0px);
     }
 }
-
-@keyframes highlightMove{
-    from{
+@keyframes highlightMove {
+    from {
         transform: rotate(45deg) translateX(0px);
     }
-    to{
+    to {
         transform: rotate(45deg) translateX(200px);
     }
 }

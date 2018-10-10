@@ -1,32 +1,55 @@
 @import '../../../../../sass/variables';
-.breadcrumb__container{
+.breadcrumb__container {
     background: #eaeaea;
     width: 100%;
-    .breadcrumb__lsit{
+    .breadcrumb__lsit {
         color: $lightblack;
         list-style: none;
         margin: 0;
         padding: 0;
         text-align: center;
-        .breadcrumb__item{
+        .breadcrumb__item {
             display: inline-block;
             // padding: 5px;
-            &::after{
+            &::after {
                 content: '/';
                 color: $lightblack;
                 display: inline-block;
                 padding: 5px;
             }
-            &:first-child, &:first-child a{
+            &:first-child,
+            &:first-child a {
                 color: $red;
                 font-size: 1.1em;
             }
-            &:last-child{
-                &::after{
+            &:last-child {
+                &::after {
                     content: '';
                     display: none;
                 }
             }
+        }
+    }
+}
+
+// .search__mobile{
+//     display: block;
+//     margin-bottom: 20px;
+//     @media (min-width: 768px){
+//         display: none;
+//     }
+// }
+
+.listAndSearchContainer {
+    margin-top: 20px;
+    .search__sidebar__head {
+        background: $lightblack;
+        padding: 10px;
+        text-transform: uppercase;
+        h5 {
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
         }
     }
 }
