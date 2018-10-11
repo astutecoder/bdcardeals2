@@ -7,21 +7,38 @@ import styles from './Cars.scss'
 
 import {Link} from 'react-router-dom';
 import Search from '../Search/Search';
+import CarListItem from '../CarListItem/CarListItem';
 
 class Cars extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            carsToShow:[]
+        }
     }
 
     componentDidMount() {
+        this.props.getAllCars();
+        this.props.getAllBrands();
+        this.props.getAllBodyTypes();
+        
         this.is_mobile();
         window.addEventListener('resize', () => {
             this.is_mobile();
         })
-        console.log(this.props.location.state, window.outerWidth, this.state);
-
+        this.carsToShow();
+        
     }
+
+    componentDidUpdate(prevProps, prevState) {
+        if(prevProps.cars.length != this.props.cars.length){
+            this.carsToShow();
+        }
+    }
+    componentWillUnmount(){
+        this.setState({carsToShow: []})
+    }
+
     is_mobile = () => {
         if (window.outerWidth <= 1023) {
             this.setState({is_mobile: true})
@@ -29,6 +46,21 @@ class Cars extends Component {
             this.setState({is_mobile: false})
         }
     }
+
+    carsToShow = () => {
+        if (this.props.location.state) {
+            if (this.props.location.state.hasOwnProperty('carsToDisplay')) {
+                this.setState({
+                    carsToShow: [
+                        ...this.props.location.state.carsToDisplay
+                    ]
+                });
+            }
+        }else{
+            this.setState({carsToShow: [...this.props.cars]})
+        }
+    }
+
     render() {
         return (
             <section>
@@ -64,11 +96,19 @@ class Cars extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-8">
-                                car lists
+                                {(this.state.carsToShow.length < 1)?
+                                <h3 className="text-danger">Sorry! No cars match with search</h3>    
+                                :
+                                this.state.carsToShow.map(car => (
+                                    <CarListItem key={car.id} car={car} />
+                                ))
+                            }
                             </div>
                             {!this.state.is_mobile && (
                                 <div className=" hidden-md col-lg-4">
-                                    <div className={styles.search__sidebar__head}> <h5>Search Cars</h5></div>
+                                    <div className={styles.search__sidebar__head}>
+                                        <h5>Search Cars</h5>
+                                    </div>
                                     <Search
                                         {...this.props}
                                         name="Name"

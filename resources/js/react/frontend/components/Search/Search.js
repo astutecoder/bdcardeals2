@@ -12,6 +12,7 @@ class Search extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            redirect: false,
             show_make: true,
             filters: {}
         }
@@ -128,7 +129,7 @@ class Search extends Component {
         const {redirect} = this.state;
         if(redirect){
             return(<Redirect to={{
-                pathname: '/cars',
+                pathname: '/process-search',
                 state: { filters: this.state.filters}
             }} />);
         }

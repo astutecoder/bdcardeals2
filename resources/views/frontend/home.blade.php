@@ -9,7 +9,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <link
-            href="https://fonts.googleapis.com/css?family=Nunito|Poppins:300,600,700,900"
+            href="https://fonts.googleapis.com/css?family=Nunito:300,400|Poppins:300,500,600,700,900"
             rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         

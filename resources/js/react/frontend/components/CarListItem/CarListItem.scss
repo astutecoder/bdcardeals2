@@ -1,0 +1,48 @@
+@import '../../../../../sass/variables';
+.carlist__item{
+    border-top: 1px solid #eaeaea;
+    padding: 15px 0;
+    .image_container{
+        @media (max-width: 575px){
+            height: 150px;
+            margin-bottom: 10px;
+            width: 99%;
+        }
+        .image_item{
+            height: 100%;
+            object-fit: cover;
+            width: 100%;
+        }
+    
+    }
+    .title__container{
+        @media (max-width: 767px){
+            margin-bottom: 10px;
+        }
+        .title{
+            color: $lightblack;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            margin: 0;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+        .subtitle{
+            font-weight: 300;
+            margin-bottom: 0;
+        }
+    }
+    .btn__price{
+        background: $red;
+        color: white;
+        font-family: 'Poppins', sans-serif;
+        padding: 5px 10px;
+        text-align: center;
+        .btn__price__main_price{
+            font-weight: 500; 
+        }
+        .btn__price__offer_price{
+            margin-left: 5px;
+        }
+    }
+}
