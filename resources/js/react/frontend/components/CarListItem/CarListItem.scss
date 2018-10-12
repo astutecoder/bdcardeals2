@@ -26,6 +26,13 @@
             margin: 0;
             line-height: 1.1;
             text-transform: uppercase;
+            a{
+                color: $lightblack;
+                text-decoration: none;
+                &:hover{
+                    color:$red;
+                }
+            }
         }
         .subtitle{
             font-weight: 300;
@@ -37,12 +44,31 @@
         color: white;
         font-family: 'Poppins', sans-serif;
         padding: 5px 10px;
+        position: relative;
         text-align: center;
         .btn__price__main_price{
             font-weight: 500; 
         }
         .btn__price__offer_price{
             margin-left: 5px;
+        }
+        .btn__price__is_negotiable{
+            color: $lightblack;
+            font-family: 'Nunito', sans-serif;
+            font-size: 10px;
+            font-weight: 400;
+            left: 50%;
+            position: absolute;
+            text-align: center;
+            top: 100%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            @media (max-width:767px){
+                left: 100%;
+                margin-left: 5px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
         }
     }
 }

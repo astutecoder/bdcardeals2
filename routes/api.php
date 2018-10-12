@@ -19,6 +19,7 @@ use Illuminate\Http\Request;
 
 Route::middleware('api')->prefix('v1')->group(function(){
     Route::get('all-cars', 'Backend\CarsController@all_cars');
+    Route::get('get-car/{id}', 'Backend\CarsController@get_single_car');
     Route::get('all-brands', 'Backend\BrandsController@all_brands');
     Route::get('all-body-types', 'Backend\BodyTypesController@all_body_types');
 });

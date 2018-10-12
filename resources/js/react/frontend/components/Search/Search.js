@@ -5,7 +5,7 @@ import noUiSlider from 'nouislider'
 import {getAllCars} from '../../actions/actions'
 
 import styles from './Search.scss'
-import { Redirect } from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 
 class Search extends Component {
 
@@ -19,14 +19,22 @@ class Search extends Component {
     }
 
     componentDidMount() {
-        this
-            .props
-            .getAllCars();
+        // this
+        //     .props
+        //     .getAllCars();
         this.slideRange();
+        if (this.props.location.state) {
+            this.setState({
+                filters: {
+                    ...this.props.location.state.filters
+                }
+            });
+        }
     }
 
     componentDidUpdate(prevProps, prevState) {
         if (this.state.show_make && prevState.show_make !== this.state.show_make) {
+            console.log('slide happening');
             this.slideRange();
         }
     }
@@ -43,24 +51,34 @@ class Search extends Component {
     slideRange = () => {
         const slider = $('#price_range')[0];
         let minSpan = document.querySelectorAll('#min'),
-            maxSpan = document.querySelectorAll('#max');
+            maxSpan = document.querySelectorAll('#max'),
+            initMinVal = (!!this.props.location.state)
+                ? (this.props.location.state.filters.price.min
+                    ? this.props.location.state.filters.price.min
+                    : 0)
+                : 1500000,
+            initMaxVal = (!!this.props.location.state)
+                ? (this.props.location.state.filters.price.max
+                    ? this.props.location.state.filters.price.max
+                    : 4600000)
+                : 5600000;
 
         noUiSlider.create(slider, {
             start: [
-                1500000, 16000000
+                initMinVal, initMaxVal
             ],
             connect: true,
             range: {
                 'min': 50000,
                 'max': 30000000
             },
-            step: 10000
+            step: 100000
         });
         slider
             .noUiSlider
             .on('update', (values, handle) => {
                 if (handle) {
-                    maxSpan[0].textContent = ` - ৳ ${Math.floor(values[handle])}`;
+                    maxSpan[0].textContent = ` - ৳${Math.floor(values[handle])}`;
                     this.setState({
                         filters: {
                             ...this.state.filters,
@@ -71,7 +89,7 @@ class Search extends Component {
                         }
                     });
                 } else {
-                    minSpan[0].textContent = ` ৳ ${Math.floor(values[handle])}`;
+                    minSpan[0].textContent = ` ৳${Math.floor(values[handle])}`;
                     this.setState({
                         filters: {
                             ...this.state.filters,
@@ -120,40 +138,43 @@ class Search extends Component {
     }
 
     handleSearch = () => {
-        this.setState({
-            redirect: true
-        })
+        this.setState({redirect: true})
     }
 
     render() {
         const {redirect} = this.state;
-        if(redirect){
-            return(<Redirect to={{
+        if (redirect) {
+            return (<Redirect
+                to={{
                 pathname: '/process-search',
-                state: { filters: this.state.filters}
-            }} />);
+                state: {
+                    filters: {...this.state.filters},
+                    cars: [...this.props.cars]
+                }
+            }}/>);
         }
         const searchByMake = () => (
             <div className={styles.searchFieldContainer}>
                 <div className={this.props.flexClass}>
                     <div className={styles.selectbox}>
-                        <label><strong>{this.props.bodyType}</strong></label>
+                        <label>
+                            <strong>{this.props.carCondition}</strong>
+                        </label>
                         <select
                             className={styles.select}
-                            name="body_types_id"
+                            name="car_condition"
                             onChange={this.handleSelectType}
-                            value={this.state.filters.body_types_id}>
-                            <option value="">Select Type</option>
-                            {this
-                                .props
-                                .bodyTypes
-                                .map(bodyType => (
-                                    <option key={bodyType.id} value={bodyType.id}>{bodyType.body_type}</option>
-                                ))}
+                            value={this.state.filters.car_condition}>
+                            <option value="">Select Condition</option>
+                            <option value="new">new</option>
+                            <option value="recondition">recondition</option>
+                            <option value="used">second hand</option>
                         </select>
                     </div>
                     <div className={styles.selectbox}>
-                        <label><strong>{this.props.brand}</strong></label>
+                        <label>
+                            <strong>{this.props.brand}</strong>
+                        </label>
                         <select
                             className={styles.select}
                             name="brands_id"
@@ -169,7 +190,9 @@ class Search extends Component {
                         </select>
                     </div>
                     <div className={styles.selectbox}>
-                        <label><strong>{this.props.model}</strong></label>
+                        <label>
+                            <strong>{this.props.model}</strong>
+                        </label>
                         <select
                             className={styles.select}
                             name="id"
@@ -187,20 +210,27 @@ class Search extends Component {
                 </div>
                 <div className={this.props.flexClass}>
                     <div className={styles.selectbox}>
-                        <label><strong>{this.props.carCondition}</strong></label>
+                        <label>
+                            <strong>{this.props.bodyType}</strong>
+                        </label>
                         <select
                             className={styles.select}
-                            name="car_condition"
+                            name="body_types_id"
                             onChange={this.handleSelectType}
-                            value={this.state.filters.car_condition}>
-                            <option value="">Select Condition</option>
-                            <option value="used">used</option>
-                            <option value="recondition">recondition</option>
-                            <option value="new">new</option>
+                            value={this.state.filters.body_types_id}>
+                            <option value="">Select Type</option>
+                            {this
+                                .props
+                                .bodyTypes
+                                .map(bodyType => (
+                                    <option key={bodyType.id} value={bodyType.id}>{bodyType.body_type}</option>
+                                ))}
                         </select>
                     </div>
                     <div className={styles.selectbox}>
-                        <label><strong>{this.props.year}</strong></label>
+                        <label>
+                            <strong>{this.props.year}</strong>
+                        </label>
                         <select
                             className={styles.select}
                             name="year"
@@ -215,7 +245,9 @@ class Search extends Component {
                         </select>
                     </div>
                     <div className={styles.range}>
-                        <label><strong>{this.props.priceRange}</strong></label>
+                        <label>
+                            <strong>{this.props.priceRange}</strong>
+                        </label>
                         <div
                             id="price_range"
                             data-toggle="tooltip"
@@ -233,8 +265,15 @@ class Search extends Component {
         );
         const searchByName = () => (
             <div className={styles.searchFieldContainer}>
-                <label><strong>{this.props.name}</strong></label>
-                <input className={styles.search__name} type='text' placeholder='type a name'/>
+                <label>
+                    <strong>{this.props.name}</strong>
+                </label>
+                <input
+                    className={styles.search__name}
+                    value={this.state.filters.name}
+                    name="name"
+                    type='text'
+                    placeholder='type a name'/>
             </div>
         );
         return (

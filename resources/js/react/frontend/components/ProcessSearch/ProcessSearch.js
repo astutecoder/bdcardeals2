@@ -1,30 +1,29 @@
 import React, {Component} from 'react'
 import {Redirect} from 'react-router-dom'
-import {connect} from 'react-redux'
-import {getAllCars} from '../../actions/actions'
 
-class ProcessSearch extends Component {
+export default class ProcessSearch extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            carsToDisplay: []
+            carsToDisplay: [],
+            filters: {}
         }
     }
 
     componentDidMount() {
-        this
-            .props
-            .getAllCars()
         this.setState({
-            carsToDisplay: [...this.props.cars]
+            carsToDisplay: [...this.props.location.state.cars],
+            filters: {
+                ...this.props.location.state.filters
+            }
         });
     }
 
     componentDidUpdate(prevProps, prevState) {
         if (prevState.carsToDisplay.length != this.state.carsToDisplay.length) {
             this.setState({
-                carsToDisplay: [...this.props.cars]
+                carsToDisplay: [...this.props.location.state.cars]
             });
             let filters = []
             Object
@@ -34,17 +33,17 @@ class ProcessSearch extends Component {
                 });
             this.carsToDisplay(filters);
         }
-        if(prevState.carsToDisplay.length === this.state.carsToDisplay.length){
+        if (prevState.carsToDisplay.length === this.state.carsToDisplay.length) {
             this.setState({redirect: true})
         }
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         this.setState({redirect: false})
     }
 
     carsToDisplay = (filterArray) => {
-        let cars = [...this.props.cars];
+        let cars = [...this.props.location.state.cars];
 
         for (let key in filterArray) {
             if (key == 'price') {
@@ -61,9 +60,11 @@ class ProcessSearch extends Component {
                     carsToDisplay: [...cars]
                 })
             } else {
-                cars = cars.filter((car) => {
-                    return car[key] == filterArray[key]
-                });
+                if (!!filterArray[key]) {
+                    cars = cars.filter((car) => {
+                        return car[key] == filterArray[key]
+                    });
+                }
                 this.setState({
                     carsToDisplay: [...cars]
                 })
@@ -72,18 +73,20 @@ class ProcessSearch extends Component {
     }
 
     render() {
-        if(this.state.redirect){
-            return(<Redirect to={{
+        if (this.state.redirect) {
+            return (<Redirect
+                to={{
                 pathname: '/cars',
-                state: {carsToDisplay: this.state.carsToDisplay}
-            }} />);
+                state: {
+                    carsToDisplay: [...this.state.carsToDisplay],
+                    filters: {
+                        ...this.state.filters
+                    }
+                }
+            }}/>);
         }
         return (
             <div></div>
         )
     }
 }
-
-const mapPropsToState = (state) => ({cars: state.cars.cars})
-
-export default connect(mapPropsToState, {getAllCars})(ProcessSearch)

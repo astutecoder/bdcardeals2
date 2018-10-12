@@ -206,9 +206,9 @@
                                 <select name="car_condition" class="form-control input-sm" required>
                                     <option value="">--- SELECT AN OPTION ---</option>
                                         <option
-                                                value="used"
-                                                {{ (old('car_condition') === 'used') ? 'selected' : '' }}>
-                                            Used
+                                                value="new"
+                                                {{ (old('car_condition') === 'new') ? 'selected' : '' }}>
+                                            New
                                         </option>
                                         <option
                                                 value="recondition"
@@ -216,9 +216,9 @@
                                             Recondition
                                         </option>
                                         <option
-                                                value="new"
-                                                {{ (old('car_condition') === 'new') ? 'selected' : '' }}>
-                                            New
+                                                value="used"
+                                                {{ (old('car_condition') === 'used') ? 'selected' : '' }}>
+                                            Second Hand
                                         </option>
                                 </select>
                                 @if ($errors->has('car_condition'))

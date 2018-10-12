@@ -12,7 +12,7 @@ export default class CarListItem extends Component {
     }
 
     componentDidMount() {
-        let folder_name = this.props.car.albums.folder_name,
+        let folder_name = (this.props.car.albums) ? this.props.car.albums.folder_name : '',
             file_name = '';
         this
             .props
@@ -32,33 +32,39 @@ export default class CarListItem extends Component {
         const car = {
             ...this.props.car
         };
+        const src = (this.state.img_folder_name) ? `/storage/car_albums/${this.state.img_folder_name}/${this.state.img_file_name}` : '/images/no_car_photo.png';
+        const path = `cars/${car.brands.brand_name.split(' ').join('-')}-${car.model_no.split(' ').join('-')}/${car.id}`
+
         return (
             <div className={styles.carlist__item}>
                 <div className="row">
                     <div className="col-sm-4">
                         <div className={styles.image_container}>
                             <img
-                                className={styles.image_item}
-                                src={`/storage/car_albums/${this.state.img_folder_name}/${this.state.img_file_name}`}
-                                alt={`${car
-                                .brands
-                                .brand_name
-                                .toUpperCase()} ${car
-                                .model_no
-                                .toUpperCase()}'s image`}/>
+                            className={styles.image_item}
+                            src={src}
+                            alt={`${car
+                            .brands
+                            .brand_name
+                            .toUpperCase()} ${car
+                            .model_no
+                            .toUpperCase()}'s image`}/>
                         </div>
                     </div>
                     <div className="col-sm-8">
                         <div className="row mb-3">
                             <div className="col-md-6">
                                 <div className={styles.title__container}>
-                                    <Link to="">
-                                        <h4 className={styles.title}>
+                                    <h4 className={styles.title}>
+                                        <Link to={{
+                                            pathname: path,
+                                            state:{ car: car}
+                                        }}>
                                             {(car.title)
                                                 ? car.title
                                                 : (car.brands.brand_name + ' ' + car.model_no + ' ' + car.year)}
-                                        </h4>
-                                    </Link>
+                                        </Link>
+                                    </h4>
                                     {car.subtitle && <p className={[styles.subtitle, "text-muted"].join(' ')}>{car.subtitle}</p>
 }
                                 </div>
@@ -70,6 +76,7 @@ export default class CarListItem extends Component {
                                     {!!car.offer_price && <small className={styles.btn__price__offer_price}>
                                         ৳{car.offer_price}</small>
 }
+                                    {!!car.is_negotiable_price && <span className={styles.btn__price__is_negotiable}>Negotiable Price</span>}
                                 </span>
                             </div>
                         </div>

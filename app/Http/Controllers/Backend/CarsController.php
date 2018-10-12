@@ -55,6 +55,14 @@ class CarsController extends Controller
         return view('backend.cars.all_cars')->with('cars', $cars);
     }
 
+    public function get_single_car($id){
+        if((int)($id) == 0){
+            return response()->json('Not found', 404);
+        }
+        $car = Car::findOrFail($id);
+        return response()->json($car);
+    }
+
     public function show($id)
     {
         $car = Car::withCount('photos', 'albums', 'colors')->findOrFail($id);

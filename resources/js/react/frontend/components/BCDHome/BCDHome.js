@@ -8,15 +8,21 @@ import Search from '../Search/Search'
 class BCDHome extends Component {
 
     componentWillMount() {
-        this
-            .props
-            .getAllCars();
-        this
-            .props
-            .getAllBrands();
-        this
-            .props
-            .getAllBodyTypes();
+        if (!this.props.cars.length) {
+            this
+                .props
+                .getAllCars();
+        }
+        if (!this.props.brands.length) {
+            this
+                .props
+                .getAllBrands();
+        }
+        if (!this.props.bodyTypes.length) {
+            this
+                .props
+                .getAllBodyTypes();
+        }
         this
             .props
             .setSlider(this.props.cars);

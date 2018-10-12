@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 import {Provider} from 'react-redux'
-import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom'
 
 import store from './react/frontend/store/store'
 import Header from './react/frontend/components/Header/Header';
@@ -10,6 +10,7 @@ import Cars from './react/frontend/components/Cars/Cars';
 import ProcessSearch from './react/frontend/components/ProcessSearch/ProcessSearch';
 
 import bootstrap from './bootstrap'
+import CarDetails from './react/frontend/components/CarDetails/CarDetails';
 
 export default class FrontEnd extends Component {
     componentDidMount() {
@@ -38,8 +39,10 @@ export default class FrontEnd extends Component {
                             <Header/>
                             <Switch>
                                 <Route path='/' exact component={BCDHome}/>
-                                <Route path='/cars' component={Cars}/>
-                                <Route path='/process-search' component={ProcessSearch}/>
+                                <Route path='/cars' exact component={Cars}/>
+                                <Route path='/process-search' exact component={ProcessSearch}/>
+                                <Route path='/cars/:car/:id' exact component={CarDetails}/>
+                                <Redirect to='/' />
                             </Switch>
                         </div>
                     </BrowserRouter>

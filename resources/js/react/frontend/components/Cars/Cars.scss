@@ -1,36 +1,4 @@
 @import '../../../../../sass/variables';
-.breadcrumb__container {
-    background: #eaeaea;
-    width: 100%;
-    .breadcrumb__lsit {
-        color: $lightblack;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        text-align: center;
-        .breadcrumb__item {
-            display: inline-block;
-            // padding: 5px;
-            &::after {
-                content: '/';
-                color: $lightblack;
-                display: inline-block;
-                padding: 5px;
-            }
-            &:first-child,
-            &:first-child a {
-                color: $red;
-                font-size: 1.1em;
-            }
-            &:last-child {
-                &::after {
-                    content: '';
-                    display: none;
-                }
-            }
-        }
-    }
-}
 
 // .search__mobile{
 //     display: block;

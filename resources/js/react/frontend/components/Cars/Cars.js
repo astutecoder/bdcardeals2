@@ -8,34 +8,47 @@ import styles from './Cars.scss'
 import {Link} from 'react-router-dom';
 import Search from '../Search/Search';
 import CarListItem from '../CarListItem/CarListItem';
+import Breadcrumb from '../Breadcrumb/Breadcrumb';
 
 class Cars extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            carsToShow:[]
+            carsToShow: []
         }
     }
 
     componentDidMount() {
-        this.props.getAllCars();
-        this.props.getAllBrands();
-        this.props.getAllBodyTypes();
-        
+        if (!this.props.cars.length) {
+            this
+                .props
+                .getAllCars();
+        }
+        if (!this.props.brands.length) {
+            this
+                .props
+                .getAllBrands();
+        }
+        if (!this.props.bodyTypes.length) {
+            this
+                .props
+                .getAllBodyTypes();
+        }
+
         this.is_mobile();
         window.addEventListener('resize', () => {
             this.is_mobile();
         })
         this.carsToShow();
-        
+
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if(prevProps.cars.length != this.props.cars.length){
+        if (prevProps.cars.length != this.props.cars.length) {
             this.carsToShow();
         }
     }
-    componentWillUnmount(){
+    componentWillUnmount() {
         this.setState({carsToShow: []})
     }
 
@@ -51,44 +64,47 @@ class Cars extends Component {
         if (this.props.location.state) {
             if (this.props.location.state.hasOwnProperty('carsToDisplay')) {
                 this.setState({
-                    carsToShow: [
-                        ...this.props.location.state.carsToDisplay
-                    ]
+                    carsToShow: [...this.props.location.state.carsToDisplay]
                 });
             }
-        }else{
-            this.setState({carsToShow: [...this.props.cars]})
+        } else {
+            this.setState({
+                carsToShow: [...this.props.cars]
+            })
         }
     }
 
     render() {
+        const breadcrumb_links =[
+            {
+                linkname: 'Car List'
+            }
+        ]
         return (
             <section>
                 <SectionHead title="Cars list"/>
 
-                <div className={styles.breadcrumb__container}>
-                    <ul className={styles.breadcrumb__lsit}>
-                        <li className={styles.breadcrumb__item}>
-                            <Link to='/'>
-                                <i className="fa fa-home"></i>
-                            </Link>
-                        </li>
-                        <li className={styles.breadcrumb__item}>Car List</li>
-                    </ul>
-                </div>
+                <Breadcrumb links={breadcrumb_links} />
 
                 {this.state.is_mobile && <div className={styles.search__mobile}>
-                    <Search
-                        {...this.props}
-                        name="Name"
-                        brand="Brand"
-                        bodyType="Type"
-                        model="Model"
-                        carCondition="Car Condition"
-                        year="Year"
-                        priceRange="Price Range"
-                        flexClass="d-flex flex-column flex-md-row justify-content-between align-items-md-center"/>
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-md-12">
+                                <Search
+                                    {...this.props}
+                                    name="Name"
+                                    brand="Brand"
+                                    bodyType="Type"
+                                    model="Model"
+                                    carCondition="Car Condition"
+                                    year="Year"
+                                    priceRange="Price Range"
+                                    searchClass="mt-3 p-0 w-100"
+                                    flexClass="d-flex flex-column flex-md-row justify-content-between align-items-md-center"/>
 
+                            </div>
+                        </div>
+                    </div>
                 </div>
 }
 
@@ -96,13 +112,10 @@ class Cars extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-8">
-                                {(this.state.carsToShow.length < 1)?
-                                <h3 className="text-danger">Sorry! No cars match with search</h3>    
-                                :
-                                this.state.carsToShow.map(car => (
-                                    <CarListItem key={car.id} car={car} />
-                                ))
-                            }
+                                {(this.state.carsToShow.length < 1)
+                                    ? <h3 className="text-danger">Sorry! No cars match with search</h3>
+                                    : this.state.carsToShow.map(car => (<CarListItem key={car.id} car={car}/>))
+}
                             </div>
                             {!this.state.is_mobile && (
                                 <div className=" hidden-md col-lg-4">
