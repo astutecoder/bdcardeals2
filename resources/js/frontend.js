@@ -8,9 +8,9 @@ import Header from './react/frontend/components/Header/Header';
 import BCDHome from './react/frontend/components/BCDHome/BCDHome';
 import Cars from './react/frontend/components/Cars/Cars';
 import ProcessSearch from './react/frontend/components/ProcessSearch/ProcessSearch';
+import CarDetails from './react/frontend/components/CarDetails/CarDetails';
 
 import bootstrap from './bootstrap'
-import CarDetails from './react/frontend/components/CarDetails/CarDetails';
 
 export default class FrontEnd extends Component {
     componentDidMount() {

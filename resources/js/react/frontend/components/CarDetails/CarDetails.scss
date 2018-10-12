@@ -1,0 +1,14 @@
+@import '../../../../../sass/variables';
+
+.title{
+    color: $lightblack;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0;
+    text-transform: uppercase;
+}
+.subtitle{
+    color: $lightblack;
+    margin: 0;
+}

@@ -60,6 +60,13 @@ class CarsController extends Controller
             return response()->json('Not found', 404);
         }
         $car = Car::findOrFail($id);
+        $car->brands;
+        $car->body_types;
+        $car->fuel_types;
+        $car->colors;
+        $car->sources;
+        $car->albums;
+        $car->photos;
         return response()->json($car);
     }
 

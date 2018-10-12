@@ -16,7 +16,7 @@
         <title>BD Car Deals::@yield('title')</title>
     </head>
     <body>
-        <div id="bcd-app"></div>        
+        <div id="bcd-app"></div>
         <script src="{{ asset('js/frontend.js') }}"></script>
     </body>
 </html>

@@ -18,7 +18,6 @@ export const getSingleCar = (id) => (dispatch) => {
     Axios
         .get(`${BaseURL}api/v1/get-car/${id}`)
         .then(response => {
-            console.log(response);
             dispatch({
                 type: GET_SINGLE_CAR,
                 payload: response.data

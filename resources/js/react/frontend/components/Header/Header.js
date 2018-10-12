@@ -9,7 +9,9 @@ export default class Header extends Component {
             <header className={styles.headerContainer}>
                 <div className={styles.header}>
                     <div className={styles.header__logo}>
-                        <img src="/images/bd_car_deals_logo.png" alt="BD Car Deals Logo"/>
+                        <NavLink to='/'>
+                            <img src="/images/bd_car_deals_logo.png" alt="BD Car Deals Logo"/>
+                        </NavLink>
                     </div>
                     <nav className={styles.header__navContainer}>
                         <ul className={styles.header__nav}>

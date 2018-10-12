@@ -1,6 +1,7 @@
 let mix = require('laravel-mix');
 require('laravel-mix-react-css-modules');
 
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
