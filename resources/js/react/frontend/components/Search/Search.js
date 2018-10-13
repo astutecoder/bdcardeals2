@@ -6,6 +6,7 @@ import {getAllCars} from '../../actions/actions'
 
 import styles from './Search.scss'
 import {Redirect} from 'react-router-dom';
+import wNumb from 'wnumb'
 
 class Search extends Component {
 
@@ -49,6 +50,7 @@ class Search extends Component {
         return yearArr;
     }
     slideRange = () => {
+        const cFormat = wNumb({thousand:',', prefix: '৳'});
         const slider = $('#price_range')[0];
         let minSpan = document.querySelectorAll('#min'),
             maxSpan = document.querySelectorAll('#max'),
@@ -78,7 +80,7 @@ class Search extends Component {
             .noUiSlider
             .on('update', (values, handle) => {
                 if (handle) {
-                    maxSpan[0].textContent = ` - ৳${Math.floor(values[handle])}`;
+                    maxSpan[0].textContent = ` - ${cFormat.to(Math.floor(values[handle]))}`;
                     this.setState({
                         filters: {
                             ...this.state.filters,
@@ -89,7 +91,7 @@ class Search extends Component {
                         }
                     });
                 } else {
-                    minSpan[0].textContent = ` ৳${Math.floor(values[handle])}`;
+                    minSpan[0].textContent = ` ${cFormat.to(Math.floor(values[handle]))}`;
                     this.setState({
                         filters: {
                             ...this.state.filters,
@@ -165,7 +167,7 @@ class Search extends Component {
                             name="car_condition"
                             onChange={this.handleSelectType}
                             value={this.state.filters.car_condition}>
-                            <option value="">Select Condition</option>
+                            <option value="">Select Status</option>
                             <option value="new">new</option>
                             <option value="recondition">recondition</option>
                             <option value="used">second hand</option>

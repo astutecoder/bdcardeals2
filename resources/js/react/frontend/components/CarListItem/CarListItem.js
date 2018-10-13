@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import styles from './CarListItem.scss'
+import wNumb from 'wnumb'
 
 export default class CarListItem extends Component {
     constructor(props) {
@@ -29,6 +30,7 @@ export default class CarListItem extends Component {
     }
 
     render() {
+        const cFormat = wNumb({thousand:',', prefix: '৳'});
         const car = {
             ...this.props.car
         };
@@ -72,9 +74,9 @@ export default class CarListItem extends Component {
                             <div className="col-md-6 text-md-right">
                                 <span className={styles.btn__price}>
                                     <strong className={styles.btn__price__main_price}>
-                                        ৳{car.price}</strong>
+                                        {cFormat.to(car.price)}</strong>
                                     {!!car.offer_price && <small className={styles.btn__price__offer_price}>
-                                        ৳{car.offer_price}</small>
+                                        {cFormat.to(car.offer_price)}</small>
 }
                                     {!!car.is_negotiable_price && <span className={styles.btn__price__is_negotiable}>Negotiable Price</span>}
                                 </span>

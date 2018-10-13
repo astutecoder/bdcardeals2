@@ -1,13 +1,15 @@
 import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {getSingleCar} from '../../actions/actions'
+import ImageGallery from 'react-image-gallery'
 
 import SectionHead from '../SectionHead/SectionHead';
 import Breadcrumb from '../Breadcrumb/Breadcrumb'
-import styles from './CarDetails.scss'
+import ExtraDetails from './ExtraDetails/ExtraDetails';
+import CarIconDetails from './CarIconDetails/CarIconDetails';
+import CarTableDetails from './CarTableDetails/CarTableDetails';
 
-import Carousel from 'react-image-carousel'
+import styles from './CarDetails.scss'
 
 class CarDetails extends Component {
     constructor(props) {
@@ -18,6 +20,7 @@ class CarDetails extends Component {
         }
     }
     componentDidMount() {
+        window.scrollTo(0, 0);
         const car_id = this.props.match.params.id;
 
         if (!this.props.location.state) {
@@ -74,7 +77,7 @@ class CarDetails extends Component {
                     ? (
                         <div className="container mt-5">
                             <div className="row">
-                                <div className="col-md-8">
+                                <div className="col-lg-8">
                                     {/* title row */}
                                     <div className="row">
                                         <div className="col-md-12">
@@ -88,20 +91,41 @@ class CarDetails extends Component {
                                     </div>
 
                                     {/* image slider row */}
-                                    {!!this.state.images && (
-                                        <div className="row">
-                                            <div className="col-md-12">
-                                                <div className="my-carousel">
-                                                    <ImageGallery items={this.state.images}/>
-                                                </div>
+
+                                    <div className="row">
+                                        <div className="col-md-12">
+                                            <hr/>
+                                            <div className="my-carousel">
+                                                {!!this.state.images
+                                                    ? (<ImageGallery
+                                                        items={this.state.images}
+                                                        autoPlay={true}
+                                                        lazyLoad={true}
+                                                        slideInterval={5000}
+                                                        disableSwipe={true}
+                                                        showFullscreenButton={false}
+                                                        showPlayButton={false}/>)
+                                                    : (<ImageGallery
+                                                        items={[{
+                                                            original: '/images/no_car_photo.png'
+                                                        }
+                                                    ]}
+                                                        showThumbnails={false}
+                                                        disableSwipe={true}
+                                                        showFullscreenButton={false}
+                                                        showPlayButton={false}/>)
+}
                                             </div>
                                         </div>
-                                    )
+                                    </div>
+                                    {/* end of image slider row*/}
+
+                                    <CarIconDetails car={car}/> {(car.features || car.safety || car.comfort) && (<ExtraDetails car={car}/>)
 }
-                                </div>
-                                <div className="col-md-4">
-                                    price and sidebars
-                                </div>
+                                </div>{/* end of left col */}
+                                <div className="col-lg-4">
+                                    <CarTableDetails car={car} />
+                                </div>{/* end of right col */}
                             </div>
                         </div>
                     )

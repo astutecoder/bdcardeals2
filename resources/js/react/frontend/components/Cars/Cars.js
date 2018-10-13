@@ -5,7 +5,6 @@ import {getAllCars, setSlider, getAllBrands, getAllBodyTypes} from '../../action
 
 import styles from './Cars.scss'
 
-import {Link} from 'react-router-dom';
 import Search from '../Search/Search';
 import CarListItem from '../CarListItem/CarListItem';
 import Breadcrumb from '../Breadcrumb/Breadcrumb';
@@ -19,6 +18,7 @@ class Cars extends Component {
     }
 
     componentDidMount() {
+        window.scrollTo(0,0);
         if (!this.props.cars.length) {
             this
                 .props
@@ -96,7 +96,7 @@ class Cars extends Component {
                                     brand="Brand"
                                     bodyType="Type"
                                     model="Model"
-                                    carCondition="Car Condition"
+                                    carCondition="Status"
                                     year="Year"
                                     priceRange="Price Range"
                                     searchClass="mt-3 p-0 w-100"
@@ -128,7 +128,7 @@ class Cars extends Component {
                                         brand="Brand"
                                         bodyType="Type"
                                         model="Model"
-                                        carCondition="Car Condition"
+                                        carCondition="Status"
                                         year="Year"
                                         priceRange="Price Range"
                                         searchClass="p-0 w-100"

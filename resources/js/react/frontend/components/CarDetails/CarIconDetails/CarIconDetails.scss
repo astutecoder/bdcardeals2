@@ -1,0 +1,59 @@
+@import '../../../../../../sass/variables';
+
+.icon_info__container {
+    display: flex;
+    flex-direction: column;
+    @media (min-width: 575px){
+        flex-direction: row;
+    }
+    .icon_info__wrap {
+        border: 1px solid #eaeaea;
+        flex: 1;
+        &:hover{
+            background: #eaeaea;
+            .icon_info__details-icon{
+                background: $red !important;
+            }
+        }
+        // margin-bottom: 10px;
+        @media (min-width: 575px) {
+            border-right: none;
+            &:last-child {
+                border-right: 1px solid #eaeaea;
+            }
+        }
+        .icon_info__head {
+            background: #eaeaea;
+            order: 1;
+            padding: 10px 5px;
+            text-align: center;
+        }
+        .icon_info__details {
+            padding: 10px;
+            font-weight: 700;
+            text-transform: capitalize;
+            white-space: nowrap;
+            span {
+                display: block;
+                font-size: .8em;
+                text-align: center;
+                &.icon_info__details-icon {
+                    background: $lightblack;
+                    border-radius: 50%;
+                    font-size: 1.5rem;
+                    margin: 0 auto 5px;
+                    position: relative;
+                    padding-top: 1.6em;
+                    width: 1.6em;
+                    i {
+                        color: white;
+                        left: 50%;
+                        position: absolute;
+                        top: 50%;
+                        transform: translate(-50%,-50%);
+                    }
+                }
+            }
+        }
+    }
+}

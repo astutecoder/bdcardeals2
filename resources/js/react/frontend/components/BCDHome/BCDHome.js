@@ -8,6 +8,7 @@ import Search from '../Search/Search'
 class BCDHome extends Component {
 
     componentWillMount() {
+        window.scrollTo(0,0);
         if (!this.props.cars.length) {
             this
                 .props

@@ -1,0 +1,56 @@
+@import '../../../../../../sass/variables';
+
+.price_wrap{
+    background: $red;
+    color: white;
+    padding: 10px 5px;
+    text-align: center;
+    width: 100%;
+    @media (max-width: 991px){
+        margin-top: 40px;
+        position: relative;
+        &::before{
+            border-top: 1px solid #eaeaea;
+            content: '';
+            clear: both;
+            display: block;
+            left: 0;
+            padding-bottom: 20px;
+            position: absolute;
+            top: -20px;
+            width: 100%;
+        }
+    }
+    .price__main{
+        display: inline-block;
+        font-weight: 600;
+        font-size: 1.8rem;
+    }
+    .price__offer{
+        display: inline-block;
+        font-size: 1.2rem;
+        margin-left: 10px;
+    }
+}
+
+.car_info{
+    background: #eaeaea;
+    padding: 20px;
+    .car_info__item{
+        border-bottom: 1px solid darken(#eaeaea, 5%);
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        text-transform: capitalize;
+        &:last-child{
+            border-bottom: none;
+        }
+        .car_info__title{
+            color: lighten($lightblack, 10%)
+        }
+        .car_info__data{
+            color: lighten($lightblack,10%);
+            font-weight: 600;
+        }
+    }
+}

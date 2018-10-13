@@ -8,7 +8,7 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 @import '~nouislider/distribute/nouislider.min.css';
-@import "node_modules/react-image-gallery/styles/scss/image-gallery.scss";
+@import "~react-image-gallery/styles/scss/image-gallery.scss";
 
 body {
     font-size: 14px;
@@ -77,14 +77,43 @@ body {
     }
 }
 .image-gallery-content {
-  &.fullscreen {
-    top: 50%;
-    transform: translateY(-50%);
+    &.fullscreen {
+        top: 50%;
+        transform: translateY(-50%);
         @media (min-width: 1024px) {
             height: 100%;
             .image-gallery-slides {
                 height: 60% !important;
             }
         }
+    }
+}
+.image-gallery-thumbnail.active {
+    border: 2px solid $red;
+}
+.image-gallery-right-nav::before {
+    content: '\f054';
+    font-family: 'FontAwesome', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    transform: scaleY(1.5);
+}
+.image-gallery-left-nav::before {
+    content: '\f053';
+    font-family: 'FontAwesome', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    transform: scaleY(1.5);
+}
+
+.image-gallery-fullscreen-button,
+.image-gallery-left-nav,
+.image-gallery-play-button,
+.image-gallery-right-nav {
+    &:before {
+        text-shadow: 0 2px 2px rgba(0,0,0,0.4);
+    }
+    &:hover::before {
+        color: $red;
     }
 }

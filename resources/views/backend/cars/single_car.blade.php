@@ -170,17 +170,17 @@
 
                                     @if(!!$car->features)
                                         <h4 class="title">Features</h4>
-                                        <p>{{ $car->features }}</p>
+                                        <p>{!! nl2br(e($car->features)) !!}</p>
                                     @endif
                                         <hr class="seperator">
                                     @if(!!$car->safety)
                                         <h4 class="title">Safety</h4>
-                                        <p>{{ $car->safety }}</p>
+                                        <p>{!! nl2br(e($car->safety)) !!}</p>
                                     @endif
                                         <hr class="seperator">
                                     @if(!!$car->comfort)
                                         <h4 class="title">Comfort</h4>
-                                        <p>{{ $car->comfort }}</p>
+                                        <p>{!! nl2br(e($car->comfort)) !!}</p>
                                     @endif
                                 </div>
                             </div>

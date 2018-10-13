@@ -11074,3 +11074,39 @@ body button:focus {
   }
 }
 
+.image-gallery-thumbnail.active {
+  border: 2px solid #e3342f;
+}
+
+.image-gallery-right-nav::before {
+  content: '\F054';
+  font-family: 'FontAwesome', sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+  -webkit-transform: scaleY(1.5);
+          transform: scaleY(1.5);
+}
+
+.image-gallery-left-nav::before {
+  content: '\F053';
+  font-family: 'FontAwesome', sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+  -webkit-transform: scaleY(1.5);
+          transform: scaleY(1.5);
+}
+
+.image-gallery-fullscreen-button:before,
+.image-gallery-left-nav:before,
+.image-gallery-play-button:before,
+.image-gallery-right-nav:before {
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+}
+
+.image-gallery-fullscreen-button:hover::before,
+.image-gallery-left-nav:hover::before,
+.image-gallery-play-button:hover::before,
+.image-gallery-right-nav:hover::before {
+  color: #e3342f;
+}
+
