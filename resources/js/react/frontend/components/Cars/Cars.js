@@ -114,7 +114,7 @@ class Cars extends Component {
                             <div className="col-lg-8">
                                 {(this.state.carsToShow.length < 1)
                                     ? <h3 className="text-danger">Sorry! No cars match with search</h3>
-                                    : this.state.carsToShow.map(car => (<CarListItem key={car.id} car={car}/>))
+                                    : this.state.carsToShow.map(car => (<CarListItem key={car.id} car={car} cars={[...this.props.cars]}/>))
 }
                             </div>
                             {!this.state.is_mobile && (

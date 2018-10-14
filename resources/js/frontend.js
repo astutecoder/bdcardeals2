@@ -41,7 +41,10 @@ export default class FrontEnd extends Component {
                                 <Route path='/' exact component={BCDHome}/>
                                 <Route path='/cars' exact component={Cars}/>
                                 <Route path='/process-search' exact component={ProcessSearch}/>
-                                <Route path='/cars/:car/:id' exact component={CarDetails}/>
+                                {/* <Route path='/cars/:car/:id' component={CarDetails}/> */}
+                                <Route path='/cars/:car/:id' render={(props)=>(
+                                    <CarDetails key={props.match.params.id} {...props} />
+                                )}/>
                                 <Redirect to='/' />
                             </Switch>
                         </div>

@@ -8,7 +8,7 @@ import styles from './Search.scss'
 import {Redirect} from 'react-router-dom';
 import wNumb from 'wnumb'
 
-class Search extends Component {
+export default class Search extends Component {
 
     constructor(props) {
         super(props);
@@ -20,9 +20,6 @@ class Search extends Component {
     }
 
     componentDidMount() {
-        // this
-        //     .props
-        //     .getAllCars();
         this.slideRange();
         if (this.props.location.state) {
             this.setState({
@@ -35,7 +32,6 @@ class Search extends Component {
 
     componentDidUpdate(prevProps, prevState) {
         if (this.state.show_make && prevState.show_make !== this.state.show_make) {
-            console.log('slide happening');
             this.slideRange();
         }
     }
@@ -50,17 +46,17 @@ class Search extends Component {
         return yearArr;
     }
     slideRange = () => {
-        const cFormat = wNumb({thousand:',', prefix: '৳'});
+        const cFormat = wNumb({thousand: ',', prefix: '৳'});
         const slider = $('#price_range')[0];
         let minSpan = document.querySelectorAll('#min'),
             maxSpan = document.querySelectorAll('#max'),
-            initMinVal = (!!this.props.location.state)
-                ? (this.props.location.state.filters.price.min
+            initMinVal = (!!this.props.location.search && !!this.props.location.state)
+                ? (this.props.location.state.filters.price && this.props.location.state.filters.price.min
                     ? this.props.location.state.filters.price.min
                     : 0)
                 : 1500000,
-            initMaxVal = (!!this.props.location.state)
-                ? (this.props.location.state.filters.price.max
+            initMaxVal = (!!this.props.location.search && !!this.props.location.state)
+                ? (this.props.location.state.filters.price && this.props.location.state.filters.price.max
                     ? this.props.location.state.filters.price.max
                     : 4600000)
                 : 5600000;
@@ -143,6 +139,10 @@ class Search extends Component {
         this.setState({redirect: true})
     }
 
+    clearSearch = () => {
+        this.setState({filters: {}, redirect: true})
+    }
+
     render() {
         const {redirect} = this.state;
         if (redirect) {
@@ -150,7 +150,9 @@ class Search extends Component {
                 to={{
                 pathname: '/process-search',
                 state: {
-                    filters: {...this.state.filters},
+                    filters: {
+                        ...this.state.filters
+                    },
                     cars: [...this.props.cars]
                 }
             }}/>);
@@ -294,6 +296,11 @@ class Search extends Component {
                         : searchByName()}
                     <div className={this.props.btnContainerClass}>
                         <button className="btn btn-lg btn-danger rounded-0" onClick={this.handleSearch}>Search</button>
+                        {this.props.location.search.length > 1 && (
+                            <button
+                                className="btn btn-lg btn-success rounded-0 ml-3"
+                                onClick={this.clearSearch}>Clear</button>
+                        )}
                     </div>
                 </div>
             </div>
@@ -301,6 +308,5 @@ class Search extends Component {
     }
 }
 
-const mapPropstoState = (state) => ({cars: state.cars.cars})
-
-export default connect(mapPropstoState, {getAllCars})(Search);
+// const mapPropstoState = (state) => ({cars: state.cars.cars}) export default
+// connect(mapPropstoState, {getAllCars})(Search);

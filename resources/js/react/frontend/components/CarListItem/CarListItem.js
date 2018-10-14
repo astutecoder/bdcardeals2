@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import styles from './CarListItem.scss'
 import wNumb from 'wnumb'
+import PriceBox from '../Helpers/PriceBox/PriceBox';
+import CarTableHighlight from '../Helpers/CarTableHighlight/CarTableHighlight';
 
 export default class CarListItem extends Component {
     constructor(props) {
@@ -35,7 +37,7 @@ export default class CarListItem extends Component {
             ...this.props.car
         };
         const src = (this.state.img_folder_name) ? `/storage/car_albums/${this.state.img_folder_name}/${this.state.img_file_name}` : '/images/no_car_photo.png';
-        const path = `cars/${car.brands.brand_name.split(' ').join('-')}-${car.model_no.split(' ').join('-')}/${car.id}`
+        const path = `/cars/${car.brands.brand_name.split(' ').join('-')}-${car.model_no.split(' ').join('-')}/${car.id}`
 
         return (
             <div className={styles.carlist__item}>
@@ -60,7 +62,7 @@ export default class CarListItem extends Component {
                                     <h4 className={styles.title}>
                                         <Link to={{
                                             pathname: path,
-                                            state:{ car: car}
+                                            state:{ car: car, cars: [...this.props.cars]}
                                         }}>
                                             {(car.title)
                                                 ? car.title
@@ -72,14 +74,15 @@ export default class CarListItem extends Component {
                                 </div>
                             </div>
                             <div className="col-md-6 text-md-right">
-                                <span className={styles.btn__price}>
+                                {/* <span className={styles.btn__price}>
                                     <strong className={styles.btn__price__main_price}>
                                         {cFormat.to(car.price)}</strong>
                                     {!!car.offer_price && <small className={styles.btn__price__offer_price}>
                                         {cFormat.to(car.offer_price)}</small>
 }
                                     {!!car.is_negotiable_price && <span className={styles.btn__price__is_negotiable}>Negotiable Price</span>}
-                                </span>
+                                </span> */}
+                                <PriceBox car={car} show_negotiable={true} />
                             </div>
                         </div>
 
@@ -87,59 +90,8 @@ export default class CarListItem extends Component {
                             <div className="col-md-12">
                                 <h5>Highlights</h5>
                             </div>
-
-                            <div className="d-none d-md-block">
-                                <div className="col-md-12">
-                                    <div className="table-responsive-md">
-                                        <table className="table table-bordered">
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <span className="text-muted text-capitalize">
-                                                            <strong>Mileage:
-                                                            </strong>
-                                                            {` ${car.mileage}`}</span>
-                                                    </td>
-                                                    <td>
-                                                        <span className="text-muted text-capitalize">
-                                                            <strong>Model:
-                                                            </strong>
-                                                            {` ${car.model_no}`}</span>
-                                                    </td>
-                                                    <td>
-                                                        <span className="text-muted text-capitalize">
-                                                            <strong>Transmission:
-                                                            </strong>
-                                                            {` ${car.transmission}`}</span>
-                                                    </td>
-                                                    <td>
-                                                        <span className="text-muted text-capitalize">
-                                                            <strong>Engine:
-                                                            </strong>
-                                                            {` ${car.engine}`}</span>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="col-sm-12 d-md-none d-xs-block ">
-                                <div className="row">
-                                    <div className="col-sm-12">
-                                        <span className="text-muted">Mileage: {car.mileage}</span>
-                                    </div>
-                                    <div className="col-sm-12">
-                                        <span className="text-muted">Model: {car.model_no}</span>
-                                    </div>
-                                    <div className="col-sm-12">
-                                        <span className="text-muted">Transmission: {car.transmission}</span>
-                                    </div>
-                                    <div className="col-sm-12">
-                                        <span className="text-muted">Engine: {car.engine}</span>
-                                    </div>
-                                </div>
+                            <div className="col-md-12">
+                                <CarTableHighlight car={car} />
                             </div>
                         </div>
 

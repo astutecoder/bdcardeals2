@@ -1,0 +1,54 @@
+@import '../../../../../sass/variables';
+
+.car_box__container {
+    // box-sizing: border-box;
+    // display: flex;
+    // flex-wrap: wrap;
+    // justify-content: space-between;
+    margin: 15px -10px;
+    .car_box {
+        padding: 10px;
+        // flex: 1;
+        .car_box__title {
+            color: $lightblack;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            a {
+                color: $lightblack;
+                text-decoration: none;
+                &:hover {
+                    color: $red;
+                }
+            }
+        }
+        .car_box__img_container {
+            height: 250px;
+            position: relative;
+            width: 100%;
+            img {
+                height: 100%;
+                object-fit: cover;
+                width: 100%;
+            }
+            .car_box__price {
+                bottom: 10%;
+                right: 5%;
+                position: absolute;
+            }
+        }
+        .car_box__highlights {
+            margin-top: 10px;
+        }
+    }
+    .slide_control{
+        text-align: center;
+        span{
+            background: $lightblack;
+            color: white;
+            font-size: 1.2rem;
+            margin: 10px;
+            padding: 10px 15px;
+        }
+    }
+}

@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {Redirect} from 'react-router-dom'
+import uuidv1 from 'uuid/v1'
 
 export default class ProcessSearch extends Component {
 
@@ -7,7 +8,8 @@ export default class ProcessSearch extends Component {
         super(props);
         this.state = {
             carsToDisplay: [],
-            filters: {}
+            filters: {},
+            search_q: '',
         }
     }
 
@@ -46,6 +48,8 @@ export default class ProcessSearch extends Component {
         let cars = [...this.props.location.state.cars];
 
         for (let key in filterArray) {
+            let q = (this.state.search_q.length > 1) ? '&' : '';
+
             if (key == 'price') {
                 const min = filterArray['price']['min']
                     ? filterArray['price']['min']
@@ -57,7 +61,8 @@ export default class ProcessSearch extends Component {
                 });
 
                 this.setState({
-                    carsToDisplay: [...cars]
+                    carsToDisplay: [...cars],
+                    search_q: this.state.search_q+''+q
                 })
             } else {
                 if (!!filterArray[key]) {
@@ -69,6 +74,11 @@ export default class ProcessSearch extends Component {
                     carsToDisplay: [...cars]
                 })
             }
+        }
+        if(cars.length !== this.props.location.state.cars.length){
+            this.setState({
+                search_q: `?q=${uuidv1()}`
+            })
         }
     }
 
@@ -82,7 +92,8 @@ export default class ProcessSearch extends Component {
                     filters: {
                         ...this.state.filters
                     }
-                }
+                },
+                search: (this.state.search_q.length > 1) ? this.state.search_q : ''
             }}/>);
         }
         return (

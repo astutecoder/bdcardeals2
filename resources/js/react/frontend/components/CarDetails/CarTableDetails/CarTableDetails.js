@@ -3,11 +3,12 @@ import React, {Component} from 'react'
 import styles from './CarTableDetails.scss'
 import wNumb from 'wnumb'
 
-
 export default class CarTableDetails extends Component {
     render() {
         const cFormat = wNumb({thousand: ',', prefix: '৳'});
-        const car = {...this.props.car}
+        const car = {
+            ...this.props.car
+        }
         return (
             <div className="row">
                 <div className="col-md-12">
@@ -18,6 +19,11 @@ export default class CarTableDetails extends Component {
                         )}
                     </div>
                     <div className={styles.car_info}>
+                        <div className={styles.car_info__item}>
+                            <span className={styles.car_info__title}>Status</span>
+                            <span className={styles.car_info__data}>{car.car_condition}</span>
+                        </div>
+                        
                         <div className={styles.car_info__item}>
                             <span className={styles.car_info__title}>Type</span>
                             <span className={styles.car_info__data}>{car.body_types.body_type}</span>
@@ -65,6 +71,20 @@ export default class CarTableDetails extends Component {
                                             )
                                         }
                                     })}</span>
+                        </div>
+
+                        {car.doors && (
+                            <div className={styles.car_info__item}>
+                                <span className={styles.car_info__title}>Doors</span>
+                                <span className={styles.car_info__data}>{car.doors}</span>
+                            </div>
+                        )}
+
+                        <div className={styles.car_info__item}>
+                            <span className={styles.car_info__title}>Negotiable</span>
+                            <span className={styles.car_info__data}>{car.is_negotiable_price
+                                    ? 'Yes'
+                                    : 'No'}</span>
                         </div>
 
                         <div className={styles.car_info__item}>

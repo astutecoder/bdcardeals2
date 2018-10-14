@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {getSingleCar} from '../../actions/actions'
+import {getAllCars, getSingleCar} from '../../actions/actions'
 import ImageGallery from 'react-image-gallery'
 
 import SectionHead from '../SectionHead/SectionHead';
@@ -10,13 +10,16 @@ import CarIconDetails from './CarIconDetails/CarIconDetails';
 import CarTableDetails from './CarTableDetails/CarTableDetails';
 
 import styles from './CarDetails.scss'
+import CarBoxed from '../CarBoxed/CarBoxed';
+import SubSectionHead from '../Helpers/SubSectionHead/SubSectionHead';
 
 class CarDetails extends Component {
     constructor(props) {
         super(props);
         this.state = {
             error: '',
-            car: {}
+            car: {},
+            cars: []
         }
     }
     componentDidMount() {
@@ -27,11 +30,15 @@ class CarDetails extends Component {
             this
                 .props
                 .getSingleCar(car_id);
+            this
+                .props
+                .getAllCars();
         } else {
             this.setState({
                 car: {
                     ...this.props.location.state.car
-                }
+                },
+                cars: [...this.props.location.state.cars]
             })
         }
     }
@@ -40,12 +47,29 @@ class CarDetails extends Component {
         if (!!this.props.car.error && this.state.error !== this.props.car.error) {
             this.setState({error: this.props.car.error})
         }
-        if (prevProps.car.id !== this.props.car.id) {
+        // if ((prevProps.car.id !== this.props.car.id) && !this.state.car.id) {
+        //     this.setState({
+        //         car: {
+        //             ...this.props.car
+        //         }
+        //     });
+        // }
+        // if ((prevProps.cars.length !== this.props.cars.length )&& !this.state.cars.length) {
+        //     this.setState({
+        //         cars: [...this.props.cars]
+        //     })
+        // }
+        if (this.props.car.id && !this.state.car.id) {
             this.setState({
                 car: {
                     ...this.props.car
                 }
             });
+        }
+        if (this.props.cars.length && !this.state.cars.length) {
+            this.setState({
+                cars: [...this.props.cars]
+            })
         }
         if (this.state.car.id && this.state.car.photos.length > 0 && !this.state.images) {
             let images = [];
@@ -58,9 +82,8 @@ class CarDetails extends Component {
     }
 
     render() {
-        const car = {
-            ...this.state.car
-        };
+        const car = (this.props.location.state)? {...this.props.location.state.car} : {...this.props.car};
+        const cars = (this.props.location.state)? [...this.props.location.state.cars] : [...this.state.cars];
         const breadcrumb_links = [
             {
                 pathname: '/cars',
@@ -110,6 +133,7 @@ class CarDetails extends Component {
                                                             original: '/images/no_car_photo.png'
                                                         }
                                                     ]}
+                                                        autoPlay={true}
                                                         showThumbnails={false}
                                                         disableSwipe={true}
                                                         showFullscreenButton={false}
@@ -124,8 +148,21 @@ class CarDetails extends Component {
 }
                                 </div>{/* end of left col */}
                                 <div className="col-lg-4">
-                                    <CarTableDetails car={car} />
+                                    <CarTableDetails car={car}/>
                                 </div>{/* end of right col */}
+                            </div>
+
+                            {/* related cars row */}
+                            <div className="row">
+                                <SubSectionHead title="related cars" />
+                                <div className="col-md-12">
+                                    <CarBoxed
+                                        filter={{
+                                        brands_id: car.brands_id,
+                                        car_id: car.id
+                                    }}
+                                        cars={cars}/>
+                                </div>
                             </div>
                         </div>
                     )
@@ -143,5 +180,10 @@ class CarDetails extends Component {
         )
     }
 }
-const mapPropsToState = (state) => ({car: state.cars.singleCar})
-export default connect(mapPropsToState, {getSingleCar})(CarDetails);
+const mapPropsToState = (state) => ({
+    cars: [...state.cars.cars],
+    car: {
+        ...state.cars.singleCar
+    }
+})
+export default connect(mapPropsToState, {getAllCars, getSingleCar})(CarDetails);

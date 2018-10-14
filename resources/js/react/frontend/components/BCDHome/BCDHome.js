@@ -4,6 +4,8 @@ import {getAllCars, setSlider, getAllBrands, getAllBodyTypes} from '../../action
 
 import Slider from '../Slider/Slider'
 import Search from '../Search/Search'
+import CarBoxed from '../CarBoxed/CarBoxed';
+import SubSectionHead from '../Helpers/SubSectionHead/SubSectionHead';
 
 class BCDHome extends Component {
 
@@ -42,6 +44,15 @@ class BCDHome extends Component {
                 <Search
                     {...this.props}
                     flexClass="d-flex flex-column flex-md-row justify-content-between align-items-md-center"/>
+
+                <div className="container">
+                    <div className="row">
+                        <SubSectionHead title='featured cars' />
+                        <div className="col-md-12">
+                            <CarBoxed filter={{is_featured: 1}} cars={[...this.props.cars]} />
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }

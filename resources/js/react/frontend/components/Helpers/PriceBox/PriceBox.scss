@@ -1,0 +1,34 @@
+@import '../../../../../../sass/variables';
+
+.btn__price{
+    background: $red;
+    color: white;
+    padding: 10px 15px;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    .btn__price__main_price{
+        font-weight: 500; 
+    }
+    .btn__price__offer_price{
+        margin-left: 5px;
+    }
+    .btn__price__is_negotiable{
+        color: $lightblack;
+        font-family: 'Nunito', sans-serif;
+        font-size: 10px;
+        font-weight: 400;
+        left: 50%;
+        position: absolute;
+        text-align: center;
+        top: 100%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        @media (max-width:767px){
+            left: 100%;
+            margin-left: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+}
