@@ -62221,6 +62221,10 @@ var _CarTableHighlight = __webpack_require__(83);
 
 var _CarTableHighlight2 = _interopRequireDefault(_CarTableHighlight);
 
+var _SubSectionHead = __webpack_require__(87);
+
+var _SubSectionHead2 = _interopRequireDefault(_SubSectionHead);
+
 var _reactSlick = __webpack_require__(168);
 
 var _reactSlick2 = _interopRequireDefault(_reactSlick);
@@ -62246,12 +62250,17 @@ var CarBoxed = function (_Component) {
         _this.filterCars = function (filters) {
             var filteredCars = _this.props.cars.filter(function (car) {
                 if (filters.hasOwnProperty('brands_id')) {
-                    return car.brands_id === filters.brands_id && car.id !== filters.car_id;
+                    return car.brands_id === filters.brands_id && car.id !== filters.car.id;
                 }
                 if (filters.hasOwnProperty('is_featured')) {
                     return car.is_featured === filters.is_featured;
                 }
             });
+            if (!filteredCars.length && filters.hasOwnProperty('brands_id')) {
+                filteredCars = _this.props.cars.filter(function (car) {
+                    return car.year === filters.car.year;
+                });
+            }
             _this.setState({ showingCars: filteredCars });
         };
 
@@ -62287,6 +62296,7 @@ var CarBoxed = function (_Component) {
             var _this2 = this;
 
             var cars = [].concat(_toConsumableArray(this.state.showingCars));
+            var title = this.props.filter.hasOwnProperty('brands_id') ? 'related cars' : 'featured cars';
             var options = {
                 autoplay: true,
                 speed: 500,
@@ -62319,79 +62329,100 @@ var CarBoxed = function (_Component) {
                 }]
             };
             return _react2.default.createElement(
-                'div',
-                { id: 'carboxed', className: _CarBoxed2.default.car_box__container },
-                _react2.default.createElement(
-                    _reactSlick2.default,
-                    _extends({ ref: function ref(c) {
-                            return _this2.slider = c;
-                        } }, options),
-                    cars.map(function (car) {
-
-                        var file_name = '';
-                        var folder_name = '';
-                        if (car.photos.length) {
-                            car.photos.map(function (photo) {
-                                if (photo.is_featured === 1) {
-                                    file_name = photo.file_name;
-                                    folder_name = car.albums.folder_name;
-                                }
-                            });
-                        }
-                        var src = folder_name ? '/storage/car_albums/' + folder_name + '/' + file_name : '/images/no_car_photo.png';
-                        var path = '/cars/' + car.brands.brand_name.split(' ').join('-') + '-' + car.model_no.split(' ').join('-') + '/' + car.id;
-
-                        return _react2.default.createElement(
+                _react2.default.Fragment,
+                null,
+                cars.length && _react2.default.createElement(
+                    'section',
+                    { className: ["section-wrapper", this.props.classes].join(' ') },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'container' },
+                        _react2.default.createElement(
                             'div',
-                            { className: _CarBoxed2.default.car_box, key: car.id },
+                            { className: 'row' },
+                            _react2.default.createElement(_SubSectionHead2.default, { title: title }),
                             _react2.default.createElement(
-                                'h3',
-                                { className: _CarBoxed2.default.car_box__title },
+                                'div',
+                                { className: 'col-md-12' },
                                 _react2.default.createElement(
-                                    _reactRouterDom.Link,
-                                    {
-                                        to: {
-                                            pathname: path,
-                                            state: {
-                                                car: _extends({}, car),
-                                                cars: [].concat(_toConsumableArray(_this2.props.cars))
+                                    'div',
+                                    { id: 'carboxed', className: _CarBoxed2.default.car_box__container },
+                                    _react2.default.createElement(
+                                        _reactSlick2.default,
+                                        _extends({ ref: function ref(c) {
+                                                return _this2.slider = c;
+                                            } }, options),
+                                        cars.map(function (car) {
+
+                                            var file_name = '';
+                                            var folder_name = '';
+                                            if (car.photos.length) {
+                                                car.photos.map(function (photo) {
+                                                    if (photo.is_featured === 1) {
+                                                        file_name = photo.file_name;
+                                                        folder_name = car.albums.folder_name;
+                                                    }
+                                                });
                                             }
-                                        } },
-                                    car.title ? car.title : car.brands.brand_name + ' ' + car.model_no + ' ' + car.year
+                                            var src = folder_name ? '/storage/car_albums/' + folder_name + '/' + file_name : '/images/no_car_photo.png';
+                                            var path = '/cars/' + car.brands.brand_name.split(' ').join('-') + '-' + car.model_no.split(' ').join('-') + '/' + car.id;
+
+                                            return _react2.default.createElement(
+                                                'div',
+                                                { className: _CarBoxed2.default.car_box, key: car.id },
+                                                _react2.default.createElement(
+                                                    'h3',
+                                                    { className: _CarBoxed2.default.car_box__title },
+                                                    _react2.default.createElement(
+                                                        _reactRouterDom.Link,
+                                                        {
+                                                            to: {
+                                                                pathname: path,
+                                                                state: {
+                                                                    car: _extends({}, car),
+                                                                    cars: [].concat(_toConsumableArray(_this2.props.cars))
+                                                                }
+                                                            } },
+                                                        car.title ? car.title : car.brands.brand_name + ' ' + car.model_no + ' ' + car.year
+                                                    )
+                                                ),
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: _CarBoxed2.default.car_box__img_container },
+                                                    _react2.default.createElement('img', {
+                                                        src: src,
+                                                        alt: car.title ? car.title : car.brands.brand_name + ' ' + car.model_no + ' ' + car.year + "'s image" }),
+                                                    _react2.default.createElement(
+                                                        'span',
+                                                        { className: _CarBoxed2.default.car_box__price },
+                                                        _react2.default.createElement(_PriceBox2.default, { car: car })
+                                                    )
+                                                ),
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: _CarBoxed2.default.car_box__highlights },
+                                                    _react2.default.createElement(_CarTableHighlight2.default, { car: car, list_view: 'hide' })
+                                                )
+                                            );
+                                        })
+                                    ),
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: _CarBoxed2.default.slide_control },
+                                        _react2.default.createElement(
+                                            'span',
+                                            { className: _CarBoxed2.default.slide_control__left, onClick: this.slide_prev },
+                                            _react2.default.createElement('i', { className: 'fa fa-chevron-left' })
+                                        ),
+                                        _react2.default.createElement(
+                                            'span',
+                                            { className: _CarBoxed2.default.slide_control__right, onClick: this.slide_next },
+                                            _react2.default.createElement('i', { className: 'fa fa-chevron-right' })
+                                        )
+                                    )
                                 )
-                            ),
-                            _react2.default.createElement(
-                                'div',
-                                { className: _CarBoxed2.default.car_box__img_container },
-                                _react2.default.createElement('img', {
-                                    src: src,
-                                    alt: car.title ? car.title : car.brands.brand_name + ' ' + car.model_no + ' ' + car.year + "'s image" }),
-                                _react2.default.createElement(
-                                    'span',
-                                    { className: _CarBoxed2.default.car_box__price },
-                                    _react2.default.createElement(_PriceBox2.default, { car: car })
-                                )
-                            ),
-                            _react2.default.createElement(
-                                'div',
-                                { className: _CarBoxed2.default.car_box__highlights },
-                                _react2.default.createElement(_CarTableHighlight2.default, { car: car, list_view: 'hide' })
                             )
-                        );
-                    })
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: _CarBoxed2.default.slide_control },
-                    _react2.default.createElement(
-                        'span',
-                        { className: _CarBoxed2.default.slide_control__left, onClick: this.slide_prev },
-                        _react2.default.createElement('i', { className: 'fa fa-chevron-left' })
-                    ),
-                    _react2.default.createElement(
-                        'span',
-                        { className: _CarBoxed2.default.slide_control__right, onClick: this.slide_next },
-                        _react2.default.createElement('i', { className: 'fa fa-chevron-right' })
+                        )
                     )
                 )
             );
@@ -68310,28 +68341,11 @@ var BCDHome = function (_Component) {
                 _react2.default.createElement(_Slider2.default, { sliders: this.props.sliders }),
                 _react2.default.createElement(_Search2.default, _extends({}, this.props, {
                     flexClass: 'd-flex flex-column flex-md-row justify-content-between align-items-md-center' })),
-                _react2.default.createElement(
-                    'section',
-                    { className: 'section-wrapper' },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'container' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'row' },
-                            _react2.default.createElement(_SubSectionHead2.default, { title: 'featured cars' }),
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'col-md-12' },
-                                _react2.default.createElement(_CarBoxed2.default, {
-                                    filter: {
-                                        is_featured: 1
-                                    },
-                                    cars: [].concat(_toConsumableArray(this.props.cars)) })
-                            )
-                        )
-                    )
-                ),
+                _react2.default.createElement(_CarBoxed2.default, {
+                    filter: {
+                        is_featured: 1
+                    },
+                    cars: [].concat(_toConsumableArray(this.props.cars)) }),
                 this.state.recentCars.length > 0 && _react2.default.createElement(
                     'section',
                     { className: ["section-wrapper", _BCDHome2.default.recent_car_container].join(' ') },
@@ -71099,7 +71113,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, ".CarBoxed__car_box__container___2aZKt05WErDIhDMUw5nvQP {\n  margin: 15px -10px; }\n  .CarBoxed__car_box__container___2aZKt05WErDIhDMUw5nvQP .CarBoxed__car_box___34DCHTG8HFpy7kuCe0VSc_ {\n    padding: 10px; }\n    .CarBoxed__car_box__container___2aZKt05WErDIhDMUw5nvQP .CarBoxed__car_box___34DCHTG8HFpy7kuCe0VSc_ .CarBoxed__car_box__title___3adnSEN-JehiB7qlPzh1jV {\n      color: #2b343b;\n      font-size: 1.2rem;\n      font-weight: 600;\n      text-transform: uppercase; }\n      .CarBoxed__car_box__container___2aZKt05WErDIhDMUw5nvQP .CarBoxed__car_box___34DCHTG8HFpy7kuCe0VSc_ .CarBoxed__car_box__title___3adnSEN-JehiB7qlPzh1jV a {\n        color: #2b343b;\n        text-decoration: none; }\n        .CarBoxed__car_box__container___2aZKt05WErDIhDMUw5nvQP .CarBoxed__car_box___34DCHTG8HFpy7kuCe0VSc_ .CarBoxed__car_box__title___3adnSEN-JehiB7qlPzh1jV a:hover {\n          color: #e3342f; }\n    .CarBoxed__car_box__container___2aZKt05WErDIhDMUw5nvQP .CarBoxed__car_box___34DCHTG8HFpy7kuCe0VSc_ .CarBoxed__car_box__img_container___xOqq6TqyqG72GOdLfh-FE {\n      height: 250px;\n      position: relative;\n      width: 100%; }\n      .CarBoxed__car_box__container___2aZKt05WErDIhDMUw5nvQP .CarBoxed__car_box___34DCHTG8HFpy7kuCe0VSc_ .CarBoxed__car_box__img_container___xOqq6TqyqG72GOdLfh-FE img {\n        height: 100%;\n        object-fit: cover;\n        width: 100%; }\n      .CarBoxed__car_box__container___2aZKt05WErDIhDMUw5nvQP .CarBoxed__car_box___34DCHTG8HFpy7kuCe0VSc_ .CarBoxed__car_box__img_container___xOqq6TqyqG72GOdLfh-FE .CarBoxed__car_box__price___moMFQdfXVMDQ85fUPxsa4 {\n        bottom: 10%;\n        right: 5%;\n        position: absolute; }\n    .CarBoxed__car_box__container___2aZKt05WErDIhDMUw5nvQP .CarBoxed__car_box___34DCHTG8HFpy7kuCe0VSc_ .CarBoxed__car_box__highlights___28EHSK_pmPlo58UKq6c0hx {\n      margin-top: 10px; }\n  .CarBoxed__car_box__container___2aZKt05WErDIhDMUw5nvQP .CarBoxed__slide_control___drCyrzCH1go5syu5pbOo6 {\n    text-align: center; }\n    .CarBoxed__car_box__container___2aZKt05WErDIhDMUw5nvQP .CarBoxed__slide_control___drCyrzCH1go5syu5pbOo6 span {\n      border: 1px solid #6c8294;\n      color: #6c8294;\n      font-size: 0.9rem;\n      line-height: 1;\n      margin: 5px;\n      padding: 5px 10px;\n      transition: all .5s ease-in-out; }\n      .CarBoxed__car_box__container___2aZKt05WErDIhDMUw5nvQP .CarBoxed__slide_control___drCyrzCH1go5syu5pbOo6 span:hover {\n        background: #2b343b;\n        color: white; }\n", ""]);
+exports.push([module.i, ".CarBoxed__car_box__container___2aZKt05WErDIhDMUw5nvQP {\n  margin: 0px -10px; }\n  .CarBoxed__car_box__container___2aZKt05WErDIhDMUw5nvQP .CarBoxed__car_box___34DCHTG8HFpy7kuCe0VSc_ {\n    padding: 10px; }\n    .CarBoxed__car_box__container___2aZKt05WErDIhDMUw5nvQP .CarBoxed__car_box___34DCHTG8HFpy7kuCe0VSc_ .CarBoxed__car_box__title___3adnSEN-JehiB7qlPzh1jV {\n      color: #2b343b;\n      font-size: 1.2rem;\n      font-weight: 600;\n      text-transform: uppercase; }\n      .CarBoxed__car_box__container___2aZKt05WErDIhDMUw5nvQP .CarBoxed__car_box___34DCHTG8HFpy7kuCe0VSc_ .CarBoxed__car_box__title___3adnSEN-JehiB7qlPzh1jV a {\n        color: #2b343b;\n        text-decoration: none; }\n        .CarBoxed__car_box__container___2aZKt05WErDIhDMUw5nvQP .CarBoxed__car_box___34DCHTG8HFpy7kuCe0VSc_ .CarBoxed__car_box__title___3adnSEN-JehiB7qlPzh1jV a:hover {\n          color: #e3342f; }\n    .CarBoxed__car_box__container___2aZKt05WErDIhDMUw5nvQP .CarBoxed__car_box___34DCHTG8HFpy7kuCe0VSc_ .CarBoxed__car_box__img_container___xOqq6TqyqG72GOdLfh-FE {\n      height: 250px;\n      position: relative;\n      width: 100%; }\n      .CarBoxed__car_box__container___2aZKt05WErDIhDMUw5nvQP .CarBoxed__car_box___34DCHTG8HFpy7kuCe0VSc_ .CarBoxed__car_box__img_container___xOqq6TqyqG72GOdLfh-FE img {\n        height: 100%;\n        object-fit: cover;\n        width: 100%; }\n      .CarBoxed__car_box__container___2aZKt05WErDIhDMUw5nvQP .CarBoxed__car_box___34DCHTG8HFpy7kuCe0VSc_ .CarBoxed__car_box__img_container___xOqq6TqyqG72GOdLfh-FE .CarBoxed__car_box__price___moMFQdfXVMDQ85fUPxsa4 {\n        bottom: 10%;\n        right: 5%;\n        position: absolute; }\n    .CarBoxed__car_box__container___2aZKt05WErDIhDMUw5nvQP .CarBoxed__car_box___34DCHTG8HFpy7kuCe0VSc_ .CarBoxed__car_box__highlights___28EHSK_pmPlo58UKq6c0hx {\n      margin-top: 10px; }\n  .CarBoxed__car_box__container___2aZKt05WErDIhDMUw5nvQP .CarBoxed__slide_control___drCyrzCH1go5syu5pbOo6 {\n    text-align: center; }\n    .CarBoxed__car_box__container___2aZKt05WErDIhDMUw5nvQP .CarBoxed__slide_control___drCyrzCH1go5syu5pbOo6 span {\n      border: 1px solid #6c8294;\n      color: #6c8294;\n      font-size: 0.9rem;\n      line-height: 1;\n      margin: 5px;\n      padding: 5px 10px;\n      transition: all .5s ease-in-out; }\n      .CarBoxed__car_box__container___2aZKt05WErDIhDMUw5nvQP .CarBoxed__slide_control___drCyrzCH1go5syu5pbOo6 span:hover {\n        background: #2b343b;\n        color: white; }\n", ""]);
 
 // exports
 exports.locals = {
@@ -74392,94 +74406,86 @@ var CarDetails = function (_Component) {
                 _react2.default.createElement(_Breadcrumb2.default, { links: breadcrumb_links }),
                 ' ',
                 this.state.car.id ? _react2.default.createElement(
-                    'section',
-                    { className: 'section-wrapper' },
+                    _react2.default.Fragment,
+                    null,
                     _react2.default.createElement(
-                        'div',
-                        { className: 'container' },
+                        'section',
+                        { className: 'section-wrapper' },
                         _react2.default.createElement(
                             'div',
-                            { className: 'row' },
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'col-lg-8' },
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'row' },
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'col-md-12' },
-                                        _react2.default.createElement(
-                                            'h2',
-                                            { className: _CarDetails2.default.title },
-                                            car.title ? car.title : car.brands.brand_name + ' ' + car.model_no + ' ' + car.year
-                                        ),
-                                        _react2.default.createElement(
-                                            'h5',
-                                            null,
-                                            car.subtitle
-                                        )
-                                    )
-                                ),
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'row' },
-                                    _react2.default.createElement(
-                                        'div',
-                                        { className: 'col-md-12' },
-                                        _react2.default.createElement('hr', null),
-                                        _react2.default.createElement(
-                                            'div',
-                                            { className: 'my-carousel' },
-                                            !!this.state.images ? _react2.default.createElement(_reactImageGallery2.default, {
-                                                items: this.state.images,
-                                                autoPlay: true,
-                                                lazyLoad: true,
-                                                slideInterval: 5000,
-                                                disableSwipe: true,
-                                                showFullscreenButton: false,
-                                                showPlayButton: false }) : _react2.default.createElement(_reactImageGallery2.default, {
-                                                items: [{
-                                                    original: '/images/no_car_photo.png'
-                                                }],
-                                                autoPlay: true,
-                                                showThumbnails: false,
-                                                disableSwipe: true,
-                                                showFullscreenButton: false,
-                                                showPlayButton: false })
-                                        )
-                                    )
-                                ),
-                                _react2.default.createElement(_CarIconDetails2.default, { car: car }),
-                                ' ',
-                                (car.features || car.safety || car.comfort) && _react2.default.createElement(_ExtraDetails2.default, { car: car })
-                            ),
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'col-lg-4' },
-                                _react2.default.createElement(_CarTableDetails2.default, { car: car })
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'section',
-                            { className: 'section-wrapper' },
+                            { className: 'container' },
                             _react2.default.createElement(
                                 'div',
                                 { className: 'row' },
-                                _react2.default.createElement(_SubSectionHead2.default, { title: 'related cars' }),
                                 _react2.default.createElement(
                                     'div',
-                                    { className: 'col-md-12' },
-                                    _react2.default.createElement(_CarBoxed2.default, {
-                                        filter: {
-                                            brands_id: car.brands_id,
-                                            car_id: car.id
-                                        },
-                                        cars: cars })
+                                    { className: 'col-lg-8' },
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'row' },
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'col-md-12' },
+                                            _react2.default.createElement(
+                                                'h2',
+                                                { className: _CarDetails2.default.title },
+                                                car.title ? car.title : car.brands.brand_name + ' ' + car.model_no + ' ' + car.year
+                                            ),
+                                            _react2.default.createElement(
+                                                'h5',
+                                                null,
+                                                car.subtitle
+                                            )
+                                        )
+                                    ),
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'row' },
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'col-md-12' },
+                                            _react2.default.createElement('hr', null),
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'my-carousel' },
+                                                !!this.state.images ? _react2.default.createElement(_reactImageGallery2.default, {
+                                                    items: this.state.images,
+                                                    autoPlay: true,
+                                                    lazyLoad: true,
+                                                    slideInterval: 5000,
+                                                    disableSwipe: true,
+                                                    showFullscreenButton: false,
+                                                    showPlayButton: false }) : _react2.default.createElement(_reactImageGallery2.default, {
+                                                    items: [{
+                                                        original: '/images/no_car_photo.png'
+                                                    }],
+                                                    autoPlay: true,
+                                                    showThumbnails: false,
+                                                    disableSwipe: true,
+                                                    showFullscreenButton: false,
+                                                    showPlayButton: false })
+                                            )
+                                        )
+                                    ),
+                                    _react2.default.createElement(_CarIconDetails2.default, { car: car }),
+                                    ' ',
+                                    (car.features || car.safety || car.comfort) && _react2.default.createElement(_ExtraDetails2.default, { car: car })
+                                ),
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'col-lg-4' },
+                                    _react2.default.createElement(_CarTableDetails2.default, { car: car })
                                 )
                             )
                         )
-                    )
+                    ),
+                    _react2.default.createElement(_CarBoxed2.default, {
+                        filter: {
+                            brands_id: car.brands_id,
+                            car: car
+                        },
+                        cars: cars,
+                        classes: 'bg-white' })
                 ) : _react2.default.createElement(
                     'div',
                     { className: 'container mt-5' },

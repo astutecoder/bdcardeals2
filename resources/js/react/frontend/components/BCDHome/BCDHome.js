@@ -137,21 +137,12 @@ class BCDHome extends Component {
                     {...this.props}
                     flexClass="d-flex flex-column flex-md-row justify-content-between align-items-md-center"/>
 
-                <section className="section-wrapper">
-                    <div className="container">
-                        <div className="row">
-                            <SubSectionHead title='featured cars'/>
-                            <div className="col-md-12">
-                                <CarBoxed
-                                    filter={{
-                                    is_featured: 1
-                                }}
-                                    cars={[...this.props.cars]}/>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
+                <CarBoxed
+                    filter={{
+                    is_featured: 1
+                }}
+                    cars={[...this.props.cars]}/> 
+                    
                 {this.state.recentCars.length > 0 && (
                     <section className={["section-wrapper", styles.recent_car_container].join(' ')}>
                         <div className="container">

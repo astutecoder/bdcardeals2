@@ -99,77 +99,72 @@ class CarDetails extends Component {
                 <Breadcrumb links={breadcrumb_links}/> {/* If no data found */}
                 {this.state.car.id
                     ? (
-                        <section className="section-wrapper">
-                            <div className="container">
-                                <div className="row">
-                                    <div className="col-lg-8">
-                                        {/* title row */}
-                                        <div className="row">
-                                            <div className="col-md-12">
-                                                <h2 className={styles.title}>
-                                                    {car.title
-                                                        ? car.title
-                                                        : (car.brands.brand_name + ' ' + car.model_no + ' ' + car.year)}
-                                                </h2>
-                                                <h5>{car.subtitle}</h5>
-                                            </div>
-                                        </div>
-
-                                        {/* image slider row */}
-
-                                        <div className="row">
-                                            <div className="col-md-12">
-                                                <hr/>
-                                                <div className="my-carousel">
-                                                    {!!this.state.images
-                                                        ? (<ImageGallery
-                                                            items={this.state.images}
-                                                            autoPlay={true}
-                                                            lazyLoad={true}
-                                                            slideInterval={5000}
-                                                            disableSwipe={true}
-                                                            showFullscreenButton={false}
-                                                            showPlayButton={false}/>)
-                                                        : (<ImageGallery
-                                                            items={[{
-                                                                original: '/images/no_car_photo.png'
-                                                            }
-                                                        ]}
-                                                            autoPlay={true}
-                                                            showThumbnails={false}
-                                                            disableSwipe={true}
-                                                            showFullscreenButton={false}
-                                                            showPlayButton={false}/>)
-}
+                        <React.Fragment>
+                            <section className="section-wrapper">
+                                <div className="container">
+                                    <div className="row">
+                                        <div className="col-lg-8">
+                                            {/* title row */}
+                                            <div className="row">
+                                                <div className="col-md-12">
+                                                    <h2 className={styles.title}>
+                                                        {car.title
+                                                            ? car.title
+                                                            : (car.brands.brand_name + ' ' + car.model_no + ' ' + car.year)}
+                                                    </h2>
+                                                    <h5>{car.subtitle}</h5>
                                                 </div>
                                             </div>
-                                        </div>
-                                        {/* end of image slider row*/}
 
-                                        <CarIconDetails car={car}/> {(car.features || car.safety || car.comfort) && (<ExtraDetails car={car}/>)
+                                            {/* image slider row */}
+
+                                            <div className="row">
+                                                <div className="col-md-12">
+                                                    <hr/>
+                                                    <div className="my-carousel">
+                                                        {!!this.state.images
+                                                            ? (<ImageGallery
+                                                                items={this.state.images}
+                                                                autoPlay={true}
+                                                                lazyLoad={true}
+                                                                slideInterval={5000}
+                                                                disableSwipe={true}
+                                                                showFullscreenButton={false}
+                                                                showPlayButton={false}/>)
+                                                            : (<ImageGallery
+                                                                items={[{
+                                                                    original: '/images/no_car_photo.png'
+                                                                }
+                                                            ]}
+                                                                autoPlay={true}
+                                                                showThumbnails={false}
+                                                                disableSwipe={true}
+                                                                showFullscreenButton={false}
+                                                                showPlayButton={false}/>)
 }
-                                    </div>{/* end of left col */}
-                                    <div className="col-lg-4">
-                                        <CarTableDetails car={car}/>
-                                    </div>{/* end of right col */}
-                                </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {/* end of image slider row*/}
 
-                                {/* related cars row */}
-                                <section className="section-wrapper">
-                                    <div className="row">
-                                        <SubSectionHead title="related cars"/>
-                                        <div className="col-md-12">
-                                            <CarBoxed
-                                                filter={{
-                                                brands_id: car.brands_id,
-                                                car_id: car.id
-                                            }}
-                                                cars={cars}/>
-                                        </div>
+                                            <CarIconDetails car={car}/> {(car.features || car.safety || car.comfort) && (<ExtraDetails car={car}/>)
+}
+                                        </div>{/* end of left col */}
+                                        <div className="col-lg-4">
+                                            <CarTableDetails car={car}/>
+                                        </div>{/* end of right col */}
                                     </div>
-                                </section>
-                            </div>
-                        </section>
+                                </div>
+                            </section>
+                            {/* related cars row */}
+                            <CarBoxed
+                                filter={{
+                                brands_id: car.brands_id,
+                                car: car
+                            }}
+                                cars={cars}
+                                classes="bg-white"/>
+                        </React.Fragment>
                     )
                     : (
                         <div className="container mt-5">
