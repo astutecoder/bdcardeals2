@@ -40,11 +40,15 @@ export default class CarBoxed extends Component {
     }
 
     slide_prev = () => {
-        this.slider.slickPrev();
+        this
+            .slider
+            .slickPrev();
     }
 
     slide_next = () => {
-        this.slider.slickNext();
+        this
+            .slider
+            .slickNext();
     }
 
     render() {
@@ -110,7 +114,15 @@ export default class CarBoxed extends Component {
                         const src = (folder_name)
                             ? `/storage/car_albums/${folder_name}/${file_name}`
                             : '/images/no_car_photo.png';
-                        const path = `/cars/${car.brands.brand_name.split(' ').join('-')}-${car.model_no.split(' ').join('-')}/${car.id}`
+                        const path = `/cars/${car
+                            .brands
+                            .brand_name
+                            .split(' ')
+                            .join('-')}-${car
+                            .model_no
+                            .split(' ')
+                            .join('-')}/${car
+                            .id}`
 
                         return (
                             <div className={styles.car_box} key={car.id}>
@@ -119,7 +131,9 @@ export default class CarBoxed extends Component {
                                         to={{
                                         pathname: path,
                                         state: {
-                                            car: {...car},
+                                            car: {
+                                                ...car
+                                            },
                                             cars: [...this.props.cars]
                                         }
                                     }}>
@@ -145,10 +159,15 @@ export default class CarBoxed extends Component {
                         )
                     })}
                 </Slider>
+
                 <div className={styles.slide_control}>
-                    <span className={styles.slide_control__left} onClick={this.slide_prev}><i className="fa fa-chevron-left"></i></span>
-                    <span className={styles.slide_control__right} onClick={this.slide_next}><i className="fa fa-chevron-right"></i></span>
-                </div>
+                    <span className={styles.slide_control__left} onClick={this.slide_prev}>
+                        <i className="fa fa-chevron-left"></i>
+                    </span>
+                    <span className={styles.slide_control__right} onClick={this.slide_next}>
+                        <i className="fa fa-chevron-right"></i>
+                    </span>
+                </div>             
             </div>
         )
     }

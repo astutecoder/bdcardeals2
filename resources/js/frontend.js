@@ -23,9 +23,11 @@ export default class FrontEnd extends Component {
                 if (scrollY > headerHeight) {
                     headerContainer.style.position = 'sticky';
                     headerContainer.style.backgroundColor = 'white';
+                    headerContainer.style.boxShadow = '2px 5px 5px rgba(0,0,0,0.25)';
                 } else {
                     headerContainer.style.position = 'absolute';
                     headerContainer.style.backgroundColor = 'rgba(255,255,255,.75)';
+                    headerContainer.style.boxShadow = 'none';
                 }
             })
         }, 0);

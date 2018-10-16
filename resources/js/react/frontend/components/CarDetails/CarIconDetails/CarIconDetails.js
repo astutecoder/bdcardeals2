@@ -6,6 +6,7 @@ import styles from './CarIconDetails.scss'
 export default class CarIconDetails extends Component {
     render() {
        const car = {...this.props.car}
+       const car_status = (car.car_condition === 'used')? 'second-hand' : car.car_condition;
         return (
             <div className="row">
                 <div className="col-md-12">
@@ -18,7 +19,7 @@ export default class CarIconDetails extends Component {
                                     {/* <i className="fa fa-car"></i> */}
                                     <i><Octicon icon={getIconByName('pulse')} verticalAlign='middle' size='small'/></i>
                                 </span>
-                                <span>{(car.car_condition)? car.car_condition : 'N/A'}</span>
+                                <span>{(car_status)? car_status : 'N/A'}</span>
                             </div>
                         </div>
 

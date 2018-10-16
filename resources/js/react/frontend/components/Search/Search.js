@@ -172,7 +172,7 @@ export default class Search extends Component {
                             <option value="">Select Status</option>
                             <option value="new">new</option>
                             <option value="recondition">recondition</option>
-                            <option value="used">second hand</option>
+                            <option value="used">second-hand</option>
                         </select>
                     </div>
                     <div className={styles.selectbox}>

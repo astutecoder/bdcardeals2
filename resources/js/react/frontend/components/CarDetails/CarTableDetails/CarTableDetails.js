@@ -9,6 +9,7 @@ export default class CarTableDetails extends Component {
         const car = {
             ...this.props.car
         }
+        const car_status = (car.car_condition === 'used')? 'second-hand' : car.car_condition;
         return (
             <div className="row">
                 <div className="col-md-12">
@@ -21,7 +22,7 @@ export default class CarTableDetails extends Component {
                     <div className={styles.car_info}>
                         <div className={styles.car_info__item}>
                             <span className={styles.car_info__title}>Status</span>
-                            <span className={styles.car_info__data}>{car.car_condition}</span>
+                            <span className={styles.car_info__data}>{car_status}</span>
                         </div>
                         
                         <div className={styles.car_info__item}>
