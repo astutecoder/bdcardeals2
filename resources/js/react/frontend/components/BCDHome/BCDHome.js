@@ -181,7 +181,7 @@ class BCDHome extends Component {
                     </section>
                 )
 }
-                <Footer top_brands={this.state.brandsByAscName} handleTopMakers={(e) => this.handleTopMakers(e)} />
+                {/* <Footer top_brands={this.state.brandsByAscName} handleTopMakers={(e) => this.handleTopMakers(e)} /> */}
 
             </div>
         )

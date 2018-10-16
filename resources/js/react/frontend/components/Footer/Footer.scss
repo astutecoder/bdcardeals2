@@ -28,8 +28,8 @@
         @media (max-width: 1023px) {
             margin-bottom: 30px;
         }
-        @media (max-width: 575px){
-            @at-root .logo, .top_brands, .categories, .address{
+        @media (max-width: 575px) {
+             @at-root .logo, .top_brands, .categories, .address{
                 margin: 0 auto 20px;
             }
         }
@@ -63,29 +63,31 @@
     .footer__list {
         padding-left: 0;
         .footer__list__item {
-            color: rgba(255,255,255,.8);
             list-style: none;
             margin-bottom: 6px;
-            text-transform: uper;
-            text-align: center;
-            padding-left: 15px;
-            position: relative;
-            &:hover {
-                color: $red;
-                cursor: pointer;
-            }
-            @media (min-width: 576px) {
-                 @at-root .footer__list{
-                    text-align: left;
+            a {
+                color: rgba(255,255,255,.8);
+                display: block;
+                text-align: center;
+                text-decoration: none;
+                text-transform: capitalize;
+                padding-left: 15px;
+                position: relative;
+                &:hover {
+                    color: $red;
+                    cursor: pointer;
                 }
-                &:before {
-                    content: '\f105';
-                    color: white;
-                    font-family: 'FontAwesome';
-                    left: 0;
-                    position: absolute;
-                    top: 50%;
-                    transform: translateY(-50%);
+                @media (min-width: 576px) {
+                    text-align: left;
+                    &:before {
+                        content: '\f105';
+                        color: white;
+                        font-family: 'FontAwesome';
+                        left: 0;
+                        position: absolute;
+                        top: 50%;
+                        transform: translateY(-50%);
+                    }
                 }
             }
         }
@@ -102,8 +104,11 @@
             font-weight: 600;
             margin-bottom: 6px;
             text-indent: 20px;
-            span{
-                white-space: nowrap;
+            white-space: nowrap;
+            @media (min-width: 576px) and (max-width: 625px) {
+                span {
+                    display: block;
+                }
             }
             .call_us__highlighter {
                 color: white;
@@ -137,13 +142,13 @@
                             &::before {
                                 content: '\f041';
                                 font-size: 0.9rem;
+                                top: 0;
+                                transform: translateY(0);
                             }
                         }
                     }
                 }
-
             }
         }
     }
-
 }

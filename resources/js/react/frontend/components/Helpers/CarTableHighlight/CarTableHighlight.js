@@ -7,6 +7,7 @@ export default class CarTableHighlight extends Component {
         const car = {
             ...this.props.car
         }
+        const status = (car.car_condition === 'used') ? 'second-hand' : car.car_condition;
         return (
             <React.Fragment>
                 <div className={(this.props.list_view !== 'hide')? "d-none d-md-block row" : "row"}>
@@ -17,15 +18,15 @@ export default class CarTableHighlight extends Component {
                                     <tr>
                                         <td>
                                             <span className="text-muted text-capitalize">
-                                                {/* <strong>Mileage:
+                                                {/* <strong>Status:
                                                 </strong> */}
-                                                {` ${car.mileage}`}</span>
+                                                {` ${status}`}</span>
                                         </td>
                                         <td>
                                             <span className="text-muted text-capitalize">
-                                                {/* <strong>Model:
+                                                {/* <strong>Mileage:
                                                 </strong> */}
-                                                {` ${car.model_no}`}</span>
+                                                {` ${car.mileage}`}</span>
                                         </td>
                                         <td>
                                             <span className="text-muted text-capitalize">
@@ -49,10 +50,10 @@ export default class CarTableHighlight extends Component {
                 {(this.props.list_view != 'hide') && (
                     <div className="d-md-none d-xs-block row">
                         <div className="col-sm-12">
-                            <span className="text-muted">Mileage: {car.mileage}</span>
+                            <span className="text-muted">Status: {status}</span>
                         </div>
                         <div className="col-sm-12">
-                            <span className="text-muted">Model: {car.model_no}</span>
+                            <span className="text-muted">Mileage: {car.mileage}</span>
                         </div>
                         <div className="col-sm-12">
                             <span className="text-muted">Transmission: {car.transmission}</span>

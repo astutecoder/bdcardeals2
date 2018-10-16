@@ -42,7 +42,7 @@ export default class CarBoxed extends Component {
                 .props
                 .cars
                 .filter(car => {
-                    return car.year === filters.car.year
+                    return car.year === filters.car.year && car.id !== filters.car.id
                 })
         }
         this.setState({showingCars: filteredCars})
