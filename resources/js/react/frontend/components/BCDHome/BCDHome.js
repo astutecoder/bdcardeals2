@@ -143,7 +143,7 @@ class BCDHome extends Component {
                 }}
                     cars={[...this.props.cars]}/> 
                     
-                {this.state.recentCars.length > 0 && (
+                {/* {this.state.recentCars.length > 0 && (
                     <section className={["section-wrapper", styles.recent_car_container].join(' ')}>
                         <div className="container">
                             <div className="row">
@@ -155,7 +155,7 @@ class BCDHome extends Component {
                         </div>
                     </section>
                 )
-}
+} */}
 
                 {this.state.brandsByAscName.length > 0 && (
                     <section className={["section-wrapper", styles.top_makers].join(' ')}>
@@ -181,7 +181,7 @@ class BCDHome extends Component {
                     </section>
                 )
 }
-                <Footer/>
+                <Footer top_brands={this.state.brandsByAscName} handleTopMakers={(e) => this.handleTopMakers(e)} />
 
             </div>
         )

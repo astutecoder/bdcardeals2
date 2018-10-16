@@ -19,4 +19,131 @@
         position: relative;
         z-index: 1;
     }
+
+    .logo {
+        width: 120px;
+        .logo__img {
+            width: 100%;
+        }
+        @media (max-width: 1023px) {
+            margin-bottom: 30px;
+        }
+        @media (max-width: 575px){
+            @at-root .logo, .top_brands, .categories, .address{
+                margin: 0 auto 20px;
+            }
+        }
+    }
+
+    .footer__title {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+        position: relative;
+        text-align: center;
+        text-indent: 20px;
+        text-transform: uppercase;
+        @media (min-width: 576px) {
+            margin-bottom: 20px;
+            text-align: left;
+            &:before {
+                background: $red;
+                content: '';
+                height: 4px;
+                left: 0;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 10px;
+            }
+        }
+    }
+
+    .footer__list {
+        padding-left: 0;
+        .footer__list__item {
+            color: rgba(255,255,255,.8);
+            list-style: none;
+            margin-bottom: 6px;
+            text-transform: uper;
+            text-align: center;
+            padding-left: 15px;
+            position: relative;
+            &:hover {
+                color: $red;
+                cursor: pointer;
+            }
+            @media (min-width: 576px) {
+                 @at-root .footer__list{
+                    text-align: left;
+                }
+                &:before {
+                    content: '\f105';
+                    color: white;
+                    font-family: 'FontAwesome';
+                    left: 0;
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+            }
+        }
+    }
+
+    .address {
+        text-align: center;
+        @media (min-width:576px) {
+            text-align: left;
+        }
+        .call_us {
+            color: $red;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            text-indent: 20px;
+            span{
+                white-space: nowrap;
+            }
+            .call_us__highlighter {
+                color: white;
+                margin-right: 5px;
+            }
+        }
+        .contact_details {
+            padding-left: 0;
+            .contact_details__item {
+                list-style: none;
+                margin-bottom: 6px;
+                padding-left: 20px;
+                position: relative;
+                @media (min-width: 576px) {
+                    &.email,
+                    &.location {
+                        &::before {
+                            font-family: 'FontAwesome';
+                            font-size: 0.8rem;
+                            left: 0;
+                            position: absolute;
+                            top: 50%;
+                            transform: translateY(-50%);
+                        }
+                        @at-root &.email {
+                            &::before {
+                                content: '\f003';
+                            }
+                        }
+                        @at-root &.location {
+                            &::before {
+                                content: '\f041';
+                                font-size: 0.9rem;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
 }
