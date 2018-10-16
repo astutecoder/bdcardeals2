@@ -136,7 +136,8 @@ class Footer extends Component {
                                                 badhontrading@gmail.com
                                             </li>
                                             <li className={[styles.contact_details__item, styles.location].join(' ')}>
-                                                22/a uttara, r/a, dhaka-1230
+                                                22/A Uttara, R/A, <br />
+                                                Dhaka-1230
                                             </li>
                                         </ul>
                                     </div>
