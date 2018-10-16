@@ -64149,7 +64149,7 @@ var SubSectionHead = function (_Component) {
         value: function render() {
             return _react2.default.createElement(
                 'div',
-                { className: 'col-md-12 mt-5' },
+                { className: 'col-md-12 mb-4' },
                 _react2.default.createElement(
                     'h3',
                     { className: _SubSectionHead2.default.subsection_head },
@@ -68176,6 +68176,10 @@ var _BCDHome = __webpack_require__(229);
 
 var _BCDHome2 = _interopRequireDefault(_BCDHome);
 
+var _Footer = __webpack_require__(231);
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -68194,8 +68198,67 @@ var BCDHome = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (BCDHome.__proto__ || Object.getPrototypeOf(BCDHome)).call(this, props));
 
+        _this.recentCars = function () {
+            var newCars = [];
+            var countCars = _this.props.cars.length >= 5 ? 5 : _this.props.cars.length;
+            for (var i = 0; i < countCars; i++) {
+                newCars.push(_this.props.cars[i]);
+            }
+            _this.setState({
+                recentCars: [].concat(newCars)
+            });
+        };
+
+        _this.sortBrandsByName = function (brands) {
+            var brandsAsc = [].concat(_toConsumableArray(brands));
+            var loopCounter = brandsAsc.length;
+            var randomBrands = [];
+
+            loop1: for (var i = 0; i < loopCounter; i++) {
+                if (randomBrands.length > 5) {
+                    break;
+                }
+                var z = i;
+                var index = Math.floor(Math.random() * brandsAsc.length);
+
+                // checking if brand name already exists in randomBrands array
+                loop2: for (var y = 0; y < randomBrands.length; y++) {
+                    if (randomBrands[y].brand_name === brandsAsc[index].brand_name) {
+                        i = z - 1;
+                        continue loop1;
+                    }
+                }
+
+                randomBrands.push(brandsAsc[index]);
+            }
+
+            randomBrands.sort(function (a, b) {
+                if (a.brand_name < b.brand_name) {
+                    return -1;
+                } else {
+                    return 1;
+                }
+            });
+            _this.setState({
+                brandsByAscName: [].concat(randomBrands)
+            });
+        };
+
+        _this.handleTopMakers = function (maker_id) {
+            _this.props.history.push({
+                pathname: '/process-search',
+                state: {
+                    filters: {
+                        brands_id: maker_id
+                    },
+                    cars: [].concat(_toConsumableArray(_this.props.cars))
+                }
+            });
+        };
+
         _this.state = {
-            recentCars: []
+            recentCars: [],
+            brandsByAscName: []
         };
         return _this;
     }
@@ -68214,6 +68277,14 @@ var BCDHome = function (_Component) {
                 this.props.getAllBodyTypes();
             }
             this.props.setSlider(this.props.cars);
+
+            if (this.props.cars.length > 0) {
+                this.recentCars();
+            }
+
+            if (this.props.brands.length > 0) {
+                this.sortBrandsByName(this.props.brands);
+            }
         }
     }, {
         key: 'componentDidUpdate',
@@ -68221,19 +68292,18 @@ var BCDHome = function (_Component) {
             if (prevProps.cars.length !== this.props.cars.length) {
                 this.props.setSlider(this.props.cars);
 
-                var newCars = [];
-                var countCars = this.props.cars.length >= 5 ? 5 : this.props.cars.length;
-                for (var i = 0; i < countCars; i++) {
-                    newCars.push(this.props.cars[i]);
-                }
-                this.setState({
-                    recentCars: [].concat(newCars)
-                });
+                this.recentCars();
+            }
+
+            if (prevProps.brands.length !== this.props.brands.length) {
+                this.sortBrandsByName(this.props.brands);
             }
         }
     }, {
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
             return _react2.default.createElement(
                 'div',
                 null,
@@ -68241,26 +68311,30 @@ var BCDHome = function (_Component) {
                 _react2.default.createElement(_Search2.default, _extends({}, this.props, {
                     flexClass: 'd-flex flex-column flex-md-row justify-content-between align-items-md-center' })),
                 _react2.default.createElement(
-                    'div',
-                    { className: 'container' },
+                    'section',
+                    { className: 'section-wrapper' },
                     _react2.default.createElement(
                         'div',
-                        { className: 'row' },
-                        _react2.default.createElement(_SubSectionHead2.default, { title: 'featured cars' }),
+                        { className: 'container' },
                         _react2.default.createElement(
                             'div',
-                            { className: 'col-md-12' },
-                            _react2.default.createElement(_CarBoxed2.default, {
-                                filter: {
-                                    is_featured: 1
-                                },
-                                cars: [].concat(_toConsumableArray(this.props.cars)) })
+                            { className: 'row' },
+                            _react2.default.createElement(_SubSectionHead2.default, { title: 'featured cars' }),
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'col-md-12' },
+                                _react2.default.createElement(_CarBoxed2.default, {
+                                    filter: {
+                                        is_featured: 1
+                                    },
+                                    cars: [].concat(_toConsumableArray(this.props.cars)) })
+                            )
                         )
                     )
                 ),
                 this.state.recentCars.length > 0 && _react2.default.createElement(
                     'section',
-                    { className: _BCDHome2.default.recent_car_container },
+                    { className: ["section-wrapper", _BCDHome2.default.recent_car_container].join(' ') },
                     _react2.default.createElement(
                         'div',
                         { className: 'container' },
@@ -68275,7 +68349,44 @@ var BCDHome = function (_Component) {
                             )
                         )
                     )
-                )
+                ),
+                this.state.brandsByAscName.length > 0 && _react2.default.createElement(
+                    'section',
+                    { className: ["section-wrapper", _BCDHome2.default.top_makers].join(' ') },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'container' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'row' },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'col-md-12' },
+                                _react2.default.createElement(_SubSectionHead2.default, { title: 'top make' }),
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'row' },
+                                    this.state.brandsByAscName.map(function (brand, i) {
+                                        return _react2.default.createElement(
+                                            'div',
+                                            { className: 'col-md-6 text-uppercase mb-2', key: i },
+                                            _react2.default.createElement(
+                                                'span',
+                                                {
+                                                    className: _BCDHome2.default.top_makers__name,
+                                                    onClick: function onClick() {
+                                                        return _this2.handleTopMakers(brand.id);
+                                                    } },
+                                                brand.brand_name
+                                            )
+                                        );
+                                    })
+                                )
+                            )
+                        )
+                    )
+                ),
+                _react2.default.createElement(_Footer2.default, null)
             );
         }
     }]);
@@ -74240,17 +74351,10 @@ var CarDetails = function (_Component) {
                 this.setState({ error: this.props.car.error });
             }
             // if ((prevProps.car.id !== this.props.car.id) && !this.state.car.id) {
-            //     this.setState({
-            //         car: {
-            //             ...this.props.car
-            //         }
-            //     });
-            // }
-            // if ((prevProps.cars.length !== this.props.cars.length )&& !this.state.cars.length) {
-            //     this.setState({
-            //         cars: [...this.props.cars]
-            //     })
-            // }
+            // this.setState({         car: {             ...this.props.car         } }); }
+            // if ((prevProps.cars.length !== this.props.cars.length )&&
+            // !this.state.cars.length) {     this.setState({         cars:
+            // [...this.props.cars]     }) }
             if (this.props.car.id && !this.state.car.id) {
                 this.setState({
                     car: _extends({}, this.props.car)
@@ -74288,84 +74392,92 @@ var CarDetails = function (_Component) {
                 _react2.default.createElement(_Breadcrumb2.default, { links: breadcrumb_links }),
                 ' ',
                 this.state.car.id ? _react2.default.createElement(
-                    'div',
-                    { className: 'container mt-5' },
+                    'section',
+                    { className: 'section-wrapper' },
                     _react2.default.createElement(
                         'div',
-                        { className: 'row' },
+                        { className: 'container' },
                         _react2.default.createElement(
                             'div',
-                            { className: 'col-lg-8' },
+                            { className: 'row' },
                             _react2.default.createElement(
                                 'div',
-                                { className: 'row' },
+                                { className: 'col-lg-8' },
                                 _react2.default.createElement(
                                     'div',
-                                    { className: 'col-md-12' },
-                                    _react2.default.createElement(
-                                        'h2',
-                                        { className: _CarDetails2.default.title },
-                                        car.title ? car.title : car.brands.brand_name + ' ' + car.model_no + ' ' + car.year
-                                    ),
-                                    _react2.default.createElement(
-                                        'h5',
-                                        null,
-                                        car.subtitle
-                                    )
-                                )
-                            ),
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'row' },
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'col-md-12' },
-                                    _react2.default.createElement('hr', null),
+                                    { className: 'row' },
                                     _react2.default.createElement(
                                         'div',
-                                        { className: 'my-carousel' },
-                                        !!this.state.images ? _react2.default.createElement(_reactImageGallery2.default, {
-                                            items: this.state.images,
-                                            autoPlay: true,
-                                            lazyLoad: true,
-                                            slideInterval: 5000,
-                                            disableSwipe: true,
-                                            showFullscreenButton: false,
-                                            showPlayButton: false }) : _react2.default.createElement(_reactImageGallery2.default, {
-                                            items: [{
-                                                original: '/images/no_car_photo.png'
-                                            }],
-                                            autoPlay: true,
-                                            showThumbnails: false,
-                                            disableSwipe: true,
-                                            showFullscreenButton: false,
-                                            showPlayButton: false })
+                                        { className: 'col-md-12' },
+                                        _react2.default.createElement(
+                                            'h2',
+                                            { className: _CarDetails2.default.title },
+                                            car.title ? car.title : car.brands.brand_name + ' ' + car.model_no + ' ' + car.year
+                                        ),
+                                        _react2.default.createElement(
+                                            'h5',
+                                            null,
+                                            car.subtitle
+                                        )
                                     )
-                                )
+                                ),
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'row' },
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'col-md-12' },
+                                        _react2.default.createElement('hr', null),
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'my-carousel' },
+                                            !!this.state.images ? _react2.default.createElement(_reactImageGallery2.default, {
+                                                items: this.state.images,
+                                                autoPlay: true,
+                                                lazyLoad: true,
+                                                slideInterval: 5000,
+                                                disableSwipe: true,
+                                                showFullscreenButton: false,
+                                                showPlayButton: false }) : _react2.default.createElement(_reactImageGallery2.default, {
+                                                items: [{
+                                                    original: '/images/no_car_photo.png'
+                                                }],
+                                                autoPlay: true,
+                                                showThumbnails: false,
+                                                disableSwipe: true,
+                                                showFullscreenButton: false,
+                                                showPlayButton: false })
+                                        )
+                                    )
+                                ),
+                                _react2.default.createElement(_CarIconDetails2.default, { car: car }),
+                                ' ',
+                                (car.features || car.safety || car.comfort) && _react2.default.createElement(_ExtraDetails2.default, { car: car })
                             ),
-                            _react2.default.createElement(_CarIconDetails2.default, { car: car }),
-                            ' ',
-                            (car.features || car.safety || car.comfort) && _react2.default.createElement(_ExtraDetails2.default, { car: car })
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'col-lg-4' },
+                                _react2.default.createElement(_CarTableDetails2.default, { car: car })
+                            )
                         ),
                         _react2.default.createElement(
-                            'div',
-                            { className: 'col-lg-4' },
-                            _react2.default.createElement(_CarTableDetails2.default, { car: car })
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'row' },
-                        _react2.default.createElement(_SubSectionHead2.default, { title: 'related cars' }),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'col-md-12' },
-                            _react2.default.createElement(_CarBoxed2.default, {
-                                filter: {
-                                    brands_id: car.brands_id,
-                                    car_id: car.id
-                                },
-                                cars: cars })
+                            'section',
+                            { className: 'section-wrapper' },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'row' },
+                                _react2.default.createElement(_SubSectionHead2.default, { title: 'related cars' }),
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'col-md-12' },
+                                    _react2.default.createElement(_CarBoxed2.default, {
+                                        filter: {
+                                            brands_id: car.brands_id,
+                                            car_id: car.id
+                                        },
+                                        cars: cars })
+                                )
+                            )
                         )
                     )
                 ) : _react2.default.createElement(
@@ -78857,8 +78969,8 @@ var NewArrive = function (_Component) {
                     width: 670,
                     height: 415,
                     orientation: 'vertical',
-                    loop: false,
-                    arrows: true,
+                    loop: true,
+                    arrows: false,
                     buttons: false,
                     thumbnailsPosition: 'left',
                     thumbnailPointer: true,
@@ -79031,7 +79143,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, ".NewArrive__slider-pro___3j5o7aK0oWrbJd2JaVngqZ {\n  font-family: 'Hind', sans-serif;\n  margin-top: 2rem; }\n\n.NewArrive__slider-pro___3j5o7aK0oWrbJd2JaVngqZ .NewArrive__sp-thumbnail-image-container___2Mu171ja7nOTTwmz5zVmN8 {\n  width: 100px;\n  height: 80px;\n  overflow: hidden;\n  float: left; }\n\n.NewArrive__slider-pro___3j5o7aK0oWrbJd2JaVngqZ .NewArrive__sp-thumbnail-image___3wa2AIaDikyGbOL1Q9NS8s {\n  height: 100%;\n  object-fit: cover; }\n\n.NewArrive__slider-pro___3j5o7aK0oWrbJd2JaVngqZ .NewArrive__sp-thumbnail___2CMYxlM3ipNkBAC3x0WOyL {\n  width: 100%; }\n\n.NewArrive__slider-pro___3j5o7aK0oWrbJd2JaVngqZ .NewArrive__sp-thumbnail-text___PaMaEgJx6B-bSGirLbQqJ {\n  width: 100%;\n  float: right;\n  padding: 8px;\n  background-color: #F0F0F0;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\n.NewArrive__slider-pro___3j5o7aK0oWrbJd2JaVngqZ .NewArrive__sp-thumbnail-title___2jQhpUMfDZms-QCoC3XPoJ {\n  color: #414e59;\n  font-weight: 600;\n  margin-left: 18px;\n  margin-bottom: 5px;\n  text-transform: uppercase; }\n\n.NewArrive__slider-pro___3j5o7aK0oWrbJd2JaVngqZ .NewArrive__sp-thumbnail-description___IT58mwQgfGCQnfndgus {\n  color: #566876;\n  font-size: 14px;\n  margin-left: 18px; }\n\n@media (max-width: 500px) {\n  .NewArrive__slider-pro___3j5o7aK0oWrbJd2JaVngqZ .NewArrive__sp-thumbnail___2CMYxlM3ipNkBAC3x0WOyL {\n    text-align: center; }\n  .NewArrive__slider-pro___3j5o7aK0oWrbJd2JaVngqZ .NewArrive__sp-thumbnail-image-container___2Mu171ja7nOTTwmz5zVmN8 {\n    display: none; }\n  .NewArrive__slider-pro___3j5o7aK0oWrbJd2JaVngqZ .NewArrive__sp-thumbnail-text___PaMaEgJx6B-bSGirLbQqJ {\n    display: flex;\n    align-items: center;\n    width: 120px;\n    height: 80px; }\n  .NewArrive__slider-pro___3j5o7aK0oWrbJd2JaVngqZ .NewArrive__sp-thumbnail-title___2jQhpUMfDZms-QCoC3XPoJ {\n    font-size: 12px;\n    text-transform: uppercase; }\n  .NewArrive__slider-pro___3j5o7aK0oWrbJd2JaVngqZ .NewArrive__sp-thumbnail-description___IT58mwQgfGCQnfndgus {\n    display: none; } }\n", ""]);
+exports.push([module.i, ".NewArrive__slider-pro___3j5o7aK0oWrbJd2JaVngqZ {\n  font-family: 'Hind', sans-serif;\n  margin-top: 2rem; }\n\n.NewArrive__slider-pro___3j5o7aK0oWrbJd2JaVngqZ .NewArrive__sp-thumbnail-image-container___2Mu171ja7nOTTwmz5zVmN8 {\n  width: 100px;\n  height: 80px;\n  overflow: hidden;\n  float: left; }\n\n.NewArrive__slider-pro___3j5o7aK0oWrbJd2JaVngqZ .NewArrive__sp-thumbnail-image___3wa2AIaDikyGbOL1Q9NS8s {\n  height: 100%;\n  object-fit: cover; }\n\n.NewArrive__slider-pro___3j5o7aK0oWrbJd2JaVngqZ .NewArrive__sp-thumbnail___2CMYxlM3ipNkBAC3x0WOyL {\n  width: 100%; }\n\n.NewArrive__slider-pro___3j5o7aK0oWrbJd2JaVngqZ .NewArrive__sp-thumbnail-text___PaMaEgJx6B-bSGirLbQqJ {\n  width: 100%;\n  float: right;\n  padding: 8px;\n  background-color: #fafafa;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\n.NewArrive__slider-pro___3j5o7aK0oWrbJd2JaVngqZ .NewArrive__sp-thumbnail-title___2jQhpUMfDZms-QCoC3XPoJ {\n  color: #414e59;\n  font-weight: 600;\n  margin-left: 18px;\n  margin-bottom: 5px;\n  text-transform: uppercase; }\n\n.NewArrive__slider-pro___3j5o7aK0oWrbJd2JaVngqZ .NewArrive__sp-thumbnail-description___IT58mwQgfGCQnfndgus {\n  color: #566876;\n  font-size: 14px;\n  margin-left: 18px; }\n\n@media (max-width: 500px) {\n  .NewArrive__slider-pro___3j5o7aK0oWrbJd2JaVngqZ .NewArrive__sp-thumbnail___2CMYxlM3ipNkBAC3x0WOyL {\n    text-align: center; }\n  .NewArrive__slider-pro___3j5o7aK0oWrbJd2JaVngqZ .NewArrive__sp-thumbnail-image-container___2Mu171ja7nOTTwmz5zVmN8 {\n    display: none; }\n  .NewArrive__slider-pro___3j5o7aK0oWrbJd2JaVngqZ .NewArrive__sp-thumbnail-text___PaMaEgJx6B-bSGirLbQqJ {\n    display: flex;\n    align-items: center;\n    width: 120px;\n    height: 80px; }\n  .NewArrive__slider-pro___3j5o7aK0oWrbJd2JaVngqZ .NewArrive__sp-thumbnail-title___2jQhpUMfDZms-QCoC3XPoJ {\n    font-size: 12px;\n    text-transform: uppercase; }\n  .NewArrive__slider-pro___3j5o7aK0oWrbJd2JaVngqZ .NewArrive__sp-thumbnail-description___IT58mwQgfGCQnfndgus {\n    display: none; } }\n", ""]);
 
 // exports
 exports.locals = {
@@ -79103,11 +79215,160 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, ".BCDHome__recent_car_container___3Hkj4BI3YRYDnR__seb02F {\n  background: #eaeaea;\n  margin-top: 20px;\n  padding: 30px 0; }\n", ""]);
+exports.push([module.i, ".BCDHome__recent_car_container___3Hkj4BI3YRYDnR__seb02F {\n  background: #eaeaea; }\n\n.BCDHome__top_makers___EByTARYOO9cCVcuIGQVMc .BCDHome__top_makers__name___30xyrVCZXkWBSALR0vUM9U {\n  color: #6c757d;\n  cursor: pointer; }\n  .BCDHome__top_makers___EByTARYOO9cCVcuIGQVMc .BCDHome__top_makers__name___30xyrVCZXkWBSALR0vUM9U:hover {\n    color: #e3342f; }\n", ""]);
 
 // exports
 exports.locals = {
-	"recent_car_container": "BCDHome__recent_car_container___3Hkj4BI3YRYDnR__seb02F"
+	"recent_car_container": "BCDHome__recent_car_container___3Hkj4BI3YRYDnR__seb02F",
+	"top_makers": "BCDHome__top_makers___EByTARYOO9cCVcuIGQVMc",
+	"top_makers__name": "BCDHome__top_makers__name___30xyrVCZXkWBSALR0vUM9U"
+};
+
+/***/ }),
+/* 231 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Footer = __webpack_require__(232);
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Footer = function (_Component) {
+  _inherits(Footer, _Component);
+
+  function Footer() {
+    _classCallCheck(this, Footer);
+
+    return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).apply(this, arguments));
+  }
+
+  _createClass(Footer, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'footer',
+        { className: ["section-wrapper", _Footer2.default.footer__container].join(' ') },
+        _react2.default.createElement(
+          'div',
+          { className: 'container' },
+          _react2.default.createElement(
+            'div',
+            { className: 'row' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-3' },
+              'logo'
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-3' },
+              'top brand'
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-3' },
+              'category'
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-3' },
+              'address'
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return Footer;
+}(_react.Component);
+
+exports.default = Footer;
+
+/***/ }),
+/* 232 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(233);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(3)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {
+	module.hot.accept("!!../../../../../../node_modules/css-loader/index.js??ref--7-1!../../../../../../node_modules/sass-loader/lib/loader.js!./Footer.scss", function() {
+		var newContent = require("!!../../../../../../node_modules/css-loader/index.js??ref--7-1!../../../../../../node_modules/sass-loader/lib/loader.js!./Footer.scss");
+
+		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 233 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".Footer__footer__container___2q7Ji9nA_3pAwO_EtO0bfN {\n  background: #2b343b;\n  color: white;\n  overflow: hidden;\n  position: relative; }\n  .Footer__footer__container___2q7Ji9nA_3pAwO_EtO0bfN::after {\n    content: '';\n    background: #2b343b url(\"/images/bg-footer.jpg\") center center/cover no-repeat;\n    filter: blur(1px) brightness(40%);\n    height: 100%;\n    left: 0;\n    position: absolute;\n    top: 0;\n    width: 100%; }\n  .Footer__footer__container___2q7Ji9nA_3pAwO_EtO0bfN > div {\n    position: relative;\n    z-index: 1; }\n", ""]);
+
+// exports
+exports.locals = {
+	"footer__container": "Footer__footer__container___2q7Ji9nA_3pAwO_EtO0bfN"
 };
 
 /***/ })

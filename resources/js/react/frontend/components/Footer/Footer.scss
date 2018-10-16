@@ -1,0 +1,22 @@
+@import '../../../../../sass/variables';
+
+.footer__container {
+    background: $lightblack;
+    color: white;
+    overflow: hidden;
+    position: relative;
+    &::after {
+        content: '';
+        background: $lightblack url('/images/bg-footer.jpg') center center/cover no-repeat;
+        filter: blur(1px) brightness(40%);
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+    & > div {
+        position: relative;
+        z-index: 1;
+    }
+}

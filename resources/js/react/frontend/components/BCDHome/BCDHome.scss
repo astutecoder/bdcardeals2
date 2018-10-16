@@ -1,5 +1,17 @@
+
+@import '../../../../../sass/variables';
+
 .recent_car_container{
     background: #eaeaea;
-    margin-top: 20px;
-    padding: 30px 0;
+    // margin-top: 20px;
+    // padding: 30px 0;
+}
+.top_makers{
+    .top_makers__name{
+        color: #6c757d;
+        cursor: pointer;
+        &:hover{
+            color: $red;
+        }
+}
 }

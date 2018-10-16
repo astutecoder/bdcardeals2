@@ -11320,6 +11320,10 @@ body button:focus {
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
+.section-wrapper {
+  padding: 4em 0;
+}
+
 .noUi-horizontal {
   height: 5px;
 }

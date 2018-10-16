@@ -141,7 +141,6 @@ class Cars extends Component {
                         </div>
                     </div>
                 </div>
-
             </section>
         )
     }
