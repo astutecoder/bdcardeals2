@@ -1,12 +1,13 @@
 @import '../../../../../sass/variables';
 .sectionhead__container{
-    background: url('/images/bg-1.jpg') center left/cover no-repeat;
+    background: $lightblack url('/images/bg-1.jpg') center left/cover no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 150px;
     position: relative;
     width: 100%;
+    z-index: 1;
     &:before{
         background: rgba(0,0,0,.5);
         content: '';

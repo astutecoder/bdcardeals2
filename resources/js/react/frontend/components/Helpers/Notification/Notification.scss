@@ -1,0 +1,48 @@
+@import '../../../../../../sass/variables';
+
+.notification {
+    color: white;
+    right: 0;
+    font-size: 1.1rem;
+    position: fixed;
+    top: -200px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+    z-index: 101;
+    span {
+        margin-left: 10px;
+    }
+    .notification__success {
+        padding: 20px 5px;
+        background: $green;
+    }
+    .notification__failed {
+        padding: 20px 50px;
+        background: $red;
+    }
+
+    &.slideIn {
+        animation: slideIn 1s ease-in forwards;
+    }
+
+    &.slideOut {
+        animation: slideOut 1s ease-out forwards;
+    }
+}
+@keyframes slideIn {
+    from {
+        top: -200px;
+    }
+    to {
+        top: 0;
+    }
+}
+@keyframes slideOut {
+    from {
+        top: 0;
+    }
+    to {
+        top: -200px;
+    }
+}

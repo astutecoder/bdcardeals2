@@ -2,11 +2,12 @@ import React, {Component} from 'react'
 import Axios from 'axios'
 
 import SectionHead from '../SectionHead/SectionHead';
+import Notification from '../Helpers/Notification/Notification'
 import styles from './ContactUs.scss'
 
 export default class ContactUs extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             name: '',
@@ -14,7 +15,8 @@ export default class ContactUs extends Component {
             phone: '',
             subject: '',
             message: '',
-            errors: {}
+            errors: {},
+            notification: {}
         }
     }
 
@@ -29,32 +31,90 @@ export default class ContactUs extends Component {
         })
     }
 
+    checkRequired = () => {
+        let valid = true;
+        let errorObj = {};
+        const inputs = document.querySelectorAll(`.${styles.required}`);
+
+        for (let i = 0; i < inputs.length; i++) {
+            valid = !!(inputs[i].value) && valid;
+            if (!valid) {
+                errorObj[inputs[i].id] = true;
+            }
+        }
+        if (!valid) {
+            this.setState({
+                errors: {
+                    ...errorObj
+                }
+            });
+        }
+        return valid;
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
-        Axios.post('/api/v1/contact-us', {
+        if (!this.checkRequired()) {
+            this.setState({
+                notification: {
+                    failed: 'Please Fill Required Fields.',
+                    slide: 'in'
+                }
+            });
+            this.notificationSlideOut();
+            return;
+        }
+        console.log('post...');
+        Axios
+            .post('/api/v1/contact-us', {
             name: this.state.name,
             email: this.state.email,
             phone: this.state.phone,
             subject: this.state.subject,
-            message: this.state.message,
+            message: this.state.message
         })
-        .then(response => {
-            this.setState({
-                name: '',
-                email: '',
-                phone: '',
-                subject: '',
-                message: '',
-                errors: {}
+            .then(response => {
+                this.setState({
+                    name: '',
+                    email: '',
+                    phone: '',
+                    subject: '',
+                    message: '',
+                    errors: {},
+                    notification: {
+                        success: 'Mail sent',
+                        slide: 'in'
+                    }
+                });
+                this.notificationSlideOut();
             })
-        })
-        .catch(err => {
-            if(err.response.status === 422){
-                this.setState({errors: {
-                    ...err.response.data.errors
-                }})
-            }
-        })
+            .catch(err => {
+                if (err.response.status === 422) {
+                    this.setState({
+                        errors: {
+                            ...err.response.data.errors
+                        }
+                    });
+                }
+                this.setState({
+                    notification: {
+                        failed: 'Sorry! Failed to process.',
+                        slide: 'in'
+                    }
+                })
+                this.notificationSlideOut();
+            })
+    }
+
+    notificationSlideOut = () => {
+        setTimeout(() => {
+            this.setState({
+                notification: {
+                    ...this.state.notification,
+                    slide: 'out'
+                }
+            })
+        }, 5000);
     }
 
     render() {
@@ -77,18 +137,30 @@ export default class ContactUs extends Component {
                                             <label htmlFor="name">Name</label>
                                             <input
                                                 type="text"
-                                                className={["form-control", (this.state.errors.name)? styles.has_errors: ''].join(' ')}
+                                                className={[
+                                                "form-control",
+                                                styles.required,
+                                                (this.state.errors.name)
+                                                    ? styles.has_errors
+                                                    : ''
+                                            ].join(' ')}
                                                 id="name"
                                                 value={this.state.name}
                                                 onChange={this.handleInput}
                                                 placeholder="Your name"/>
                                         </div>
-                                        
+
                                         <div className="form-group col-md-6">
                                             <label htmlFor="email">Email</label>
                                             <input
                                                 type="email"
-                                                className={["form-control", (this.state.errors.email)? styles.has_errors: ''].join(' ')}
+                                                className={[
+                                                "form-control",
+                                                styles.required,
+                                                (this.state.errors.email)
+                                                    ? styles.has_errors
+                                                    : ''
+                                            ].join(' ')}
                                                 id="email"
                                                 value={this.state.email}
                                                 onChange={this.handleInput}
@@ -101,7 +173,13 @@ export default class ContactUs extends Component {
                                             <label htmlFor="phone">Phone</label>
                                             <input
                                                 type="text"
-                                                className={["form-control", (this.state.errors.phone)? styles.has_errors: ''].join(' ')}
+                                                className={[
+                                                "form-control",
+                                                styles.required,
+                                                (this.state.errors.phone)
+                                                    ? styles.has_errors
+                                                    : ''
+                                            ].join(' ')}
                                                 id="phone"
                                                 value={this.state.phone}
                                                 onChange={this.handleInput}
@@ -112,7 +190,13 @@ export default class ContactUs extends Component {
                                             <label htmlFor="subject">Subject</label>
                                             <input
                                                 type="text"
-                                                className={["form-control", (this.state.errors.subject)? styles.has_errors: ''].join(' ')}
+                                                className={[
+                                                "form-control",
+                                                styles.required,
+                                                (this.state.errors.subject)
+                                                    ? styles.has_errors
+                                                    : ''
+                                            ].join(' ')}
                                                 id="subject"
                                                 value={this.state.subject}
                                                 onChange={this.handleInput}
@@ -122,19 +206,26 @@ export default class ContactUs extends Component {
                                         <div className="form-group col-md-6">
                                             <label htmlFor="subject">Message</label>
                                             <textarea
-                                                className={["form-control", (this.state.errors.message)? styles.has_errors: ''].join(' ')}
+                                                className={[
+                                                "form-control",
+                                                styles.required,
+                                                (this.state.errors.message)
+                                                    ? styles.has_errors
+                                                    : ''
+                                            ].join(' ')}
                                                 id="message"
                                                 value={this.state.message}
                                                 onChange={this.handleInput}
                                                 placeholder="Message"/>
                                         </div>
                                     </div>
-                                    <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}>Submit</button>
+                                    <button type="submit" className="btn btn-success rounded-0" onClick={this.handleSubmit}>Submit</button>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </section>
+                <Notification {...this.state.notification}/>
             </React.Fragment>
         )
     }
