@@ -1,4 +1,4 @@
-@extends('backend.partials.layout');
+@extends('backend.partials.layout')
 
 @section('title', 'Dashboard')
 @section('content-body-head', 'Dashboard')

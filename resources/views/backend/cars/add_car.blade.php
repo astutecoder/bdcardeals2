@@ -304,6 +304,7 @@
                         <div class="form-group {{$errors->has('engine')? 'has-error' : ''}}">
                             <label class="col-md-3 control-label" for="engine">
                                 Engine
+                                <span class="required">*</span>
                             </label>
                             <div class="col-md-6">
                                 <input name="engine" value="{{ old('engine') }}" type="text" class="form-control"
@@ -319,6 +320,7 @@
                         <div class="form-group {{$errors->has('transmission')? 'has-error' : ''}}">
                             <label class="col-md-3 control-label" for="transmission">
                                 Transmission
+                                <span class="required">*</span>
                             </label>
                             <div class="col-md-6">
                                 <input name="transmission" value="{{ old('transmission') }}" type="text"
@@ -334,6 +336,7 @@
                         <div class="form-group {{$errors->has('mileage')? 'has-error' : ''}}">
                             <label class="col-md-3 control-label" for="mileage">
                                 Mileage
+                                <span class="required">*</span>
                             </label>
                             <div class="col-md-6">
                                 <input name="mileage" value="{{ old('mileage') }}" type="text" class="form-control"

@@ -147,6 +147,9 @@ class CarsController extends Controller
             'source_id' => 'required',
             'car_condition' => 'required',
             'colors_id' => 'required',
+            'engine' => 'required',
+            'transmission' => 'required',
+            'mileage' => 'required',
         ], [
             'brands_id.required' => 'You must select a Brand',
             'body_types_id.required' => 'You must select a Body Type',
@@ -283,6 +286,9 @@ class CarsController extends Controller
             'source_id' => 'required',
             'colors_id' => 'required',
             'car_condition' => 'required',
+            'engine' => 'required',
+            'transmission' => 'required',
+            'mileage' => 'required',
         ], [
             'brands_id.required' => 'You must select a Brand',
             'body_types_id.required' => 'You must select a Body Type',
