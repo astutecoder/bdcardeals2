@@ -9,6 +9,7 @@ import Cars from './components/Cars/Cars';
 import ProcessSearch from './components/ProcessSearch/ProcessSearch';
 import CarDetails from './components/CarDetails/CarDetails';
 import Footer from './components/Footer/Footer'
+import ContactUs from './components/ContactUs/ContactUs';
 
 class FrontEndRoutes extends Component {
     constructor(props) {
@@ -128,7 +129,6 @@ class FrontEndRoutes extends Component {
 
     }
 
-
     handleTopMakers = (maker_id) => {
         this
             .props
@@ -162,10 +162,13 @@ class FrontEndRoutes extends Component {
                         <Route
                             path='/cars/:car/:id'
                             render={(props) => (<CarDetails key={props.match.params.id} {...props}/>)}/>
+                        <Route path='/contact-us'  component={ContactUs}/>
                         <Redirect to='/'/>
                     </Switch>
                     <Route
-                        render={(props) => (<Footer {...props} sortBrandsByName={(e) => this.sortBrandsByName(e)}
+                        render={(props) => (<Footer
+                        {...props}
+                        sortBrandsByName={(e) => this.sortBrandsByName(e)}
                         top_brands={this.state.brandsByAscName}/>)}/>
                 </div>
             </BrowserRouter>

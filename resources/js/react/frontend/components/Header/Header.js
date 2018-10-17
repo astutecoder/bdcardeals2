@@ -21,6 +21,9 @@ export default class Header extends Component {
                             <li className={styles.header__nav__listItem}>
                                 <NavLink to='/cars' activeClassName={styles.active}>Cars</NavLink>
                             </li>
+                            <li className={styles.header__nav__listItem}>
+                                <NavLink to='/contact-us' activeClassName={styles.active}>Contact Us</NavLink>
+                            </li>
                         </ul>
                     </nav>
                 </div>

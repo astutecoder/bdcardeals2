@@ -66428,6 +66428,10 @@ var _Footer = __webpack_require__(88);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
+var _ContactUs = __webpack_require__(233);
+
+var _ContactUs2 = _interopRequireDefault(_ContactUs);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -66596,11 +66600,13 @@ var FrontEndRoutes = function (_Component) {
                             render: function render(props) {
                                 return _react2.default.createElement(_CarDetails2.default, _extends({ key: props.match.params.id }, props));
                             } }),
+                        _react2.default.createElement(_reactRouterDom.Route, { path: '/contact-us', component: _ContactUs2.default }),
                         _react2.default.createElement(_reactRouterDom.Redirect, { to: '/' })
                     ),
                     _react2.default.createElement(_reactRouterDom.Route, {
                         render: function render(props) {
-                            return _react2.default.createElement(_Footer2.default, _extends({}, props, { sortBrandsByName: function sortBrandsByName(e) {
+                            return _react2.default.createElement(_Footer2.default, _extends({}, props, {
+                                sortBrandsByName: function sortBrandsByName(e) {
                                     return _this2.sortBrandsByName(e);
                                 },
                                 top_brands: _this2.state.brandsByAscName }));
@@ -68519,6 +68525,15 @@ var Header = function (_Component) {
                                     _reactRouterDom.NavLink,
                                     { to: '/cars', activeClassName: _Header2.default.active },
                                     'Cars'
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'li',
+                                { className: _Header2.default.header__nav__listItem },
+                                _react2.default.createElement(
+                                    _reactRouterDom.NavLink,
+                                    { to: '/contact-us', activeClassName: _Header2.default.active },
+                                    'Contact Us'
                                 )
                             )
                         )
@@ -79722,6 +79737,321 @@ exports.push([module.i, ".CarDetails__title___2Lqrk1gl9Se6XJSOco3kgh {\n  color:
 exports.locals = {
 	"title": "CarDetails__title___2Lqrk1gl9Se6XJSOco3kgh",
 	"subtitle": "CarDetails__subtitle___r22taDXOvAs7bWYcxwh7b"
+};
+
+/***/ }),
+/* 223 */,
+/* 224 */,
+/* 225 */,
+/* 226 */,
+/* 227 */,
+/* 228 */,
+/* 229 */,
+/* 230 */,
+/* 231 */,
+/* 232 */,
+/* 233 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _axios = __webpack_require__(20);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _SectionHead = __webpack_require__(89);
+
+var _SectionHead2 = _interopRequireDefault(_SectionHead);
+
+var _ContactUs = __webpack_require__(234);
+
+var _ContactUs2 = _interopRequireDefault(_ContactUs);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ContactUs = function (_Component) {
+    _inherits(ContactUs, _Component);
+
+    function ContactUs(props) {
+        _classCallCheck(this, ContactUs);
+
+        var _this = _possibleConstructorReturn(this, (ContactUs.__proto__ || Object.getPrototypeOf(ContactUs)).call(this, props));
+
+        _this.handleInput = function (e) {
+            var element = e.currentTarget.id;
+            var val = e.currentTarget.value;
+            var newObj = {};
+
+            newObj[element] = val;
+            _this.setState(_extends({}, newObj));
+        };
+
+        _this.handleSubmit = function (e) {
+            e.preventDefault();
+            _axios2.default.post('/api/v1/contact-us', {
+                name: _this.state.name,
+                email: _this.state.email,
+                phone: _this.state.phone,
+                subject: _this.state.subject,
+                message: _this.state.message
+            }).then(function (response) {
+                _this.setState({
+                    name: '',
+                    email: '',
+                    phone: '',
+                    subject: '',
+                    message: '',
+                    errors: {}
+                });
+            }).catch(function (err) {
+                if (err.response.status === 422) {
+                    _this.setState({ errors: _extends({}, err.response.data.errors) });
+                }
+            });
+        };
+
+        _this.state = {
+            name: '',
+            email: '',
+            phone: '',
+            subject: '',
+            message: '',
+            errors: {}
+        };
+        return _this;
+    }
+
+    _createClass(ContactUs, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                _react2.default.Fragment,
+                null,
+                _react2.default.createElement(_SectionHead2.default, { title: 'Contact Us' }),
+                _react2.default.createElement(
+                    'section',
+                    { className: 'section-wrapper' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'container' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'row' },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'col-md-6' },
+                                _react2.default.createElement(
+                                    'span',
+                                    { className: _ContactUs2.default.get_in_touch },
+                                    'Get in Touch'
+                                ),
+                                _react2.default.createElement(
+                                    'h2',
+                                    { className: _ContactUs2.default.title },
+                                    'Send us message'
+                                )
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'row' },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'col-md-12' },
+                                _react2.default.createElement(
+                                    'form',
+                                    null,
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'row' },
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'form-group col-md-6' },
+                                            _react2.default.createElement(
+                                                'label',
+                                                { htmlFor: 'name' },
+                                                'Name'
+                                            ),
+                                            _react2.default.createElement('input', {
+                                                type: 'text',
+                                                className: ["form-control", this.state.errors.name ? _ContactUs2.default.has_errors : ''].join(' '),
+                                                id: 'name',
+                                                value: this.state.name,
+                                                onChange: this.handleInput,
+                                                placeholder: 'Your name' })
+                                        ),
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'form-group col-md-6' },
+                                            _react2.default.createElement(
+                                                'label',
+                                                { htmlFor: 'email' },
+                                                'Email'
+                                            ),
+                                            _react2.default.createElement('input', {
+                                                type: 'email',
+                                                className: ["form-control", this.state.errors.email ? _ContactUs2.default.has_errors : ''].join(' '),
+                                                id: 'email',
+                                                value: this.state.email,
+                                                onChange: this.handleInput,
+                                                'aria-describedby': 'emailHelp',
+                                                placeholder: 'Enter email' }),
+                                            _react2.default.createElement(
+                                                'small',
+                                                { id: 'emailHelp', className: 'form-text text-muted' },
+                                                'We\'ll never share your email with anyone else.'
+                                            )
+                                        ),
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'form-group col-md-6' },
+                                            _react2.default.createElement(
+                                                'label',
+                                                { htmlFor: 'phone' },
+                                                'Phone'
+                                            ),
+                                            _react2.default.createElement('input', {
+                                                type: 'text',
+                                                className: ["form-control", this.state.errors.phone ? _ContactUs2.default.has_errors : ''].join(' '),
+                                                id: 'phone',
+                                                value: this.state.phone,
+                                                onChange: this.handleInput,
+                                                placeholder: 'phone number' })
+                                        ),
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'form-group col-md-6' },
+                                            _react2.default.createElement(
+                                                'label',
+                                                { htmlFor: 'subject' },
+                                                'Subject'
+                                            ),
+                                            _react2.default.createElement('input', {
+                                                type: 'text',
+                                                className: ["form-control", this.state.errors.subject ? _ContactUs2.default.has_errors : ''].join(' '),
+                                                id: 'subject',
+                                                value: this.state.subject,
+                                                onChange: this.handleInput,
+                                                placeholder: 'Subject' })
+                                        ),
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'form-group col-md-6' },
+                                            _react2.default.createElement(
+                                                'label',
+                                                { htmlFor: 'subject' },
+                                                'Message'
+                                            ),
+                                            _react2.default.createElement('textarea', {
+                                                className: ["form-control", this.state.errors.message ? _ContactUs2.default.has_errors : ''].join(' '),
+                                                id: 'message',
+                                                value: this.state.message,
+                                                onChange: this.handleInput,
+                                                placeholder: 'Message' })
+                                        )
+                                    ),
+                                    _react2.default.createElement(
+                                        'button',
+                                        { type: 'submit', className: 'btn btn-primary', onClick: this.handleSubmit },
+                                        'Submit'
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return ContactUs;
+}(_react.Component);
+
+exports.default = ContactUs;
+
+/***/ }),
+/* 234 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(235);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(3)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {
+	module.hot.accept("!!../../../../../../node_modules/css-loader/index.js??ref--7-1!../../../../../../node_modules/sass-loader/lib/loader.js!./ContactUs.scss", function() {
+		var newContent = require("!!../../../../../../node_modules/css-loader/index.js??ref--7-1!../../../../../../node_modules/sass-loader/lib/loader.js!./ContactUs.scss");
+
+		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 235 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".ContactUs__has_errors___B0z5dwI6pn6w_cTH5Cz-E {\n  border: 1px solid #e3342f; }\n", ""]);
+
+// exports
+exports.locals = {
+	"has_errors": "ContactUs__has_errors___B0z5dwI6pn6w_cTH5Cz-E"
 };
 
 /***/ })
