@@ -27,6 +27,16 @@ export default class Search extends Component {
                     ...this.props.location.state.filters
                 }
             });
+            if(this.props.location.state.filters.hasOwnProperty('name')){
+                this.setState({
+                    show_make: false,
+                })
+                const makeEl = document.querySelector(`.${styles.s_make}`);
+                const nameEl = document.querySelector(`.${styles.s_name}`);
+                
+                makeEl.classList.remove(styles.active);
+                nameEl.classList.add(styles.active);
+            }
         }
     }
 
@@ -53,7 +63,7 @@ export default class Search extends Component {
             initMinVal = (!!this.props.location.search && !!this.props.location.state)
                 ? (this.props.location.state.filters.price && this.props.location.state.filters.price.min
                     ? this.props.location.state.filters.price.min
-                    : 0)
+                    : 1500000)
                 : 1500000,
             initMaxVal = (!!this.props.location.search && !!this.props.location.state)
                 ? (this.props.location.state.filters.price && this.props.location.state.filters.price.max
@@ -143,7 +153,17 @@ export default class Search extends Component {
         this.setState({filters: {}, redirect: true})
     }
 
+    isSearched = () => {
+        const query = require('query-string');
+        const search_str = (query.parse(this.props.location.search));
+        if(!!search_str.q){
+            return true;
+        }
+        return false;
+    }
+
     render() {
+        this.isSearched();
         const {redirect} = this.state;
         if (redirect) {
             return (<Redirect
@@ -274,10 +294,11 @@ export default class Search extends Component {
                 </label>
                 <input
                     className={styles.search__name}
-                    value={this.state.filters.name}
+                    onChange={this.handleSelectType}
+                    value={(this.state.filters && this.state.filters.name)? this.state.filters.name : ''}
                     name="name"
                     type='text'
-                    placeholder='type a name'/>
+                    placeholder='Brand / Model / Year / Status / Mileage'/>
             </div>
         );
         return (
@@ -285,9 +306,9 @@ export default class Search extends Component {
                 <div className={styles.searchTab__container}>
                     <ul className={styles.searchTab}>
                         <li
-                            className={[styles.searchTab__item, styles.active].join(' ')}
+                            className={[styles.searchTab__item, styles.s_make, styles.active].join(' ')}
                             onClick={this.showSearch}>Search By Make</li>
-                        <li className={styles.searchTab__item} onClick={this.showSearch}>Search By Name</li>
+                        <li className={[styles.searchTab__item, styles.s_name].join(' ')} onClick={this.showSearch}>Search By Name</li>
                     </ul>
                 </div>
                 <div className={[this.props.flexClass, styles.searchContainer].join(' ')}>
@@ -296,7 +317,7 @@ export default class Search extends Component {
                         : searchByName()}
                     <div className={this.props.btnContainerClass}>
                         <button className="btn btn-lg btn-danger rounded-0" onClick={this.handleSearch}>Search</button>
-                        {this.props.location.search.length > 1 && (
+                        {this.isSearched() && (
                             <button
                                 className="btn btn-lg btn-success rounded-0 ml-3"
                                 onClick={this.clearSearch}>Clear</button>

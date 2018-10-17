@@ -126,6 +126,9 @@
                     }
                 }
             }
+            .s_make, .s_name{
+                box-sizing: border-box;
+            }
         }
     }
 }

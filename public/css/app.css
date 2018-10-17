@@ -11434,3 +11434,27 @@ body button:focus {
   color: #e3342f;
 }
 
+@media (max-width: 991px) {
+  nav .custom_pagination {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+  }
+}
+
+nav .custom_pagination a {
+  text-decoration: none;
+  margin-right: 5px;
+}
+
+nav .custom_pagination a .page-item .page-link {
+  border-radius: 0 !important;
+  color: #2b343b;
+}
+
+nav .custom_pagination a .page-item.active .page-link {
+  background: #e3342f;
+  border: 1px solid #e3342f;
+  color: white;
+}
+

@@ -61925,7 +61925,7 @@ var Search = function (_Component) {
             var slider = $('#price_range')[0];
             var minSpan = document.querySelectorAll('#min'),
                 maxSpan = document.querySelectorAll('#max'),
-                initMinVal = !!_this.props.location.search && !!_this.props.location.state ? _this.props.location.state.filters.price && _this.props.location.state.filters.price.min ? _this.props.location.state.filters.price.min : 0 : 1500000,
+                initMinVal = !!_this.props.location.search && !!_this.props.location.state ? _this.props.location.state.filters.price && _this.props.location.state.filters.price.min ? _this.props.location.state.filters.price.min : 1500000 : 1500000,
                 initMaxVal = !!_this.props.location.search && !!_this.props.location.state ? _this.props.location.state.filters.price && _this.props.location.state.filters.price.max ? _this.props.location.state.filters.price.max : 4600000 : 5600000;
 
             _nouislider2.default.create(slider, {
@@ -61995,6 +61995,15 @@ var Search = function (_Component) {
             _this.setState({ filters: {}, redirect: true });
         };
 
+        _this.isSearched = function () {
+            var query = __webpack_require__(239);
+            var search_str = query.parse(_this.props.location.search);
+            if (!!search_str.q) {
+                return true;
+            }
+            return false;
+        };
+
         _this.state = {
             redirect: false,
             show_make: true,
@@ -62011,6 +62020,16 @@ var Search = function (_Component) {
                 this.setState({
                     filters: _extends({}, this.props.location.state.filters)
                 });
+                if (this.props.location.state.filters.hasOwnProperty('name')) {
+                    this.setState({
+                        show_make: false
+                    });
+                    var makeEl = document.querySelector('.' + _Search2.default.s_make);
+                    var nameEl = document.querySelector('.' + _Search2.default.s_name);
+
+                    makeEl.classList.remove(_Search2.default.active);
+                    nameEl.classList.add(_Search2.default.active);
+                }
             }
         }
     }, {
@@ -62025,6 +62044,7 @@ var Search = function (_Component) {
         value: function render() {
             var _this2 = this;
 
+            this.isSearched();
             var redirect = this.state.redirect;
 
             if (redirect) {
@@ -62263,10 +62283,11 @@ var Search = function (_Component) {
                     ),
                     _react2.default.createElement('input', {
                         className: _Search2.default.search__name,
-                        value: _this2.state.filters.name,
+                        onChange: _this2.handleSelectType,
+                        value: _this2.state.filters && _this2.state.filters.name ? _this2.state.filters.name : '',
                         name: 'name',
                         type: 'text',
-                        placeholder: 'type a name' })
+                        placeholder: 'Brand / Model / Year / Status / Mileage' })
                 );
             };
             return _react2.default.createElement(
@@ -62281,13 +62302,13 @@ var Search = function (_Component) {
                         _react2.default.createElement(
                             'li',
                             {
-                                className: [_Search2.default.searchTab__item, _Search2.default.active].join(' '),
+                                className: [_Search2.default.searchTab__item, _Search2.default.s_make, _Search2.default.active].join(' '),
                                 onClick: this.showSearch },
                             'Search By Make'
                         ),
                         _react2.default.createElement(
                             'li',
-                            { className: _Search2.default.searchTab__item, onClick: this.showSearch },
+                            { className: [_Search2.default.searchTab__item, _Search2.default.s_name].join(' '), onClick: this.showSearch },
                             'Search By Name'
                         )
                     )
@@ -62304,7 +62325,7 @@ var Search = function (_Component) {
                             { className: 'btn btn-lg btn-danger rounded-0', onClick: this.handleSearch },
                             'Search'
                         ),
-                        this.props.location.search.length > 1 && _react2.default.createElement(
+                        this.isSearched() && _react2.default.createElement(
                             'button',
                             {
                                 className: 'btn btn-lg btn-success rounded-0 ml-3',
@@ -71473,7 +71494,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, ".Search__Search___fa4-y1C-nDQ1ksoQN9kkv {\n  background: #F4F4F4;\n  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);\n  position: relative;\n  padding: 20px; }\n  @media (min-width: 768px) {\n    .Search__Search___fa4-y1C-nDQ1ksoQN9kkv {\n      width: 80%;\n      margin-left: auto;\n      margin-right: auto; } }\n  .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchContainer___13klKdW8Egg3Yoo7yxUtTV {\n    background: #eaeaea;\n    padding: 20px;\n    position: relative;\n    z-index: 1; }\n  .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl {\n    display: flex;\n    flex-direction: column;\n    flex: 1;\n    justify-content: space-between;\n    width: 100%; }\n    @media (min-width: 768px) {\n      .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl {\n        margin-right: 10px; } }\n    .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl label > strong {\n      font-family: 'Poppins', sans-serif;\n      font-weight: 500;\n      font-size: 1.1em; }\n    .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div {\n      width: 100%; }\n      .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__range___2sv0voRmANqZ4ltNKtQsGz {\n        display: flex;\n        flex-direction: column;\n        justify-content: space-between;\n        flex: 1;\n        width: 100%;\n        margin-right: 10px; }\n        @media (max-width: 767px) {\n          .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__range___2sv0voRmANqZ4ltNKtQsGz {\n            margin-bottom: 10px;\n            margin-right: 0; } }\n        .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__range___2sv0voRmANqZ4ltNKtQsGz .Search__price_range__info___3pEvpv61kz6ODkspZQ8gFy {\n          margin-top: 5px;\n          font-size: 12px;\n          text-align: center; }\n        .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__range___2sv0voRmANqZ4ltNKtQsGz .Search__price_range__max___3Axeob7c-0X1VuefZiJMwU,\n        .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__range___2sv0voRmANqZ4ltNKtQsGz .Search__price_range__min___2qVuZpaNa_AJDM6UaQZcw0 {\n          margin-top: 5px;\n          font-size: 12px;\n          font-family: 'Poppins', sans-serif;\n          font-weight: 600; }\n      .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__selectbox___1bKm3Nq5hMXBvk_H2jWwxr {\n        flex: 1;\n        margin-right: 10px;\n        width: 100%;\n        margin-bottom: 10px; }\n        @media (max-width: 767px) {\n          .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__selectbox___1bKm3Nq5hMXBvk_H2jWwxr {\n            margin-right: 0; } }\n        .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__selectbox___1bKm3Nq5hMXBvk_H2jWwxr .Search__select___2_TxzMVuUwS7FCYEn2ZBWP {\n          -moz-appearance: listbox;\n          -webkit-appearance: listbox;\n          appearance: listbox;\n          border-radius: 0;\n          border: 1px solid rgba(0, 0, 0, 0.2);\n          color: #2b343b;\n          font-size: 0.9em;\n          padding: 5px 10px;\n          text-transform: uppercase;\n          width: 100%; }\n          .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__selectbox___1bKm3Nq5hMXBvk_H2jWwxr .Search__select___2_TxzMVuUwS7FCYEn2ZBWP:active, .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__selectbox___1bKm3Nq5hMXBvk_H2jWwxr .Search__select___2_TxzMVuUwS7FCYEn2ZBWP:focus {\n            outline: 0; }\n    .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl .Search__search__name___1gt21j2OntjeK50w-0LuDG {\n      color: #2b343b;\n      flex: 1;\n      margin-bottom: 10px;\n      padding: 2px 5px;\n      width: 100%; }\n      @media (min-width: 768px) {\n        .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl .Search__search__name___1gt21j2OntjeK50w-0LuDG {\n          margin-bottom: 0; } }\n  .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchTab__container___38Mj0YBx71j-614Vf8hkDN .Search__searchTab___23Ziwm2VhHHleukI-Nl3sd {\n    list-style: none;\n    margin: 0;\n    padding: 0; }\n    .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchTab__container___38Mj0YBx71j-614Vf8hkDN .Search__searchTab___23Ziwm2VhHHleukI-Nl3sd .Search__searchTab__item___F14avbAxdb4oy4JHEkZdV {\n      cursor: pointer;\n      display: inline-block;\n      padding: 10px;\n      position: relative; }\n      .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchTab__container___38Mj0YBx71j-614Vf8hkDN .Search__searchTab___23Ziwm2VhHHleukI-Nl3sd .Search__searchTab__item___F14avbAxdb4oy4JHEkZdV.Search__active___2ZXEQk6rRmBvAS--FzVdxQ {\n        background: #e3342f;\n        color: white; }\n        .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchTab__container___38Mj0YBx71j-614Vf8hkDN .Search__searchTab___23Ziwm2VhHHleukI-Nl3sd .Search__searchTab__item___F14avbAxdb4oy4JHEkZdV.Search__active___2ZXEQk6rRmBvAS--FzVdxQ::after {\n          border-top: 10px solid #e3342f;\n          border-left: 10px solid transparent;\n          border-right: 10px solid transparent;\n          content: '';\n          display: block;\n          margin: auto;\n          position: absolute;\n          bottom: -9px;\n          left: 0;\n          right: 0;\n          width: 20px;\n          z-index: 10; }\n", ""]);
+exports.push([module.i, ".Search__Search___fa4-y1C-nDQ1ksoQN9kkv {\n  background: #F4F4F4;\n  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);\n  position: relative;\n  padding: 20px; }\n  @media (min-width: 768px) {\n    .Search__Search___fa4-y1C-nDQ1ksoQN9kkv {\n      width: 80%;\n      margin-left: auto;\n      margin-right: auto; } }\n  .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchContainer___13klKdW8Egg3Yoo7yxUtTV {\n    background: #eaeaea;\n    padding: 20px;\n    position: relative;\n    z-index: 1; }\n  .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl {\n    display: flex;\n    flex-direction: column;\n    flex: 1;\n    justify-content: space-between;\n    width: 100%; }\n    @media (min-width: 768px) {\n      .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl {\n        margin-right: 10px; } }\n    .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl label > strong {\n      font-family: 'Poppins', sans-serif;\n      font-weight: 500;\n      font-size: 1.1em; }\n    .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div {\n      width: 100%; }\n      .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__range___2sv0voRmANqZ4ltNKtQsGz {\n        display: flex;\n        flex-direction: column;\n        justify-content: space-between;\n        flex: 1;\n        width: 100%;\n        margin-right: 10px; }\n        @media (max-width: 767px) {\n          .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__range___2sv0voRmANqZ4ltNKtQsGz {\n            margin-bottom: 10px;\n            margin-right: 0; } }\n        .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__range___2sv0voRmANqZ4ltNKtQsGz .Search__price_range__info___3pEvpv61kz6ODkspZQ8gFy {\n          margin-top: 5px;\n          font-size: 12px;\n          text-align: center; }\n        .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__range___2sv0voRmANqZ4ltNKtQsGz .Search__price_range__max___3Axeob7c-0X1VuefZiJMwU,\n        .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__range___2sv0voRmANqZ4ltNKtQsGz .Search__price_range__min___2qVuZpaNa_AJDM6UaQZcw0 {\n          margin-top: 5px;\n          font-size: 12px;\n          font-family: 'Poppins', sans-serif;\n          font-weight: 600; }\n      .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__selectbox___1bKm3Nq5hMXBvk_H2jWwxr {\n        flex: 1;\n        margin-right: 10px;\n        width: 100%;\n        margin-bottom: 10px; }\n        @media (max-width: 767px) {\n          .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__selectbox___1bKm3Nq5hMXBvk_H2jWwxr {\n            margin-right: 0; } }\n        .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__selectbox___1bKm3Nq5hMXBvk_H2jWwxr .Search__select___2_TxzMVuUwS7FCYEn2ZBWP {\n          -moz-appearance: listbox;\n          -webkit-appearance: listbox;\n          appearance: listbox;\n          border-radius: 0;\n          border: 1px solid rgba(0, 0, 0, 0.2);\n          color: #2b343b;\n          font-size: 0.9em;\n          padding: 5px 10px;\n          text-transform: uppercase;\n          width: 100%; }\n          .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__selectbox___1bKm3Nq5hMXBvk_H2jWwxr .Search__select___2_TxzMVuUwS7FCYEn2ZBWP:active, .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl > div .Search__selectbox___1bKm3Nq5hMXBvk_H2jWwxr .Search__select___2_TxzMVuUwS7FCYEn2ZBWP:focus {\n            outline: 0; }\n    .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl .Search__search__name___1gt21j2OntjeK50w-0LuDG {\n      color: #2b343b;\n      flex: 1;\n      margin-bottom: 10px;\n      padding: 2px 5px;\n      width: 100%; }\n      @media (min-width: 768px) {\n        .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchFieldContainer___sHRtH9ChDCBX6ka5e76xl .Search__search__name___1gt21j2OntjeK50w-0LuDG {\n          margin-bottom: 0; } }\n  .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchTab__container___38Mj0YBx71j-614Vf8hkDN .Search__searchTab___23Ziwm2VhHHleukI-Nl3sd {\n    list-style: none;\n    margin: 0;\n    padding: 0; }\n    .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchTab__container___38Mj0YBx71j-614Vf8hkDN .Search__searchTab___23Ziwm2VhHHleukI-Nl3sd .Search__searchTab__item___F14avbAxdb4oy4JHEkZdV {\n      cursor: pointer;\n      display: inline-block;\n      padding: 10px;\n      position: relative; }\n      .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchTab__container___38Mj0YBx71j-614Vf8hkDN .Search__searchTab___23Ziwm2VhHHleukI-Nl3sd .Search__searchTab__item___F14avbAxdb4oy4JHEkZdV.Search__active___2ZXEQk6rRmBvAS--FzVdxQ {\n        background: #e3342f;\n        color: white; }\n        .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchTab__container___38Mj0YBx71j-614Vf8hkDN .Search__searchTab___23Ziwm2VhHHleukI-Nl3sd .Search__searchTab__item___F14avbAxdb4oy4JHEkZdV.Search__active___2ZXEQk6rRmBvAS--FzVdxQ::after {\n          border-top: 10px solid #e3342f;\n          border-left: 10px solid transparent;\n          border-right: 10px solid transparent;\n          content: '';\n          display: block;\n          margin: auto;\n          position: absolute;\n          bottom: -9px;\n          left: 0;\n          right: 0;\n          width: 20px;\n          z-index: 10; }\n    .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchTab__container___38Mj0YBx71j-614Vf8hkDN .Search__searchTab___23Ziwm2VhHHleukI-Nl3sd .Search__s_make___2MvQOO3UFNhmh0WQwa6xko, .Search__Search___fa4-y1C-nDQ1ksoQN9kkv .Search__searchTab__container___38Mj0YBx71j-614Vf8hkDN .Search__searchTab___23Ziwm2VhHHleukI-Nl3sd .Search__s_name___MNldOhqhahECaGv58dcM8 {\n      box-sizing: border-box; }\n", ""]);
 
 // exports
 exports.locals = {
@@ -71490,7 +71511,9 @@ exports.locals = {
 	"searchTab__container": "Search__searchTab__container___38Mj0YBx71j-614Vf8hkDN",
 	"searchTab": "Search__searchTab___23Ziwm2VhHHleukI-Nl3sd",
 	"searchTab__item": "Search__searchTab__item___F14avbAxdb4oy4JHEkZdV",
-	"active": "Search__active___2ZXEQk6rRmBvAS--FzVdxQ"
+	"active": "Search__active___2ZXEQk6rRmBvAS--FzVdxQ",
+	"s_make": "Search__s_make___2MvQOO3UFNhmh0WQwa6xko",
+	"s_name": "Search__s_name___MNldOhqhahECaGv58dcM8"
 };
 
 /***/ }),
@@ -74113,6 +74136,8 @@ var _reactRedux = __webpack_require__(19);
 
 var _actions = __webpack_require__(20);
 
+var _Selectors = __webpack_require__(241);
+
 var _Cars = __webpack_require__(194);
 
 var _Cars2 = _interopRequireDefault(_Cars);
@@ -74128,6 +74153,10 @@ var _CarListItem2 = _interopRequireDefault(_CarListItem);
 var _Breadcrumb = __webpack_require__(90);
 
 var _Breadcrumb2 = _interopRequireDefault(_Breadcrumb);
+
+var _Pagination = __webpack_require__(242);
+
+var _Pagination2 = _interopRequireDefault(_Pagination);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -74155,22 +74184,54 @@ var Cars = function (_Component) {
             }
         };
 
-        _this.carsToShow = function () {
+        _this.carsToPaginate = function () {
             if (_this.props.location.state) {
                 if (_this.props.location.state.hasOwnProperty('carsToDisplay')) {
                     _this.setState({
-                        carsToShow: [].concat(_toConsumableArray(_this.props.location.state.carsToDisplay))
+                        carsToPaginate: [].concat(_toConsumableArray(_this.props.location.state.carsToDisplay))
                     });
                 }
             } else {
                 _this.setState({
-                    carsToShow: [].concat(_toConsumableArray(_this.props.cars))
+                    carsToPaginate: [].concat(_toConsumableArray(_this.props.cars))
                 });
             }
         };
 
+        _this.defaultPerpage = function () {
+            return 5;
+        };
+
+        _this.requiredPages = function () {
+            return Math.ceil(_this.props.cars.length / _this.defaultPerpage());
+        };
+
+        _this.extractQuery = function () {
+            var query = __webpack_require__(239);
+            return query.parse(_this.props.location.search);
+        };
+
+        _this.carsToShow = function () {
+            var _this$extractQuery = _this.extractQuery(),
+                _this$extractQuery$pa = _this$extractQuery.page,
+                page = _this$extractQuery$pa === undefined ? 1 : _this$extractQuery$pa;
+
+            return (0, _Selectors.filterPagination)(_this.defaultPerpage(), page, _this.state.carsToPaginate);
+        };
+
+        _this.showingSequenceNumber = function () {
+            var _this$extractQuery2 = _this.extractQuery(),
+                currentPage = _this$extractQuery2.page;
+
+            var firstCarInPage = (+currentPage - 1) * _this.defaultPerpage() + 1;
+            var lastCarInPage = +currentPage * _this.defaultPerpage();
+            var totalCars = _this.state.carsToPaginate.length;
+            lastCarInPage = lastCarInPage > totalCars ? totalCars : lastCarInPage;
+            return firstCarInPage + ' - ' + lastCarInPage + ' of ' + totalCars;
+        };
+
         _this.state = {
-            carsToShow: []
+            carsToPaginate: []
         };
         return _this;
     }
@@ -74195,19 +74256,34 @@ var Cars = function (_Component) {
             window.addEventListener('resize', function () {
                 _this2.is_mobile();
             });
-            this.carsToShow();
+            this.isValidPageRequest();
+            this.carsToPaginate();
         }
     }, {
         key: 'componentDidUpdate',
         value: function componentDidUpdate(prevProps, prevState) {
             if (prevProps.cars.length != this.props.cars.length) {
-                this.carsToShow();
+                this.carsToPaginate();
+                this.isValidPageRequest();
             }
         }
     }, {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {
-            this.setState({ carsToShow: [] });
+            this.setState({ carsToPaginate: [] });
+        }
+    }, {
+        key: 'isValidPageRequest',
+        value: function isValidPageRequest() {
+            var totalPages = this.requiredPages();
+
+            var _extractQuery = this.extractQuery(),
+                currentPage = _extractQuery.page;
+
+            if (!currentPage || totalPages < currentPage) {
+                this.props.history.replace('/cars?page=1');
+                return;
+            }
         }
     }, {
         key: 'render',
@@ -74218,79 +74294,73 @@ var Cars = function (_Component) {
                 linkname: 'Car List'
             }];
             return _react2.default.createElement(
-                'section',
+                _react2.default.Fragment,
                 null,
                 _react2.default.createElement(_SectionHead2.default, { title: 'Cars list' }),
                 _react2.default.createElement(_Breadcrumb2.default, { links: breadcrumb_links }),
-                this.state.is_mobile && _react2.default.createElement(
-                    'div',
-                    { className: _Cars2.default.search__mobile },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'container' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'row' },
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'col-md-12' },
-                                _react2.default.createElement(_Search2.default, _extends({}, this.props, {
-                                    name: 'Name',
-                                    brand: 'Brand',
-                                    bodyType: 'Type',
-                                    model: 'Model',
-                                    carCondition: 'Status',
-                                    year: 'Year',
-                                    priceRange: 'Price Range',
-                                    searchClass: 'mt-3 p-0 w-100',
-                                    flexClass: 'd-flex flex-column flex-md-row justify-content-between align-items-md-center' }))
-                            )
-                        )
-                    )
-                ),
                 _react2.default.createElement(
-                    'div',
-                    { className: _Cars2.default.listAndSearchContainer },
+                    'section',
+                    { className: 'section-wrapper pt-3' },
                     _react2.default.createElement(
                         'div',
-                        { className: 'container' },
+                        { className: _Cars2.default.listAndSearchContainer },
                         _react2.default.createElement(
                             'div',
-                            { className: 'row' },
+                            { className: 'container' },
                             _react2.default.createElement(
                                 'div',
-                                { className: 'col-lg-8' },
-                                this.state.carsToShow.length < 1 ? _react2.default.createElement(
-                                    'h3',
-                                    { className: 'text-danger' },
-                                    'Sorry! No cars match with search'
-                                ) : this.state.carsToShow.map(function (car) {
-                                    return _react2.default.createElement(_CarListItem2.default, { key: car.id, car: car, cars: [].concat(_toConsumableArray(_this3.props.cars)) });
-                                })
-                            ),
-                            !this.state.is_mobile && _react2.default.createElement(
-                                'div',
-                                { className: ' hidden-md col-lg-4' },
+                                { className: 'row' },
                                 _react2.default.createElement(
                                     'div',
-                                    { className: _Cars2.default.search__sidebar__head },
-                                    _react2.default.createElement(
-                                        'h5',
+                                    { className: 'col-lg-8' },
+                                    !!this.state.carsToPaginate.length && _react2.default.createElement(
+                                        'span',
                                         null,
-                                        'Search Cars'
-                                    )
+                                        _react2.default.createElement(
+                                            'strong',
+                                            { className: 'text-danger' },
+                                            'showing cars:'
+                                        ),
+                                        this.showingSequenceNumber()
+                                    ),
+                                    this.carsToShow().length < 1 ? _react2.default.createElement(
+                                        'h3',
+                                        { className: 'text-danger' },
+                                        'Sorry! No cars match with search'
+                                    ) : this.carsToShow().map(function (car) {
+                                        return _react2.default.createElement(_CarListItem2.default, { key: car.id, car: car, cars: [].concat(_toConsumableArray(_this3.props.cars)) });
+                                    }),
+                                    this.state.carsToPaginate.length > this.defaultPerpage() && _react2.default.createElement(_Pagination2.default, _extends({}, this.props, {
+                                        perpage: this.defaultPerpage(),
+                                        requiredPages: this.requiredPages(),
+                                        extractQuery: function extractQuery() {
+                                            return _this3.extractQuery();
+                                        } }))
                                 ),
-                                _react2.default.createElement(_Search2.default, _extends({}, this.props, {
-                                    name: 'Name',
-                                    brand: 'Brand',
-                                    bodyType: 'Type',
-                                    model: 'Model',
-                                    carCondition: 'Status',
-                                    year: 'Year',
-                                    priceRange: 'Price Range',
-                                    searchClass: 'p-0 w-100',
-                                    flexClass: 'd-flex flex-column justify-content-between align-items-md-center',
-                                    btnContainerClass: 'mt-3' }))
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'hidden-md col-lg-4' },
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: _Cars2.default.search__sidebar__head },
+                                        _react2.default.createElement(
+                                            'h5',
+                                            null,
+                                            'Search Cars'
+                                        )
+                                    ),
+                                    _react2.default.createElement(_Search2.default, _extends({}, this.props, {
+                                        name: 'Name',
+                                        brand: 'Brand',
+                                        bodyType: 'Type',
+                                        model: 'Model',
+                                        carCondition: 'Status',
+                                        year: 'Year',
+                                        priceRange: 'Price Range',
+                                        searchClass: 'p-0 w-100',
+                                        btnContainerClass: 'mt-3',
+                                        flexClass: 'd-flex flex-column justify-content-between align-items-md-center' }))
+                                )
                             )
                         )
                     )
@@ -74794,47 +74864,59 @@ var ProcessSearch = function (_Component) {
         _this.carsToDisplay = function (filterArray) {
             var cars = [].concat(_toConsumableArray(_this.props.location.state.cars));
 
-            var _loop = function _loop(key) {
-                var q = _this.state.search_q.length > 1 ? '&' : '';
+            // if search by name
+            if (filterArray.hasOwnProperty('name')) {
+                cars = cars.filter(function (car) {
+                    var status = car.car_condition === 'used' ? 'second-hand' : car.car_condition;
+                    var title = car.brands.brand_name + ' ' + car.model_no + ' ' + car.year + ' ' + car.title + ' ' + car.subtitle + ' ' + car.mileage + ' ' + car.engine + ' ' + status;
 
-                if (key == 'price') {
-                    var min = filterArray['price']['min'] ? filterArray['price']['min'] : 0;
-                    var max = filterArray['price']['max'];
+                    return title.toLocaleLowerCase().includes(filterArray['name'].toLocaleLowerCase());
+                });
 
-                    cars = cars.filter(function (car) {
-                        return min <= car.price && car.price <= max;
-                    });
+                _this.setState({
+                    carsToDisplay: [].concat(_toConsumableArray(cars))
+                });
+            } else {
+                var _loop = function _loop(key) {
 
-                    _this.setState({
-                        carsToDisplay: [].concat(_toConsumableArray(cars)),
-                        search_q: _this.state.search_q + '' + q
-                    });
-                } else {
-                    if (!!filterArray[key]) {
+                    if (key == 'price') {
+                        var min = filterArray['price']['min'] ? filterArray['price']['min'] : 0;
+                        var max = filterArray['price']['max'];
+
                         cars = cars.filter(function (car) {
-                            return car[key] == filterArray[key];
+                            return min <= car.price && car.price <= max;
+                        });
+
+                        _this.setState({
+                            carsToDisplay: [].concat(_toConsumableArray(cars))
+                            // search_q: this.state.search_q + '' + q
+                        });
+                    } else {
+                        if (!!filterArray[key]) {
+                            cars = cars.filter(function (car) {
+                                return car[key] == filterArray[key];
+                            });
+                        }
+                        _this.setState({
+                            carsToDisplay: [].concat(_toConsumableArray(cars))
                         });
                     }
-                    _this.setState({
-                        carsToDisplay: [].concat(_toConsumableArray(cars))
-                    });
-                }
-            };
+                };
 
-            for (var key in filterArray) {
-                _loop(key);
+                // if search by make
+                for (var key in filterArray) {
+                    _loop(key);
+                }
             }
             if (cars.length !== _this.props.location.state.cars.length) {
-                _this.setState({
-                    search_q: '?q=' + (0, _v2.default)()
-                });
+                _this.setState({ search_q: _this.state.search_q + '&q=' + (0, _v2.default)() });
             }
         };
 
         _this.state = {
             carsToDisplay: [],
             filters: {},
-            search_q: ''
+            search_q: '?page=1'
         };
         return _this;
     }
@@ -74882,7 +74964,7 @@ var ProcessSearch = function (_Component) {
                             carsToDisplay: [].concat(_toConsumableArray(this.state.carsToDisplay)),
                             filters: _extends({}, this.state.filters)
                         },
-                        search: this.state.search_q.length > 1 ? this.state.search_q : ''
+                        search: this.state.search_q
                     } });
             }
             return _react2.default.createElement('div', null);
@@ -80243,13 +80325,452 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, ".ContactUs__has_errors___B0z5dwI6pn6w_cTH5Cz-E {\n  border: 1px solid #e3342f; }\n\n.ContactUs__required___sTe83gBjgsg_5Td1sNIXb {\n  text-align: left; }\n", ""]);
+exports.push([module.i, ".ContactUs__title___1TO0VCq3Px70MZ1u_E4WB1 {\n  font-family: 'Poppins', sans-serif;\n  font-weight: 700;\n  font-size: 1.9rem; }\n\n.ContactUs__has_errors___B0z5dwI6pn6w_cTH5Cz-E {\n  border: 1px solid #e3342f; }\n\n.ContactUs__required___sTe83gBjgsg_5Td1sNIXb {\n  text-align: left; }\n", ""]);
 
 // exports
 exports.locals = {
+	"title": "ContactUs__title___1TO0VCq3Px70MZ1u_E4WB1",
 	"has_errors": "ContactUs__has_errors___B0z5dwI6pn6w_cTH5Cz-E",
 	"required": "ContactUs__required___sTe83gBjgsg_5Td1sNIXb"
 };
+
+/***/ }),
+/* 229 */,
+/* 230 */,
+/* 231 */,
+/* 232 */,
+/* 233 */,
+/* 234 */,
+/* 235 */,
+/* 236 */,
+/* 237 */,
+/* 238 */,
+/* 239 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var strictUriEncode = __webpack_require__(240);
+var objectAssign = __webpack_require__(8);
+
+function encoderForArrayFormat(opts) {
+	switch (opts.arrayFormat) {
+		case 'index':
+			return function (key, value, index) {
+				return value === null ? [
+					encode(key, opts),
+					'[',
+					index,
+					']'
+				].join('') : [
+					encode(key, opts),
+					'[',
+					encode(index, opts),
+					']=',
+					encode(value, opts)
+				].join('');
+			};
+
+		case 'bracket':
+			return function (key, value) {
+				return value === null ? encode(key, opts) : [
+					encode(key, opts),
+					'[]=',
+					encode(value, opts)
+				].join('');
+			};
+
+		default:
+			return function (key, value) {
+				return value === null ? encode(key, opts) : [
+					encode(key, opts),
+					'=',
+					encode(value, opts)
+				].join('');
+			};
+	}
+}
+
+function parserForArrayFormat(opts) {
+	var result;
+
+	switch (opts.arrayFormat) {
+		case 'index':
+			return function (key, value, accumulator) {
+				result = /\[(\d*)\]$/.exec(key);
+
+				key = key.replace(/\[\d*\]$/, '');
+
+				if (!result) {
+					accumulator[key] = value;
+					return;
+				}
+
+				if (accumulator[key] === undefined) {
+					accumulator[key] = {};
+				}
+
+				accumulator[key][result[1]] = value;
+			};
+
+		case 'bracket':
+			return function (key, value, accumulator) {
+				result = /(\[\])$/.exec(key);
+				key = key.replace(/\[\]$/, '');
+
+				if (!result) {
+					accumulator[key] = value;
+					return;
+				} else if (accumulator[key] === undefined) {
+					accumulator[key] = [value];
+					return;
+				}
+
+				accumulator[key] = [].concat(accumulator[key], value);
+			};
+
+		default:
+			return function (key, value, accumulator) {
+				if (accumulator[key] === undefined) {
+					accumulator[key] = value;
+					return;
+				}
+
+				accumulator[key] = [].concat(accumulator[key], value);
+			};
+	}
+}
+
+function encode(value, opts) {
+	if (opts.encode) {
+		return opts.strict ? strictUriEncode(value) : encodeURIComponent(value);
+	}
+
+	return value;
+}
+
+function keysSorter(input) {
+	if (Array.isArray(input)) {
+		return input.sort();
+	} else if (typeof input === 'object') {
+		return keysSorter(Object.keys(input)).sort(function (a, b) {
+			return Number(a) - Number(b);
+		}).map(function (key) {
+			return input[key];
+		});
+	}
+
+	return input;
+}
+
+exports.extract = function (str) {
+	return str.split('?')[1] || '';
+};
+
+exports.parse = function (str, opts) {
+	opts = objectAssign({arrayFormat: 'none'}, opts);
+
+	var formatter = parserForArrayFormat(opts);
+
+	// Create an object with no prototype
+	// https://github.com/sindresorhus/query-string/issues/47
+	var ret = Object.create(null);
+
+	if (typeof str !== 'string') {
+		return ret;
+	}
+
+	str = str.trim().replace(/^(\?|#|&)/, '');
+
+	if (!str) {
+		return ret;
+	}
+
+	str.split('&').forEach(function (param) {
+		var parts = param.replace(/\+/g, ' ').split('=');
+		// Firefox (pre 40) decodes `%3D` to `=`
+		// https://github.com/sindresorhus/query-string/pull/37
+		var key = parts.shift();
+		var val = parts.length > 0 ? parts.join('=') : undefined;
+
+		// missing `=` should be `null`:
+		// http://w3.org/TR/2012/WD-url-20120524/#collect-url-parameters
+		val = val === undefined ? null : decodeURIComponent(val);
+
+		formatter(decodeURIComponent(key), val, ret);
+	});
+
+	return Object.keys(ret).sort().reduce(function (result, key) {
+		var val = ret[key];
+		if (Boolean(val) && typeof val === 'object' && !Array.isArray(val)) {
+			// Sort object keys, not values
+			result[key] = keysSorter(val);
+		} else {
+			result[key] = val;
+		}
+
+		return result;
+	}, Object.create(null));
+};
+
+exports.stringify = function (obj, opts) {
+	var defaults = {
+		encode: true,
+		strict: true,
+		arrayFormat: 'none'
+	};
+
+	opts = objectAssign(defaults, opts);
+
+	var formatter = encoderForArrayFormat(opts);
+
+	return obj ? Object.keys(obj).sort().map(function (key) {
+		var val = obj[key];
+
+		if (val === undefined) {
+			return '';
+		}
+
+		if (val === null) {
+			return encode(key, opts);
+		}
+
+		if (Array.isArray(val)) {
+			var result = [];
+
+			val.slice().forEach(function (val2) {
+				if (val2 === undefined) {
+					return;
+				}
+
+				result.push(formatter(key, val2, result.length));
+			});
+
+			return result.join('&');
+		}
+
+		return encode(key, opts) + '=' + encode(val, opts);
+	}).filter(function (x) {
+		return x.length > 0;
+	}).join('&') : '';
+};
+
+
+/***/ }),
+/* 240 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+module.exports = function (str) {
+	return encodeURIComponent(str).replace(/[!'()*]/g, function (c) {
+		return '%' + c.charCodeAt(0).toString(16).toUpperCase();
+	});
+};
+
+
+/***/ }),
+/* 241 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var filterPagination = exports.filterPagination = function filterPagination() {
+    var perpage = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 5;
+    var page = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+    var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+
+    if (page < 0) page = 0;
+    var items = data.map(function (item) {
+        return item;
+    }),
+        index = perpage * (page - 1),
+        itemsToShow = items.splice(index, perpage);
+    return itemsToShow;
+};
+
+/***/ }),
+/* 242 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(10);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Pagination = function (_Component) {
+    _inherits(Pagination, _Component);
+
+    function Pagination() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
+        _classCallCheck(this, Pagination);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Pagination.__proto__ || Object.getPrototypeOf(Pagination)).call.apply(_ref, [this].concat(args))), _this), _this.getPageLinks = function () {
+            var pageLinksLi = [];
+            for (var i = 1; i <= _this.props.requiredPages; i++) {
+                pageLinksLi.push(i);
+            }
+
+            if (_this.props.requiredPages > 10) {
+                var _this$props$extractQu = _this.props.extractQuery(),
+                    _this$props$extractQu2 = _this$props$extractQu.page,
+                    page = _this$props$extractQu2 === undefined ? 1 : _this$props$extractQu2;
+
+                var fromPageIndex = pageLinksLi.indexOf(+page) > 4 ? pageLinksLi.indexOf(+page) - 4 : 0;
+                var tillPageIndex = +page + 5 > _this.props.requiredPages ? _this.props.requiredPages + 1 : pageLinksLi.indexOf(+page) <= 4 ? 10 : +page + 5;
+
+                var pageLinksLiToBeShown = pageLinksLi.slice(fromPageIndex, tillPageIndex);
+
+                return pageLinksLiToBeShown;
+            } else {
+                return pageLinksLi;
+            }
+        }, _this.prevLink = function () {
+            var _this$props$extractQu3 = _this.props.extractQuery(),
+                _this$props$extractQu4 = _this$props$extractQu3.page,
+                page = _this$props$extractQu4 === undefined ? 1 : _this$props$extractQu4;
+
+            return +page - 1;
+        }, _this.nextLink = function () {
+            var _this$props$extractQu5 = _this.props.extractQuery(),
+                _this$props$extractQu6 = _this$props$extractQu5.page,
+                page = _this$props$extractQu6 === undefined ? 1 : _this$props$extractQu6;
+
+            return +page + 1;
+        }, _temp), _possibleConstructorReturn(_this, _ret);
+    }
+
+    _createClass(Pagination, [{
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            return _react2.default.createElement(
+                'div',
+                { className: 'w-100' },
+                _react2.default.createElement('hr', null),
+                _react2.default.createElement(
+                    'nav',
+                    { 'aria-label': 'Page navigation example' },
+                    _react2.default.createElement(
+                        'ul',
+                        { className: 'pagination pagination-sm justify-content-center custom_pagination' },
+                        this.props.extractQuery().page && this.props.extractQuery().page > 1 && _react2.default.createElement(
+                            _reactRouterDom.Link,
+                            { to: '/cars?page=1' },
+                            _react2.default.createElement(
+                                'li',
+                                { className: 'page-item' },
+                                _react2.default.createElement(
+                                    'span',
+                                    { className: 'page-link' },
+                                    'First'
+                                )
+                            )
+                        ),
+                        this.props.extractQuery().page && this.props.extractQuery().page > 1 && _react2.default.createElement(
+                            _reactRouterDom.Link,
+                            { to: '/cars?page=' + this.prevLink() },
+                            _react2.default.createElement(
+                                'li',
+                                { className: 'page-item' },
+                                _react2.default.createElement(
+                                    'span',
+                                    { className: 'page-link' },
+                                    _react2.default.createElement('i', { className: 'fa fa-angle-left' })
+                                ),
+                                _react2.default.createElement(
+                                    'span',
+                                    { className: 'sr-only' },
+                                    'Previous'
+                                )
+                            )
+                        ),
+                        this.getPageLinks().map(function (item, index) {
+                            return _react2.default.createElement(
+                                _reactRouterDom.NavLink,
+                                { key: index, to: '/cars?page=' + item },
+                                _react2.default.createElement(
+                                    'li',
+                                    { className: +_this2.props.extractQuery().page === item ? "page-item active" : "page-item" },
+                                    _react2.default.createElement(
+                                        'span',
+                                        { className: 'page-link' },
+                                        item
+                                    )
+                                )
+                            );
+                        }),
+                        this.props.extractQuery().page && this.props.extractQuery().page < this.props.requiredPages && _react2.default.createElement(
+                            _reactRouterDom.Link,
+                            { to: '/cars?page=' + this.nextLink() },
+                            _react2.default.createElement(
+                                'li',
+                                { className: 'page-item' },
+                                _react2.default.createElement(
+                                    'span',
+                                    { className: 'page-link' },
+                                    _react2.default.createElement('i', { className: 'fa fa-angle-right' })
+                                ),
+                                _react2.default.createElement(
+                                    'span',
+                                    { className: 'sr-only' },
+                                    'Next'
+                                )
+                            )
+                        ),
+                        this.props.extractQuery().page && this.props.extractQuery().page < this.props.requiredPages && _react2.default.createElement(
+                            _reactRouterDom.Link,
+                            { to: '/cars?page=' + this.props.requiredPages },
+                            _react2.default.createElement(
+                                'li',
+                                { className: 'page-item' },
+                                _react2.default.createElement(
+                                    'span',
+                                    { className: 'page-link' },
+                                    'Last'
+                                )
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Pagination;
+}(_react.Component);
+
+exports.default = Pagination;
 
 /***/ })
 /******/ ]);

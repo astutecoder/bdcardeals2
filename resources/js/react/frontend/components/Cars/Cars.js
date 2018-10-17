@@ -2,23 +2,25 @@ import React, {Component} from 'react'
 import SectionHead from '../SectionHead/SectionHead';
 import {connect} from 'react-redux'
 import {getAllCars, setSlider, getAllBrands, getAllBodyTypes} from '../../actions/actions'
+import {filterPagination} from '../../Selectors'
 
 import styles from './Cars.scss'
 
 import Search from '../Search/Search';
 import CarListItem from '../CarListItem/CarListItem';
 import Breadcrumb from '../Breadcrumb/Breadcrumb';
+import Pagination from '../Helpers/Pagination/Pagination'
 
 class Cars extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            carsToShow: []
+            carsToPaginate: []
         }
     }
 
     componentDidMount() {
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
         if (!this.props.cars.length) {
             this
                 .props
@@ -39,17 +41,20 @@ class Cars extends Component {
         window.addEventListener('resize', () => {
             this.is_mobile();
         })
-        this.carsToShow();
+        this.isValidPageRequest();
+        this.carsToPaginate();
 
     }
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.cars.length != this.props.cars.length) {
-            this.carsToShow();
+            this.carsToPaginate();
+            this.isValidPageRequest();
         }
     }
+
     componentWillUnmount() {
-        this.setState({carsToShow: []})
+        this.setState({carsToPaginate: []})
     }
 
     is_mobile = () => {
@@ -60,70 +65,104 @@ class Cars extends Component {
         }
     }
 
-    carsToShow = () => {
+    carsToPaginate = () => {
         if (this.props.location.state) {
             if (this.props.location.state.hasOwnProperty('carsToDisplay')) {
                 this.setState({
-                    carsToShow: [...this.props.location.state.carsToDisplay]
+                    carsToPaginate: [...this.props.location.state.carsToDisplay]
                 });
             }
         } else {
             this.setState({
-                carsToShow: [...this.props.cars]
+                carsToPaginate: [...this.props.cars]
             })
         }
     }
 
+    defaultPerpage = () => {
+        return 5;
+    }
+    requiredPages = () => {
+        return Math.ceil(this.props.cars.length / this.defaultPerpage());
+    }
+
+    isValidPageRequest() {
+        let totalPages = this.requiredPages();
+        let {page: currentPage} = this.extractQuery();
+
+        if (!currentPage || totalPages < currentPage) {
+            this
+                .props
+                .history
+                .replace('/cars?page=1')
+            return;
+        }
+    }
+
+    extractQuery = () => {
+        const query = require('query-string');
+        return (query.parse(this.props.location.search));
+    };
+
+    carsToShow = () => {
+        const {
+            page = 1
+        } = this.extractQuery();
+        return filterPagination(this.defaultPerpage(), page, this.state.carsToPaginate);
+    }
+
+    showingSequenceNumber = () => {
+        let {page: currentPage} = this.extractQuery();
+        let firstCarInPage = ((+ currentPage - 1) * this.defaultPerpage()) + 1;
+        let lastCarInPage = (+ currentPage * this.defaultPerpage());
+        let totalCars = this.state.carsToPaginate.length;
+        lastCarInPage = (lastCarInPage > totalCars)
+            ? totalCars
+            : lastCarInPage;
+        return `${firstCarInPage} - ${lastCarInPage} of ${totalCars}`;
+    }
+
     render() {
-        const breadcrumb_links =[
+        const breadcrumb_links = [
             {
                 linkname: 'Car List'
             }
         ]
         return (
-            <section>
+            <React.Fragment>
                 <SectionHead title="Cars list"/>
+                <Breadcrumb links={breadcrumb_links}/>
+                <section className="section-wrapper pt-3">
 
-                <Breadcrumb links={breadcrumb_links} />
-
-                {this.state.is_mobile && <div className={styles.search__mobile}>
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-md-12">
-                                <Search
-                                    {...this.props}
-                                    name="Name"
-                                    brand="Brand"
-                                    bodyType="Type"
-                                    model="Model"
-                                    carCondition="Status"
-                                    year="Year"
-                                    priceRange="Price Range"
-                                    searchClass="mt-3 p-0 w-100"
-                                    flexClass="d-flex flex-column flex-md-row justify-content-between align-items-md-center"/>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <div className={styles.listAndSearchContainer}>
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-lg-8">
+                                    {!!this.state.carsToPaginate.length && (
+                                        <span>
+                                            <strong className="text-danger">showing cars: 
+                                            </strong>
+                                            {this.showingSequenceNumber()}
+                                        </span>
+                                    )}
+                                    {(this.carsToShow().length < 1)
+                                        ? <h3 className="text-danger">Sorry! No cars match with search</h3>
+                                        : this.carsToShow().map(car => (<CarListItem key={car.id} car={car} cars={[...this.props.cars]}/>))
 }
-
-                <div className={styles.listAndSearchContainer}>
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-lg-8">
-                                {(this.state.carsToShow.length < 1)
-                                    ? <h3 className="text-danger">Sorry! No cars match with search</h3>
-                                    : this.state.carsToShow.map(car => (<CarListItem key={car.id} car={car} cars={[...this.props.cars]}/>))
+                                    {(this.state.carsToPaginate.length > this.defaultPerpage()) && (<Pagination
+                                        {...this.props}
+                                        perpage={this.defaultPerpage()}
+                                        requiredPages={this.requiredPages()}
+                                        extractQuery={() => this.extractQuery()}/>)
 }
-                            </div>
-                            {!this.state.is_mobile && (
-                                <div className=" hidden-md col-lg-4">
+                                </div>
+
+                                <div className="hidden-md col-lg-4">
                                     <div className={styles.search__sidebar__head}>
                                         <h5>Search Cars</h5>
                                     </div>
                                     <Search
-                                        {...this.props}
+                                        { ...this.props }
                                         name="Name"
                                         brand="Brand"
                                         bodyType="Type"
@@ -132,16 +171,15 @@ class Cars extends Component {
                                         year="Year"
                                         priceRange="Price Range"
                                         searchClass="p-0 w-100"
-                                        flexClass="d-flex flex-column
-                                  justify-content-between align-items-md-center"
-                                        btnContainerClass="mt-3"/>
+                                        btnContainerClass="mt-3"
+                                        flexClass="d-flex flex-column justify-content-between align-items-md-center"/>
                                 </div>
-                            )
-}
+
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            </React.Fragment>
         )
     }
 }
