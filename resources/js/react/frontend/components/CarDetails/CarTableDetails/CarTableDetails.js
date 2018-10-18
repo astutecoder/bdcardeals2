@@ -9,7 +9,9 @@ export default class CarTableDetails extends Component {
         const car = {
             ...this.props.car
         }
-        const car_status = (car.car_condition === 'used')? 'second-hand' : car.car_condition;
+        const car_status = (car.car_condition === 'used')
+            ? 'second-hand'
+            : car.car_condition;
         return (
             <div className="row">
                 <div className="col-md-12">
@@ -19,12 +21,18 @@ export default class CarTableDetails extends Component {
                             <span className={styles.price__offer}>{cFormat.to(car.offer_price)}</span>
                         )}
                     </div>
+                    <div className={styles.phone_number_wrap}>
+                        <span className={styles.phone_number}>
+                            <i className="fa fa-phone"></i>
+                            <span className="ml-2">01719 403 013</span>
+                        </span>
+                    </div>
                     <div className={styles.car_info}>
                         <div className={styles.car_info__item}>
                             <span className={styles.car_info__title}>Status</span>
                             <span className={styles.car_info__data}>{car_status}</span>
                         </div>
-                        
+
                         <div className={styles.car_info__item}>
                             <span className={styles.car_info__title}>Type</span>
                             <span className={styles.car_info__data}>{car.body_types.body_type}</span>

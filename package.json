@@ -19,6 +19,7 @@
         "bootstrap": "^4.0.0",
         "cross-env": "^5.1",
         "css-loader": "^1.0.0",
+        "font-awesome": "^4.7.0",
         "jquery": "^3.3.1",
         "laravel-mix": "^2.0",
         "laravel-mix-react-css-modules": "^1.2.0",

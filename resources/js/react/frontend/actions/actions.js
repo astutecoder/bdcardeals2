@@ -1,7 +1,8 @@
 import {GET_ALL_CARS, GET_SINGLE_CAR, SET_SLIDERS, GET_ALL_BRANDS, GET_ALL_BODYTYPES} from './types'
 import Axios from 'axios'
 
-const BaseURL = '/';
+// export const BaseURL = '/projects/bdcardeals/';
+export const BaseURL = '/';
 
 export const getAllCars = () => (dispatch) => {
     Axios

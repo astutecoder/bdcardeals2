@@ -57,7 +57,7 @@ class PhotoController extends Controller
                 $img_name = $img->getClientOriginalName();
                 $base_name = pathinfo($img_name, PATHINFO_FILENAME);
                 $extension = $img->getClientOriginalExtension();
-                $file_name_to_save = $base_name ."_".time()."".$extension;
+                $file_name_to_save = $base_name ."_".time().".".$extension;
                 $file_names[] = $file_name_to_save;
 
                 $img->storeAs('public/car_albums/'.$folderName, $file_name_to_save);

@@ -12,9 +12,10 @@
             href="https://fonts.googleapis.com/css?family=Hind:300,400,600,700|Poppins:300,500,600,700,900"
             rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('vendor_assets/slider-pro-master/dist/css/slider-pro.min.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
-        <title>BD Car Deals::@yield('title')</title>
+        <title>BD Car Deals</title>
     </head>
     <body>
         <div id="bcd-app"></div>

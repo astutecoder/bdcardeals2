@@ -365,15 +365,20 @@ class CarsController extends Controller
 
         DB::beginTransaction();
         // deleting photos
-        $photosDeleted = Photo::where('cars_id', $id)->delete();
-        $success = $success && $photosDeleted;
+        $photos = Photo::where('cars_id', $id)->get();
+        if(!$photos->isEmpty()){
+            $photosDeleted = $photos->delete();
+            $success = $success && $photosDeleted;
+        }
 
         // deleting albums and removing folder
         $album = Album::where('cars_id', $id)->get();
-        $folder_name = $album->first()->folder_name;
-        Storage::deleteDirectory('public/car_albums/' . $folder_name);
-        $albumDeleted = Album::where('cars_id', $id)->delete();
-        $success = $success && $albumDeleted;
+        if(!$album->isEmpty()){
+            $folder_name = $album->first()->folder_name;
+            Storage::deleteDirectory('public/car_albums/' . $folder_name);
+            $albumDeleted = Album::where('cars_id', $id)->delete();
+            $success = $success && $albumDeleted;
+        }
 
         // deleting car-colors
         $colorDeleted = CarsColor::where('cars_id', $id)->delete();

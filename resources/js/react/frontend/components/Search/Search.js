@@ -163,7 +163,6 @@ export default class Search extends Component {
     }
 
     render() {
-        this.isSearched();
         const {redirect} = this.state;
         if (redirect) {
             return (<Redirect

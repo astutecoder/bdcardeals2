@@ -11306,12 +11306,36 @@ a.text-dark:focus {
 }
 
 body {
+  text-rendering: optimizeLegibility;
   font-size: 14px;
 }
 
 body button:active,
 body button:focus {
   outline: 0;
+}
+
+body .pleaseWait {
+  background: rgba(130, 5, 26, 0.92);
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 102;
+}
+
+body .pleaseWait:after {
+  color: white;
+  content: 'Please Wait...';
+  font-family: 'Poppins', sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
 .navbar-laravel {

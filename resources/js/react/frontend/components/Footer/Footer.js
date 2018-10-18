@@ -43,7 +43,7 @@ class Footer extends Component {
                             <div className={styles.logo}>
                                 <img
                                     className={styles.logo__img}
-                                    src="/images/bd_car_deals_logo_BW.png"
+                                    src={`${this.props.baseURL}images/bd_car_deals_logo_BW.png`}
                                     alt="BD Car Deals Logo"/>
                             </div>
                         </div>
@@ -150,5 +150,5 @@ class Footer extends Component {
         )
     }
 }
-const mapPropsToState = (state) => ({cars: state.cars.cars, brands: state.cars.brands});
+const mapPropsToState = (state) => ({cars: state.cars.cars, brands: state.cars.brands, baseURL: state.cars.baseURL});
 export default connect(mapPropsToState, {getAllCars, getAllBrands})(Footer);

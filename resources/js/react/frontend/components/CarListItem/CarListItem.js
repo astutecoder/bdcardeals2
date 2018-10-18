@@ -15,7 +15,9 @@ export default class CarListItem extends Component {
     }
 
     componentDidMount() {
-        let folder_name = (this.props.car.albums) ? this.props.car.albums.folder_name : '',
+        let folder_name = (this.props.car.albums)
+                ? this.props.car.albums.folder_name
+                : '',
             file_name = '';
         this
             .props
@@ -32,27 +34,47 @@ export default class CarListItem extends Component {
     }
 
     render() {
-        const cFormat = wNumb({thousand:',', prefix: '৳'});
+        const cFormat = wNumb({thousand: ',', prefix: '৳'});
         const car = {
             ...this.props.car
         };
-        const src = (this.state.img_folder_name) ? `/storage/car_albums/${this.state.img_folder_name}/${this.state.img_file_name}` : '/images/no_car_photo.png';
-        const path = `/cars/${car.brands.brand_name.split(' ').join('-')}-${car.model_no.split(' ').join('-')}/${car.id}`
+        const src = (this.state.img_folder_name)
+            ? `${this.props.baseURL}storage_image/car_albums/${this.state.img_folder_name}/${this.state.img_file_name}`
+            : `${this.props.baseURL}images/no_car_photo.png`;
+        const path = `/cars/${car
+            .brands
+            .brand_name
+            .split(' ')
+            .join('-')}-${car
+            .model_no
+            .split(' ')
+            .join('-')}/${car
+            .id}`
 
         return (
             <div className={styles.carlist__item}>
                 <div className="row">
                     <div className="col-sm-4">
                         <div className={styles.image_container}>
-                            <img
-                            className={styles.image_item}
-                            src={src}
-                            alt={`${car
-                            .brands
-                            .brand_name
-                            .toUpperCase()} ${car
-                            .model_no
-                            .toUpperCase()}'s image`}/>
+                            <Link
+                                to={{
+                                pathname: path,
+                                state: {
+                                    car: car,
+                                    cars: [...this.props.cars]
+                                }
+                            }}>
+                                <img
+                                    className={styles.image_item}
+                                    src={src}
+                                    alt={`${car
+                                    .brands
+                                    .brand_name
+                                    .toUpperCase()} ${car
+                                    .model_no
+                                    .toUpperCase()}'s image`}/>
+                            </Link>
+
                         </div>
                     </div>
                     <div className="col-sm-8">
@@ -60,9 +82,13 @@ export default class CarListItem extends Component {
                             <div className="col-md-6">
                                 <div className={styles.title__container}>
                                     <h4 className={styles.title}>
-                                        <Link to={{
+                                        <Link
+                                            to={{
                                             pathname: path,
-                                            state:{ car: car, cars: [...this.props.cars]}
+                                            state: {
+                                                car: car,
+                                                cars: [...this.props.cars]
+                                            }
                                         }}>
                                             {(car.title)
                                                 ? car.title
@@ -74,15 +100,7 @@ export default class CarListItem extends Component {
                                 </div>
                             </div>
                             <div className="col-md-6 text-md-right">
-                                {/* <span className={styles.btn__price}>
-                                    <strong className={styles.btn__price__main_price}>
-                                        {cFormat.to(car.price)}</strong>
-                                    {!!car.offer_price && <small className={styles.btn__price__offer_price}>
-                                        {cFormat.to(car.offer_price)}</small>
-}
-                                    {!!car.is_negotiable_price && <span className={styles.btn__price__is_negotiable}>Negotiable Price</span>}
-                                </span> */}
-                                <PriceBox car={car} show_negotiable={true} />
+                                <PriceBox car={car} show_negotiable={true}/>
                             </div>
                         </div>
 
@@ -91,7 +109,7 @@ export default class CarListItem extends Component {
                                 <h5>Highlights</h5>
                             </div>
                             <div className="col-md-12">
-                                <CarTableHighlight car={car} />
+                                <CarTableHighlight car={car}/>
                             </div>
                         </div>
 

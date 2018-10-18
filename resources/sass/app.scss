@@ -13,11 +13,34 @@
 @import "~slick-carousel/slick/slick-theme.css";
 
 body {
+    text-rendering: optimizeLegibility;
     font-size: 14px;
     button {
         &:active,
         &:focus {
             outline: 0;
+        }
+    }
+
+    // disable body area with overlay
+    .pleaseWait {
+        background: rgba(130, 5, 26, 0.92);
+        height: 100%;
+        left: 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 102;
+        &:after {
+            color: white;
+            content: 'Please Wait...';
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            font-weight: 600;
+            left: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
         }
     }
 }
@@ -126,7 +149,7 @@ body {
 
 // Pagination Styles
 nav .custom_pagination {
-    @media (max-width: 991px){
+    @media (max-width: 991px) {
         border-bottom: 1px solid rgba(0,0,0,0.15);
         margin-bottom: 1rem;
         padding-bottom: 1rem;
@@ -140,7 +163,7 @@ nav .custom_pagination {
                 color: $lightblack;
 
             }
-            &.active .page-link{
+            &.active .page-link {
                 background: $red;
                 border: 1px solid $red;
                 color: white;

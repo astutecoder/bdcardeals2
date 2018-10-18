@@ -51,7 +51,7 @@
                                 <td>
                                     @foreach($album->photos as $photo)
                                         <div class="all-albums-cover-container">
-                                            <img src="{{ '/storage/car_albums/'.$album->folder_name.'/'.$photo->file_name }}"
+                                            <img src="{{ '/storage_image/car_albums/'.$album->folder_name.'/'.$photo->file_name }}"
                                                  alt="{{ $photo->file_name }}">
                                         </div>
                                     @endforeach

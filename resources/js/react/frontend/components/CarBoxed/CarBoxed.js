@@ -112,7 +112,7 @@ export default class CarBoxed extends Component {
                     <section className={["section-wrapper", this.props.classes].join(' ')}>
                         <div className="container">
                             <div className="row">
-                                <SubSectionHead title={title} />
+                                <SubSectionHead title={title}/>
                                 <div className="col-md-12">
                                     <div id="carboxed" className={styles.car_box__container}>
                                         <Slider ref={c => (this.slider = c)} {...options}>
@@ -131,8 +131,8 @@ export default class CarBoxed extends Component {
                                                         })
                                                 }
                                                 const src = (folder_name)
-                                                    ? `/storage/car_albums/${folder_name}/${file_name}`
-                                                    : '/images/no_car_photo.png';
+                                                    ? `${this.props.baseURL}storage_image/car_albums/${folder_name}/${file_name}`
+                                                    : `${this.props.baseURL}images/no_car_photo.png`;
                                                 const path = `/cars/${car
                                                     .brands
                                                     .brand_name
@@ -162,14 +162,26 @@ export default class CarBoxed extends Component {
                                                             </Link>
                                                         </h3>
                                                         <div className={styles.car_box__img_container}>
-                                                            <img
-                                                                src={src}
-                                                                alt={car.title
-                                                                ? car.title
-                                                                : (car.brands.brand_name + ' ' + car.model_no + ' ' + car.year) + "'s image"}/>
-                                                            <span className={styles.car_box__price}>
-                                                                <PriceBox car={car}/>
-                                                            </span>
+                                                            <Link
+                                                                to={{
+                                                                pathname: path,
+                                                                state: {
+                                                                    car: {
+                                                                        ...car
+                                                                    },
+                                                                    cars: [...this.props.cars]
+                                                                }
+                                                            }}>
+                                                                <img
+                                                                    src={src}
+                                                                    alt={car.title
+                                                                    ? car.title
+                                                                    : (car.brands.brand_name + ' ' + car.model_no + ' ' + car.year) + "'s image"}/>
+                                                                <span className={styles.car_box__price}>
+                                                                    <PriceBox car={car}/>
+                                                                </span>
+                                                            </Link>
+
                                                         </div>
                                                         <div className={styles.car_box__highlights}>
                                                             <CarTableHighlight car={car} list_view='hide'/>

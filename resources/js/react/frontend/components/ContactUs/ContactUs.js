@@ -1,11 +1,15 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {getAllCars} from '../../actions/actions'
 import Axios from 'axios'
+
+import {activateWait, deactivateWait} from '../Helpers/Functions'
 
 import SectionHead from '../SectionHead/SectionHead';
 import Notification from '../Helpers/Notification/Notification'
 import styles from './ContactUs.scss'
 
-export default class ContactUs extends Component {
+class ContactUs extends Component {
 
     constructor(props) {
         super(props);
@@ -18,6 +22,13 @@ export default class ContactUs extends Component {
             errors: {},
             notification: {}
         }
+    }
+
+    componentWillMount() {
+        document.title = 'BD Car Deals:: Contact Us';
+        this
+            .props
+            .getAllCars();
     }
 
     handleInput = (e) => {
@@ -54,7 +65,10 @@ export default class ContactUs extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        activateWait();
+
         if (!this.checkRequired()) {
+            deactivateWait();
             this.setState({
                 notification: {
                     failed: 'Please Fill Required Fields.',
@@ -64,9 +78,9 @@ export default class ContactUs extends Component {
             this.notificationSlideOut();
             return;
         }
-        console.log('post...');
+
         Axios
-            .post('/api/v1/contact-us', {
+            .post(`${this.props.baseURL}api/v1/contact-us`, {
             name: this.state.name,
             email: this.state.email,
             phone: this.state.phone,
@@ -74,6 +88,7 @@ export default class ContactUs extends Component {
             message: this.state.message
         })
             .then(response => {
+                deactivateWait();
                 this.setState({
                     name: '',
                     email: '',
@@ -89,6 +104,7 @@ export default class ContactUs extends Component {
                 this.notificationSlideOut();
             })
             .catch(err => {
+                deactivateWait();
                 if (err.response.status === 422) {
                     this.setState({
                         errors: {
@@ -219,7 +235,10 @@ export default class ContactUs extends Component {
                                                 placeholder="Message"/>
                                         </div>
                                     </div>
-                                    <button type="submit" className="btn btn-success rounded-0" onClick={this.handleSubmit}>Submit</button>
+                                    <button
+                                        type="submit"
+                                        className="btn btn-success rounded-0"
+                                        onClick={this.handleSubmit}>Submit</button>
                                 </form>
                             </div>
                         </div>
@@ -230,3 +249,7 @@ export default class ContactUs extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => ({baseURL: state.cars.baseURL})
+
+export default connect(mapStateToProps, {getAllCars})(ContactUs)

@@ -24,6 +24,7 @@ class CarDetails extends Component {
     }
     componentDidMount() {
         window.scrollTo(0, 0);
+        document.title = 'BD Car Deals:: Car Details';
         const car_id = this.props.match.params.id;
 
         if (!this.props.location.state) {
@@ -67,7 +68,7 @@ class CarDetails extends Component {
         if (this.state.car.id && this.state.car.photos.length > 0 && !this.state.images) {
             let images = [];
             for (let i = 0; i < this.state.car.photos.length; i++) {
-                const url = `/storage/car_albums/${this.state.car.albums.folder_name}/${this.state.car.photos[i].file_name}`;
+                const url = `${this.props.baseURL}storage_image/car_albums/${this.state.car.albums.folder_name}/${this.state.car.photos[i].file_name}`;
                 images.push({original: url, thumbnail: url});
             }
             this.setState({images});
@@ -133,7 +134,7 @@ class CarDetails extends Component {
                                                                 showPlayButton={false}/>)
                                                             : (<ImageGallery
                                                                 items={[{
-                                                                    original: '/images/no_car_photo.png'
+                                                                    original: `${this.props.baseURL}images/no_car_photo.png`
                                                                 }
                                                             ]}
                                                                 autoPlay={true}
@@ -163,7 +164,8 @@ class CarDetails extends Component {
                                 car: car
                             }}
                                 cars={cars}
-                                classes="bg-white"/>
+                                classes="bg-white"
+                                baseURL={this.props.baseURL}/>
                         </React.Fragment>
                     )
                     : (
@@ -184,6 +186,7 @@ const mapPropsToState = (state) => ({
     cars: [...state.cars.cars],
     car: {
         ...state.cars.singleCar
-    }
+    },
+    baseURL: state.cars.baseURL
 })
 export default connect(mapPropsToState, {getAllCars, getSingleCar})(CarDetails);

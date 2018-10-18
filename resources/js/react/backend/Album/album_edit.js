@@ -20,6 +20,7 @@ export default class AlbumEdit extends Component {
                 file_name: '',
             },
             images: [], //except featured
+            baseURL: '/'
         }
     }
 
@@ -50,7 +51,7 @@ export default class AlbumEdit extends Component {
     }
 
     getAllPhotos = (car_id) => {
-        axios.get('/api/v1/album/all-photos/' + car_id)
+        axios.get(`${this.state.baseURL}api/v1/album/all-photos/${car_id}`)
             .then(response => {
                 this.setState({
                     images: [...response.data]
@@ -97,7 +98,7 @@ export default class AlbumEdit extends Component {
         formData.append('folder_name', this.state.cover_image.folder_name);
         formData.append('total_image', files.length);
 
-        axios.post('/api/v1/album/append-image', formData, {
+        axios.post(`${this.state.baseURL}api/v1/album/append-image`, formData, {
             headers:{
                 Authorization: 'Bearer 03ArWRckJh22ltDgRl6tPdjSpRDMeQHC9pozMWJOay2VwG6Wa3qeQyPPcqCN'
             }
@@ -117,7 +118,7 @@ export default class AlbumEdit extends Component {
     }
 
     handleDeleteImage = (image_id) => {
-        axios.post('/api/v1/album/delete-image', {image_id, folder_name: this.state.cover_image.folder_name}, {
+        axios.post(`${this.state.baseURL}api/v1/album/delete-image`, {image_id, folder_name: this.state.cover_image.folder_name}, {
             headers: {
                 Authorization: 'Bearer 03ArWRckJh22ltDgRl6tPdjSpRDMeQHC9pozMWJOay2VwG6Wa3qeQyPPcqCN'
             }
@@ -136,7 +137,7 @@ export default class AlbumEdit extends Component {
             })
     }
     handleMakeCoverImage = (image_id, car_id) => {
-        axios.post('/api/v1/album/change-cover', {image_id, car_id}, {
+        axios.post(`${this.state.baseURL}api/v1/album/change-cover`, {image_id, car_id}, {
             headers: {
                 'Authorization': 'Bearer 03ArWRckJh22ltDgRl6tPdjSpRDMeQHC9pozMWJOay2VwG6Wa3qeQyPPcqCN',
             }
@@ -160,7 +161,7 @@ export default class AlbumEdit extends Component {
                         <div className={styles["Cover-image"]}>
                             {!!(this.state.cover_image.id) ?
                                 <img
-                                    src={`/storage/car_albums/${this.state.cover_image.folder_name}/${this.state.cover_image.file_name}`}
+                                    src={`${this.state.baseURL}storage_image/car_albums/${this.state.cover_image.folder_name}/${this.state.cover_image.file_name}`}
                                     alt={this.state.cover_image.file_name}/>
                                 : ''
                             }
@@ -195,7 +196,7 @@ export default class AlbumEdit extends Component {
                                         <div className={styles.Card}>
                                             <div className={styles["Card-img-top"]}>
                                                 <img
-                                                    src={`/storage/car_albums/${image.albums.folder_name}/${image.file_name}`}
+                                                    src={`${this.state.baseURL}storage_image/car_albums/${image.albums.folder_name}/${image.file_name}`}
                                                     alt=""/>
                                             </div>
 

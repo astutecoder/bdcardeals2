@@ -30,6 +30,6 @@ class ContactUsController extends Controller
         Mail::to($email)
                 ->send(new ReceiveConfirmation($name));
         Mail::to('badhontrading@gmail.com')
-                ->send(new Inquiry($name, $email, $phone, $subject, $message, $inquiry_for, $inquiry_for_source));
+                ->send(new Inquiry($name, $email, $phone, strtoupper($subject), $message, $inquiry_for, $inquiry_for_source));
     }
 }

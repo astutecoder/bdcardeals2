@@ -146,9 +146,10 @@ class FrontEndRoutes extends Component {
 
     render() {
         return (
+            // <BrowserRouter basename='/projects/bdcardeals'>
             <BrowserRouter>
                 <div>
-                    <Header/>
+                    <Header baseURL={this.props.baseURL}/>
                     <Switch>
                         <Route
                             path='/'
@@ -176,6 +177,12 @@ class FrontEndRoutes extends Component {
     }
 }
 
-const mapPropsToState = (state) => ({cars: state.cars.cars, brands: state.cars.brands, bodyTypes: state.cars.bodyTypes, sliders: state.sliders.sliders})
+const mapPropsToState = (state) => ({
+    cars: state.cars.cars, 
+    brands: state.cars.brands, 
+    bodyTypes: state.cars.bodyTypes, 
+    baseURL: state.cars.baseURL,
+    sliders: state.sliders.sliders, 
+})
 
 export default connect(mapPropsToState, {getAllCars, setSlider, getAllBrands, getAllBodyTypes})(FrontEndRoutes);

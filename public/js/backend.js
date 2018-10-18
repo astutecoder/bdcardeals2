@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 95);
+/******/ 	return __webpack_require__(__webpack_require__.s = 96);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -84,7 +84,7 @@ if (false) {
 "use strict";
 
 
-var bind = __webpack_require__(11);
+var bind = __webpack_require__(12);
 var isBuffer = __webpack_require__(26);
 
 /*global toString:true*/
@@ -898,10 +898,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(12);
+    adapter = __webpack_require__(13);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(12);
+    adapter = __webpack_require__(13);
   }
   return adapter;
 }
@@ -980,8 +980,7 @@ module.exports = defaults;
 
 /***/ }),
 /* 6 */,
-/* 7 */,
-/* 8 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1078,7 +1077,9 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 
 
 /***/ }),
-/* 9 */
+/* 8 */,
+/* 9 */,
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1176,8 +1177,8 @@ module.exports = checkPropTypes;
 
 
 /***/ }),
-/* 10 */,
-/* 11 */
+/* 11 */,
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1195,7 +1196,7 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1206,7 +1207,7 @@ var settle = __webpack_require__(30);
 var buildURL = __webpack_require__(32);
 var parseHeaders = __webpack_require__(33);
 var isURLSameOrigin = __webpack_require__(34);
-var createError = __webpack_require__(13);
+var createError = __webpack_require__(14);
 var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(35);
 
 module.exports = function xhrAdapter(config) {
@@ -1382,7 +1383,7 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1407,7 +1408,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1419,7 +1420,7 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1445,14 +1446,15 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 16 */,
-/* 17 */
+/* 17 */,
+/* 18 */,
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(25);
 
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1497,8 +1499,6 @@ if (false) {
 
 
 /***/ }),
-/* 19 */,
-/* 20 */,
 /* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1528,7 +1528,7 @@ module.exports = ReactPropTypesSecret;
 
 
 var utils = __webpack_require__(1);
-var bind = __webpack_require__(11);
+var bind = __webpack_require__(12);
 var Axios = __webpack_require__(27);
 var defaults = __webpack_require__(5);
 
@@ -1563,9 +1563,9 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(15);
+axios.Cancel = __webpack_require__(16);
 axios.CancelToken = __webpack_require__(42);
-axios.isCancel = __webpack_require__(14);
+axios.isCancel = __webpack_require__(15);
 
 // Expose all/spread
 axios.all = function all(promises) {
@@ -1908,7 +1908,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 "use strict";
 
 
-var createError = __webpack_require__(13);
+var createError = __webpack_require__(14);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -2341,7 +2341,7 @@ module.exports = InterceptorManager;
 
 var utils = __webpack_require__(1);
 var transformData = __webpack_require__(39);
-var isCancel = __webpack_require__(14);
+var isCancel = __webpack_require__(15);
 var defaults = __webpack_require__(5);
 var isAbsoluteURL = __webpack_require__(40);
 var combineURLs = __webpack_require__(41);
@@ -2501,7 +2501,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 "use strict";
 
 
-var Cancel = __webpack_require__(15);
+var Cancel = __webpack_require__(16);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -2614,8 +2614,8 @@ if (true) {
   (function() {
 'use strict';
 
-var _assign = __webpack_require__(8);
-var checkPropTypes = __webpack_require__(9);
+var _assign = __webpack_require__(7);
+var checkPropTypes = __webpack_require__(10);
 
 // TODO: this is special because it gets imported during build.
 
@@ -4348,8 +4348,8 @@ if (true) {
 'use strict';
 
 var React = __webpack_require__(0);
-var _assign = __webpack_require__(8);
-var checkPropTypes = __webpack_require__(9);
+var _assign = __webpack_require__(7);
+var checkPropTypes = __webpack_require__(10);
 var schedule = __webpack_require__(46);
 var tracing = __webpack_require__(48);
 
@@ -23622,23 +23622,24 @@ module.exports = function (css) {
 /* 92 */,
 /* 93 */,
 /* 94 */,
-/* 95 */
+/* 95 */,
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(96);
+module.exports = __webpack_require__(97);
 
 
 /***/ }),
-/* 96 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(97);
+__webpack_require__(98);
 
 /***/ }),
-/* 97 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23656,15 +23657,15 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(18);
+var _reactDom = __webpack_require__(20);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _axios = __webpack_require__(17);
+var _axios = __webpack_require__(19);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _Edit = __webpack_require__(98);
+var _Edit = __webpack_require__(99);
 
 var _Edit2 = _interopRequireDefault(_Edit);
 
@@ -23692,7 +23693,7 @@ var AlbumEdit = function (_Component) {
         };
 
         _this.getAllPhotos = function (car_id) {
-            _axios2.default.get('/api/v1/album/all-photos/' + car_id).then(function (response) {
+            _axios2.default.get(_this.state.baseURL + 'api/v1/album/all-photos/' + car_id).then(function (response) {
                 _this.setState({
                     images: [].concat(_toConsumableArray(response.data))
                 }); // setState() for album and images;
@@ -23739,7 +23740,7 @@ var AlbumEdit = function (_Component) {
             formData.append('folder_name', _this.state.cover_image.folder_name);
             formData.append('total_image', files.length);
 
-            _axios2.default.post('/api/v1/album/append-image', formData, {
+            _axios2.default.post(_this.state.baseURL + 'api/v1/album/append-image', formData, {
                 headers: {
                     Authorization: 'Bearer 03ArWRckJh22ltDgRl6tPdjSpRDMeQHC9pozMWJOay2VwG6Wa3qeQyPPcqCN'
                 }
@@ -23759,7 +23760,7 @@ var AlbumEdit = function (_Component) {
         };
 
         _this.handleDeleteImage = function (image_id) {
-            _axios2.default.post('/api/v1/album/delete-image', { image_id: image_id, folder_name: _this.state.cover_image.folder_name }, {
+            _axios2.default.post(_this.state.baseURL + 'api/v1/album/delete-image', { image_id: image_id, folder_name: _this.state.cover_image.folder_name }, {
                 headers: {
                     Authorization: 'Bearer 03ArWRckJh22ltDgRl6tPdjSpRDMeQHC9pozMWJOay2VwG6Wa3qeQyPPcqCN'
                 }
@@ -23777,7 +23778,7 @@ var AlbumEdit = function (_Component) {
         };
 
         _this.handleMakeCoverImage = function (image_id, car_id) {
-            _axios2.default.post('/api/v1/album/change-cover', { image_id: image_id, car_id: car_id }, {
+            _axios2.default.post(_this.state.baseURL + 'api/v1/album/change-cover', { image_id: image_id, car_id: car_id }, {
                 headers: {
                     'Authorization': 'Bearer 03ArWRckJh22ltDgRl6tPdjSpRDMeQHC9pozMWJOay2VwG6Wa3qeQyPPcqCN'
                 }
@@ -23804,7 +23805,8 @@ var AlbumEdit = function (_Component) {
                 folder_name: '',
                 file_name: ''
             },
-            images: [] //except featured
+            images: [], //except featured
+            baseURL: '/'
         };
         return _this;
     }
@@ -23850,7 +23852,7 @@ var AlbumEdit = function (_Component) {
                             'div',
                             { className: _Edit2.default["Cover-image"] },
                             !!this.state.cover_image.id ? _react2.default.createElement('img', {
-                                src: '/storage/car_albums/' + this.state.cover_image.folder_name + '/' + this.state.cover_image.file_name,
+                                src: this.state.baseURL + 'storage_image/car_albums/' + this.state.cover_image.folder_name + '/' + this.state.cover_image.file_name,
                                 alt: this.state.cover_image.file_name }) : ''
                         )
                     )
@@ -23907,7 +23909,7 @@ var AlbumEdit = function (_Component) {
                                             'div',
                                             { className: _Edit2.default["Card-img-top"] },
                                             _react2.default.createElement('img', {
-                                                src: '/storage/car_albums/' + image.albums.folder_name + '/' + image.file_name,
+                                                src: _this2.state.baseURL + 'storage_image/car_albums/' + image.albums.folder_name + '/' + image.file_name,
                                                 alt: '' })
                                         ),
                                         _react2.default.createElement(
@@ -24032,11 +24034,11 @@ exports.default = AlbumEdit;
 _reactDom2.default.render(_react2.default.createElement(AlbumEdit, null), document.getElementById("album_edit"));
 
 /***/ }),
-/* 98 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(99);
+var content = __webpack_require__(100);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -24082,7 +24084,7 @@ if(false) {
 }
 
 /***/ }),
-/* 99 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(false);

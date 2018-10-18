@@ -22,6 +22,7 @@ class BCDHome extends Component {
     }
 
     componentWillMount() {
+        document.title = 'BD Car Deals:: Best Car Dealer in Bangladesh';
         window.scrollTo(0, 0);
         if (!this.props.cars.length) {
             this
@@ -132,7 +133,7 @@ class BCDHome extends Component {
     render() {
         return (
             <div>
-                <Slider sliders={this.props.sliders}/>
+                <Slider sliders={this.props.sliders} baseURL={this.props.baseURL}/>
                 <Search
                     {...this.props}
                     flexClass="d-flex flex-column flex-md-row justify-content-between align-items-md-center"/>
@@ -141,7 +142,8 @@ class BCDHome extends Component {
                     filter={{
                     is_featured: 1
                 }}
-                    cars={[...this.props.cars]}/> 
+                    cars={[...this.props.cars]}
+                    baseURL={this.props.baseURL}/> 
                     
                 {/* {this.state.recentCars.length > 0 && (
                     <section className={["section-wrapper", styles.recent_car_container].join(' ')}>
@@ -187,5 +189,5 @@ class BCDHome extends Component {
         )
     }
 }
-const mapPropsToState = (state) => ({cars: state.cars.cars, brands: state.cars.brands, bodyTypes: state.cars.bodyTypes, sliders: state.sliders.sliders})
+const mapPropsToState = (state) => ({cars: state.cars.cars, brands: state.cars.brands, bodyTypes: state.cars.bodyTypes, baseURL: state.cars.baseURL, sliders: state.sliders.sliders})
 export default connect(mapPropsToState, {getAllCars, setSlider, getAllBrands, getAllBodyTypes})(BCDHome);

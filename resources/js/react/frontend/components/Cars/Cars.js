@@ -20,6 +20,7 @@ class Cars extends Component {
     }
 
     componentDidMount() {
+        document.title = 'BD Car Deals:: List of Best Cars in Bangladesh';
         window.scrollTo(0, 0);
         if (!this.props.cars.length) {
             this
@@ -36,11 +37,7 @@ class Cars extends Component {
                 .props
                 .getAllBodyTypes();
         }
-
-        this.is_mobile();
-        window.addEventListener('resize', () => {
-            this.is_mobile();
-        })
+        
         this.isValidPageRequest();
         this.carsToPaginate();
 
@@ -55,14 +52,6 @@ class Cars extends Component {
 
     componentWillUnmount() {
         this.setState({carsToPaginate: []})
-    }
-
-    is_mobile = () => {
-        if (window.outerWidth <= 1023) {
-            this.setState({is_mobile: true})
-        } else {
-            this.setState({is_mobile: false})
-        }
     }
 
     carsToPaginate = () => {
@@ -147,7 +136,7 @@ class Cars extends Component {
                                     )}
                                     {(this.carsToShow().length < 1)
                                         ? <h3 className="text-danger">Sorry! No cars match with search</h3>
-                                        : this.carsToShow().map(car => (<CarListItem key={car.id} car={car} cars={[...this.props.cars]}/>))
+                                        : this.carsToShow().map(car => (<CarListItem key={car.id} car={car} cars={[...this.props.cars]} baseURL={this.props.baseURL} />))
 }
                                     {(this.state.carsToPaginate.length > this.defaultPerpage()) && (<Pagination
                                         {...this.props}
@@ -183,5 +172,11 @@ class Cars extends Component {
         )
     }
 }
-const mapPropsToState = (state) => ({cars: state.cars.cars, brands: state.cars.brands, bodyTypes: state.cars.bodyTypes, sliders: state.sliders.sliders})
+const mapPropsToState = (state) => ({
+    cars: state.cars.cars, 
+    brands: state.cars.brands, 
+    bodyTypes: state.cars.bodyTypes, 
+    baseURL: state.cars.baseURL,
+    sliders: state.sliders.sliders, 
+})
 export default connect(mapPropsToState, {getAllCars, setSlider, getAllBrands, getAllBodyTypes})(Cars);

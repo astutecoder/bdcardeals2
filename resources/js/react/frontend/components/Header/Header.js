@@ -10,7 +10,7 @@ export default class Header extends Component {
                 <div className={styles.header}>
                     <div className={styles.header__logo}>
                         <NavLink to='/'>
-                            <img src="/images/bd_car_deals_logo.png" alt="BD Car Deals Logo"/>
+                            <img src={`${this.props.baseURL}images/bd_car_deals_logo.png`} alt="BD Car Deals Logo"/>
                         </NavLink>
                     </div>
                     <nav className={styles.header__navContainer}>

@@ -1,10 +1,12 @@
 import {GET_ALL_CARS, GET_SINGLE_CAR, GET_ALL_BRANDS, GET_ALL_BODYTYPES} from '../actions/types'
+import {BaseURL} from '../actions/actions';
 
 const initialState = {
     cars: [],
     brands: [],
     bodyTypes: [],
-    singleCar: {}
+    singleCar: {},
+    baseURL: BaseURL
 }
 
 export const carReducers = (state = initialState, actions) => {

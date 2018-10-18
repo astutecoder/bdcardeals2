@@ -25,6 +25,26 @@
         .cancel:hover {
             color : rgba(0, 0, 0, .7);
         }
+        .pleaseWait {
+            background: rgba(130, 5, 26, 0.92);
+            height: 100%;
+            left: 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 102;
+        }
+        .pleaseWait::after {
+            color: white;
+            content: attr(data-content);
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            font-weight: 600;
+            left: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
     </style>
 @endpush
 
@@ -252,6 +272,7 @@
 
         $('#submit').on('click', function (e) {
             e.preventDefault();
+            activateWait();
             var fileLength = fileArray.length,
                 _csrf = $('meta[name=csrf]').attr('content'),
                 car_id = $('#car_id').val(),
@@ -285,15 +306,40 @@
                 contentType: false,
                 processData: false,
                 success: function (data) {
-                    console.log(data);
                     if (data == 1) {
-                        window.location.replace("{{ route('albums') }}")
+                        var waitDiv = $('.pleaseWait');
+                        waitDiv.attr('data-content', 'Successfully Uploaded');
+                        setTimeout(function(){
+                            deactivateWait()
+                            window.location.replace("{{ route('albums') }}")
+                        }, 2000)
                     }
                 },
                 error: function (err) {
-                    console.dir(err)
+                    var waitDiv = $('.pleaseWait');
+                    waitDiv.attr('data-content', 'Failed to Upload')
+                    setTimeout(function(){
+                        deactivateWait()
+                    }, 2000)
                 }
             });
         });
+
+        function activateWait(){
+            var body = document.getElementsByTagName('body');
+            var div = document.createElement('div');
+            div
+                .classList
+                .add('pleaseWait');
+            div.setAttribute('data-content', 'Please Wait...');
+            body[0].appendChild(div);
+            body[0].style.overflow = 'hidden';
+        }
+
+        function deactivateWait(){
+            var body = $('body');
+            body.remove('.pleaseWait');
+            body.removeAttr('style');
+        }
     </script>
 @endpush

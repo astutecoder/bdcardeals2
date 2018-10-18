@@ -7,7 +7,7 @@
     position: relative;
     &::after {
         content: '';
-        background: $lightblack url('/images/bg-footer.jpg') center center/cover no-repeat;
+        background: $lightblack url('/projects/bdcardeals/images/bg-footer.jpg') center center/cover no-repeat;
         filter: blur(1px) brightness(40%);
         height: 100%;
         left: 0;

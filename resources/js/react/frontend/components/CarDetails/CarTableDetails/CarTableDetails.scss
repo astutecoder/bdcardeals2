@@ -33,6 +33,23 @@
     }
 }
 
+.phone_number_wrap{
+    background: $lightblack;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    width: 100%;
+    .phone_number{
+        display: inline-block;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+        font-size: 1.1rem;
+        letter-spacing: 4px;
+        line-height: 1;
+        margin-top: 4px;
+    }
+}
+
 .car_info{
     background: #eaeaea;
     padding: 20px;
