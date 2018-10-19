@@ -367,7 +367,7 @@ class CarsController extends Controller
         // deleting photos
         $photos = Photo::where('cars_id', $id)->get();
         if(!$photos->isEmpty()){
-            $photosDeleted = $photos->delete();
+            $photosDeleted = Photo::where('cars_id', $id)->delete();
             $success = $success && $photosDeleted;
         }
 

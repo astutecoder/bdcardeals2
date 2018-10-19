@@ -131,7 +131,6 @@
                 success: function(data){
                    try {
                        if(data){
-                           $.magnificPopup.close();
                            alert('Successfully Deleted');
                        }else{
                            throw new Error('Failed to Delete')
