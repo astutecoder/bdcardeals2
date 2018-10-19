@@ -108,7 +108,7 @@ export default class CarBoxed extends Component {
         };
         return (
             <React.Fragment>
-                {cars.length && (
+                {!!cars.length && (
                     <section className={["section-wrapper", this.props.classes].join(' ')}>
                         <div className="container">
                             <div className="row">
