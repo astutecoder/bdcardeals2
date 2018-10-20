@@ -101,7 +101,12 @@ class CarDetails extends Component {
                 {this.state.car.id
                     ? (
                         <React.Fragment>
-                            <section className="section-wrapper">
+                            {!this.state.car.id ? (
+                                <div>
+                                    <img className="d-block mx-auto" src="/images/loader.svg" alt="loading" />
+                                </div>
+                            ) :
+                            (<section className="section-wrapper">
                                 <div className="container">
                                     <div className="row">
                                         <div className="col-lg-8">
@@ -156,7 +161,8 @@ class CarDetails extends Component {
                                         </div>{/* end of right col */}
                                     </div>
                                 </div>
-                            </section>
+                            </section>)
+                            }
                             {/* related cars row */}
                             <CarBoxed
                                 filter={{
