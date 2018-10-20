@@ -69,7 +69,7 @@ class Cars extends Component {
     }
 
     defaultPerpage = () => {
-        return 5;
+        return 10;
     }
     requiredPages = () => {
         return Math.ceil(this.props.cars.length / this.defaultPerpage());

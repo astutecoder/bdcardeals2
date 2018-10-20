@@ -101,12 +101,7 @@ class CarDetails extends Component {
                 {this.state.car.id
                     ? (
                         <React.Fragment>
-                            {!this.state.car.id ? (
-                                <div>
-                                    <img className="d-block mx-auto" src="/images/loader.svg" alt="loading" />
-                                </div>
-                            ) :
-                            (<section className="section-wrapper">
+                            <section className="section-wrapper">
                                 <div className="container">
                                     <div className="row">
                                         <div className="col-lg-8">
@@ -161,8 +156,7 @@ class CarDetails extends Component {
                                         </div>{/* end of right col */}
                                     </div>
                                 </div>
-                            </section>)
-                            }
+                            </section>
                             {/* related cars row */}
                             <CarBoxed
                                 filter={{
@@ -174,15 +168,21 @@ class CarDetails extends Component {
                                 baseURL={this.props.baseURL}/>
                         </React.Fragment>
                     )
-                    : (
-                        <div className="container mt-5">
+                    : 
+                        !!this.state.error ? 
+                            (<div className="container mt-5">
                             <div className="row">
                                 <div className="col-md-12">
                                     <h3 className="text-danger text-center">{this.state.error}</h3>
                                 </div>
                             </div>
-                        </div>
-                    )
+                        </div>):
+                            (
+                                <div>
+                                    <img className="d-block mx-auto" src="/images/loader.svg" alt="loading" />
+                                </div>
+                            )
+                    
 }
             </section>
         )
