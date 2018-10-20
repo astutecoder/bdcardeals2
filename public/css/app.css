@@ -11338,6 +11338,11 @@ body .pleaseWait:after {
           transform: translate(-50%, -50%);
 }
 
+.carousel-control-prev,
+.carousel-control-next {
+  width: 5%;
+}
+
 .navbar-laravel {
   background-color: #000;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
