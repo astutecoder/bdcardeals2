@@ -68,7 +68,11 @@
             }
             .slider__subtitle{
                 color: white;
-                font-size: 1.1rem;
+                font-size: 1.5rem;
+                font-weight: 600;
+                opacity: 0;
+                margin-bottom: 0.5rem;
+                text-transform: capitalize;
             }
             .slider__btn_container {
                 display: flex;
@@ -123,7 +127,7 @@
 }
 
 .active {
-    .slider__title {
+    .slider__title, .slider__subtitle {
         animation: title 1s ease-out forwards;
     }
     .slider__btn_container {
