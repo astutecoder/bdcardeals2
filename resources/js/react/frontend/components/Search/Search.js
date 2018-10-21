@@ -15,12 +15,18 @@ export default class Search extends Component {
         this.state = {
             redirect: false,
             show_make: true,
-            filters: {}
+            filters: {},
+            uniqueModel:[],
         }
     }
 
     componentDidMount() {
+        this.findUniqueModel(this.props.cars);
         this.slideRange();
+        let query = require('query-string');
+        if(this.props.location.search){
+            let {q} = query.parse(this.props.location.search);
+        }
         if (this.props.location.state) {
             this.setState({
                 filters: {
@@ -44,6 +50,33 @@ export default class Search extends Component {
         if (this.state.show_make && prevState.show_make !== this.state.show_make) {
             this.slideRange();
         }
+        if(prevProps.cars.length !== this.props.cars.length){
+            this.findUniqueModel(this.props.cars);
+        }
+    }
+
+    componentWillUnmount(){
+        this.setState({
+            filters:{},
+            uniqueModel: []
+        })
+    }
+
+    findUniqueModel = (cars) => {
+        let models = [] ;
+        cars.filter(car => {
+            let model_name = car.brands.brand_name.toLowerCase() +' '+car.model_no.toLowerCase();
+            if(models.indexOf(model_name) === -1) {
+                models.push(model_name);
+                return true;
+            } else {
+                return false;
+            }
+        });
+
+        this.setState({
+            uniqueModel: models
+        })
     }
 
     year = () => {
@@ -82,9 +115,16 @@ export default class Search extends Component {
             },
             step: 100000
         });
+        slider.noUiSlider.on('update', (values, handle) => {
+            if (handle) {
+                maxSpan[0].textContent = ` - ${cFormat.to(Math.floor(values[handle]))}`;
+            } else {
+                minSpan[0].textContent = ` ${cFormat.to(Math.floor(values[handle]))}`;
+            }
+        })
         slider
             .noUiSlider
-            .on('update', (values, handle) => {
+            .on('slide', (values, handle) => {
                 if (handle) {
                     maxSpan[0].textContent = ` - ${cFormat.to(Math.floor(values[handle]))}`;
                     this.setState({
@@ -206,7 +246,14 @@ export default class Search extends Component {
                             <option value="">Select Brand</option>
                             {this
                                 .props
-                                .brands
+                                .brands.sort((a, b) => {
+                                    if(a.brand_name.toLowerCase() < b.brand_name.toLowerCase()){
+                                        return -1;
+                                    }else if(a.brand_name.toLowerCase() > b.brand_name.toLowerCase()) {
+                                        return 1;
+                                    }
+                                    return 0;
+                                })
                                 .map(brand => (
                                     <option key={brand.id} value={brand.id}>{brand.brand_name}</option>
                                 ))}
@@ -218,15 +265,15 @@ export default class Search extends Component {
                         </label>
                         <select
                             className={styles.select}
-                            name="id"
+                            name="model_no"
                             onChange={this.handleSelectType}
-                            value={this.state.filters.id}>
+                            value={this.state.filters.model_no}>
                             <option value="">Select Model</option>
                             {this
-                                .props
-                                .cars
-                                .map(car => (
-                                    <option key={car.id} value={car.id}>{car.brands.brand_name + ' ' + car.model_no}</option>
+                                .state
+                                .uniqueModel.sort()
+                                .map((model, i) => (
+                                    <option key={i} value={model}>{model.toUpperCase()}</option>
                                 ))}
                         </select>
                     </div>
