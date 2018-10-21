@@ -142,6 +142,7 @@ export default class NewArrive extends Component {
                                                 ? car.title
                                                 : (car.brands.brand_name + ' ' + car.model_no + ' ' + car.year)}
                                         </div>
+                                    </Link>
                                         <div
                                             className={["sp-thumbnail-description", styles["sp-thumbnail-description"]].join(' ')}>
                                             <div>
@@ -151,7 +152,6 @@ export default class NewArrive extends Component {
                                                 Price: {car.price}
                                             </div>
                                         </div>
-                                    </Link>
                                 </div>
                             </div>
                         )
