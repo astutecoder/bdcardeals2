@@ -150,7 +150,7 @@ class Footer extends Component {
                 <div className={['bg-dark', styles.credit].join(' ')}>
                     <span>&copy; All Rights Reserved. </span>
                     <span>
-                        Powered by: <a href="https://www.astutecoder.com">AstuteCoder</a>
+                        Powered by: <a href="https://www.astutecoder.com" target="_blank">AstuteCoder</a>
                     </span>
                 </div>
             </footer>
