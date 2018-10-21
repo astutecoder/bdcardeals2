@@ -11,7 +11,7 @@
         <meta property="og:title" content="Welcome to BDCarDeals.Com" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.bdcardeals.com/" />
-        <meta property="og:derscription" content="Find your next car from our rich collection." />
+        <meta property="og:description" content="আমরাই দিচ্ছি, সকল ব্রান্ডের রিকন্ডিশন গাড়ি" />
         <meta property="og:image" content="https://www.bdcardeals.com/images/bd_car_deals_logo.png" />
 
         <link rel="apple-touch-icon" sizes="57x57" href="/images/favicon.ico/apple-icon-57x57.png">
