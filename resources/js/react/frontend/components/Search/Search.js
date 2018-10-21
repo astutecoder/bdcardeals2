@@ -291,7 +291,14 @@ export default class Search extends Component {
                             <option value="">Select Type</option>
                             {this
                                 .props
-                                .bodyTypes
+                                .bodyTypes.sort((a, b) => {
+                                    if(a.body_type.toLowerCase() < b.body_type.toLowerCase()){
+                                        return -1;
+                                    }else if(a.body_type.toLowerCase() > b.body_type.toLowerCase()) {
+                                        return 1;
+                                    }
+                                    return 0;
+                                })
                                 .map(bodyType => (
                                     <option key={bodyType.id} value={bodyType.id}>{bodyType.body_type}</option>
                                 ))}
