@@ -8,6 +8,12 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
+        <meta property="og:title" content="Welcome to BDCarDeals.Com" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.bdcardeals.com/" />
+        <meta property="og:derscription" content="Find your next car from our rich collection." />
+        <meta property="og:image" content="https://www.bdcardeals.com/images/bd_car_deals_logo.png" />
+
         <link rel="apple-touch-icon" sizes="57x57" href="/images/favicon.ico/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="/images/favicon.ico/apple-icon-60x60.png">
         <link rel="apple-touch-icon" sizes="72x72" href="/images/favicon.ico/apple-icon-72x72.png">
