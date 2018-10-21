@@ -44,6 +44,8 @@ class Cars extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
+        window.scrollTo(0,0);
+
         if (prevProps.cars.length != this.props.cars.length) {
             this.carsToPaginate();
             this.isValidPageRequest();
