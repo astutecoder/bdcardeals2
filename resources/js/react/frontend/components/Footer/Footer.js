@@ -41,10 +41,12 @@ class Footer extends Component {
                     <div className="row">
                         <div className="col-lg-3 d-flex justify-content-between align-items-center">
                             <div className={styles.logo}>
-                                <img
-                                    className={styles.logo__img}
-                                    src={`${this.props.baseURL}images/bd_car_deals_logo_BW.png`}
-                                    alt="BD Car Deals Logo"/>
+                                <Link to='/'>
+                                    <img
+                                        className={styles.logo__img}
+                                        src={`${this.props.baseURL}images/bd_car_deals_logo_BW.png`}
+                                        alt="BD Car Deals Logo"/>
+                                </Link>
                             </div>
                         </div>
                         <div className="col-lg-9">
@@ -57,9 +59,7 @@ class Footer extends Component {
                                                 .props
                                                 .top_brands
                                                 .map(brand => (
-                                                    <li
-                                                        className={styles.footer__list__item}
-                                                        key={brand.id}>
+                                                    <li className={styles.footer__list__item} key={brand.id}>
                                                         <Link
                                                             to={{
                                                             pathname: '/process-search',
@@ -69,7 +69,9 @@ class Footer extends Component {
                                                                 },
                                                                 cars: [...this.props.cars]
                                                             }
-                                                        }}>{brand.brand_name.toUpperCase()}</Link>
+                                                        }}>{brand
+                                                                .brand_name
+                                                                .toUpperCase()}</Link>
                                                     </li>
                                                 ))}
                                         </ul>
@@ -136,7 +138,8 @@ class Footer extends Component {
                                                 badhontrading@gmail.com
                                             </li>
                                             <li className={[styles.contact_details__item, styles.location].join(' ')}>
-                                                22/A Uttara, R/A, <br />
+                                                22/A Uttara, R/A,
+                                                <br/>
                                                 Dhaka-1230
                                             </li>
                                         </ul>
@@ -148,9 +151,11 @@ class Footer extends Component {
                 </div>
 
                 <div className={['bg-dark', styles.credit].join(' ')}>
-                    <span>&copy; All Rights Reserved. </span>
+                    <span>&copy; All Rights Reserved.
+                    </span>
                     <span>
-                        Powered by: <a href="https://www.astutecoder.com" target="_blank">AstuteCoder</a>
+                        Powered by:
+                        <a href="https://www.astutecoder.com" target="_blank">AstuteCoder</a>
                     </span>
                 </div>
             </footer>
