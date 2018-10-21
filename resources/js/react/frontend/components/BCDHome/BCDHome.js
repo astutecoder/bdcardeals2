@@ -145,19 +145,19 @@ class BCDHome extends Component {
                     cars={[...this.props.cars]}
                     baseURL={this.props.baseURL}/> 
                     
-                {/* {this.state.recentCars.length > 0 && (
+                {this.state.recentCars.length > 0 && (
                     <section className={["section-wrapper", styles.recent_car_container].join(' ')}>
                         <div className="container">
                             <div className="row">
                                 <div className="col-md-12">
                                     <SubSectionHead title="Recent Cars"/>
-                                    <NewArrive cars={this.state.recentCars} thumbImage={false}/>
+                                    <NewArrive cars={this.state.recentCars} baseURL={this.props.baseURL} thumbImage={false}/>
                                 </div>
                             </div>
                         </div>
                     </section>
                 )
-} */}
+}
 
                 {this.state.brandsByAscName.length > 0 && (
                     <section className={["section-wrapper", styles.top_makers].join(' ')}>
