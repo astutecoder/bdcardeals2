@@ -48,8 +48,8 @@ export default class NewArrive extends Component {
                                 })
                         }
                         const src = (folder_name)
-                            ? `/storage/car_albums/${folder_name}/${file_name}`
-                            : '/images/no_car_photo.png';
+                            ? `${this.props.baseURL}storage_image/car_albums/${folder_name}/${file_name}`
+                            : `${this.props.baseURL}images/no_car_photo.png`;
                         const path = `/cars/${car
                             .brands
                             .brand_name
@@ -92,8 +92,8 @@ export default class NewArrive extends Component {
                                 })
                         }
                         const src = (folder_name)
-                            ? `/storage/car_albums/${folder_name}/${file_name}`
-                            : '/images/no_car_photo.png';
+                            ? `${this.props.baseURL}storage_image/car_albums/${folder_name}/${file_name}`
+                            : `${this.props.baseURL}/images/no_car_photo.png`;
                         const path = `/cars/${car
                             .brands
                             .brand_name
