@@ -60,17 +60,6 @@ export default class ProcessSearch extends Component {
                 carsToDisplay: [...cars]
             })
 
-        } else if(filterArray.hasOwnProperty('model_no')){
-            cars = cars.filter(car => {
-                let model = car.brands.brand_name+' '+car.model_no
-                
-                return (model.toLowerCase().includes(filterArray['model_no'].toLowerCase()))
-            })
-
-            this.setState({
-                carsToDisplay: [...cars]
-            })
-
         } else {
             // if search by make
             for (let key in filterArray) {
@@ -89,6 +78,17 @@ export default class ProcessSearch extends Component {
                         carsToDisplay: [...cars],
                         // search_q: this.state.search_q + '' + q
                     })
+                } else if(key === 'model_no'){
+                    cars = cars.filter(car => {
+                        let model = car.brands.brand_name+' '+car.model_no
+                        
+                        return (model.toLowerCase().includes(filterArray['model_no'].toLowerCase()))
+                    })
+        
+                    this.setState({
+                        carsToDisplay: [...cars]
+                    })
+        
                 } else {
                     if (!!filterArray[key]) {
                         cars = cars.filter((car) => {
