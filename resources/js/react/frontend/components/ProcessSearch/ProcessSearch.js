@@ -53,7 +53,18 @@ export default class ProcessSearch extends Component {
                 let status = car.car_condition === 'used' ? 'second-hand' : car.car_condition;
                 let title = car.brands.brand_name+' '+car.model_no+' '+car.year+' '+car.title+' '+car.subtitle+' '+car.mileage+' '+car.engine+' '+status
                 
-                return (title.toLocaleLowerCase().includes(filterArray['name'].toLocaleLowerCase()))
+                return (title.toLowerCase().includes(filterArray['name'].toLowerCase()))
+            })
+
+            this.setState({
+                carsToDisplay: [...cars]
+            })
+
+        } else if(filterArray.hasOwnProperty('model_no')){
+            cars = cars.filter(car => {
+                let model = car.brands.brand_name+' '+car.model_no
+                
+                return (model.toLowerCase().includes(filterArray['model_no'].toLowerCase()))
             })
 
             this.setState({
@@ -68,7 +79,7 @@ export default class ProcessSearch extends Component {
                     const min = filterArray['price']['min']
                         ? filterArray['price']['min']
                         : 0;
-                    const max = filterArray['price']['max'];
+                    const max = filterArray['price']['max'] ? filterArray['price']['max'] : Infinity;
 
                     cars = cars.filter(car => {
                         return (min <= car.price && car.price <= max)
@@ -91,7 +102,7 @@ export default class ProcessSearch extends Component {
             }
         }
         if (cars.length !== this.props.location.state.cars.length) {
-            this.setState({search_q: `${this.state.search_q}&q=${uuidv1()}`})
+            this.setState({search_q: `?page=1&q=${uuidv1()}`})
         }
     }
 
