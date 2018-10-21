@@ -185,6 +185,13 @@ export default class Search extends Component {
         });
     }
 
+    handleModelOnBrandChange = (event) => {
+        let brands_id = event.currentTarget.value;
+        let cars_of_brand = (!!brands_id) ? this.props.cars.filter(car => car.brands_id == brands_id) : [...this.props.cars];
+        
+        this.findUniqueModel(cars_of_brand);
+    }
+
     handleSearch = () => {
         this.setState({redirect: true})
     }
@@ -241,7 +248,7 @@ export default class Search extends Component {
                         <select
                             className={styles.select}
                             name="brands_id"
-                            onChange={this.handleSelectType}
+                            onChange={(e) => {this.handleSelectType(e); this.handleModelOnBrandChange(e)} }
                             value={this.state.filters.brands_id}>
                             <option value="">Select Brand</option>
                             {this
