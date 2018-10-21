@@ -23,16 +23,18 @@ export default class Search extends Component {
     componentDidMount() {
         this.findUniqueModel(this.props.cars);
         this.slideRange();
-        let query = require('query-string');
-        if(this.props.location.search){
-            let {q} = query.parse(this.props.location.search);
-        }
+        
         if (this.props.location.state) {
             this.setState({
                 filters: {
                     ...this.props.location.state.filters
                 }
             });
+
+            if(this.props.location.state.filters && this.props.location.state.filters.brands_id){
+                this.handleModelOnBrandChange(null, this.props.location.state.filters.brands_id);
+            }
+
             if(this.props.location.state.filters.hasOwnProperty('name')){
                 this.setState({
                     show_make: false,
@@ -185,8 +187,8 @@ export default class Search extends Component {
         });
     }
 
-    handleModelOnBrandChange = (event) => {
-        let brands_id = event.currentTarget.value;
+    handleModelOnBrandChange = (event, brandID = '') => {
+        let brands_id = (!!event) ? event.currentTarget.value : brandID;
         let cars_of_brand = (!!brands_id) ? this.props.cars.filter(car => car.brands_id == brands_id) : [...this.props.cars];
         
         this.findUniqueModel(cars_of_brand);
