@@ -38,7 +38,7 @@ class PhotoController extends Controller
 
         $car = Car::findOrFail($car_id);
         $car->brands;
-        $folderName = $car->brands->brand_name . '_' . $car->model_no . '_' . $car->year;
+        $folderName = $car->brands->brand_name . '_' . $car->model_no . '_' . $car->year . '_' . time();
         $albumName = strtoupper($car->brands->brand_name) . ' ' . $car->model_no . ' ' . $car->year;
 
         $file_names = [];
