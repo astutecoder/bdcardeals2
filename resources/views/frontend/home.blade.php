@@ -43,9 +43,11 @@
         <title>BD Car Deals</title>
     </head>
     <body>
+        <div class="preloader"></div>
         <div id="bcd-app"></div>
+
         <script src="{{ asset('js/frontend.js') }}"></script>
-    <!-- <script src="{{ asset('vendor_assets/slider-pro/libs/js/jquery-1.11.0.min.js') }}"></script> -->
+
         <script src="{{ asset('vendor_assets/slider-pro-master/dist/js/jquery.sliderPro.min.js') }}"></script>
     </body>
 </html>
