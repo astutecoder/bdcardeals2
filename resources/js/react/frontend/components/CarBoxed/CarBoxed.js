@@ -67,6 +67,8 @@ export default class CarBoxed extends Component {
             : 'featured cars'
         const options = {
             autoplay: true,
+            arrows: false,
+            dots: false,
             speed: 500,
             pauseOnHover: true,
             slidesToShow: (cars.length >= 3)

@@ -16,3 +16,14 @@ export const deactivateWait = () => {
         .removeChild(pleaseWait);
     body.removeAttribute('style')
 }
+
+export const notificationSlideOut = (thisClass) => {
+    setTimeout(() => {
+        thisClass.setState({
+            notification: {
+                ...thisClass.state.notification,
+                slide: 'out'
+            }
+        })
+    }, 5000);
+}

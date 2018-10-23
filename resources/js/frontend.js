@@ -21,7 +21,7 @@ export default class FrontEnd extends Component {
                     if (/loaded|complete/.test(document.readyState)) {
                         clearInterval(everythingLoaded);
 
-                        $(".preloader").animate({ opacity: 0, zIndex: 1 });
+                        $(".preloader").animate({ opacity: 0, zIndex: -1 });
                     }
                 }, 10);
             }

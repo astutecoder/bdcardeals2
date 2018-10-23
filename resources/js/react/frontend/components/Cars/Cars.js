@@ -148,7 +148,7 @@ class Cars extends Component {
 }
                                 </div>
 
-                                <div className="hidden-md col-lg-4">
+                                <div className="col-lg-4">
                                     <div className={styles.search__sidebar__head}>
                                         <h5>Search Cars</h5>
                                     </div>

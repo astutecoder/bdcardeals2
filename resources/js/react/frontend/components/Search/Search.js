@@ -1,12 +1,15 @@
 import React, {Component} from 'react'
+import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux'
-import noUiSlider from 'nouislider'
+
+import Notification from '../Helpers/Notification/Notification'
 
 import {getAllCars} from '../../actions/actions'
+import {notificationSlideOut} from '../Helpers/Functions'
 
-import styles from './Search.scss'
-import {Redirect} from 'react-router-dom';
+import noUiSlider from 'nouislider'
 import wNumb from 'wnumb'
+import styles from './Search.scss'
 
 export default class Search extends Component {
 
@@ -16,14 +19,15 @@ export default class Search extends Component {
             redirect: false,
             show_make: true,
             filters: {},
-            uniqueModel:[],
+            uniqueModel: [],
+            notification: {}
         }
     }
 
     componentDidMount() {
         this.findUniqueModel(this.props.cars);
         this.slideRange();
-        
+
         if (this.props.location.state) {
             this.setState({
                 filters: {
@@ -31,19 +35,21 @@ export default class Search extends Component {
                 }
             });
 
-            if(this.props.location.state.filters && this.props.location.state.filters.brands_id){
+            if (this.props.location.state.filters && this.props.location.state.filters.brands_id) {
                 this.handleModelOnBrandChange(null, this.props.location.state.filters.brands_id);
             }
 
-            if(this.props.location.state.filters.hasOwnProperty('name')){
-                this.setState({
-                    show_make: false,
-                })
+            if (this.props.location.state.filters.hasOwnProperty('name')) {
+                this.setState({show_make: false})
                 const makeEl = document.querySelector(`.${styles.s_make}`);
                 const nameEl = document.querySelector(`.${styles.s_name}`);
-                
-                makeEl.classList.remove(styles.active);
-                nameEl.classList.add(styles.active);
+
+                makeEl
+                    .classList
+                    .remove(styles.active);
+                nameEl
+                    .classList
+                    .add(styles.active);
             }
         }
     }
@@ -52,23 +58,25 @@ export default class Search extends Component {
         if (this.state.show_make && prevState.show_make !== this.state.show_make) {
             this.slideRange();
         }
-        if(prevProps.cars.length !== this.props.cars.length){
+        if (prevProps.cars.length !== this.props.cars.length) {
             this.findUniqueModel(this.props.cars);
         }
     }
 
-    componentWillUnmount(){
-        this.setState({
-            filters:{},
-            uniqueModel: []
-        })
+    componentWillUnmount() {
+        this.setState({filters: {}, uniqueModel: []})
     }
 
     findUniqueModel = (cars) => {
-        let models = [] ;
+        let models = [];
         cars.filter(car => {
-            let model_name = car.brands.brand_name.toLowerCase() +' '+car.model_no.toLowerCase();
-            if(models.indexOf(model_name) === -1) {
+            let model_name = car
+                .brands
+                .brand_name
+                .toLowerCase() + ' ' + car
+                .model_no
+                .toLowerCase();
+            if (models.indexOf(model_name) === -1) {
                 models.push(model_name);
                 return true;
             } else {
@@ -76,9 +84,7 @@ export default class Search extends Component {
             }
         });
 
-        this.setState({
-            uniqueModel: models
-        })
+        this.setState({uniqueModel: models})
     }
 
     year = () => {
@@ -117,13 +123,15 @@ export default class Search extends Component {
             },
             step: 100000
         });
-        slider.noUiSlider.on('update', (values, handle) => {
-            if (handle) {
-                maxSpan[0].textContent = ` - ${cFormat.to(Math.floor(values[handle]))}`;
-            } else {
-                minSpan[0].textContent = ` ${cFormat.to(Math.floor(values[handle]))}`;
-            }
-        })
+        slider
+            .noUiSlider
+            .on('update', (values, handle) => {
+                if (handle) {
+                    maxSpan[0].textContent = ` - ${cFormat.to(Math.floor(values[handle]))}`;
+                } else {
+                    minSpan[0].textContent = ` ${cFormat.to(Math.floor(values[handle]))}`;
+                }
+            })
         slider
             .noUiSlider
             .on('slide', (values, handle) => {
@@ -188,14 +196,34 @@ export default class Search extends Component {
     }
 
     handleModelOnBrandChange = (event, brandID = '') => {
-        let brands_id = (!!event) ? event.currentTarget.value : brandID;
-        let cars_of_brand = (!!brands_id) ? this.props.cars.filter(car => car.brands_id == brands_id) : [...this.props.cars];
-        
+        let brands_id = (!!event)
+            ? event.currentTarget.value
+            : brandID;
+        let cars_of_brand = (!!brands_id)
+            ? this
+                .props
+                .cars
+                .filter(car => car.brands_id == brands_id)
+            : [...this.props.cars];
+
         this.findUniqueModel(cars_of_brand);
     }
 
     handleSearch = () => {
-        this.setState({redirect: true})
+        if (!_.isEmpty(this.state.filters) && this.notEmptyValue(this.state.filters)) {
+            if (this.props.location.state && this.props.location.state.filters && JSON.stringify(this.props.location.state.filters) === JSON.stringify(this.state.filters)) {
+                return;
+            }
+            this.setState({redirect: true})
+        } else {
+            this.setState({
+                notification: {
+                    failed: "Please Select/Fill At Least One Item",
+                    slide: 'in'
+                }
+            });
+            notificationSlideOut(this);
+        }
     }
 
     clearSearch = () => {
@@ -205,10 +233,18 @@ export default class Search extends Component {
     isSearched = () => {
         const query = require('query-string');
         const search_str = (query.parse(this.props.location.search));
-        if(!!search_str.q){
+        if (!!search_str.q) {
             return true;
         }
         return false;
+    }
+
+    notEmptyValue = (obj) => {
+        let empty = false;
+        for (let key in obj) {
+            empty = empty || (!!obj[key]);
+        }
+        return empty;
     }
 
     render() {
@@ -250,15 +286,19 @@ export default class Search extends Component {
                         <select
                             className={styles.select}
                             name="brands_id"
-                            onChange={(e) => {this.handleSelectType(e); this.handleModelOnBrandChange(e)} }
+                            onChange={(e) => {
+                            this.handleSelectType(e);
+                            this.handleModelOnBrandChange(e)
+                        }}
                             value={this.state.filters.brands_id}>
                             <option value="">Select Brand</option>
                             {this
                                 .props
-                                .brands.sort((a, b) => {
-                                    if(a.brand_name.toLowerCase() < b.brand_name.toLowerCase()){
+                                .brands
+                                .sort((a, b) => {
+                                    if (a.brand_name.toLowerCase() < b.brand_name.toLowerCase()) {
                                         return -1;
-                                    }else if(a.brand_name.toLowerCase() > b.brand_name.toLowerCase()) {
+                                    } else if (a.brand_name.toLowerCase() > b.brand_name.toLowerCase()) {
                                         return 1;
                                     }
                                     return 0;
@@ -280,7 +320,8 @@ export default class Search extends Component {
                             <option value="">Select Model</option>
                             {this
                                 .state
-                                .uniqueModel.sort()
+                                .uniqueModel
+                                .sort()
                                 .map((model, i) => (
                                     <option key={i} value={model}>{model.toUpperCase()}</option>
                                 ))}
@@ -300,10 +341,11 @@ export default class Search extends Component {
                             <option value="">Select Type</option>
                             {this
                                 .props
-                                .bodyTypes.sort((a, b) => {
-                                    if(a.body_type.toLowerCase() < b.body_type.toLowerCase()){
+                                .bodyTypes
+                                .sort((a, b) => {
+                                    if (a.body_type.toLowerCase() < b.body_type.toLowerCase()) {
                                         return -1;
-                                    }else if(a.body_type.toLowerCase() > b.body_type.toLowerCase()) {
+                                    } else if (a.body_type.toLowerCase() > b.body_type.toLowerCase()) {
                                         return 1;
                                     }
                                     return 0;
@@ -357,36 +399,43 @@ export default class Search extends Component {
                 <input
                     className={styles.search__name}
                     onChange={this.handleSelectType}
-                    value={(this.state.filters && this.state.filters.name)? this.state.filters.name : ''}
+                    value={(this.state.filters && this.state.filters.name)
+                    ? this.state.filters.name
+                    : ''}
                     name="name"
                     type='text'
                     placeholder='Brand / Model / Year / Status / Mileage'/>
             </div>
         );
         return (
-            <div className={[styles.Search, this.props.searchClass].join(' ')}>
-                <div className={styles.searchTab__container}>
-                    <ul className={styles.searchTab}>
-                        <li
-                            className={[styles.searchTab__item, styles.s_make, styles.active].join(' ')}
-                            onClick={this.showSearch}>Search By Make</li>
-                        <li className={[styles.searchTab__item, styles.s_name].join(' ')} onClick={this.showSearch}>Search By Name</li>
-                    </ul>
-                </div>
-                <div className={[this.props.flexClass, styles.searchContainer].join(' ')}>
-                    {this.state.show_make
-                        ? searchByMake()
-                        : searchByName()}
-                    <div className={this.props.btnContainerClass}>
-                        <button className="btn btn-lg btn-danger rounded-0" onClick={this.handleSearch}>Search</button>
-                        {this.isSearched() && (
-                            <button
-                                className="btn btn-lg btn-success rounded-0 ml-3"
-                                onClick={this.clearSearch}>Clear</button>
-                        )}
+            <React.Fragment>
+                <div className={[styles.Search, this.props.searchClass].join(' ')}>
+                    <div className={styles.searchTab__container}>
+                        <ul className={styles.searchTab}>
+                            <li
+                                className={[styles.searchTab__item, styles.s_make, styles.active].join(' ')}
+                                onClick={this.showSearch}>Search By Make</li>
+                            <li
+                                className={[styles.searchTab__item, styles.s_name].join(' ')}
+                                onClick={this.showSearch}>Search By Name</li>
+                        </ul>
+                    </div>
+                    <div className={[this.props.flexClass, styles.searchContainer].join(' ')}>
+                        {this.state.show_make
+                            ? searchByMake()
+                            : searchByName()}
+                        <div className={this.props.btnContainerClass}>
+                            <button className="btn btn-lg btn-danger rounded-0" onClick={this.handleSearch}>Search</button>
+                            {this.isSearched() && (
+                                <button
+                                    className="btn btn-lg btn-success rounded-0 ml-3"
+                                    onClick={this.clearSearch}>Clear</button>
+                            )}
+                        </div>
                     </div>
                 </div>
-            </div>
+                <Notification {...this.state.notification}/>
+            </React.Fragment>
         )
     }
 }
