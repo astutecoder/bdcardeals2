@@ -67,8 +67,11 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
-.slideFadeIn {
+.section-wrapper {
     padding: 4em 0;
+}
+
+.slideFadeIn {
     transition: all .5s ease;
     animation: fadeIn .5s ease;
 }
