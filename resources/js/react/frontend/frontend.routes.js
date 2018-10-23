@@ -148,7 +148,7 @@ class FrontEndRoutes extends Component {
         return (
             // <BrowserRouter basename='/projects/bdcardeals'>
             <BrowserRouter>
-                <div>
+                <React.Fragment>
                     <Header baseURL={this.props.baseURL}/>
                     <Switch>
                         <Route
@@ -171,7 +171,7 @@ class FrontEndRoutes extends Component {
                         {...props}
                         sortBrandsByName={(e) => this.sortBrandsByName(e)}
                         top_brands={this.state.brandsByAscName}/>)}/>
-                </div>
+                </React.Fragment>
             </BrowserRouter>
         )
     }

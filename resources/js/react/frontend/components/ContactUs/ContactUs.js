@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {getAllCars} from '../../actions/actions'
 import Axios from 'axios'
 
-import {activateWait, deactivateWait} from '../Helpers/Functions'
+import {activateWait, deactivateWait, notificationSlideOut} from '../Helpers/Functions'
 
 import SectionHead from '../SectionHead/SectionHead';
 import Notification from '../Helpers/Notification/Notification'
@@ -75,7 +75,7 @@ class ContactUs extends Component {
                     slide: 'in'
                 }
             });
-            this.notificationSlideOut();
+            notificationSlideOut(this);
             return;
         }
 
@@ -101,7 +101,7 @@ class ContactUs extends Component {
                         slide: 'in'
                     }
                 });
-                this.notificationSlideOut();
+                notificationSlideOut(this);
             })
             .catch(err => {
                 deactivateWait();
@@ -118,20 +118,11 @@ class ContactUs extends Component {
                         slide: 'in'
                     }
                 })
-                this.notificationSlideOut();
+                notificationSlideOut(this);
             })
     }
 
-    notificationSlideOut = () => {
-        setTimeout(() => {
-            this.setState({
-                notification: {
-                    ...this.state.notification,
-                    slide: 'out'
-                }
-            })
-        }, 5000);
-    }
+    
 
     render() {
         return (
