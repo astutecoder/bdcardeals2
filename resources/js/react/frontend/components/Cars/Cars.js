@@ -123,7 +123,7 @@ class Cars extends Component {
             <React.Fragment>
                 <SectionHead title="Cars list"/>
                 <Breadcrumb links={breadcrumb_links}/>
-                <section className="section-wrapper pt-3">
+                <section className="section-wrapper slideFadeIn pt-3">
 
                     <div className={styles.listAndSearchContainer}>
                         <div className="container">
