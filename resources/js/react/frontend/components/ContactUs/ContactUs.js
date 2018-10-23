@@ -128,7 +128,7 @@ class ContactUs extends Component {
         return (
             <React.Fragment>
                 <SectionHead title="Contact Us"/>
-                <section className="section-wrapper">
+                <section className="section-wrapper slideFadeIn">
                     <div className="container">
                         <div className="row">
                             <div className="col-md-6">

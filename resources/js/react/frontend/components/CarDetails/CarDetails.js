@@ -101,7 +101,7 @@ class CarDetails extends Component {
                 {this.state.car.id
                     ? (
                         <React.Fragment>
-                            <section className="section-wrapper">
+                            <section className="section-wrapper slideFadeIn">
                                 <div className="container">
                                     <div className="row">
                                         <div className="col-lg-8">
